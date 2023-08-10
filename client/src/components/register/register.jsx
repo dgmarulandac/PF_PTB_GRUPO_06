@@ -10,6 +10,8 @@ export function Register () {
     });
 
     return(
-        
+        <section>
+            
+        </section>
     );
 };
