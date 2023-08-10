@@ -3,13 +3,19 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,
+  DB_USER, DB_PASSWORD, DB_HOST, URL_DATABASE,
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/boho`, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/boho`, {
+//   logging: false, // set to console.log to see the raw SQL queries
+//   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
+// });
+
+const sequelize = new Sequelize(URL_DATABASE, {
+	logging: false,
+	native: false,
 });
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -30,10 +36,30 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Event, Role, Sale, User } = sequelize.models;
+const { Event, Role, Sale, User, Review, Ticket } = sequelize.models;
 
 // Aca vendrian las relaciones
 //TODO: Agregar las relaciones para cada modelo.
+
+User.belongsToMany(Role, {through: "User_Role"}); 
+Role.belongsToMany(User, {through: "User_Role"});
+
+Event.belongsToMany(User, {through: "User_Event"});
+User.belongsToMany(Event, {through: "User_Event"});
+
+User.hasMany(Review);
+Review.belongsTo(User);
+
+Event.hasMany(Review);
+Review.belongsTo(Event);
+
+User.hasMany(Sale);
+Sale.belongsTo(User);
+
+Sale.hasMany(Ticket);
+Ticket.belongsTo(Sale);
+
+
 // Recipe.belongsToMany(Diet, {through: "Recipe_Diet"});
 // Diet.belongsToMany(Recipe, {through: "Recipe_Diet"});
 
