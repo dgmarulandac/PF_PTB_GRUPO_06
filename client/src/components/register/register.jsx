@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import registerValidation from "../../functions/Validations/registerValidation/validation";
-
+import axios from "axios";
 export function Register() {
     const [user, setUser] = useState({
         user: '',
@@ -8,6 +8,7 @@ export function Register() {
         email: '',
         dir: ''
     });
+    const [result, setResult] = useState(false)
     function handleChange(e){
         const name = e.currentTarget.name
         const value = e.currentTarget.value
@@ -19,7 +20,15 @@ export function Register() {
 
     function handleSubmit(e){
         const [user, password, email, dir] = user
-        registerValidation(user, password, email, dir)
+        const errors = registerValidation(user, password, email, dir)
+        if(errors.lengh === 0){
+            axios.post('http://localhost:3001/users')
+                .then(res => res.data)
+                .then(data => {
+                    setResult(true)
+                })
+                .catch((err) => (setResult(err.message)))
+        }
     }
     return (
         <section>

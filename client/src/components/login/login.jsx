@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import './login.module.css';
 import { Link } from "react-router-dom";
 export function Login() {
     const [user, setUser] = useState({
