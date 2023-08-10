@@ -28,7 +28,7 @@ export function Login() {
                 </form>
             </article>
             <article>
-                <p>¿No tienes cuenta?, <Link to='/register' /></p>
+                <p>¿No tienes cuenta?, <Link to='/register'> Registrate </Link></p>
             </article>
         </section>
     )
