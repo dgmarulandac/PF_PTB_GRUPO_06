@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import registerValidation from "../../functions/Validations/registerValidation/validation";
 import axios from "axios";
+import styles from './register.module.css'
+import { Link } from "react-router-dom";
+
 export function Register() {
     const [users, setUsers] = useState({
         user: '',
@@ -9,7 +12,7 @@ export function Register() {
         dir: ''
     });
     const [result, setResult] = useState(false)
-    const [errors, setErrors] = useState([])
+    const [listErrors, setListErrors] = useState([])
     function handleChange(e) {
         const name = e.currentTarget.name
         const value = e.currentTarget.value
@@ -21,9 +24,8 @@ export function Register() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        const {user, password, dir, email} = users
+        const { user, password, dir, email } = users
         const errors = registerValidation(user, password, dir, email)
-        console.log(errors)
         if (errors.length === 0) {
             axios.post('http://localhost:3001/users')
                 .then(res => res.data)
@@ -33,11 +35,12 @@ export function Register() {
                 .catch((err) => (setResult(err.message)))
         }
         else {
-            setErrors(errors)
+            setListErrors(errors)
         }
     }
+    useEffect(()=>{console.log(listErrors)}, [listErrors])
     return (
-        <section>
+        <section className={styles.RegisterWindow}>
             {
                 result ?
                     <article>
@@ -49,25 +52,25 @@ export function Register() {
                     :
                     null
             }
-            {/* {
-                errors ?
-                    <div>
-                        <button onClick={() => { setErrors([]) }}>x</button>
+            {
+                listErrors ?
+                    <div className={styles.ErrorPopUp}>
                         {
-                            errors.map((element, key) =>{
-                                return(
+                            listErrors?.map((element, key) => {
+                                return (
                                     <div key={key++}>
+                                        <button onClick={() => { setListErrors([]) }} className="CloseButton">x</button>
                                         <p>{element}</p>
                                     </div>
                                 )
-                            })    
-                        };
+                            })
+                        }
                     </div>
                     :
                     null
-            } */}
+            }
             <article>
-                <form onSubmit={handleSubmit}>
+                <form className={styles.Form} onSubmit={handleSubmit}>
                     <label for="usuario">Usuario:</label>
                     <input type="text" name="user" onChange={handleChange} />
 
@@ -82,6 +85,10 @@ export function Register() {
 
                     <button>Registrarse</button>
                 </form>
+                
+            </article>
+            <article>
+                <p>¿Ya tienes cuenta?, <Link to='/login'>Inicia Seccion</Link></p>
             </article>
         </section>
     );
