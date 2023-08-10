@@ -24,4 +24,7 @@ function registerValidation (user, password, email, dir) {
     if(!mailRegex.test(email)){
         errors.email.push('Has escrito mal el mail');
     }
+    return errors
 };
+
+export default registerValidation

@@ -20,7 +20,7 @@ export function Login() {
     return (
         <section>
             <article>
-                <form action="" on onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <label htmlFor="">Usuario:</label>
                     <input type="text" name="userName" />
                     <label htmlFor="">Contraseña:</label>
