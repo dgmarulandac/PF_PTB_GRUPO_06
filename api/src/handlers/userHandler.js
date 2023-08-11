@@ -25,8 +25,8 @@ const getUserByIdHandler = async (req, res) => {
 
 const postUserHandler = async (req, res) => {
     try {
-        const {displayName, password, email} = req.body;
-        const newUser = await postUser(displayName, password, email);
+        const {displayName, name, phone, email, nationality, address, isCompany, password} = req.body;
+        const newUser = await postUser({displayName, name, phone, email, nationality, address, isCompany, password});
         res.status(201).json(newUser);
     } catch (error) {
         res.status(404).json({error: error.message});
