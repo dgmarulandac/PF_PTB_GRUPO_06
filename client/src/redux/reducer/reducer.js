@@ -1,5 +1,8 @@
 const initialState = {
-    userSesion: '',
+    userSesion: {
+        userId,
+        userType
+    },
 
 };
 
@@ -7,6 +10,10 @@ const initialState = {
 const rootReducer = (state = initialState, action) =>{
     switch(action.payload){
         case 'USERSESION':
+            return({
+                ...state,
+                userSesion: action.payload
+            })
             break;
     }
 };
