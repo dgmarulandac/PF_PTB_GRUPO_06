@@ -1,7 +1,9 @@
 const getUsers = require("../controllers/User/getUsers");
+const getUserById = require("../controllers/User/getUserById");
 
 const getUserHandler = async (req, res) => {
     try {
+        //getUsers
         res.status(200).json(`users GET`);
     } catch (error) {
         res.status(404).json({error: error.message});
@@ -11,21 +13,23 @@ const getUserHandler = async (req, res) => {
 const getUserByIdHandler = async (req, res) => {
     try {
         let {id} = req.params;
+        //getUsersById
         res.status(200).json(`users/id/${id} GET ${id}`);
     } catch (error) {
         res.status(404).json({error: error.message});
     }  
 };
 
-const postUser = async (req, res) => {
+const postUserHandler = async (req, res) => {
     try {
+        //postUser
         res.status(200).json(`users/register POST`);
     } catch (error) {
         res.status(404).json({error: error.message});
     }
 };
 
-const getUserCheck = async (req, res) => {
+const getUserCheckHandler = async (req, res) => {
     // Retorna true si existe el usuario con display name 
     try {
         const { displayName, email, password } = req.query;
@@ -35,7 +39,7 @@ const getUserCheck = async (req, res) => {
     }
 };
 
-const postUserLogin = async (req, res) => {
+const postUserLoginHandler = async (req, res) => {
     try {
         res.status(200).json(`users/login POST`);
     } catch (error) {
@@ -43,4 +47,4 @@ const postUserLogin = async (req, res) => {
     }
 };
 
-module.exports = { getUserHandler, getUserByIdHandler, postUser, getUserCheck, postUserLogin };
+module.exports = { getUserHandler, getUserByIdHandler, postUserHandler, getUserCheckHandler, postUserLoginHandler };
