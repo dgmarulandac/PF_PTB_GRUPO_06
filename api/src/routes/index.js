@@ -15,5 +15,7 @@ router.use("/event", eventRouter);
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
+router.use('/', eventRouter);
+
 
 module.exports = router;
