@@ -30,10 +30,10 @@ module.exports = (sequelize) => {
             type: DataTypes.TIME(6),
             allowNull: false,
         },
-
-        seats: {
-            type: DataTypes.STRING,
-                    },
+                    
+        cantTickets: {
+            type: DataTypes.INTEGER,
+        },
 
         address: {
             type: DataTypes.STRING,
