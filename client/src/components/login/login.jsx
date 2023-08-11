@@ -2,9 +2,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import userValidations from "../../functions/Validations/loginValidation/validation";
+import { UseSelector, useDispatch } from "react-redux";
+
+
 export function Login() {
+    const userSesion = UseSelector(state => state.userSesion)
     const navigate = useNavigate()
-    const [user, setUser] = useState({
+    const [users, setUsers] = useState({
         user: '',
         password: ''
     })
@@ -13,29 +17,29 @@ export function Login() {
     function handleForm(e) {
         const value = e.currentTarget.value
         const name = e.currentTarget.name
-        setUser({
-            ...user,
+        setUsers({
+            ...users,
             [name]: [value]
         })
     };
     function handleSubmit(e) {
         e.preventDefault();
-        const {user, password} = user
+        const { user, password } = users
         setErrors(userValidations(user, password))
     };
-    useEffect(()=>{
-        if(errors.lenght < 1){
-            axios.post('http://localhsot:3001/user/login', user)
+    useEffect(() => {
+        if (errors.lenght < 1) {
+            axios.post('http://localhsot:3001/user/login', users)
                 .then(res => res.data)
-                .then(data =>{
+                .then(data => {
                     setResult(true)
                 })
         }
     }, [errors])
-    useEffect(()=>{
-        if(result){
+    useEffect(() => {
+        if (result) {
             setTimeout(navigate('/'), 500)
-            return(
+            return (
                 <div>
                     <p>Bienvenido</p>
                 </div>
@@ -44,6 +48,24 @@ export function Login() {
     }, [result])
     return (
         <section>
+            {
+                errors.length > 0 ?
+                    <article>
+                        <div>
+                            {
+                                errors?.map((element, key) =>{
+                                    return(
+                                        <div key={key++}>
+                                            <p>{element}</p>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </article>
+                    :
+                    null
+            }
             <article>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="">Usuario:</label>
