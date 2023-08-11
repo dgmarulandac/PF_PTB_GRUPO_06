@@ -1,3 +1,4 @@
+import axios from "axios"
 function userValidations (user, password) {
     const errors = []
     axios.get(`http://localhost:3001/usersCheck?displayName=${user}`)
@@ -16,3 +17,5 @@ function userValidations (user, password) {
     })
     return errors
 }
+
+export default userValidations

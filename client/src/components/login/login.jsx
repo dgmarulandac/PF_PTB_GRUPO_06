@@ -1,10 +1,15 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import userValidations from "../../functions/Validations/loginValidation/validation";
 export function Login() {
+    const navigate = useNavigate()
     const [user, setUser] = useState({
-        userName: '',
-        userPassword: ''
+        user: '',
+        password: ''
     })
+    const [errors, setErrors] = useState([])
+    const [result, setResult] = useState(false)
     function handleForm(e) {
         const value = e.currentTarget.value
         const name = e.currentTarget.name
@@ -15,7 +20,28 @@ export function Login() {
     };
     function handleSubmit(e) {
         e.preventDefault();
+        const {user, password} = user
+        setErrors(userValidations(user, password))
     };
+    useEffect(()=>{
+        if(errors.lenght < 1){
+            axios.post('http://localhsot:3001/user/login', user)
+                .then(res => res.data)
+                .then(data =>{
+                    setResult(true)
+                })
+        }
+    }, [errors])
+    useEffect(()=>{
+        if(result){
+            setTimeout(navigate('/'), 500)
+            return(
+                <div>
+                    <p>Bienvenido</p>
+                </div>
+            )
+        }
+    }, [result])
     return (
         <section>
             <article>
