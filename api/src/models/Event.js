@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
         },
 
         date: {
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
             allowNull: false,
         },
 
@@ -54,6 +54,11 @@ module.exports = (sequelize) => {
             type: DataTypes.ENUM('Musical', 'Deportivo', 'Artistico', 'Otro'),
             allowNull: false,
 
+        },
+
+        ticketPrice:{
+            type: DataTypes.DOUBLE,
+            allowNull:false
         }
     });
 };
