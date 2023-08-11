@@ -34,7 +34,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
         },
         password: {
-            type: 'VARBINARY(50)',
+            type: DataTypes.BLOB,
             allowNull: false
         }
     });

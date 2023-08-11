@@ -8,8 +8,8 @@ const userRouter = require("./userRouter");
 
 const router = Router();
 
-router.use("/event", eventRouter);
-router.use("/user", userRouter);
+router.use("/events", eventRouter);
+router.use("/users", userRouter);
 // router.use("/sale", saleRouter);
 
 // Configurar los routers
