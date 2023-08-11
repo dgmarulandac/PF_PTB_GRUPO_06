@@ -1,10 +1,11 @@
-const { Router } = require('express')
-const { Event } = require('../db.js');
+const { Router} = require ("express");
+const {getEventHandler, getEventByIdHandler}  = require ("../handlers/eventHandler")
 
+const eventRouter = Router ();
 
-const router = Router();
-
-router.post('/createEvent', async (req, res) => {
+eventRouter.get("/", getEventHandler);
+eventRouter.get("/:id",getEventByIdHandler);
+eventRouter.post('/createEvent', async (req, res) => {
     let { 
         name, 
         description, 
@@ -31,12 +32,4 @@ router.post('/createEvent', async (req, res) => {
     const resevt = await createEvent    
     return res.status(200).send(resevt)
 
-})
-
-router.get('/events', async (req, res) =>{
-    const getEvent = await Event.findAll()
-    return res. status(200).send(getEvent)
-})
-
-module.exports = router;
-
+});
