@@ -33,3 +33,5 @@ eventRouter.post('/createEvent', async (req, res) => {
     return res.status(200).send(resevt)
 
 });
+
+module.exports = eventRouter;
