@@ -1,5 +1,8 @@
 const getUsers = require("../controllers/User/getUsers");
 const getUserById = require("../controllers/User/getUserById");
+const postUser = require("../controllers/User/postUser");
+const getUserCheck = require("../controllers/User/getUserCheck");
+const postUserLogin = require("../controllers/User/postUserLogin");
 
 const getUserHandler = async (req, res) => {
     try {
@@ -33,6 +36,7 @@ const getUserCheckHandler = async (req, res) => {
     // Retorna true si existe el usuario con display name 
     try {
         const { displayName, email, password } = req.query;
+        //getUserCheck
         res.status(200).json(`users/check GET ${[displayName, email, password]}`);
     } catch (error) {
         res.status(404).json({error: error.message});
@@ -41,6 +45,7 @@ const getUserCheckHandler = async (req, res) => {
 
 const postUserLoginHandler = async (req, res) => {
     try {
+        //postUserLogin
         res.status(200).json(`users/login POST`);
     } catch (error) {
         res.status(404).json({error: error.message});
