@@ -34,6 +34,7 @@ module.exports = (sequelize) => {
                     
         cantTickets: {
             type: DataTypes.INTEGER,
+            allowNull: false,
         },
 
         address: {
