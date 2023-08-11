@@ -21,6 +21,21 @@ module.exports = (sequelize) => {
         email: {
             type: DataTypes.STRING,
             unique: true,
+            allowNull: false,
+        },
+        nationality: {
+            type: DataTypes.ENUM('Colombia', 'Venezuela', 'Argentina', 'Uruguay')
+        },
+        isCompany: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
+        },
+        address: {
+            type: DataTypes.STRING,
+        },
+        password: {
+            type: 'VARBINARY(50)',
+            allowNull: false
         }
         
     });
