@@ -37,6 +37,5 @@ module.exports = (sequelize) => {
             type: 'VARBINARY(50)',
             allowNull: false
         }
-        
     });
 };
