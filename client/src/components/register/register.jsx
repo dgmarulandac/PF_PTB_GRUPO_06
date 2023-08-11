@@ -9,7 +9,8 @@ export function Register() {
         user: '',
         password: '',
         email: '',
-        dir: ''
+        dir: '',
+        country: ''
     });
     const [result, setResult] = useState(false)
     const [listErrors, setListErrors] = useState([])
@@ -27,7 +28,7 @@ export function Register() {
         const { user, password, dir, email } = users
         const errors = registerValidation(user, password, dir, email)
         if (errors.length === 0) {
-            axios.post('http://localhost:3001/users')
+            axios.post('http://localhost:3001/users/register', users)
                 .then(res => res.data)
                 .then(data => {
                     setResult(true)
@@ -38,7 +39,6 @@ export function Register() {
             setListErrors(errors)
         }
     }
-    useEffect(()=>{console.log(listErrors)}, [listErrors])
     return (
         <section className={styles.RegisterWindow}>
             {
@@ -81,7 +81,18 @@ export function Register() {
                     <input type="text" name="email" onChange={handleChange} />
 
                     <label for="direccion">Dirección:</label>
-                    <input name="dir" placeholder="Debe ser asi: Bv.España 234, Madrid, España" onChange={handleChange} />
+                    <input name="dir" placeholder="Debe ser asi: Bv.España 234, Madrid" onChange={handleChange} />
+
+                    <label for="country">Pais:</label>
+                        <select onChange={handleChange}>
+                            <option name="Argentina" value="Argentina">Argentina</option>
+                            <option name="Venezuela" value="Venezuela">Venezuela</option>
+                            <option name="Uruguay" value="Uruguay">Uruguay</option>
+                            <option name="Colombia" value="Colombia">Colombia</option>
+                            <option name="Chile" value="Chile">Chile</option>
+                        </select>
+                    
+
 
                     <button>Registrarse</button>
                 </form>

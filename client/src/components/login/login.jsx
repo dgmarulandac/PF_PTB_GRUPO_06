@@ -14,7 +14,7 @@ export function Login() {
         })
     };
     function handleSubmit(e) {
-        
+        e.preventDefault();
     };
     return (
         <section>
