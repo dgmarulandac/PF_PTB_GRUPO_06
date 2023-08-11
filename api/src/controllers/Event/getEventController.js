@@ -2,9 +2,30 @@ const { Event, User, Role, Sale } = require("../../db");
 const { Op } = require('sequelize');
 
 
-const getEventController = () => {
-    return "debo mostrar todos los eventos";
-};
+const getEventController = async(name, eventType, country, date)=> {
+    const whereClause = {};
+
+    if (name) {
+        whereClause.name = { [Op.like]:`%${name}%` };
+    }
+    if (eventType) {
+        whereClause.eventType = eventType;
+    }
+    if (country) {
+        whereClause.country = country;
+    }
+    if (date) {
+        whereClause.date = {[Op.eq]:date};
+    }
+
+    const events = await Event.findAll({
+        where:whereClause,
+            });
+    return events;
+    };
+
+
+
 
 const searchById = () => {
     return "aqui traigo un evento por id";
@@ -19,7 +40,7 @@ const searchByName = async (name) => {
 };
 
 module.exports = {
-    getEvent,
+    getEventController,
     searchById,
     searchByName
 }

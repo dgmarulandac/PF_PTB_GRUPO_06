@@ -56,8 +56,8 @@ Review.belongsTo(Event);
 User.hasMany(Sale);
 Sale.belongsTo(User);
 
-Sale.hasMany(Ticket);
-Ticket.belongsTo(Sale);
+// Sale.hasMany(Ticket);
+// Ticket.belongsTo(Sale);
 
 
 // Recipe.belongsToMany(Diet, {through: "Recipe_Diet"});
