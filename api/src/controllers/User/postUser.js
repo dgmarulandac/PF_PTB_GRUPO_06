@@ -1,4 +1,4 @@
-const { User } = require("../../db");
+const { User, Role } = require("../../db");
 
 const postUser = async ( user ) => {
 
