@@ -1,9 +1,9 @@
 import React from "react";
 import s from './paginado.module.css';
 
-export default function Paginado({ dogsPerPage, dogs, paginado, page }) {
+export default function Paginado({ eventsPerPage,events, paginado, page }) {
   const pageNumbers = [];
-  const totalPages = Math.ceil(dogs.length / dogsPerPage);
+  const totalPages = Math.ceil(events.length / eventsPerPage);
 
   if (totalPages <= 4) {
     for (let i = 1; i <= totalPages; i++) {
