@@ -6,7 +6,7 @@ const postUser = async ( user ) => {
 
     const newUser = await User.create( user );
 
-    // TODO: Agregar el ROL normal
+    // TODO: Agregar el ROL comprador
     return newUser;
 };
 
