@@ -2,11 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import userValidations from "../../functions/Validations/loginValidation/validation";
-import { UseSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 
 export function Login() {
-    const userSesion = UseSelector(state => state.userSesion)
+    const userSesion = useSelector(state => state.userSesion)
     const navigate = useNavigate()
     const [users, setUsers] = useState({
         user: '',
