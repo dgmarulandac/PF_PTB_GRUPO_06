@@ -7,7 +7,11 @@ const postUser = async ( user ) => {
 
     const newUser = await User.create( user );
 
-    // TODO: Agregar el ROL comprador
+    const defaultRole = await Role.findAll({
+        where: { type: "Comprador" }
+    });
+    newUser.addRoles(defaultRole[0]);
+
     return newUser;
 };
 
