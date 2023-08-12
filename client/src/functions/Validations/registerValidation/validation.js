@@ -5,7 +5,7 @@ const mailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;// detectar m
 const dirRegex = /^(?!.*\b[a-zA-Z]+\s+\(\d+\),\s+[a-zA-Z]+,\s+[a-zA-Z]+\b).+$/ // detectar la direccion que este bien escrita
 function registerValidation (user, password, dir, email, country) {
     const errors = [];
-    axios.get(`http://localhost:3001/usersCheck?displayName=${user}&email=${email}`)
+    axios.get(`http://localhost:3001/users/check?displayName=${user}&email=${email}`)
         .then(res => res.data)
         .then(data =>{
             if(data){
@@ -32,7 +32,6 @@ function registerValidation (user, password, dir, email, country) {
         console.log(dirRegex.test(dir))
         errors.push('La direccion debe de tener la siguiente forma: Calle numero, ciudad, pais')
     }
-    console.log(errors)
     return errors
 };
 
