@@ -1,4 +1,5 @@
 const { getEventFilterController, searchById, searchByName } = require('../controllers/Event/getEventFilterController')
+const {Event} = require('../db.js');
 
 
 const getEventHandler = async (req, res) => {
@@ -12,7 +13,7 @@ const getEventHandler = async (req, res) => {
 };
 
 const getEventByIdHandler = async (req, res) => {
-    const { id } = req.params;
+    const { id } = req.params;  
     try {
         const eventById = await searchById(id)
         res.status(200).json(eventById)
@@ -21,4 +22,45 @@ const getEventByIdHandler = async (req, res) => {
     }
 };
 
-module.exports = { getEventHandler, getEventByIdHandler, searchByName }
+const postCreateEventHandler = async (req, res) => {
+    try {
+        const { 
+            name, 
+            description, 
+            date, 
+            hour, 
+            cantTickets,  
+            address,
+            country,
+            image,
+            eventType,
+            ticketPrice,
+        } = req.body;
+
+        
+        if (!name || !date || !hour || !cantTickets || !address || !country || !ticketPrice) {
+            return res.status(400).json({ error: "Faltan campos obligatorios" });
+        }
+
+        const createEvent = await Event.create({
+            name, 
+            description, 
+            date, 
+            hour, 
+            cantTickets,  
+            address,
+            country,
+            image,
+            eventType,
+            ticketPrice,      
+        });
+
+        
+        res.status(200).json(createEvent);
+    } catch (error) {
+        
+        res.status(500).json({ error: "Hubo un error al crear el evento: " + error.message });
+    }
+};
+
+module.exports = { getEventHandler, getEventByIdHandler, postCreateEventHandler, searchByName}

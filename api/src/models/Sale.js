@@ -10,12 +10,12 @@ module.exports = (sequelize) => {
           },
 
         idSeller:{
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER,
             allowNull:false
         },
 
         idBuyer:{
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER,
             allowNull:false
         },
 
@@ -40,7 +40,7 @@ module.exports = (sequelize) => {
 
         },
         idEvent: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER,
             allowNull:false
         }
 
