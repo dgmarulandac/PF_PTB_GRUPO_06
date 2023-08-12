@@ -1,22 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import style from './card.module.css'
 
 export default function Card({ event }) {
-    const { name, date, hour, adress, image, ticketPrice, id } = event
+    let { name, date, hour, adress, image, id, eventType, country } = event
+    const monthsInLetters = [
+        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+        "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+      ];
+    date = `${monthsInLetters[new Date(date).getMonth()]} ${new Date(date).getDate()+1}`
     return (
         <div>
             {id &&
-                <Link to={`/detail/${id}`}>
+                <Link to={`/detail/${id}`} className={style.container}>
                     <div>
-                        <img src={image} alt="imagen event" width='150' height='100' />
+                        <img src={image} alt="imagen event" width='330'/>
                     </div>
-                    <div>
-                        <p>{name}</p>
-                        <p>{date} {hour}</p>
-                        <p>{ticketPrice}</p>
-                        <p>{adress}</p>
+                    <div className={style.info}>
+                        <p className={style.location}>{adress} - {country} <span> /{eventType}</span></p>
+                        <h2>{name}</h2>
+                        <p>{date} - {hour}</p>
                     </div>
-
                     <button>
                         comprar
                     </button>

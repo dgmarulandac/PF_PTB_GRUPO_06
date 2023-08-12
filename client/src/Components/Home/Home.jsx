@@ -40,7 +40,7 @@ export default function Home() {
                     enabled: true,
                   }}
                 modules={[Autoplay, Pagination, Navigation,Keyboard]}
-                className="mySwiper"
+                
             >
                 {slides.map((s, i) => {
                     return (<SwiperSlide key={i}><img src={s} alt="evento" width='852' height='457' /></SwiperSlide>)
