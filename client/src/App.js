@@ -1,7 +1,6 @@
 import './App.css';
 //DEPENDENCIES
 import axios from 'axios';
-import { Route, Routes } from 'react-router-dom';
 
 // axios.defaults.baseURL = 'http://localhost:3001'
 axios.defaults.baseURL = 'https://pf-grupo06-back.onrender.com/'
