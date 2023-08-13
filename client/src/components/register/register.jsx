@@ -28,7 +28,7 @@ export function Register() {
         const { user, password, dir, email } = users
         const errors = registerValidation(user, password, dir, email)
         if (errors.length === 0) {
-            axios.post('http://localhost:3001/users/register', users)
+            axios.post('/users/register', users)
                 .then(res => res.data)
                 .then(data => {
                     setResult(true)
