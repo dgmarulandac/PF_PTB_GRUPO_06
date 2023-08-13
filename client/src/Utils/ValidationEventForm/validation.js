@@ -16,9 +16,9 @@ const validation = (event)=>{
 
     if(!validationLength(hour)) error['hour'] = '⚠️ elige la hora de tu evento.'
 
-    if(!isNumber(cantTickets)) error['cantTickets'] = '⚠️ elige la cantidad de tickets de tu evento.'
+    if(!isNumber(cantTickets)) error['cantTickets'] = '⚠️'
 
-    if(!isNumber(ticketPrice)) error['ticketPrice'] = '⚠️ el evento debe tener un precio por entrada'
+    if(!isNumber(ticketPrice)) error['ticketPrice'] = '⚠️'
 
     if(!validationLength(adress)) error['adress'] = '⚠️ el evento debe tener una direccion.'
 

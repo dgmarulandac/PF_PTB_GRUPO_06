@@ -41,13 +41,13 @@ export default function FormEvent() {
 
     return (
         <div className={style.container}>
-            <div>
-                <h2>Crea un evento!</h2>
-                <p>crea un evento para que puedas promocionarlo en nuestra pagina,
-                    no dejes ningun campo vacio.
-                </p>
-            </div>
             <form className={style.container_form} onSubmit={handleCreate}>
+                <div>
+                    <h2>Crea un evento!</h2>
+                    <p>crea un evento para que puedas promocionarlo en nuestra pagina,
+                        no dejes ningun campo vacio.
+                    </p>
+                </div>
                 <div className={style.container_div}>
                     <label htmlFor="">Nombre</label>
                     <input type="text" name="name" id="1"
@@ -55,34 +55,31 @@ export default function FormEvent() {
                         value={event.name} onChange={handleChange} />
                     {error.name && <p className={style.error}>{error.name}</p>}
                 </div>
-                <div className={style.container_div_description}>
-                    <label htmlFor="">Descripcion</label>
-                    <textarea id="2" name="description"
+                <div className={style.container_div}>
+                    <label htmlFor="">Decripcion</label>
+                    <input id="2" name="description"
                         placeholder="escribe la descripcion de tu evento..." rows="4" cols="40"
                         value={event.description} onChange={handleChange} />
                     {error.description && <p className={style.error}>{error.description}</p>}
                 </div>
                 <div className={style.container_div}>
-                    <label htmlFor="">imagen</label>
+                    <label htmlFor="">image</label>
                     <input type="text" name="image" id="8"
                         value={event.image} onChange={handleChange} />
                     {error.image && <p className={style.error}>{error.image}</p>}
                 </div>
-                <div className={style.container_div_duo}>
-                    <div className={style.container_div}>
-                        <label htmlFor="">Fecha</label>
-                        <input type="date" name="date" id="3"
-                            value={event.date} onChange={handleChange} />
-                        {error.date && <p className={style.error}>{error.date}</p>}
-                    </div>
-                    <div className={style.container_div}>
-                        <label htmlFor="">Hora</label>
-                        <input type="time" name="hour" id="4"
-                            value={event.hour} onChange={handleChange} />
-                        {error.hour && <p className={style.error}>{error.hour}</p>}
-                    </div>
+                <div className={style.container_div}>
+                    <label htmlFor="">Fecha</label>
+                    <input type="date" name="date" id="3"
+                        value={event.date} onChange={handleChange} />
+                    {error.date && <p className={style.error}>{error.date}</p>}
                 </div>
-
+                <div className={style.container_div}>
+                    <label htmlFor="">Hora</label>
+                    <input type="time" name="hour" id="4"
+                        value={event.hour} onChange={handleChange} />
+                    {error.hour && <p className={style.error}>{error.hour}</p>}
+                </div>
                 <div className={style.container_div}>
                     <label htmlFor="">Direccion</label>
                     <input type="text" name="adress" id="6"
@@ -122,8 +119,8 @@ export default function FormEvent() {
                     <div className={style.container_div}>
                         <label htmlFor="">Precio de los Tickets</label>
                         <input type="number" name="ticketPrice" id="10"
-                            value={event.ticketPrice}  onChange={handleChange} />
-                        {error.ticketPrice && <span className={style.error}>{error.ticketPrice}</span>}
+                            value={event.ticketPrice} onChange={handleChange} />
+                        {error.ticketPrice && <p className={style.error}>{error.ticketPrice}</p>}
                     </div>
                 </div>
 
