@@ -1,0 +1,14 @@
+{
+    "id": "b2fa2d92-3123-4b8b-8d0a-5130b6e6d5a1",
+    "name": "Concerto",
+    "description": "A musical event featuring various artists.",
+    "date": "2023-08-15",
+    "hour": "19:30:00",
+    "cantTickets": 500,
+    "address": "123 Main Street",
+    "country": "Colombia",
+    "image": "concert_image.jpg",
+    "eventType": "Musical",
+    "ticketPrice": 50
+  }
+  

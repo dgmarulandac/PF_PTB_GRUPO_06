@@ -1,6 +1,10 @@
-import { legacy_createStore as createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk'
-const store = createStore(applyMiddleware(thunk))
+import { applyMiddleware, legacy_createStore } from 'redux';
+import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension'
+import rootReducer from '../reducer/reducer';
 
+const composedEnhancer = composeWithDevTools(applyMiddleware(thunk))
 
+// The store now has the ability to accept thunk functions in `dispatch`
+const store = legacy_createStore(rootReducer, composedEnhancer)
 export default store
