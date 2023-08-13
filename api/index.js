@@ -27,7 +27,3 @@ conn.sync({ force: true }).then(() => {
     console.log(`%s listening at ${port}`); // eslint-disable-line no-console
   });
 });
-
-app.get('/', (req, res) =>{
-  res.send('Hola Mundo')
-})
