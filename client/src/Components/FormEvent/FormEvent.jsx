@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import validation from "../../Utils/ValidationEventForm/validation";
 import { useDispatch } from "react-redux";
 import { createEvent } from "../../Redux/Action/action";
+import style from './formEvent.module.css'
 
 export default function FormEvent() {
 
@@ -39,46 +40,51 @@ export default function FormEvent() {
     
 
     return (
-        <div>
-            {console.log(error, event)}
+        <div className={style.container}>
             <form onSubmit={handleCreate}>
+                <div>
+                    <h2>Crea un evento!</h2>
+                    <p>crea un evento para que puedas promocionarlo en nuestra pagina,
+                        no dejes ningun campo vacio.
+                    </p>
+                </div>
                 <div>
                     <label htmlFor="">Nombre</label>
                     <input type="text" name="name" id="1" 
                     placeholder="nombre del evento..." 
                     value={event.name} onChange={handleChange}/>
-                    {error.name && <p>{error.name}</p>}
+                    {error.name && <p className={style.error}>{error.name}</p>}
                 </div>
                 <div>
                     <label htmlFor="">Decripcion</label>
-                    <textarea id="2" name="description" 
-                    placeholder="escribe la descripcion de tu evento..." rows="4" cols="50"
-                    value={event.description} onChange={handleChange}></textarea>
-                    {error.description && <p>{error.description}</p>}
+                    <input id="2" name="description" 
+                    placeholder="escribe la descripcion de tu evento..." rows="4" cols="40"
+                    value={event.description} onChange={handleChange}/>
+                    {error.description && <p className={style.error}>{error.description}</p>}
                 </div>
                 <div>
                     <label htmlFor="">image</label>
                     <input type="text" name="image" id="8" 
                     value={event.image} onChange={handleChange}/>
-                    {error.image && <p>{error.image}</p>}
+                    {error.image && <p className={style.error}>{error.image}</p>}
                 </div>
                 <div>
                     <label htmlFor="">Fecha</label>
                     <input type="date" name="date" id="3" 
                     value={event.date} onChange={handleChange}/>
-                    {error.date && <p>{error.date}</p>}
+                    {error.date && <p  className={style.error}>{error.date}</p>}
                 </div>
                 <div>
                     <label htmlFor="">Hora</label>
                     <input type="time" name="hour" id="4" 
                     value={event.hour} onChange={handleChange}/>
-                    {error.hour && <p>{error.hour}</p>}
+                    {error.hour && <p  className={style.error}>{error.hour}</p>}
                 </div> 
                 <div>
                     <label htmlFor="">Direccion</label>
                     <input type="text" name="adress" id="6"
                     value={event.adress} onChange={handleChange} />
-                    {error.adress && <p>{error.adress}</p>}
+                    {error.adress && <p  className={style.error}>{error.adress}</p>}
                 </div>
                 <div>
                     <label htmlFor="">Pais</label>
@@ -88,29 +94,29 @@ export default function FormEvent() {
                             return(<option key={i} value={c}>{c}</option>)
                         })}
                     </select>
-                    {error.country && <p>{error.country}</p>}
+                    {error.country && <p className={style.error}>{error.country}</p>}
                 </div>
                 <div>
-                    <label htmlFor="">Tipo de Evento</label>
+                <label htmlFor="">Tipo de Evento</label>
                     <select name="eventType" id="9" onChange={handleChange}>
                         <option value="">-evento-</option>
                         {eventTypes.map((e,i)=>{
                             return(<option key={i} value={e}>{e}</option>)
                         })}
                     </select>
-                    {error.eventType && <p>{error.eventType}</p>}
+                    {error.eventType && <p className={style.error}>{error.eventType}</p>}
                 </div>
                 <div>
                     <label htmlFor="">Cantidad de Tickets</label>
                     <input type="number" name="cantTickets" id="5" 
                     value={event.cantTickets} onChange={handleChange}/>
-                    {error.cantTickets && <p>{error.cantTickets}</p>}
+                    {error.cantTickets && <p className={style.error}>{error.cantTickets}</p>}
                 </div>
                 <div>
                     <label htmlFor="">Precio de los Tickets</label>
                     <input type="number" name="ticketPrice" id="10" 
                     value={event.ticketPrice} onChange={handleChange}/>
-                    {error.ticketPrice && <p>{error.ticketPrice}</p>}
+                    {error.ticketPrice && <p className={style.error}>{error.ticketPrice}</p>}
                 </div>
                 <button type="submit">Crear Evento</button>
             </form>

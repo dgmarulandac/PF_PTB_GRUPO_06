@@ -12,6 +12,11 @@
     text-decoration: none;
     border-radius: 15px;
     font-family: 'Barlow Condensed', sans-serif;
+    transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+.container:hover {
+    transform: scale(1.05);
 }
 
 .info{
@@ -30,8 +35,14 @@
 
 
 .container button{
-    background-color: #F8DF00;
+    color: white;
+    background-color: #D71313;
     border: none;
     width: 350px;
     font-weight: 600;
+    cursor: pointer;
+}
+
+.container button:hover{
+    background-color: #d71313aa;
 }
