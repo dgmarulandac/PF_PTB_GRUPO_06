@@ -3,7 +3,7 @@ import registerValidation from "../../functions/Validations/registerValidation/v
 import axios from "axios";
 import styles from './register.module.css'
 import { Link } from "react-router-dom";
-
+import video from "../../utils/videos/backgroundLogin.mp4"
 export function Register() {
     const [users, setUsers] = useState({
         user: '',
@@ -40,7 +40,8 @@ export function Register() {
         }
     }
     return (
-        <section className={styles.RegisterWindow}>
+        <section>
+            <div className={`${styles.Background}`} >
             {
                 result ?
                     <article>
@@ -53,37 +54,45 @@ export function Register() {
                     null
             }
             {
-                listErrors ?
+                listErrors.length > 0 ?
                     <div className={styles.ErrorPopUp}>
+                        <button onClick={() => { setListErrors([]) }} className="CloseButton">x</button>
+                        <ul>
                         {
                             listErrors?.map((element, key) => {
                                 return (
                                     <div key={key++}>
-                                        <button onClick={() => { setListErrors([]) }} className="CloseButton">x</button>
-                                        <p>{element}</p>
+                                        <li>{element}</li>
                                     </div>
                                 )
                             })
                         }
+                        </ul>
                     </div>
                     :
                     null
             }
-            <article>
+            <div className={styles.titleContainer}>
+                <h1>BOHO</h1>
+                <p>¡¡Compra tus tickets seguro con nosotros!!</p>
+            </div>
+            
+            <article className={styles.window}>
                 <form className={styles.Form} onSubmit={handleSubmit}>
                     <label for="usuario">Usuario:</label>
-                    <input type="text" name="user" onChange={handleChange} />
+                    <input className={styles.RegisterInput} type="text" name="user" onChange={handleChange} />
 
                     <label for="contrasena">Contraseña:</label>
-                    <input type="password" name="password" onChange={handleChange} />
+                    <input className={styles.RegisterInput} type="password" name="password" onChange={handleChange} />
 
                     <label for="email">Email:</label>
-                    <input type="text" name="email" onChange={handleChange} />
+                    <input className={styles.RegisterInput} type="text" name="email" onChange={handleChange} />
 
                     <label for="direccion">Dirección:</label>
-                    <input name="dir" placeholder="Debe ser asi: Bv.España 234, Madrid" onChange={handleChange} />
+                    <input className={styles.RegisterInput} name="dir" placeholder="Debe ser asi: Bv.España 234, Madrid" onChange={handleChange} />
 
                     <label for="country">Pais:</label>
+                    <div className={styles.select}>
                         <select onChange={handleChange}>
                             <option name="Argentina" value="Argentina">Argentina</option>
                             <option name="Venezuela" value="Venezuela">Venezuela</option>
@@ -91,16 +100,16 @@ export function Register() {
                             <option name="Colombia" value="Colombia">Colombia</option>
                             <option name="Chile" value="Chile">Chile</option>
                         </select>
-                    
-
-
-                    <button>Registrarse</button>
+                    </div>
+                    <button className={styles.RegisterButton}>Registrarse</button>
                 </form>
                 
             </article>
-            <article>
-                <p>¿Ya tienes cuenta?, <Link to='/login'>Inicia Seccion</Link></p>
+            <article className="topGrid">
+                <p className={styles.window}>¿Ya tienes cuenta?, <Link style={{textDecoration: "none", color: "rgb(191, 132, 29)"}} to='/login'>Inicia Seccion</Link></p>
             </article>
+            </div>
+            <video src={video} className={styles.Video} loop muted autoPlay/>
         </section>
     );
 };
