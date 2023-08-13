@@ -1,8 +1,8 @@
-/* body{
+.body{
     display: grid;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.752);
-} */
+}
 
 .container{
     margin: 10px;
