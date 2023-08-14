@@ -42,12 +42,14 @@ export function Register() {
                 .then(res => res.data)
                 .then(data => {
                     document.getElementById('message').textContent = "Usuario registrado";
+                    document.getElementById('message').classList.remove(styles.showErrorMessage)
                     document.getElementById('message').classList.add(styles.showSussesMessage)
                     document.getElementById('textContainer').classList.remove(styles.hide)
                 })
                 .catch((err) => {
                     document.getElementById('message').textContent = "Hubo un error";
                     document.getElementById('message').classList.add(styles.showErrorMessage)
+                    document.getElementById('message').classList.remove(styles.showSussesMessage)
                     document.getElementById('textContainer').classList.remove(styles.hide)
 
                 })
