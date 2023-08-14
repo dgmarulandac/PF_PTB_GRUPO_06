@@ -1,3 +1,15 @@
+.showSussesMessage{
+    color: greenyellow;
+    text-align: center;
+}
+.hide{
+    display: none;
+}
+.showErrorMessage{
+    color: red;
+    
+    text-align: center;
+}
 .Form{
     display: grid;
     flex-direction: column;
