@@ -6,7 +6,7 @@ import styles from './register.module.css'
 import { Link } from "react-router-dom";
 import video from "../../utils/videos/backgroundLogin.mp4"
 
-export function Register() {
+export default function Register() {
     const navigate = useNavigate()
     const [users, setUsers] = useState({
         displayName: '',

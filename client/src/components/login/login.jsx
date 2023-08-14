@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import video from "../../utils/videos/backgroundLogin.mp4"
 import styles from './login.module.css'
 
-export function Login() {
+export default function Login() {
     const userSesion = useSelector(state => state.userSesion)
     const navigate = useNavigate()
     const [users, setUsers] = useState({
