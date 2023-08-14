@@ -32,7 +32,7 @@ export function Register() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        const { displayName, name, password, address, email, typeOfUser, phone, nationality } = users
+        const { displayName, name, password, address, email, typeOfUser, phone, nationality, isCompany = false } = users
         const errors = registerValidation(displayName, name, password, address, email, typeOfUser, phone, nationality)
         if (errors.length === 0) {
 
