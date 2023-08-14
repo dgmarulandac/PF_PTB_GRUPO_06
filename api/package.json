@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "test"
+    "test": "nodemon -L"
   },
   "author": "Grupo 6 de pf",
   "license": "ISC",
