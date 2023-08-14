@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import userValidations from "../../functions/Validations/loginValidation/validation";
 import { useSelector, useDispatch } from "react-redux";
-
+import video from "../../utils/videos/backgroundLogin.mp4"
+import styles from './login.module.css'
 
 export function Login() {
     const userSesion = useSelector(state => state.userSesion)
@@ -29,7 +30,7 @@ export function Login() {
     };
     useEffect(() => {
         if (errors.lenght < 1) {
-            axios.post('http://localhsot:3001/user/login', users)
+            axios.post('/user/login', users)
                 .then(res => res.data)
                 .then(data => {
                     setResult(true)
@@ -38,46 +39,50 @@ export function Login() {
     }, [errors])
     useEffect(() => {
         if (result) {
-            setTimeout(navigate('/'), 500)
-            return (
-                <div>
-                    <p>Bienvenido</p>
-                </div>
-            )
+            navigate('/')
         }
     }, [result])
     return (
-        <section>
-            {
-                errors.length > 0 ?
+        <div className={styles.Background}>
+                            <div className={styles.titleContainer}>
+                    <h1>BOHO</h1>
+                    <p>¡¡Compra tus tickets seguro con nosotros!!</p>
+                </div>
+            <section>
+                <video className={styles.Video} src={video} autoPlay muted loop />
+                {
+                    errors.length > 0 ?
+                        <article className={styles.ErrorPopUp}>
+                            <div>
+                                {
+                                    errors?.map((element, key) => {
+                                        return (
+                                            <div key={key++}>
+                                                <p>{element}</p>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </article>
+                        :
+                        null
+                }
+                <div className={styles.center}>
                     <article>
-                        <div>
-                            {
-                                errors?.map((element, key) =>{
-                                    return(
-                                        <div key={key++}>
-                                            <p>{element}</p>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
+                        <form onSubmit={handleSubmit}  className={styles.LoginWindow}>
+                            <label htmlFor="">Usuario:</label>
+                            <input className={styles.LoginInput} type="text" placeholder="Jorgito17" name="userName" />
+                            <label htmlFor="">Contraseña:</label>
+                            <input className={styles.LoginInput} type="password" placeholder="*********" name="userPassword" />
+                            <button className={styles.LoginButton}>Iniciar Sesión</button>
+                        </form>
                     </article>
-                    :
-                    null
-            }
-            <article>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="">Usuario:</label>
-                    <input type="text" name="userName" />
-                    <label htmlFor="">Contraseña:</label>
-                    <input type="password" name="userPassword" />
-                    <button className="login_btn">Iniciar Seccion</button>
-                </form>
-            </article>
-            <article>
-                <p>¿No tienes cuenta?, <Link to='/register'> Registrate </Link></p>
-            </article>
-        </section>
+                    <article>
+                        <p className={styles.window}>¿No tienes cuenta?, <Link style={{ textDecoration: "none", color: "rgb(191, 132, 29)" }} to='/register'> Registrate </Link></p>
+                    </article>
+                </div>
+            </section>
+        </div>
     )
 };

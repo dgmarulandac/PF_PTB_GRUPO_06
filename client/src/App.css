@@ -1,5 +1,22 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+body, html{
+  box-sizing: border-box;
+  height: 100vh;
+}
 .CloseButton{
   position: absolute;
   top: 0;
-  left: 0;
+  left: 10px;
+  background-color: transparent;
+  border: none;
+}
+
+.App, #root{
+  height: 100%;
+}
+.topGrid{
+  align-self: flex-start;
 }
