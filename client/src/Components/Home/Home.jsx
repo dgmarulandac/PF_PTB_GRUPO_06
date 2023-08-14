@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-export default function Home() {
+export function Home() {
     const evento = {
         id: 90,
         adress: "av de mayo",
