@@ -6,9 +6,9 @@ import { Route, Routes } from 'react-router-dom';
 //Components
 import { Register } from './components/register/register';
 import { Login } from './components/login/login';
-import Home from './components/Home/Home';
-import FormEvent from './components/FormEvent/FormEvent'
-import Detail from './components/Detail/Detail';
+import {Home} from './components/Home/Home';
+import {FormEvent} from './components/FormEvent/FormEvent'
+import {Detail} from './components/Detail/Detail';
 axios.defaults.baseURL = 'https://pf-grupo06-back.onrender.com/'
 
 
