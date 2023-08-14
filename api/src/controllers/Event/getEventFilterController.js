@@ -25,6 +25,6 @@ const getEventFilterController = async(name, eventType, country, date)=> {
     };
 
 
-module.exports = { getEventFilterController }
+module.exports = getEventFilterController;
 
 
