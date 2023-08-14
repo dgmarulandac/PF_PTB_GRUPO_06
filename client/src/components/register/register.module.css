@@ -40,7 +40,7 @@
     width: 250px;
     justify-self: center;
     border-bottom: 1px black solid;
-    background-color: rgba( 0, 0, 0, 0.3);
+    /* background-color: rgba( 0, 0, 0, 0.3); */
 }
 label{
     font-weight: bolder;
@@ -83,7 +83,7 @@ label{
     display: grid;
     justify-content: center;
     align-items: center;
-    grid-template-rows: 200px 350px 50px;
+    grid-template-rows: 160px 580px 50px;
 }
 select {
     /* Reset Select */
@@ -147,4 +147,7 @@ label{
 }
 p{
     color: white;
+}
+body{
+    overflow: hidden;
 }

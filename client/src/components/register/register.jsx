@@ -1,39 +1,46 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import registerValidation from "../../functions/Validations/registerValidation/validation";
 import axios from "axios";
 import styles from './register.module.css'
 import { Link } from "react-router-dom";
 import video from "../../utils/videos/backgroundLogin.mp4"
 export function Register() {
+    const navigate = useNavigate()
     const [users, setUsers] = useState({
         user: '',
+        name: '',
         password: '',
         email: '',
+        typeOfUser: '',
+        companyRut: '',
         dir: '',
-        country: ''
+        country: 'Argentina',
+        numPhone: '',
     });
-    const [result, setResult] = useState(false)
+    const [result, setResult] = useState(0)
     const [listErrors, setListErrors] = useState([])
     function handleChange(e) {
         const name = e.currentTarget.name
         const value = e.currentTarget.value
+        console.log(users)
         setUsers({
             ...users,
-            [name]: [value]
+            [name]: value
         })
     }
 
     function handleSubmit(e) {
         e.preventDefault()
-        const { user, password, dir, email } = users
-        const errors = registerValidation(user, password, dir, email)
+        const { user, name, password, dir, email, typeOfUser, numPhone, country } = users
+        const errors = registerValidation(user, name, password, dir, email, typeOfUser, numPhone, country)
         if (errors.length === 0) {
-            axios.post('http://localhost:3001/users/register', users)
+            axios.post('https://pf-grupo06-back.onrender.com/register', users)
                 .then(res => res.data)
                 .then(data => {
-                    setResult(true)
+                    setResult(1)
                 })
-                .catch((err) => (setResult(err.message)))
+                .catch((err) => (setResult(2)))
         }
         else {
             setListErrors(errors)
@@ -42,74 +49,100 @@ export function Register() {
     return (
         <section>
             <div className={`${styles.Background}`} >
-            {
-                result ?
-                    <article>
-                        <div>
-                            <button onClick={() => { setResult(false) }}>x</button>
-                            <p>Registro con exito</p>
+                {
+                    listErrors.length > 0 ?
+                        <div className={styles.ErrorPopUp}>
+                            <button onClick={() => { setListErrors([]) }} className="CloseButton">x</button>
+                            <ul>
+                                {
+                                    listErrors?.map((element, key) => {
+                                        return (
+                                            <div key={key++}>
+                                                <li>{element}</li>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </ul>
                         </div>
-                    </article>
-                    :
-                    null
-            }
-            {
-                listErrors.length > 0 ?
-                    <div className={styles.ErrorPopUp}>
-                        <button onClick={() => { setListErrors([]) }} className="CloseButton">x</button>
-                        <ul>
-                        {
-                            listErrors?.map((element, key) => {
-                                return (
-                                    <div key={key++}>
-                                        <li>{element}</li>
+                        :
+                        null
+                }
+                <div className={styles.titleContainer}>
+                    <h1>BOHO</h1>
+                    <p>¡¡Compra tus tickets seguro con nosotros!!</p>
+                </div>
+
+                <article className={styles.window}>
+                    <form className={styles.Form} onSubmit={handleSubmit}>
+                        <label for="usuario">Usuario:</label>
+                        <input className={styles.RegisterInput} type="text" name="user" onChange={handleChange} placeholder="Jorgito14" />
+
+                        <label for="Nombres">Nombre completo:</label>
+                        <input className={styles.RegisterInput} type="text" name="name" onChange={handleChange} placeholder="Juan Alberto Ramirez De Armas" />
+
+                        <label for="contrasena">Contraseña:</label>
+                        <input className={styles.RegisterInput} type="password" name="password" onChange={handleChange} placeholder="*********" />
+
+                        <label for="email">Email:</label>
+                        <input className={styles.RegisterInput} type="text" name="email" onChange={handleChange} placeholder="ejemplo@ejemplo.com" />
+
+                        <div>
+                            <label htmlFor="typeOfUser">Usuario:</label>
+                            <div>
+                                <input type="radio" id="clientRadio" name="typeOfUser" value="Cliente" onChange={handleChange} />
+                                <label htmlFor="clientRadio">Cliente</label>
+
+                                <input type="radio" id="companyRadio" name="typeOfUser" value="Empresa" onChange={handleChange} />
+                                <label htmlFor="companyRadio">Empresa</label>
+                                {
+                                    users.typeOfUser === 'Empresa' ?
+                                    <div style={{display: 'grid'}}>
+                                        <label htmlFor="companyRut">Rut:</label>
+                                        <input className={styles.RegisterInput} type="number" id="companyRut" name="companyRut" placeholder="Rut de la compania (no es oblicatorio)" onChange={handleChange} />
                                     </div>
-                                )
-                            })
+                                        :
+                                        null
+                                }
+                            </div>
+                        </div>
+
+                        <label for="direccion">Dirección:</label>
+                        <input className={styles.RegisterInput} name="dir" placeholder="Debe ser asi: Bv.España 234, Madrid" onChange={handleChange} />
+
+                        <label for="telefono">Telefono:</label>
+                        <input className={styles.RegisterInput} name="numPhone" type="number" placeholder="Numero de telefono" onChange={handleChange} />
+
+
+                        <label for="country">Pais:</label>
+                        <div className={styles.select}>
+                            <select name="country" onChange={handleChange}>
+                                <option name="country" value="Argentina">Argentina</option>
+                                <option name="Venecountryzcountryuela" value="Venezuela">Venezuela</option>
+                                <option name="country" value="Uruguay">Uruguay</option>
+                                <option name="country" value="Colombia">Colombia</option>
+                                <option name="country" value="Chile">Chile</option>
+                            </select>
+                        </div>
+                        <button className={styles.RegisterButton}>Registrarse</button>
+                        {
+                            result ?
+                                result === 1 ?
+                                    <div><p style={{ color: "green", textAlign: "center" }}>Registro con exito</p></div>
+
+                                    :
+                                    <p style={{ color: "red", textAlign: "center" }}>hubo un error por favor notifique al serivcio tecnico</p>
+                                :
+                                null
                         }
-                        </ul>
-                    </div>
-                    :
-                    null
-            }
-            <div className={styles.titleContainer}>
-                <h1>BOHO</h1>
-                <p>¡¡Compra tus tickets seguro con nosotros!!</p>
+                    </form>
+
+                </article>
+                <article className="topGrid">
+                    <p className={styles.window}>¿Ya tienes cuenta?, <Link style={{ textDecoration: "none", color: "rgb(191, 132, 29)" }} to='/login'>Inicia Sesión</Link></p>
+                </article>
             </div>
-            
-            <article className={styles.window}>
-                <form className={styles.Form} onSubmit={handleSubmit}>
-                    <label for="usuario">Usuario:</label>
-                    <input className={styles.RegisterInput} type="text" name="user" onChange={handleChange} />
-
-                    <label for="contrasena">Contraseña:</label>
-                    <input className={styles.RegisterInput} type="password" name="password" onChange={handleChange} />
-
-                    <label for="email">Email:</label>
-                    <input className={styles.RegisterInput} type="text" name="email" onChange={handleChange} />
-
-                    <label for="direccion">Dirección:</label>
-                    <input className={styles.RegisterInput} name="dir" placeholder="Debe ser asi: Bv.España 234, Madrid" onChange={handleChange} />
-
-                    <label for="country">Pais:</label>
-                    <div className={styles.select}>
-                        <select onChange={handleChange}>
-                            <option name="Argentina" value="Argentina">Argentina</option>
-                            <option name="Venezuela" value="Venezuela">Venezuela</option>
-                            <option name="Uruguay" value="Uruguay">Uruguay</option>
-                            <option name="Colombia" value="Colombia">Colombia</option>
-                            <option name="Chile" value="Chile">Chile</option>
-                        </select>
-                    </div>
-                    <button className={styles.RegisterButton}>Registrarse</button>
-                </form>
-                
-            </article>
-            <article className="topGrid">
-                <p className={styles.window}>¿Ya tienes cuenta?, <Link style={{textDecoration: "none", color: "rgb(191, 132, 29)"}} to='/login'>Inicia Seccion</Link></p>
-            </article>
-            </div>
-            <video src={video} className={styles.Video} loop muted autoPlay/>
+            <video src={video} className={styles.Video} loop muted autoPlay />
         </section>
     );
 };
