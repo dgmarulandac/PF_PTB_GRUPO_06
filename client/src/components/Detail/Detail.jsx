@@ -1,12 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import mockDetail from "../../mocks/eventDetail.json";
-import { getDetail } from "../../redux/actions/actions";
+import { getDetail } from "../../Redux/Action/action";
 import styles from "./Detail.module.css"
-import Deadpool from "./Deadpool.jpg"
-
-
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -17,8 +13,6 @@ const Detail = () => {
   useEffect(() => {
     dispatch(getDetail(id));
   }, []);
-
-
   
   return (
     <div  >
@@ -29,7 +23,7 @@ const Detail = () => {
             <div className={styles.boho}><h1>BOHO</h1></div>
         <div className={styles.Detail}>
         <div className={styles.title}><h1>{ticketid.name}</h1></div> 
-          <img src={Deadpool} alt="" />
+          <img src={ticketid.image} alt="" />
 
           <div className={styles.information}>
             <h3>{ticketid.country}</h3>
