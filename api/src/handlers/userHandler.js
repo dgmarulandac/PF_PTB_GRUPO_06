@@ -48,7 +48,7 @@ const postUserLoginHandler = async (req, res) => {
     try {
         // Debe retornar el JWT
         const { displayName, email, password } = req.body;
-        const response = await postUserLogin( displayName, email, password );
+        const response = await postUserLogin( {displayName, email, password} );
         res.status(201).json(response);
     } catch (error) {
         res.status(404).json({error: error.message});
