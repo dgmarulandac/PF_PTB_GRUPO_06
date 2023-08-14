@@ -23,6 +23,9 @@ module.exports = (sequelize) => {
             unique: true,
             allowNull: false,
         },
+        identification:  {
+            type: DataTypes.STRING
+        },
         nationality: {
             type: DataTypes.ENUM('Colombia', 'Venezuela', 'Argentina', 'Uruguay')
         },
