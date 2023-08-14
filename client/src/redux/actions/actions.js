@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GETDETAIL } from "../actions_type/actions_type";
+import { GETDETAIL,  GET_ALL_EVENT, CREATE_EVENT  } from "../actions_type/actions_type";
 
 const USERSESION = "USERSESION";
 
@@ -30,6 +30,25 @@ export const getDetail = (id) => {
     };
 };
 
+export const getAllEvent = ()=>{
+    return async (dispatch)=>{
+        const {data} = await axios.get("/")
+        return dispatch({
+            type: GET_ALL_EVENT,
+            payload: data
+        })
+    }
+}
+
+export const createEvent = (event)=>{
+    return async (dispatch)=>{
+        const {data} = await axios.post("/createEvent", event)
+        return dispatch({
+            type: CREATE_EVENT,
+            payload: data
+        })
+    }
+}
 
 
 

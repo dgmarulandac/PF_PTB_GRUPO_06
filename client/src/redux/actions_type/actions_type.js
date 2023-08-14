@@ -1,1 +1,4 @@
-export const GETDETAIL = "GETDETAIL"
+export const GETDETAIL = "GETDETAIL";
+export const FILTER_GET_EVENTS = "FILTER_GET_EVENTS";
+export const GET_ALL_EVENT = 'GET_ALL_EVENT'
+export const CREATE_EVENT = 'CREATE_EVENT'
