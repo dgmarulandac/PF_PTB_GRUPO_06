@@ -5,6 +5,8 @@ import axios from "axios";
 import styles from './register.module.css'
 import { Link } from "react-router-dom";
 import video from "../../utils/videos/backgroundLogin.mp4"
+import URL from "../../URLspec";
+
 export function Register() {
     const navigate = useNavigate()
     const [users, setUsers] = useState({
@@ -37,7 +39,7 @@ export function Register() {
         const errors = registerValidation(displayName, name, password, address, email, typeOfUser, phone, nationality)
         if (errors.length === 0) {
 
-            axios.post('https://pf-grupo06-back.onrender.com/users/register', users)
+            axios.post(`${URL}/users/register`, users)
 
                 .then(res => res.data)
                 .then(data => {
