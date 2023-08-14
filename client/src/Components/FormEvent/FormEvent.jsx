@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from 'react-redux'
-import validation from "../../Utils/ValidationEventForm/validation";
+import validation from "../../utils/ValidationEventForm/validation";
 import { useDispatch } from "react-redux";
 import { createEvent } from "../../Redux/Action/action";
 import style from './formEvent.module.css'
