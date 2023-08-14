@@ -6,15 +6,6 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST, DB_URL_DEPLOY,
 } = process.env;
 
-// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/boho`, {
-//   logging: false, 
-//   native: false, 
-// });
-
-// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/boho`, {
-// 	logging: false,
-// 	native: false,
-// });
 const sequelize = new Sequelize(DB_URL_DEPLOY, {
 	logging: false,
 	native: false,
