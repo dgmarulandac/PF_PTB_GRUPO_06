@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
             primaryKey : true
         },
         type: {
-            type: DataTypes.ENUM("Comprador","Vendedor","Administrador"),
+            type: DataTypes.STRING,
             allowNull: false
         }
     });
