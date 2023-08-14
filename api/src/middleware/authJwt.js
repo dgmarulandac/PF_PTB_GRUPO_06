@@ -10,7 +10,7 @@ const verifyToken = (req, res, next) => {
         return res.status(403).json({error: "No token provided."});
     }
 
-    jwt.verify(token, SECRET,(err, decoded) => {
+    jwt.verify(token, SECRET, (err, decoded) => {
               if (err) {
                 return res.status(401).json({error: "Unauthorized."});
               }
@@ -20,9 +20,10 @@ const verifyToken = (req, res, next) => {
 };
 
 const isAdmin = async (req, res, next) => {
+  console.log(req.id);
   const user = await User.findByPk(req.id);
   const roles = await user.getRoles();
-  roles.array.forEach(role => {
+  roles.forEach(role => {
     if( role.type === adminRole ) {
         next();
         return;
@@ -34,7 +35,7 @@ const isAdmin = async (req, res, next) => {
 const isSeller = async (req, res, next) => {
   const user = await User.findByPk(req.id);
   const roles = await user.getRoles();
-  roles.array.forEach(role => {
+  roles.forEach(role => {
     if( role.type === sellerRole ) {
         next();
         return;
@@ -46,7 +47,7 @@ const isSeller = async (req, res, next) => {
 const isBuyer = async (req, res, next) => {
   const user = await User.findByPk(req.id);
   const roles = await user.getRoles();
-  roles.array.forEach(role => {
+  roles.forEach(role => {
     if( role.type === buyerRole ) {
         next();
         return;

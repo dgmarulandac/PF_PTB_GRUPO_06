@@ -16,7 +16,7 @@ const postUserLogin = async ( user ) => {
         throw Error('Invalid Password.');
     }
 
-    const token = jwt.sign({id: user.id}, SECRET, {
+    const token = jwt.sign({id: candidateUser.id}, SECRET, {
         algorithm: 'HS256',
         allowInsecureKeySizes: false,
         expiresIn: 604800, // 7 days
