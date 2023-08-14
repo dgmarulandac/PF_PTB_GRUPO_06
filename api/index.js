@@ -19,7 +19,7 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn, Role } = require('./src/db.js');
-const initial = require('./src/rolesSpec.js')
+const {initial} = require('./src/rolesSpec.js')
 const port = process.env.PORT || 3001
 
 // Syncing all the models at once.
