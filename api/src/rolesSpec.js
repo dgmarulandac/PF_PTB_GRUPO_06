@@ -13,6 +13,4 @@ function initial(Role) {
   });
 }
 
-const ROLES = ["buyer","seller","admin"];
-
-module.exports = {initial, ROLES};
+module.exports = {initial};
