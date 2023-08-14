@@ -4,7 +4,7 @@
   "description": "Api de la app de BoHo",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -L",
+    "start": "node index.js",
     "test": "test"
   },
   "author": "Grupo 6 de pf",

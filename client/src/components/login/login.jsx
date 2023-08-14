@@ -29,7 +29,7 @@ export function Login() {
     };
     useEffect(() => {
         if (errors.lenght < 1) {
-            axios.post('http://localhsot:3001/user/login', users)
+            axios.post('/user/login', users)
                 .then(res => res.data)
                 .then(data => {
                     setResult(true)
