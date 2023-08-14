@@ -1,9 +1,9 @@
 const { User, Role } = require("../../db");
+const bcrypt = require("bcryptjs");
 const { buyerRole } = require("../../rolesSpec");
 
 const postUser = async ( user ) => {
-
-    // TODO: Hash de contraseña
+    
     if( ! await userVerificationDisplay(user.displayName) ) {
         throw Error(`The displayName ${user.displayName} is not available.`);
     }
@@ -14,6 +14,10 @@ const postUser = async ( user ) => {
         throw Error(`The email ${user.email} is already in use, please log in.`);
     }
 
+    let {password} = user;
+    password = bcrypt.hashSync(password, 8);
+    user = {...user, password };
+
     const newUser = await User.create( user );
 
     const defaultRole = await Role.findOne({
@@ -21,7 +25,7 @@ const postUser = async ( user ) => {
     });
     newUser.addRoles(defaultRole);
 
-    return newUser;
+    return {message: "The user was created succesfully."};
 };
 
 const userVerificationDisplay = async ( displayName ) => {
