@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import mockDetail from "../../mocks/eventDetail.json";
 import { getDetail } from "../../redux/actions/actions";
@@ -11,8 +11,8 @@ import Deadpool from "./Deadpool.jpg"
 const Detail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  //const ticketid = useSelector ((state)=> state.Detail)
-  const ticketid = mockDetail;
+  const ticketid = useSelector ((state)=> state.Detail)
+  //const ticketid = mockDetail;
 
   useEffect(() => {
     dispatch(getDetail(id));
