@@ -1,4 +1,5 @@
 const { User, Role } = require("../../db");
+const { buyerRole } = require("../../rolesSpec");
 
 const postUser = async ( user ) => {
 
@@ -7,10 +8,10 @@ const postUser = async ( user ) => {
 
     const newUser = await User.create( user );
 
-    const defaultRole = await Role.findAll({
-        where: { type: "Comprador" }
+    const defaultRole = await Role.findOne({
+        where: { type: buyerRole }
     });
-    newUser.addRoles(defaultRole[0]);
+    newUser.addRoles(defaultRole);
 
     return newUser;
 };
