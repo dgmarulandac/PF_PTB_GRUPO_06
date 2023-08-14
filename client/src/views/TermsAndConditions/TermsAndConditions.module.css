@@ -1,0 +1,75 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    max-width: 100vh;
+    width: 100%;
+    color: #e1ecfc;
+    background: linear-gradient(0deg, #25476e, #1e3a5a, #172a41);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    max-height: 60vh;
+}
+
+.cardTitle {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.cardDivider {
+    margin: 20px 0;
+}
+
+.cardList {
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.cardList h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.cardList li {
+    margin-bottom: 10px;
+}
+
+.acceptWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.acceptCheckbox {
+    margin-right: 10px;
+}
+
+.acceptLabel {
+    font-size: 16px;
+}
+
+.acceptButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.acceptButton:hover {
+    background-color: #0056b3;
+}

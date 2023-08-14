@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import userValidations from "../../functions/Validations/loginValidation/validation";
 import { useSelector, useDispatch } from "react-redux";
-import video from "../../utils/videos/backgroundLogin.mp4"
+import video from "../../Utils/videos/backgroundLogin.mp4"
 import styles from './login.module.css'
 
 export function Login() {

@@ -3,9 +3,9 @@ const {Event} = require('../db.js');
 
 
 const getEventHandler = async (req, res) => {
-    const { name, eventType, country, date } = req.query;
+    const { name, eventType, country, date, order } = req.query;
     try {
-        const events = await getEventFilterController(name, eventType, country, date)
+        const events = await getEventFilterController(name, eventType, country, date, order)
         res.status(200).json(events)
     } catch (error) {
         res.status(404).send(error.message)

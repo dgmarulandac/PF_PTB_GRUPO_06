@@ -18,7 +18,7 @@ const BrowseFileUpdate = ({ onImageUpload }) => {
         const data = new FormData();
         data.append("file", imageFile);
         data.append("cloud_name", process.env.REACT_APP_CLOUDINARY_NAME);
-        data.append("upload_preset", "boho-pf");
+        data.append("upload_preset", process.env.REACT_APP_CLOUDINARY_KEY);
 
         axios.post(process.env.REACT_APP_CLOUDINARY_URL, data)
             .then((res) => {
