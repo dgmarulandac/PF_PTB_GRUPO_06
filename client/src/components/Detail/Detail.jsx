@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import mockDetail from "../../mocks/eventDetail.json";
 import { getDetail } from "../../redux/actions/actions";
 import styles from "./Detail.module.css"
-import Deadpool from "./Deadpool.jpg"
+import Deadpool from "../../utils/image/Deadpool.jpg"
 
 
 

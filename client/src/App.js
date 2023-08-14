@@ -20,7 +20,7 @@ function App() {
       </header>
       <main>
         <Routes>
-          <Route path='/' element={<Home/>}/>
+          <Route exact path='/' element={<Home/>}/>
           <Route path='/login' element={<Login />}/> 
           <Route path='/register' element={<Register />} />
           <Route path='/ticket/:id' element={<Detail/>}/>
