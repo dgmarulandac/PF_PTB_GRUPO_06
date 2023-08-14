@@ -11,7 +11,7 @@ export function Login() {
     const userSesion = useSelector(state => state.userSesion)
     const navigate = useNavigate()
     const [users, setUsers] = useState({
-        user: '',
+        displayName: '',
         password: ''
     })
     const [errors, setErrors] = useState([])
@@ -26,8 +26,8 @@ export function Login() {
     };
     function handleSubmit(e) {
         e.preventDefault();
-        const { user, password } = users
-        setErrors(userValidations(user, password))
+        const { displayName, password } = users
+        setErrors(userValidations(displayName, password))
     };
     useEffect(() => {
         if (errors.lenght < 1) {
@@ -73,9 +73,9 @@ export function Login() {
                     <article>
                         <form onSubmit={handleSubmit}  className={styles.LoginWindow}>
                             <label htmlFor="">Usuario:</label>
-                            <input className={styles.LoginInput} type="text" placeholder="Jorgito17" name="userName" />
+                            <input className={styles.LoginInput} type="text" placeholder="Jorgito17" name="displayName" />
                             <label htmlFor="">Contraseña:</label>
-                            <input className={styles.LoginInput} type="password" placeholder="*********" name="userPassword" />
+                            <input className={styles.LoginInput} type="password" placeholder="*********" name="password" />
                             <button className={styles.LoginButton}>Iniciar Sesión</button>
                         </form>
                     </article>
