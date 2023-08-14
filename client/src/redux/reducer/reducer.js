@@ -1,6 +1,9 @@
-import { GETDETAIL } from "../actions_type/actions_type";
+import { GETDETAIL, GET_ALL_EVENT, CREATE_EVENT } from "../actions_type/actions_type";
 
 const initialState = {
+  country: ['Argentina', 'Colombia', 'Venezuela', 'Uruguay'],
+  eventTypes: ['Musical', 'Deportivo', 'Artistico', 'Otro'],
+  events: [],
   userSesion: {
     //userId,
     //userType
@@ -16,12 +19,15 @@ const rootReducer = (state = initialState, action) => {
         userSesion: action.payload,
       };
     case GETDETAIL:
-        console.log(state,action)
+      console.log(state, action)
       return {
         ...state,
-        Detail: {...state.Detail,...action.payload,},
+        Detail: { ...state.Detail, ...action.payload, },
       };
-
+    case GET_ALL_EVENT:
+      return { ...state, events: action.payload }
+    case CREATE_EVENT:
+      return { ...state, events: action.payload }
     default:
       return { ...state };
   }
