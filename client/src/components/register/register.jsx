@@ -35,7 +35,9 @@ export function Register() {
         const { user, name, password, dir, email, typeOfUser, numPhone, country } = users
         const errors = registerValidation(user, name, password, dir, email, typeOfUser, numPhone, country)
         if (errors.length === 0) {
+
             axios.post('https://pf-grupo06-back.onrender.com/register', users)
+
                 .then(res => res.data)
                 .then(data => {
                     setResult(1)

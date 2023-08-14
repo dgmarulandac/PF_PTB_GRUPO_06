@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
         },
 
         hour: {
-            type: DataTypes.TIME(4),
+            type: DataTypes.TIME(6),
             allowNull: false,
         },
                     
@@ -59,7 +59,7 @@ module.exports = (sequelize) => {
         },
 
         ticketPrice:{
-            type: DataTypes.DOUBLE,
+            type: DataTypes.INTEGER,
             allowNull:false
         }
     });
