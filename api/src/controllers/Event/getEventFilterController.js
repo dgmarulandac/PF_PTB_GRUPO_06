@@ -1,4 +1,4 @@
-const { Event, User, Role, Sale } = require("../../db");
+const { Event } = require("../../db");
 const { Op } = require('sequelize');
 
 
