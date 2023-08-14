@@ -8,15 +8,15 @@ import video from "../../utils/videos/backgroundLogin.mp4"
 export function Register() {
     const navigate = useNavigate()
     const [users, setUsers] = useState({
-        user: '',
+        displayName: '',
         name: '',
         password: '',
         email: '',
         typeOfUser: '',
         companyRut: '',
-        dir: '',
-        country: 'Argentina',
-        numPhone: '',
+        address: '',
+        nationality: 'Argentina',
+        phone: '',
     });
     const [result, setResult] = useState(0)
     const [listErrors, setListErrors] = useState([])
@@ -32,11 +32,11 @@ export function Register() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        const { user, name, password, dir, email, typeOfUser, numPhone, country } = users
-        const errors = registerValidation(user, name, password, dir, email, typeOfUser, numPhone, country)
+        const { displayName, name, password, address, email, typeOfUser, phone, nationality } = users
+        const errors = registerValidation(displayName, name, password, address, email, typeOfUser, phone, nationality)
         if (errors.length === 0) {
 
-            axios.post('https://pf-grupo06-back.onrender.com/register', users)
+            axios.post('https://pf-grupo06-back.onrender.com/users/register', users)
 
                 .then(res => res.data)
                 .then(data => {
@@ -78,7 +78,7 @@ export function Register() {
                 <article className={styles.window}>
                     <form className={styles.Form} onSubmit={handleSubmit}>
                         <label for="usuario">Usuario:</label>
-                        <input className={styles.RegisterInput} type="text" name="user" onChange={handleChange} placeholder="Jorgito14" />
+                        <input className={styles.RegisterInput} type="text" name="displayName" onChange={handleChange} placeholder="Jorgito14" />
 
                         <label for="Nombres">Nombre completo:</label>
                         <input className={styles.RegisterInput} type="text" name="name" onChange={handleChange} placeholder="Juan Alberto Ramirez De Armas" />
@@ -110,20 +110,20 @@ export function Register() {
                         </div>
 
                         <label for="direccion">Dirección:</label>
-                        <input className={styles.RegisterInput} name="dir" placeholder="Debe ser asi: Bv.España 234, Madrid" onChange={handleChange} />
+                        <input className={styles.RegisterInput} name="address" placeholder="Debe ser asi: Bv.España 234, Madrid" onChange={handleChange} />
 
                         <label for="telefono">Telefono:</label>
-                        <input className={styles.RegisterInput} name="numPhone" type="number" placeholder="Numero de telefono" onChange={handleChange} />
+                        <input className={styles.RegisterInput} name="phone" type="number" placeholder="Numero de telefono" onChange={handleChange} />
 
 
-                        <label for="country">Pais:</label>
+                        <label for="nationality">Pais:</label>
                         <div className={styles.select}>
-                            <select name="country" onChange={handleChange}>
-                                <option name="country" value="Argentina">Argentina</option>
+                            <select name="nationality" onChange={handleChange}>
+                                <option name="nationality" value="Argentina">Argentina</option>
                                 <option name="Venecountryzcountryuela" value="Venezuela">Venezuela</option>
-                                <option name="country" value="Uruguay">Uruguay</option>
-                                <option name="country" value="Colombia">Colombia</option>
-                                <option name="country" value="Chile">Chile</option>
+                                <option name="nationality" value="Uruguay">Uruguay</option>
+                                <option name="nationality" value="Colombia">Colombia</option>
+                                <option name="nationality" value="Chile">Chile</option>
                             </select>
                         </div>
                         <button className={styles.RegisterButton}>Registrarse</button>
