@@ -24,7 +24,7 @@ export const getDetail = (id) => {
             console.log("Error fetching data:", error); // Agrega esto
             return dispatch({
                 type: GETDETAIL,
-                payload: error.message,
+                payload:{error:"error no se ha encontrado el ticket"},
             });
         }
     };

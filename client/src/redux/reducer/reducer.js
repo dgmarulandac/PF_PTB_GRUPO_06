@@ -9,7 +9,7 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, action) => {
-  switch (action.payload) {
+  switch (action.type) {
     case "USERSESION":
       return {
         ...state,
