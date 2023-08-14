@@ -8,7 +8,7 @@ require('./db.js');
 
 const cors = require('cors');
 app.use(cors({
-    origin: 'https://pf-ptb-grupo-06-git-dev-dgmarulandac.vercel.app/'
+    origin: 'https://pf-ptb-grupo-06.vercel.app/'
 }));
 
 const server = express();
