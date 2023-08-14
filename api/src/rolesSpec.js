@@ -1,4 +1,4 @@
-function initial() {
+function initial(Role) {
   Role.create({
     id: 1,
     type: "buyer"
