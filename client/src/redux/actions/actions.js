@@ -13,8 +13,12 @@ const userSecion = (data) => {
 export const getDetail = (id) => {
     return async (dispatch) => {
         try {
-            const DBdata = await axios.get(`/events/${id}`);
-            const data = DBdata.data;
+            let data = null;
+            axios.get(`/events/${id}`)
+            .then(res => res.data)
+            .then(data => {
+                data = data;
+            });
             console.log("Data fetched:", data); // Agrega esto
             return dispatch({
                 type: GETDETAIL,
