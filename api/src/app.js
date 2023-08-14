@@ -18,7 +18,8 @@ server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
   const allowedOrigins = [
-    process.env.CLIENT_URL_DEPLOY,
+    process.env.CLIENT_URL_DEPLOY_1,
+    process.env.CLIENT_URL_DEPLOY_2,
      'http://localhost:3000' // Agrega la segunda página permitida aquí
    ]
    const origin = req.headers.origin
