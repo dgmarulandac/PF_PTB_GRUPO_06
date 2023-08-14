@@ -5,7 +5,6 @@ import userValidations from "../../functions/Validations/loginValidation/validat
 import { useSelector, useDispatch } from "react-redux";
 import video from "../../utils/videos/backgroundLogin.mp4"
 import styles from './login.module.css'
-import URL from "../../URLspec";
 
 export function Login() {
     const userSesion = useSelector(state => state.userSesion)
@@ -31,7 +30,7 @@ export function Login() {
     };
     useEffect(() => {
         if (errors.lenght < 1) {
-            axios.post(`${URL}/users/login`, users)
+            axios.post(`/users/login`, users)
                 .then(res => res.data)
                 .then(data => {
                     setResult(true)
