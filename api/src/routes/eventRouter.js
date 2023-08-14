@@ -4,7 +4,7 @@ const {getEventHandler, getEventByIdHandler, postCreateEventHandler}  = require 
 const eventRouter = Router ();
 
 eventRouter.get("/", getEventHandler);
-eventRouter.get("/:id",getEventByIdHandler);
 eventRouter.post("/createEvent", postCreateEventHandler);
+eventRouter.get("/:id",getEventByIdHandler);
 
 module.exports = eventRouter;
