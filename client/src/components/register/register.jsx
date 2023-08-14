@@ -17,6 +17,7 @@ export function Register() {
         address: '',
         nationality: 'Argentina',
         phone: '',
+        isCompany: false,
     });
     const [result, setResult] = useState(0)
     const [listErrors, setListErrors] = useState([])
@@ -32,7 +33,7 @@ export function Register() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        const { displayName, name, password, address, email, typeOfUser, phone, nationality, isCompany = false } = users
+        const { displayName, name, password, address, email, typeOfUser, phone, nationality, isCompany } = users
         const errors = registerValidation(displayName, name, password, address, email, typeOfUser, phone, nationality)
         if (errors.length === 0) {
 
@@ -120,7 +121,7 @@ export function Register() {
                         <div className={styles.select}>
                             <select name="nationality" onChange={handleChange}>
                                 <option name="nationality" value="Argentina">Argentina</option>
-                                <option name="Venecountryzcountryuela" value="Venezuela">Venezuela</option>
+                                <option name="nationality" value="Venezuela">Venezuela</option>
                                 <option name="nationality" value="Uruguay">Uruguay</option>
                                 <option name="nationality" value="Colombia">Colombia</option>
                                 <option name="nationality" value="Chile">Chile</option>
