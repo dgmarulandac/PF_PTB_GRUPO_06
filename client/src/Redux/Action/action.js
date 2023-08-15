@@ -2,13 +2,14 @@ import axios from "axios";
 import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL } from "./action-type";
 
 export const getAllEvent = ()=>{
-    return async (dispatch)=>{
-        const data = await axios.get(`/events`)
-        return dispatch({
-            type: GET_ALL_EVENT,
-            payload: data
-        })
-    }
+    
+    return function(dispatch){
+        axios.get('/events')
+        .then(data=>dispatch({type: GET_ALL_EVENT, payload: data.data}))
+        .catch( reason => {
+            dispatch({type: GET_ALL_EVENT, payload: []})
+        });
+    };
 }
 
 export const createEvent = (event)=>{
