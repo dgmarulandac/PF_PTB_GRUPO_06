@@ -33,10 +33,11 @@ export default function Login() {
             axios.post(`/users/login`, users)
                 .then(data => {
                     console.log(data.data);
-                    setResult(true)
+                    setResult(true);
                 })
                 .catch( reason => {
-                    console.log(reason.response.data.error);
+                    console.log(reason);
+                    setResult(false);
                 });
         }
     }, [errors])
