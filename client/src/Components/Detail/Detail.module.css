@@ -1,7 +1,10 @@
 /* Estilos para el componente Detail */
 
 .background {
-  position: relative; /* Cambiado de absolute a relative */
+  display: flex; /* Usar flexbox */
+  align-items: center; /* Centrar verticalmente */
+  justify-content: center; /* Centrar horizontalmente */
+  position: relative;
   background-color: black;
   width: 100%;
   height: 100vh; /* Usando viewport height para hacerlo más adaptable */
