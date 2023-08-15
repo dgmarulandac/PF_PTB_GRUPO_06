@@ -1,25 +1,25 @@
 import React from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllEvent } from "../../Redux/Action/action";
 import Card from "../Card/Card";
+import EventFilter from "../EventFilter/EventFilter";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay, Navigation, Keyboard } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import styles from './Home.module.css';
 
 export default function Home() {
-    const evento = {
-        id: 90,
-        adress: "av de mayo",
-        cantTickets: "400",
-        country: "Argentina",
-        date: "2023-08-26",
-        description: "pelea de bobos",
-        eventType: "Deportivo",
-        hour: "21:00",
-        image: "https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2023/06/elon-musk-vs-mark-zuckerberg.jpg?fit=1200%2C675&quality=50&strip=all&ssl=1",
-        name: "musk vs zuckenberg",
-        ticketPrice: "5990"
-    }
+
+    const dispatch = useDispatch();
+    const events = useSelector( (state) => state.events );
+
+    useEffect( () => {
+        dispatch( getAllEvent() );
+    }, [] );
+
     const slides = ['https://www.lunapark.com.ar/images/eventos/eventos/11066.jpg?1680027036', 'https://www.lunapark.com.ar/images/eventos/eventos/11027.jpg?1679514160',
 'https://www.lunapark.com.ar/images/eventos/eventos/11477.jpg?1690910639']
 
@@ -47,8 +47,11 @@ export default function Home() {
                 })}
             </Swiper>  
             </div>
-               <Card event={evento}/> 
-            <div>
+            <EventFilter />
+            <div className={styles.cards}>
+                {events && events.map( event => {
+                    return <Card event={event}/>
+                } )}
             </div>
         </div>
 

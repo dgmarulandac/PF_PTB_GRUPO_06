@@ -1,0 +1,68 @@
+.videoBackground {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	min-width: 100%;
+	min-height: 100%;
+	z-index: -1; 
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 10vw;
+    margin-bottom: 5vw;
+    position: relative;
+	
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+    color: #e1ecfc;
+}
+
+.titulito {
+    font-size: 3.2rem;
+}
+
+.Preguntas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.card {
+    background: #E1ECFC;
+    color: #333;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+}
+
+.active {
+    background: linear-gradient(0deg, #25476e, #1e3a5a, #172a41);
+    color: #e1ecfc;
+    max-width: 150vh;
+    max-height: 80vh;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}

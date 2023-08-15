@@ -1,0 +1,71 @@
+.containerCloud {
+    position: relative;
+  }
+  
+  .customFileUpload {
+      position: relative;
+      height: 90px;
+      width: 240px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed white;
+      padding: 1.5rem;
+      border-radius: 10px;
+  }
+  
+  .customFileUpload .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  .customFileUpload .icon svg {
+      height: 80px;
+      fill: white;
+  }
+  
+  .customFileUpload .text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  .customFileUpload .text span {
+      font-weight: 400;
+      color: white;
+  }
+  
+  .customFileUpload input {
+      display: none;
+  }
+  
+  .imageUrl {
+        position: absolute;
+      top: -25px;
+      left: -2px;
+      width: 225px;
+      height: 170px;
+      object-fit: cover;
+  }
+  
+  .buttonContainerUpdate {
+      display: flex;
+      justify-content: space-evenly;
+      gap: 20px;
+      margin-top: 10px;
+  }
+  
+  .buttonCreateUpdate {
+      position: relative;
+      padding: 10px 22px;
+      border-radius: 6px;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      background-color: #dbcc72;
+      transition: all 0.2s ease;
+  }

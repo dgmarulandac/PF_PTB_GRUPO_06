@@ -7,8 +7,8 @@ import styles from "./Detail.module.css"
 const Detail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const ticketid = useSelector ((state)=> state.Detail)
-  //const ticketid = mockDetail;
+  console.log(id);
+  const ticketid = useSelector ((state)=> state.detail)
 
   useEffect(() => {
     dispatch(getDetail(id));
