@@ -1,0 +1,56 @@
+.nav {
+    display: flex;
+    justify-content: center;
+}
+
+
+.number {
+    margin-left: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding: 8px;
+}
+
+.btn {
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    transition-duration: 0.4s;
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+    margin: 12px;
+}
+
+.btnNP {
+    font-family:cursive;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    width: auto;
+    border-radius: 12px;
+    height: 27px;
+    margin-top: 4px;
+    margin: 6px;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn:hover {
+    cursor: pointer;
+    background-color: seagreen;
+    color: rgb(8, 8, 8)
+}
+
+
+.btn:disabled {
+    background-color: seagreen;
+    color: black;
+}
+
+.btnNP:hover {
+    cursor: pointer;
+    background-color: seagreen;
+    color: rgb(8, 8, 8)
+}
