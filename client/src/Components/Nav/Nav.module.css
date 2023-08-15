@@ -3,7 +3,7 @@
    color: white;
    width: 100%;
    justify-content: space-between;
-   height: relative;
+   height: 15%;
    display: flex;
 }
 
@@ -22,4 +22,5 @@
     margin-left: 0.1rem;
     margin-right: 0;
     width: 4rem;
+    border-radius: 0.5rem;
   }
