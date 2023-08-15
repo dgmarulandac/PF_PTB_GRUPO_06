@@ -36,6 +36,7 @@ const BrowseFileUpdate = ({ onImageUpload }) => {
     const removeImage = () => {
         setImageFile(null);
         setImagePreview("");
+        onImageUpload("");
     };
 
     return (

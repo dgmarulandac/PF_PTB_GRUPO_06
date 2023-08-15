@@ -42,7 +42,9 @@ export default function FormEvent() {
     }
 
     const handleImageUpload = (secure_url) => {
-        setEvent({ ...event, image: secure_url });
+        const newEvent = { ...event, image: secure_url };
+        setEvent(newEvent);
+        setError(validation(newEvent))
     };
 
     return (
