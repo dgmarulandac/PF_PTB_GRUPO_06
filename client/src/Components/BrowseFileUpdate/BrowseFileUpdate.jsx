@@ -17,10 +17,10 @@ const BrowseFileUpdate = ({ onImageUpload }) => {
 
         const data = new FormData();
         data.append("file", imageFile);
-        data.append("cloud_name", process.env.REACT_APP_CLOUDINARY_NAME);
-        data.append("upload_preset", "boho-pf");
+        data.append("cloud_name", "boho-pf");
+        data.append("upload_preset", "boho_events");
 
-        axios.post(process.env.REACT_APP_CLOUDINARY_URL, data)
+        axios.post('https://api.cloudinary.com/v1_1/boho-pf/image/upload', data)
             .then((res) => {
                 console.log(res.data);
                 setImagePreview(res.data.secure_url);
