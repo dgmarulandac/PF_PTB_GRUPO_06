@@ -20,16 +20,15 @@ export default function Login() {
         const name = e.currentTarget.name
         setUsers({
             ...users,
-            [name]: [value]
+            [name]: value
         })
     };
     function handleSubmit(e) {
         e.preventDefault();
         const { displayName, password } = users
-        setErrors(userValidations(displayName, password))
-    };
-    useEffect(() => {
-        if (errors.lenght < 1) {
+        const errores = userValidations(displayName, password);
+        setErrors(errores);
+        if( errors.length === 0 ) {
             axios.post(`/users/login`, users)
                 .then(data => {
                     console.log(data.data);
@@ -40,7 +39,7 @@ export default function Login() {
                     setResult(false);
                 });
         }
-    }, [errors])
+    };
     useEffect(() => {
         if (result) {
             navigate('/')
@@ -76,9 +75,9 @@ export default function Login() {
                     <article>
                         <form onSubmit={handleSubmit}  className={styles.LoginWindow}>
                             <label htmlFor="">Usuario:</label>
-                            <input className={styles.LoginInput} type="text" placeholder="Jorgito17" name="displayName" />
+                            <input className={styles.LoginInput} onChange={handleForm} type="text" placeholder="Jorgito17" name="displayName" />
                             <label htmlFor="">Contraseña:</label>
-                            <input className={styles.LoginInput} type="password" placeholder="*********" name="password" />
+                            <input className={styles.LoginInput} onChange={handleForm} type="password" placeholder="*********" name="password" />
                             <button className={styles.LoginButton}>Iniciar Sesión</button>
                         </form>
                     </article>

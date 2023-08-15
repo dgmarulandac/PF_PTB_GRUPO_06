@@ -25,7 +25,6 @@ export default function Register() {
     function handleChange(e) {
         const name = e.currentTarget.name
         const value = e.currentTarget.value
-        console.log(users)
         setUsers({
             ...users,
             [name]: value
