@@ -1,80 +1,65 @@
+/* Estilos para el componente Detail */
+
 .background {
-    position: absolute;
-    background-image: url('./backgrown.jpg');
+    background-color: black;
+    background-image: url(backgrown.jpg);
     width: 100%;
-    height: 100%;
     background-size: cover;
-    z-index: -1; /* Poner el fondo detrás de otros elementos */
-  }
-
-.Detail {
-    position: absolute;
-    left: 10%;
-    top: 15%;
-    background-color: rgba(140, 153, 165, 0.404);
-    display: flex;
-    flex-direction: column; /* Alineación vertical */
-    justify-content: center; /* Centrar verticalmente */
-    align-items: center; /* Centrar horizontalmente */
-    text-align: center; /* Alinear el texto */
-    width: 100rem;
-    min-height: 40rem;
-    height: relative;
-    border-radius: 1rem;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.788), 0 0 5px rgba(253, 255, 253, 0.788);
-}
-
-  
-  .Detail img {
-    position: absolute;
-    left: 2%;
-    top: 15%;
-    width: 45rem;
-    border-radius: 4rem;
-    border: 1px solid black;
-  }
-
-  .title{
-    position: absolute;
-    font-family: 'Black Ops One', sans-serif;
-    color: gold;
-    top: 2%;
-  }
-
-  .information{
-    position: absolute;
-    left: 60%;
-    background-color: rgba(70, 69, 69, 0.521);
-    width: relative ;
-    border: 1rem groove rgba(56, 54, 54, 0.507);
-    top: 15%;
-    color: white;
-    font-size: 1.2rem;
-    height: relative;
-  }
-
-  .buttons {
     display: flex;
     justify-content: center;
- /* Ajusta la altura del contenedor según tus necesidades */
+    align-items: center;
   }
+  
+  .boho {
+    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .Detail {
+    margin-top: 5%;
+    background-color: rgba(140, 153, 165, 0.404);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 40rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.788), 0 0 5px rgba(253, 255, 253, 0.788);
+    margin-bottom: 5%;
+    padding: 5%;
+  }
+  
+  .title {
+    color: rgba(255, 217, 0, 0.726);
+  }
+  
+  .image {
+    width: relative;
+    height: relative;
+    border: solid white;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.788), 0 0 5px rgba(253, 255, 253, 0.788);
+    margin-bottom: 5%;
+  }
+  
 
   .buttons button {
-    position: absolute;
-    bottom: 5%;
-    background-color: green;
-    border: none;
-    border-radius: 2rem;
-    width: 20rem;
+    width: 15rem;
     height: 5rem;
+    background-color: green;
+    border-radius: 1rem;
+    border: none;
     font-size: 2rem;
-    transition: transform 0.2s; /* Agrega transición para un cambio suave */
+    color: white;
+    transition: transform 0.2s;
   }
   
   .buttons button:hover {
     background-color: gold;
-    transform: scale(1.05); /* Aplica un aumento en el tamaño */
-    animation: pulse 1s infinite; /* Inicia la animación de palpitar */
+    animation: pulse 1s infinite, beat 1s infinite; /* Agregado beat animation */
   }
   
   @keyframes pulse {
@@ -82,21 +67,20 @@
       transform: scale(1);
     }
     50% {
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
     100% {
       transform: scale(1);
     }
   }
-
-  .boho{
-    color: white;
-    width: 100%;
-    align-self: start;
-    align-content: center;
-    display: flex;
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: flex-start; /* Alinear en la parte superior */
-    font-size: 1.5rem;
+  
+  @keyframes beat {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
   }
-
+  /* Resto de los estilos... */
+  

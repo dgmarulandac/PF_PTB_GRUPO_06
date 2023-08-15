@@ -15,32 +15,34 @@ const Detail = () => {
   }, []);
   
   return (
-    <div  >
+    <div className={styles.background}>
       {ticketid.error ? (
         <h1>{ticketid?.error}</h1>
       ) : (
-        <div className={styles.background}>
-            <div className={styles.boho}><h1>BOHO</h1></div>
-        <div className={styles.Detail}>
-        <div className={styles.title}><h1>{ticketid.name}</h1></div> 
-          <img src={ticketid.image} alt="" />
-
-          <div className={styles.information}>
-            <h3>{ticketid.country}</h3>
-          <h3>{ticketid.date}</h3>
-          <h3>{ticketid.description}</h3>
-          <h3>{ticketid.eventType}</h3>
-          <h3>{ticketid.cantTickets}</h3>
+        <div>
+          <div>
+            <h1 className={styles.boho}>BOHO</h1>
           </div>
-          <div className={styles.buttons}>
-          <button>Buy ticket</button>
+          <div className={styles.Detail}>
+            <div>
+              <h2 className={styles.title}>{ticketid.name}</h2>
+            </div>
+            <img src={ticketid.image} alt="" className={styles.image} />
+            <div className={styles.information}>
+              <p>{ticketid.country}</p>
+              <p>{ticketid.date}</p>
+              <p>{ticketid.description}</p>
+              <p>{ticketid.eventType}</p>
+              <p>{ticketid.cantTickets}</p>
+            </div>
+            <div className={styles.buttons}>
+              <button>Buy ticket</button>
+            </div>
           </div>
-        </div>
-        
         </div>
       )}
     </div>
   );
-};
+      }  
 
 export default Detail;

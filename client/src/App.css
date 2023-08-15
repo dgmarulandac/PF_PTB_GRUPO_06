@@ -17,6 +17,7 @@ body, html{
 
 .App, #root{
   height: 100%;
+  overflow: auto;
 }
 .topGrid{
   align-self: flex-start;
