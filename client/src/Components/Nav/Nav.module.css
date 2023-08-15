@@ -28,3 +28,8 @@
   border-radius: 0.5rem;
   color: aliceblue;
 }
+
+.button :hover button{
+    background-color: rgba(23, 255, 255, 0.342);
+    scale: 1.1;
+}
