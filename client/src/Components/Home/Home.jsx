@@ -23,7 +23,7 @@ export default function Home() {
     }, [] );
 
     const [currentPage, setCurrentPage] = useState(1);
-    const eventsPerPage = 6;
+    const eventsPerPage = 8;
     
     const ultimoIndex = currentPage * eventsPerPage;
     const primerIndex = ultimoIndex - eventsPerPage;
