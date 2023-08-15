@@ -1,5 +1,6 @@
 import React from "react";
 import { SiFacebook, SiTwitter, SiInstagram } from "react-icons/si";
+import { Link } from "react-router-dom"
 import styles from "./Footer.module.css";
 
 const Footer = () => {
@@ -10,7 +11,7 @@ const Footer = () => {
                     <h3>Información</h3>
                     <ul>
                         <li>
-                            <a href='/inicio'>Inicio</a>
+                            <Link to = "/">Inicio</Link>
                         </li>
                         <li>
                             <a href='/nosotros'>Nosotros</a>
@@ -24,15 +25,13 @@ const Footer = () => {
                     <h3>Categorías</h3>
                     <ul>
                         <li>
-                            <a href='/preguntasfrecuentes'>Preguntas frecuentes</a>
+                            <Link to = "/FAQ">Preguntas frecuentes</Link>
                         </li>
                         <li>
-                            <a href='/terminosycondiciones'>
-                                Términos y condiciones
-                            </a>
+                            <Link to = '/TaC'>Términos y condiciones</Link>
                         </li>
                         <li>
-                            <a href='/eventos'>Eventos</a>
+                            <Link to = "/">Eventos</Link>
                         </li>
                     </ul>
                 </div>
@@ -41,7 +40,7 @@ const Footer = () => {
                     <ul className={styles.socialIcons}>
                         <li>
                             <a
-                                href='https://twitter.com/'
+                                href='https://facebook.com/'
                                 target='_blank'
                                 rel='noopener noreferrer'
                             >
@@ -59,7 +58,7 @@ const Footer = () => {
                         </li>
                         <li>
                             <a
-                                href='https://twitter.com/'
+                                href='https://instagram.com/'
                                 target='_blank'
                                 rel='noopener noreferrer'
                             >
