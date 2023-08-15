@@ -28,7 +28,7 @@ export default function Login() {
         const { displayName, password } = users
         const errores = userValidations(displayName, password);
         setErrors(errores);
-        if( errors.length === 0 ) {
+        if( errores.length === 0 ) {
             axios.post(`/users/login`, users)
                 .then(data => {
                     console.log(data.data);
