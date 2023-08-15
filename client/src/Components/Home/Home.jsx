@@ -28,7 +28,7 @@ export default function Home() {
     const ultimoIndex = currentPage * eventsPerPage;
     const primerIndex = ultimoIndex - eventsPerPage;
     
-    const [eventosAMostrar, setEventosAMostrar] = useState(events.slice(primerIndex, ultimoIndex));
+    const [eventosAMostrar, setEventosAMostrar] = useState(events && events.slice(primerIndex, ultimoIndex));
 
     useEffect( () => {
         setCurrentPage(1);
