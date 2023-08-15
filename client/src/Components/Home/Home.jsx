@@ -24,11 +24,16 @@ export default function Home() {
 
     const [currentPage, setCurrentPage] = useState(1);
     const eventsPerPage = 6;
-
+    
     const ultimoIndex = currentPage * eventsPerPage;
     const primerIndex = ultimoIndex - eventsPerPage;
+    
+    const [eventosAMostrar, setEventosAMostrar] = useState(events.slice(primerIndex, ultimoIndex));
 
-    let eventosAMostrar = events.slice(primerIndex, ultimoIndex);
+    useEffect( () => {
+        setCurrentPage(1);
+        setEventosAMostrar(events && events.slice(primerIndex, ultimoIndex))
+    }, [events] );
 
     const slides = ['https://www.lunapark.com.ar/images/eventos/eventos/11066.jpg?1680027036', 'https://www.lunapark.com.ar/images/eventos/eventos/11027.jpg?1679514160',
 'https://www.lunapark.com.ar/images/eventos/eventos/11477.jpg?1690910639']
