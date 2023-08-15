@@ -5,8 +5,7 @@ import axios from "axios";
 import styles from './register.module.css'
 import { Link } from "react-router-dom";
 import video from "../../Utils/videos/backgroundLogin.mp4"
-
-export default function Register() {
+export function Register() {
     const navigate = useNavigate()
     const [users, setUsers] = useState({
         displayName: '',
@@ -38,13 +37,22 @@ export default function Register() {
         const errors = registerValidation(displayName, name, password, address, email, typeOfUser, phone, nationality)
         if (errors.length === 0) {
 
-            axios.post(`/users/register`, users)
+            axios.post('https://pf-grupo06-back.onrender.com/users/register', users)
 
                 .then(res => res.data)
                 .then(data => {
-                    setResult(1)
+                    document.getElementById('message').textContent = "Usuario registrado";
+                    document.getElementById('message').classList.remove(styles.showErrorMessage)
+                    document.getElementById('message').classList.add(styles.showSussesMessage)
+                    document.getElementById('textContainer').classList.remove(styles.hide)
                 })
-                .catch((err) => (setResult(2)))
+                .catch((err) => {
+                    document.getElementById('message').textContent = "Hubo un error";
+                    document.getElementById('message').classList.add(styles.showErrorMessage)
+                    document.getElementById('message').classList.remove(styles.showSussesMessage)
+                    document.getElementById('textContainer').classList.remove(styles.hide)
+
+                })
         }
         else {
             setListErrors(errors)
@@ -129,16 +137,8 @@ export default function Register() {
                             </select>
                         </div>
                         <button className={styles.RegisterButton}>Registrarse</button>
-                        {
-                            result ?
-                                result === 1 ?
-                                    <div><p style={{ color: "green", textAlign: "center" }}>Registro con exito</p></div>
+                            <div className={styles.hide} id="textContainer"><p id="message"></p></div>
 
-                                    :
-                                    <p style={{ color: "red", textAlign: "center" }}>hubo un error por favor notifique al serivcio tecnico</p>
-                                :
-                                null
-                        }
                     </form>
 
                 </article>

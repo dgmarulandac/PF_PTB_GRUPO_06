@@ -6,11 +6,11 @@ import { useSelector, useDispatch } from "react-redux";
 import video from "../../Utils/videos/backgroundLogin.mp4"
 import styles from './login.module.css'
 
-export default function Login() {
+export function Login() {
     const userSesion = useSelector(state => state.userSesion)
     const navigate = useNavigate()
     const [users, setUsers] = useState({
-        displayName: '',
+        user: '',
         password: ''
     })
     const [errors, setErrors] = useState([])
@@ -25,12 +25,12 @@ export default function Login() {
     };
     function handleSubmit(e) {
         e.preventDefault();
-        const { displayName, password } = users
-        setErrors(userValidations(displayName, password))
+        const { user, password } = users
+        setErrors(userValidations(user, password))
     };
     useEffect(() => {
         if (errors.lenght < 1) {
-            axios.post(`/users/login`, users)
+            axios.post('/user/login', users)
                 .then(res => res.data)
                 .then(data => {
                     setResult(true)
@@ -72,9 +72,9 @@ export default function Login() {
                     <article>
                         <form onSubmit={handleSubmit}  className={styles.LoginWindow}>
                             <label htmlFor="">Usuario:</label>
-                            <input className={styles.LoginInput} type="text" placeholder="Jorgito17" name="displayName" />
+                            <input className={styles.LoginInput} type="text" placeholder="Jorgito17" name="userName" />
                             <label htmlFor="">Contraseña:</label>
-                            <input className={styles.LoginInput} type="password" placeholder="*********" name="password" />
+                            <input className={styles.LoginInput} type="password" placeholder="*********" name="userPassword" />
                             <button className={styles.LoginButton}>Iniciar Sesión</button>
                         </form>
                     </article>

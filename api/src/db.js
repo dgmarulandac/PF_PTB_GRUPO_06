@@ -6,10 +6,18 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST, DB_URL_DEPLOY,
 } = process.env;
 
+// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/boho`, {
+//   logging: false, 
+//   native: false, 
+// });
 
-const sequelize = new Sequelize(`${DB_URL_DEPLOY}`, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed,
+// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/boho`, {
+// 	logging: false,
+// 	native: false,
+// });
+const sequelize = new Sequelize(DB_URL_DEPLOY, {
+	logging: false,
+	native: false,
   dialectOptions: {
     ssl: {
       require: true
@@ -55,5 +63,5 @@ Review.belongsTo(Event);
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
-  Event, Role, Sale, User, Review
+  Event, Role, Sale, User
 };

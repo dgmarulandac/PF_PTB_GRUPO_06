@@ -1,8 +1,8 @@
-const { Event } = require("../../db");
+const { Event, User, Role, Sale } = require("../../db");
 const { Op } = require('sequelize');
 
 
-const getEventWithFilter = async(name, eventType, country, date)=> {
+const getEventFilterController = async(name, eventType, country, date)=> {
     const whereClause = {};
 
     if (name) {
@@ -25,6 +25,6 @@ const getEventWithFilter = async(name, eventType, country, date)=> {
     };
 
 
-module.exports = getEventWithFilter;
+module.exports = { getEventFilterController }
 
 
