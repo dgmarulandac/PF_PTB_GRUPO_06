@@ -3,7 +3,7 @@ import validationLength from "./validationLength";
 import isNumber from "./isNumber";
 
 const validation = (event)=>{
-    const { name, description, date, hour, cantTickets, adress, country, image, eventType, ticketPrice} = event
+    const { name, description, date, hour, cantTickets, address, country, image, eventType, ticketPrice} = event
 
     const error = {}
     const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w.-]*)*\/?$/;
@@ -20,7 +20,7 @@ const validation = (event)=>{
 
     if(!isNumber(ticketPrice)) error['ticketPrice'] = '⚠️'
 
-    if(!validationLength(adress)) error['adress'] = '⚠️ el evento debe tener una direccion.'
+    if(!validationLength(address)) error['adress'] = '⚠️ el evento debe tener una direccion.'
 
     if(!validationLength(country)) error['country'] = '⚠️ debes escoger un pais.'
 
