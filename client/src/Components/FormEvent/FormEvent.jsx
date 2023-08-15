@@ -74,9 +74,7 @@ export default function FormEvent() {
                     </div>
                     <div className={style.container_div}>
                         <label htmlFor="">imagen</label>
-                        <input type="text" name="image" id="8"
-                            value={event.image} onChange={handleChange}
-                            placeholder="la imagen debe ser una url" />
+                        <BrowseFileUpdate onImageUpload={handleImageUpload} />
                         {error.image && <p className={style.error}>{error.image}</p>}
                     </div>
                     <div className={style.container_div_duo}>
@@ -136,9 +134,6 @@ export default function FormEvent() {
                             <input type="number" name="ticketPrice" id="10"
                                 value={event.ticketPrice} onChange={handleChange} />
                             {error.ticketPrice && <span className={style.error}>{error.ticketPrice}</span>}
-                        </div>
-                        <div className={style.container_div}>
-                        <BrowseFileUpdate onImageUpload={handleImageUpload} />
                         </div>
                     </div>
                     {event.exito && <p className={style.exito}>{event.exito}</p>}
