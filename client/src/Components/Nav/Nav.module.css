@@ -13,6 +13,7 @@
   width: 15rem;
   border-top-right-radius: 19rem;
   display: flex;
+  color: aliceblue;
   justify-content: space-between;
 }
 
