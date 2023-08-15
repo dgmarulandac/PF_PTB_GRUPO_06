@@ -3,7 +3,7 @@ import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL } from "./action-type";
 
 export const getAllEvent = ()=>{
     return async (dispatch)=>{
-        const {data} = await axios.get(`/events`)
+        const data = await axios.get(`/events`)
         return dispatch({
             type: GET_ALL_EVENT,
             payload: data
