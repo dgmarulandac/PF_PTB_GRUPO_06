@@ -9,7 +9,7 @@ export const getAllEvent = ()=>{
         .catch( reason => {
             Swal.fire({
 				title: "Error",
-				text: `${reason.data.error}`,
+				text: `${reason.error}`,
 				icon: "error",
 			});
             dispatch({type: GET_ALL_EVENT, payload: []})
@@ -24,7 +24,7 @@ export const createEvent = (event)=>{
         .catch( reason => {
             Swal.fire({
 				title: "Error",
-				text: `${reason.data.error}`,
+				text: `${reason.error}`,
 				icon: "error",
 			});
             dispatch({type: CREATE_EVENT, payload: {}})
@@ -34,12 +34,12 @@ export const createEvent = (event)=>{
 
 export const getEventsFilter = (name, eventType, country, date, order) => {
     return function(dispatch){
-        axios.get(`/events/filter?name=${name}&eventType=${eventType}&country=${country}&date=${date}&order=${order}`)
+        axios.get(`/events/?name=${name}&eventType=${eventType}&country=${country}&date=${date}&order=${order}`)
         .then(data=>dispatch({type: FILTER_GET_EVENTS, payload: data.data}))
         .catch( reason => {
             Swal.fire({
 				title: "Error",
-				text: `${reason.data.error}`,
+				text: `${reason.error}`,
 				icon: "error",
 			});
             dispatch({type: FILTER_GET_EVENTS, payload: {}})
@@ -54,7 +54,7 @@ export const getDetail = (id) => {
         .catch( reason => {
             Swal.fire({
 				title: "Error",
-				text: `${reason.data.error}`,
+				text: `${reason.error}`,
 				icon: "error",
 			});
             dispatch({type: GET_DETAIL, payload: {}})
