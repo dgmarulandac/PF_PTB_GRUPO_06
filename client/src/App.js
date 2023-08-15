@@ -19,10 +19,7 @@ axios.defaults.baseURL = 'https://pf-grupo06-back.onrender.com';
 function App() {
   return (
     <div className="App">
-      <header>
-      </header>
       <Nav />
-      <main>
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/login' element={<Login />}/> 
@@ -32,7 +29,6 @@ function App() {
           <Route path='/TaC' element={<TermsAndConditions/>}/>
           <Route path='/FAQ' element={<FAQ/>}/>
         </Routes>
-      </main>
       <Footer/>
     </div>
   );
