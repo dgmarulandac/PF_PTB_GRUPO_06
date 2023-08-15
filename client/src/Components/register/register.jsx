@@ -42,9 +42,17 @@ export default function Register() {
 
                 .then(res => res.data)
                 .then(data => {
-                    setResult(1)
+                    document.getElementById('message').textContent = data.message;
+                    document.getElementById('message').classList.remove(styles.showErrorMessage)
+                    document.getElementById('message').classList.add(styles.showSussesMessage)
+                    document.getElementById('textContainer').classList.remove(styles.hide)
                 })
-                .catch((err) => (setResult(2)))
+                .catch((err) => {
+                    document.getElementById('message').textContent = err.error;
+                    document.getElementById('message').classList.remove(styles.showSussesMessage)
+                    document.getElementById('message').classList.add(styles.showErrorMessage)
+                    document.getElementById('textContainer').classList.remove(styles.hide)
+                })
         }
         else {
             setListErrors(errors)
@@ -129,16 +137,7 @@ export default function Register() {
                             </select>
                         </div>
                         <button className={styles.RegisterButton}>Registrarse</button>
-                        {
-                            result ?
-                                result === 1 ?
-                                    <div><p style={{ color: "green", textAlign: "center" }}>Registro con exito</p></div>
-
-                                    :
-                                    <p style={{ color: "red", textAlign: "center" }}>hubo un error por favor notifique al serivcio tecnico</p>
-                                :
-                                null
-                        }
+                        <div className={styles.hide} id="textContainer"><p id="message"></p></div>
                     </form>
 
                 </article>
