@@ -43,11 +43,13 @@ export default function Register() {
                 .then(res => res.data)
                 .then(data => {
                     document.getElementById('message').textContent = data.message;
+                    document.getElementById('message').classList.remove(styles.showErrorMessage)
                     document.getElementById('message').classList.add(styles.showSussesMessage)
                     document.getElementById('textContainer').classList.remove(styles.hide)
                 })
                 .catch((err) => {
                     document.getElementById('message').textContent = data.error;
+                    document.getElementById('message').classList.remove(styles.showSussesMessage)
                     document.getElementById('message').classList.add(styles.showErrorMessage)
                     document.getElementById('textContainer').classList.remove(styles.hide)
                 })
