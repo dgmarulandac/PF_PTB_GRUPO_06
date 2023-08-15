@@ -13,7 +13,7 @@
   width: 15rem;
   border-top-right-radius: 19rem;
   display: flex;
-  justify-content: center; /* Cambiado de flex-start a center */
+  justify-content: space-between;
 }
 
 .button button {
