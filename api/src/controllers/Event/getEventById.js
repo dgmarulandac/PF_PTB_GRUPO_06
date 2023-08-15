@@ -5,4 +5,4 @@ const getEventById = async (id) => {
     return event;
 };
 
-module.exports = {getEventById};
+module.exports = getEventById;
