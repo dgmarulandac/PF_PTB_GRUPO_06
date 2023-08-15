@@ -1,15 +1,16 @@
 .body{
     display: grid;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.752);
+    background-color: rgba(0, 0, 0, 0.279);
 }
 
 .container{
+    border: 1px black solid;
     margin: 10px;
     width: 410px;
     height: auto;
     font-family:'Barlow Condensed', sans-serif;;
-    background-color: #D9D9D9;
+    background-color: rgba(0,0,0,0.6573004201680672);;
     border-radius: 15px;
 }
 
@@ -32,6 +33,7 @@
     border-radius: 14px;
     border: 1px solid #333;
     height: 30px;
+    text-align: center;
 }
 
 .container_div_description {
