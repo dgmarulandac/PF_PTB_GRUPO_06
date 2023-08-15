@@ -13,7 +13,7 @@ const rootReducer = (state = initialState, action)=>{
         case GET_ALL_EVENT:
             return {...state, events: payload};
         case CREATE_EVENT:
-            return {...state, events: payload};
+            return {...state, events: [...events, payload]};
         case GET_DETAIL:
             return {...state, detail: payload};
         default: return state;

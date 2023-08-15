@@ -12,13 +12,13 @@ export const getAllEvent = ()=>{
 }
 
 export const createEvent = (event)=>{
-    return async (dispatch)=>{
-        const {data} = await axios.post(`/events/createEvent`, event)
-        return dispatch({
-            type: CREATE_EVENT,
-            payload: data
-        })
-    }
+    return function(dispatch){
+        axios.post(`/events/createEvent`, event)
+        .then(data=>dispatch({type: CREATE_EVENT, payload: data.data}))
+        .catch( reason => {
+            dispatch({type: CREATE_EVENT, payload: {}})
+        });
+    };
 }
 
 export const getDetail = (id) => {
