@@ -62,8 +62,9 @@ function FAQ({ setValidateState, setCurrentUserStore2 }) {
 
     return (
         <div className={style.container}>
-            <video src={video} className={style.videoBackground} loop muted autoPlay />
+            
             <div className={style.title}>
+                <video src={video} className={style.videoBackground} loop muted autoPlay />
                 <h2 className={style.titulito}>Preguntas frecuentes</h2>
             </div>
             <div className={style.Preguntas}>
