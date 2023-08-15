@@ -4,6 +4,7 @@ import validation from "../../Utils/ValidationEventForm/validation";
 import { useDispatch } from "react-redux";
 import { createEvent } from "../../Redux/Action/action";
 import style from './formEvent.module.css'
+import BrowseFileUpdate from "../BrowseFileUpdate/BrowseFileUpdate";
 
 export default function FormEvent() {
 
@@ -38,6 +39,9 @@ export default function FormEvent() {
         }
     }
 
+    const handleImageUpload = (secure_url) => {
+        setEvent({ ...event, image: secure_url });
+    };
 
     return (
         <div className={style.body}>
@@ -125,6 +129,9 @@ export default function FormEvent() {
                             <input type="number" name="ticketPrice" id="10"
                                 value={event.ticketPrice} onChange={handleChange} />
                             {error.ticketPrice && <span className={style.error}>{error.ticketPrice}</span>}
+                        </div>
+                        <div className={style.container_div}>
+                        <BrowseFileUpdate onImageUpload={handleImageUpload} />
                         </div>
                     </div>
 
