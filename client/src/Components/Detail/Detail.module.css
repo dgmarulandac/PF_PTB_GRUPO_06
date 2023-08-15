@@ -28,7 +28,7 @@
 .Detail img {
   position: relative; /* Cambiado de absolute a relative */
   width: 100%; /* Cambiado de 45rem */
-  max-width: 45rem; /* Agregado max-width para que no se desborde en pantallas pequeñas */
+  max-width: 20rem; /* Agregado max-width para que no se desborde en pantallas pequeñas */
   border-radius: 4rem;
   border: 1px solid black;
 }
