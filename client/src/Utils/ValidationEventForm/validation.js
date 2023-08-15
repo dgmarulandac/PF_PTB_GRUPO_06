@@ -26,7 +26,7 @@ const validation = (event)=>{
 
     if(!validationLength(eventType)) error['eventType'] = '⚠️ elige algun tipo de evento.'
 
-    if(!urlRegex.test(image)) error['image'] = '⚠️ la imagen debe ser una url.'
+    if(!urlRegex.test(image)) error['image'] = '⚠️ se debe incluir una imagen.'
 
 
     return error
