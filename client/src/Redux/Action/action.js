@@ -2,7 +2,6 @@ import axios from "axios";
 import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL } from "./action-type";
 
 export const getAllEvent = ()=>{
-    
     return function(dispatch){
         axios.get('/events')
         .then(data=>dispatch({type: GET_ALL_EVENT, payload: data.data}))
