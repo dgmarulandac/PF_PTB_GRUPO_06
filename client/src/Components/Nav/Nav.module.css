@@ -21,9 +21,9 @@
 
 .button button {
   background-color: rgba(83, 83, 83, 0.411);
-  border: 0;
+  border: 0.5rem;
   height: 1.5rem;
-  margin: 0 0.1rem; /* Margen izquierdo y derecho */
+  margin: 0 0.5rem; /* Margen izquierdo y derecho */
   width: relative;
   border-radius: 0.5rem;
   color: aliceblue;
