@@ -2,27 +2,28 @@
   background-color: rgba(88, 88, 88, 0.425);
   color: white;
   width: 100%;
-  justify-content: space-between;
+  justify-content: center; /* Centro horizontal */
   align-items: center;
-  height: 6%;
+  height: 4%;
   display: flex;
 }
 
 .button {
+  display: flex;
+  justify-content: space-between; /* Espaciado entre botones */
+  align-items: center;
   background-color: rgba(240, 248, 255, 0.411);
   width: relative;
   border-top-right-radius: 19rem;
-  display: flex;
-  color: aliceblue;
-  justify-content: space-between;
+  padding: 0.5rem; /* Agregado: Espacio interior */
 }
 
 .button button {
   background-color: rgba(83, 83, 83, 0.411);
   border: 0;
   height: 1.5rem;
-  margin-left: 0.1rem;
-  margin-right: 0;
+  margin: 0 0.1rem; /* Margen izquierdo y derecho */
   width: 4rem;
   border-radius: 0.5rem;
+  color: aliceblue;
 }
