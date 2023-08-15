@@ -1,7 +1,7 @@
 import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL } from "../Action/action-type";
 
 const initialState = {
-    country: ['Argentina', 'Colombia', 'Venezuela', 'Uruguay'],
+    country: ['Colombia', 'Venezuela', 'Argentina', 'Uruguay'],
     eventTypes: ['Musical', 'Deportivo', 'Artistico', 'Otro'],
     events: [],
     detail: {},
