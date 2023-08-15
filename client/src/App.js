@@ -9,8 +9,8 @@ import Register from './Components/register/register';
 import Login from './Components/login/login';
 import FormEvent from './Components/FormEvent/FormEvent';
 import Detail from './Components/Detail/Detail';
-import Nav from './Components/Nav/Nav'
-axios.defaults.baseURL = 'https://pf-grupo06-back.onrender.com'
+import Nav from './Components/Nav/Nav';
+axios.defaults.baseURL = 'https://pf-grupo06-back.onrender.com';
 
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/login' element={<Login />}/> 
           <Route path='/register' element={<Register />} />
-          <Route path='/ticket/:id' element={<Detail/>}/>
+          <Route path='/event/:id' element={<Detail/>}/>
           <Route path='/createEvent' element={<FormEvent/>}/>
         </Routes>
       </main>
