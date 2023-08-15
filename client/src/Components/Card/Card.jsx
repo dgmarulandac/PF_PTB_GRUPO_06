@@ -8,7 +8,7 @@ export default function Card({ event }) {
         "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
         "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
       ];
-    date = `${monthsInLetters[new Date(date).getMonth()]} ${new Date(date).getDate()+1}`
+    date = `${monthsInLetters[new Date(date).getMonth()]} ${new Date(date).getDate()+1} ${new Date(date).getFullYear()}`
     return (
         <div>
             {id &&
