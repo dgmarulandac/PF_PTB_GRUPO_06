@@ -8,10 +8,12 @@ const Nav = () => {
     <div className={styles.Nav}>
         <h3>BOHO</h3>
         <div className={styles.button}>
-        <Link to = "/"><button>home</button></Link>
-        <Link to = "/login"><button>login</button></Link>
-        <Link to = '/register'><button>register</button></Link>
-        <Link to = '/createEvent'><button>create event</button></Link>
+        <Link to = "/"><button>Home</button></Link>
+        <Link to = "/login"><button>Login</button></Link>
+        <Link to = '/register'><button>Register</button></Link>
+        <Link to = '/createEvent'><button>Create Event</button></Link>
+        <Link to = '/FAQ'><button>FAQ's</button></Link>
+        <Link to = '/TaC'><button>Terms</button></Link>
         </div>
     </div>
     )

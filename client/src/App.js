@@ -11,6 +11,8 @@ import FormEvent from './Components/FormEvent/FormEvent';
 import Detail from './Components/Detail/Detail';
 import Nav from './Components/Nav/Nav';
 import Footer from './Components/Footer/Footer';
+import TermsAndConditions from './Components/TermsAndConditions/TermsAndConditions';
+import FAQ from './Components/FAQs/FAQs';
 axios.defaults.baseURL = 'https://pf-grupo06-back.onrender.com';
 
 
@@ -27,6 +29,8 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/event/:id' element={<Detail/>}/>
           <Route path='/createEvent' element={<FormEvent/>}/>
+          <Route path='/TaC' element={<TermsAndConditions/>}/>
+          <Route path='/FAQ' element={<FAQ/>}/>
         </Routes>
       </main>
       <Footer/>
