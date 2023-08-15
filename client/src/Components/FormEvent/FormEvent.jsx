@@ -42,7 +42,9 @@ export default function FormEvent() {
     }
 
     const handleImageUpload = (secure_url) => {
-        setEvent({ ...event, image: secure_url });
+        const newEvent = { ...event, image: secure_url };
+        setEvent(newEvent);
+        setError(validation(newEvent))
     };
 
     return (
@@ -63,34 +65,42 @@ export default function FormEvent() {
                         <input type="text" name="name" id="1"
                             placeholder="nombre del evento..."
                             value={event.name} onChange={handleChange} />
-                        {error.name && <p className={style.error}>{error.name}</p>}
+                        <div>
+                            {error.name && <p className={style.error}>{error.name}</p>}
+                        </div>
                     </div>
                     <div className={style.container_div_description}>
                         <label htmlFor="">Descripcion</label>
                         <textarea id="2" name="description"
                             placeholder="escribe la descripcion de tu evento..." rows="4" cols="40"
                             value={event.description} onChange={handleChange} />
-                        {error.description && <p className={style.error}>{error.description}</p>}
+                        <div>
+                            {error.description && <p className={style.error}>{error.description}</p>}
+                        </div>
                     </div>
                     <div className={style.container_div}>
                         <label htmlFor="">imagen</label>
-                        <input type="text" name="image" id="8"
-                            value={event.image} onChange={handleChange}
-                            placeholder="la imagen debe ser una url" />
-                        {error.image && <p className={style.error}>{error.image}</p>}
+                        <BrowseFileUpdate onImageUpload={handleImageUpload} />
+                        <div>
+                            {error.image && <p className={style.error}>{error.image}</p>}
+                        </div>
                     </div>
                     <div className={style.container_div_duo}>
                         <div className={style.container_div}>
                             <label htmlFor="">Fecha</label>
                             <input type="date" name="date" id="3"
                                 value={event.date} onChange={handleChange} />
-                            {error.date && <p className={style.error}>{error.date}</p>}
+                            <div>
+                                {error.date && <p className={style.error}>{error.date}</p>}
+                            </div>
                         </div>
                         <div className={style.container_div}>
                             <label htmlFor="">Hora</label>
                             <input type="time" name="hour" id="4" step='1'
                                 value={event.hour} onChange={handleChange} />
-                            {error.hour && <p className={style.error}>{error.hour}</p>}
+                            <div>
+                                {error.hour && <p className={style.error}>{error.hour}</p>}
+                            </div>
                         </div>
                     </div>
 
@@ -99,7 +109,9 @@ export default function FormEvent() {
                         <input type="text" name="address" id="6"
                             value={event.address} onChange={handleChange}
                             placeholder="Debe ser asi: Av.España 234, Madrid" />
-                        {error.adress && <p className={style.error}>{error.adress}</p>}
+                        <div>
+                            {error.adress && <p className={style.error}>{error.adress}</p>}
+                        </div>
                     </div>
                     <div className={style.container_div_duo}>
                         <div className={style.container_div}>
@@ -110,8 +122,9 @@ export default function FormEvent() {
                                     return (<option key={i} value={c}>{c}</option>)
                                 })}
                             </select>
-                            {error.country && <p className={style.error}>{error.country}</p>}
-
+                            <div>
+                                {error.country && <p className={style.error}>{error.country}</p>}
+                            </div>
                         </div>
                         <div className={style.container_div}>
                             <label htmlFor="">Tipo de Evento</label>
@@ -121,7 +134,9 @@ export default function FormEvent() {
                                     return (<option key={i} value={e}>{e}</option>)
                                 })}
                             </select>
-                            {error.eventType && <p className={style.error}>{error.eventType}</p>}
+                            <div>
+                                {error.eventType && <p className={style.error}>{error.eventType}</p>}
+                            </div>
                         </div>
                     </div>
                     <div className={style.container_div_duo}>
@@ -129,16 +144,17 @@ export default function FormEvent() {
                             <label htmlFor="">Cantidad de Tickets</label>
                             <input type="number" name="cantTickets" id="5"
                                 value={event.cantTickets} onChange={handleChange} />
-                            {error.cantTickets && <p className={style.error}>{error.cantTickets}</p>}
+                            <div>
+                                {error.cantTickets && <p className={style.error}>{error.cantTickets}</p>}
+                            </div>
                         </div>
                         <div className={style.container_div}>
                             <label htmlFor="">Precio de los Tickets</label>
                             <input type="number" name="ticketPrice" id="10"
                                 value={event.ticketPrice} onChange={handleChange} />
-                            {error.ticketPrice && <span className={style.error}>{error.ticketPrice}</span>}
-                        </div>
-                        <div className={style.container_div}>
-                        <BrowseFileUpdate onImageUpload={handleImageUpload} />
+                            <div>
+                                {error.ticketPrice && <span className={style.error}>{error.ticketPrice}</span>}
+                            </div>
                         </div>
                     </div>
                     {event.exito && <p className={style.exito}>{event.exito}</p>}

@@ -25,7 +25,6 @@ export default function Register() {
     function handleChange(e) {
         const name = e.currentTarget.name
         const value = e.currentTarget.value
-        console.log(users)
         setUsers({
             ...users,
             [name]: value
@@ -48,7 +47,7 @@ export default function Register() {
                     document.getElementById('textContainer').classList.remove(styles.hide)
                 })
                 .catch((err) => {
-                    document.getElementById('message').textContent = err.error;
+                    document.getElementById('message').textContent = err.response.data.error;
                     document.getElementById('message').classList.remove(styles.showSussesMessage)
                     document.getElementById('message').classList.add(styles.showErrorMessage)
                     document.getElementById('textContainer').classList.remove(styles.hide)

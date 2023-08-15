@@ -33,6 +33,10 @@
     color: blue;
 }
 
+.image {
+    height: 100px;
+}
+
 
 .container button{
     color: white;

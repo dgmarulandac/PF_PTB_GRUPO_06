@@ -16,9 +16,9 @@ const validation = (event)=>{
 
     if(!validationLength(hour)) error['hour'] = '⚠️ elige la hora de tu evento.'
 
-    if(!isNumber(cantTickets)) error['cantTickets'] = '⚠️'
+    if(!isNumber(cantTickets)) error['cantTickets'] = '⚠️ incluir cantidad de tickets'
 
-    if(!isNumber(ticketPrice)) error['ticketPrice'] = '⚠️'
+    if(!isNumber(ticketPrice)) error['ticketPrice'] = '⚠️ incluir precio por ticket'
 
     if(!validationLength(address)) error['adress'] = '⚠️ el evento debe tener una direccion.'
 
@@ -26,7 +26,7 @@ const validation = (event)=>{
 
     if(!validationLength(eventType)) error['eventType'] = '⚠️ elige algun tipo de evento.'
 
-    if(!urlRegex.test(image)) error['image'] = '⚠️ la imagen debe ser una url.'
+    if(!urlRegex.test(image)) error['image'] = '⚠️ se debe incluir una imagen.'
 
 
     return error
