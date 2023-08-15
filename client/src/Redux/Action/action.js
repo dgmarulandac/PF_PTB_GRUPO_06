@@ -7,6 +7,11 @@ export const getAllEvent = ()=>{
         axios.get('/events')
         .then(data=>dispatch({type: GET_ALL_EVENT, payload: data.data}))
         .catch( reason => {
+            Swal.fire({
+				title: "Error",
+				text: `${reason.data.error}`,
+				icon: "error",
+			});
             dispatch({type: GET_ALL_EVENT, payload: []})
         });
     };
@@ -17,31 +22,29 @@ export const createEvent = (event)=>{
         axios.post(`/events/createEvent`, event)
         .then(data=>dispatch({type: CREATE_EVENT, payload: data.data}))
         .catch( reason => {
+            Swal.fire({
+				title: "Error",
+				text: `${reason.data.error}`,
+				icon: "error",
+			});
             dispatch({type: CREATE_EVENT, payload: {}})
         });
     };
 }
 
 export const getEventsFilter = (name, eventType, country, date, order) => {
-	return async function (dispatch) {
-		try {
-			const response = (
-				await axios.get(
-					`/events/filter?name=${name}&eventType=${eventType}&country=${country}&date=${date}&order=${order}`
-				)
-			).data;
-			return dispatch({
-				type: FILTER_GET_EVENTS,
-				payload: response,
-			});
-		} catch (error) {
-			Swal.fire({
+    return function(dispatch){
+        axios.get(`/events/filter?name=${name}&eventType=${eventType}&country=${country}&date=${date}&order=${order}`)
+        .then(data=>dispatch({type: FILTER_GET_EVENTS, payload: data.data}))
+        .catch( reason => {
+            Swal.fire({
 				title: "Error",
-				text: `${error.response.data.error}`,
+				text: `${reason.data.error}`,
 				icon: "error",
 			});
-		}
-	};
+            dispatch({type: FILTER_GET_EVENTS, payload: {}})
+        });
+    };
 };
 
 export const getDetail = (id) => {
@@ -49,6 +52,11 @@ export const getDetail = (id) => {
         axios.get(`/events/${id}`)
         .then(data=>dispatch({type: GET_DETAIL, payload: data.data}))
         .catch( reason => {
+            Swal.fire({
+				title: "Error",
+				text: `${reason.data.error}`,
+				icon: "error",
+			});
             dispatch({type: GET_DETAIL, payload: {}})
         });
     };
