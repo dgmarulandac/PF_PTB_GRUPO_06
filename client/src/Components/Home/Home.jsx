@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllEvent } from "../../Redux/Action/action";
 import Card from "../Card/Card";
+import EventFilter from "../EventFilter/EventFilter";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay, Navigation, Keyboard } from 'swiper/modules';
 import 'swiper/css';
@@ -46,6 +47,7 @@ export default function Home() {
                 })}
             </Swiper>  
             </div>
+            <EventFilter />
             <div className={styles.cards}>
                 {events && events.map( event => {
                     return <Card event={event}/>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import getEvents from "../../redux/actions/eventActions";
+import { getEventsFilter } from "../../Redux/Action/action";
 import styles from "./EventFilter.module.css";
 
 const EventFilter = () => {
@@ -18,11 +18,11 @@ const EventFilter = () => {
     setCountry("");
     setDate("");
     setOrder("");
-    dispatch(getEvents("", "", "", "", "", ""));
+    dispatch(getEventsFilter("", "", "", "", ""));
   };
 
   useEffect(() => {
-    dispatch(getEvents(name, eventType, country, date, order ));
+    dispatch(getEventsFilter(name, eventType, country, date, order ));
   }, [name, eventType, country, date, order, dispatch]);
 
   return (
