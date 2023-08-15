@@ -2,9 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import mockDetail from "../../mocks/eventDetail.json";
-import { getDetail } from "../../redux/actions/actions";
+import { getDetail } from "../../Redux/actions/actions";
 import styles from "./Detail.module.css"
-import Deadpool from "../../utils/image/Deadpool.jpg"
 
 
 
@@ -29,7 +28,7 @@ const Detail = () => {
             <div className={styles.boho}><h1>BOHO</h1></div>
         <div className={styles.Detail}>
         <div className={styles.title}><h1>{ticketid.name}</h1></div> 
-          <img src={Deadpool} alt="" />
+          {/* <img src={Deadpool} alt="" /> */}
 
           <div className={styles.information}>
             <h3>{ticketid.country}</h3>

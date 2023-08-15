@@ -2,7 +2,7 @@ import axios from "axios";
 import { GETDETAIL, GET_ALL_EVENT, CREATE_EVENT, USERSESION } from "../actions_type/actions_type";
 
 
-const userSecion = (data) => {
+export const userSecion = (data) => {
   return {
     type: USERSESION,
     payload: data,
