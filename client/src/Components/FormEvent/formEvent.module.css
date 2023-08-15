@@ -83,6 +83,11 @@
     align-self: end;
 }
 
+.sucessfull{
+    font-size: 13px;
+    color: greenyellow;
+}
+
 @media (max-width: 768px){
    .container{
     width: 390px;

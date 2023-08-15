@@ -31,33 +31,22 @@ export default function FormEvent() {
         setError(validation(newEvent))
     }
 
-    const evento = {
-        "name": "Concierto DRI",
-        "description": "concert trash metal",
-        "date": "2023-08-13",
-        "hour": "01:25:00",
-        "cantTickets": "3",
-        "address": "cr 13 # 6 - 52",
-        "country": "Venezuela",
-        "image": "http:/loquesea.com",
-        "eventType": "Deportivo",
-        "ticketPrice": "20000"
-    }
 
-    const handleCreate = (e) => {
+    const handleCreate = async (e) => {
         e.preventDefault();
         if (Object.keys(error).length === 0 && event.name.length > 0) {
-            dispatch(createEvent(event))
+            await dispatch(createEvent(event))
+            setEvent({ ...event, exito: 'Evento creado con exito' })
         }
     }
 
 
     return (
         <div className={style.body}>
-             <div className={style.titleContainer}>
-                    <h1>BOHO</h1>
-                    <p>¡¡Compra tus tickets seguro con nosotros!!</p>
-                </div>
+            <div className={style.titleContainer}>
+                <h1>BOHO</h1>
+                <p>¡¡Compra tus tickets seguro con nosotros!!</p>
+            </div>
             <div className={style.container}>
                 <div>
                     <p>crea un evento para que puedas promocionarlo en nuestra pagina,
@@ -82,8 +71,8 @@ export default function FormEvent() {
                     <div className={style.container_div}>
                         <label htmlFor="">imagen</label>
                         <input type="text" name="image" id="8"
-                            value={event.image} onChange={handleChange} 
-                            placeholder="la imagen debe ser una url"/>
+                            value={event.image} onChange={handleChange}
+                            placeholder="la imagen debe ser una url" />
                         {error.image && <p className={style.error}>{error.image}</p>}
                     </div>
                     <div className={style.container_div_duo}>
@@ -104,8 +93,8 @@ export default function FormEvent() {
                     <div className={style.container_div}>
                         <label htmlFor="">Direccion</label>
                         <input type="text" name="address" id="6"
-                            value={event.address} onChange={handleChange} 
-                            placeholder="Debe ser asi: Av.España 234, Madrid"/>
+                            value={event.address} onChange={handleChange}
+                            placeholder="Debe ser asi: Av.España 234, Madrid" />
                         {error.adress && <p className={style.error}>{error.adress}</p>}
                     </div>
                     <div className={style.container_div_duo}>
@@ -145,8 +134,9 @@ export default function FormEvent() {
                             {error.ticketPrice && <span className={style.error}>{error.ticketPrice}</span>}
                         </div>
                     </div>
-
+                    {event.exito && <p className={style.exito}>{event.exito}</p>}
                     <button type="submit">Crear Evento</button>
+
                 </form>
             </div>
         </div>
