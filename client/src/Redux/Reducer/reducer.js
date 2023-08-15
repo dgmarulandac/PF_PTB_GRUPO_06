@@ -1,4 +1,4 @@
-import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL } from "../Action/action-type";
+import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS } from "../Action/action-type";
 
 const initialState = {
     country: ['Colombia', 'Venezuela', 'Argentina', 'Uruguay'],
@@ -16,6 +16,12 @@ const rootReducer = (state = initialState, action)=>{
             return {...state, events: [...state.events, payload]};
         case GET_DETAIL:
             return {...state, detail: payload};
+            case FILTER_GET_EVENTS: //Para filtrar eventos
+			return {
+				...state,
+				events: action.payload,
+			};
+            
         default: return state;
     }
 }
