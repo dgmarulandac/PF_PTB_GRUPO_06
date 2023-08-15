@@ -19,7 +19,6 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
     "styled-components": "^6.0.7",
-    "sweetalert2": "^11.7.22",
     "swiper": "^10.1.0",
     "twin.macro": "^3.4.0",
     "web-vitals": "^2.1.4"
