@@ -15,11 +15,11 @@ const Detail = () => {
   }, []);
   
   return (
-    <div  >
+    <div  className={styles.background}>
       {ticketid.error ? (
         <h1>{ticketid?.error}</h1>
       ) : (
-        <div className={styles.background}>
+        <div >
             <div className={styles.boho}><h1>BOHO</h1></div>
         <div className={styles.Detail}>
         <div className={styles.title}><h1>{ticketid.name}</h1></div> 
