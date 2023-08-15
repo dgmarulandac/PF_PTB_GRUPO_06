@@ -4,7 +4,7 @@ const initialState = {
     country: ['Argentina', 'Colombia', 'Venezuela', 'Uruguay'],
     eventTypes: ['Musical', 'Deportivo', 'Artistico', 'Otro'],
     events: [],
-    Detail: {},
+    detail: {},
 }
 
 const rootReducer = (state = initialState, action)=>{
@@ -15,7 +15,7 @@ const rootReducer = (state = initialState, action)=>{
         case CREATE_EVENT:
             return {...state, events: payload};
         case GET_DETAIL:
-            return {...state, Detail: {...state.Detail,...action.payload}};
+            return {...state, detail: payload};
         default: return state;
     }
 }
