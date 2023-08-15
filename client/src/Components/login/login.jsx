@@ -31,10 +31,13 @@ export default function Login() {
     useEffect(() => {
         if (errors.lenght < 1) {
             axios.post(`/users/login`, users)
-                .then(res => res.data)
                 .then(data => {
+                    console.log(data.data);
                     setResult(true)
                 })
+                .catch( reason => {
+                    console.log(reason.response.data.error);
+                });
         }
     }, [errors])
     useEffect(() => {

@@ -9,7 +9,7 @@ export const getAllEvent = ()=>{
         .catch( reason => {
             Swal.fire({
 				title: "Error",
-				text: `${reason.error}`,
+				text: `${reason.response.data.error}`,
 				icon: "error",
 			});
             dispatch({type: GET_ALL_EVENT, payload: []})
@@ -24,7 +24,7 @@ export const createEvent = (event)=>{
         .catch( reason => {
             Swal.fire({
 				title: "Error",
-				text: `${reason.error}`,
+				text: `${reason.response.data.error}`,
 				icon: "error",
 			});
             dispatch({type: CREATE_EVENT, payload: {}})
@@ -39,7 +39,7 @@ export const getEventsFilter = (name, eventType, country, date, order) => {
         .catch( reason => {
             Swal.fire({
 				title: "Error",
-				text: `${reason.error}`,
+				text: `${reason.response.data.error}`,
 				icon: "error",
 			});
             dispatch({type: FILTER_GET_EVENTS, payload: {}})
@@ -54,7 +54,7 @@ export const getDetail = (id) => {
         .catch( reason => {
             Swal.fire({
 				title: "Error",
-				text: `${reason.error}`,
+				text: `${reason.response.data.error}`,
 				icon: "error",
 			});
             dispatch({type: GET_DETAIL, payload: {}})
