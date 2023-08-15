@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllEvent } from "../../Redux/Action/action";
 import Card from "../Card/Card";
+import Paginado from "../pagination/pagination";
+import { useState } from "react";
 import EventFilter from "../EventFilter/EventFilter";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay, Navigation, Keyboard } from 'swiper/modules';
@@ -19,6 +21,14 @@ export default function Home() {
     useEffect( () => {
         dispatch( getAllEvent() );
     }, [] );
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const eventsPerPage = 6;
+
+    const ultimoIndex = currentPage * eventsPerPage;
+    const primerIndex = ultimoIndex - eventsPerPage;
+
+    let eventosAMostrar = events.slice(primerIndex, ultimoIndex);
 
     const slides = ['https://www.lunapark.com.ar/images/eventos/eventos/11066.jpg?1680027036', 'https://www.lunapark.com.ar/images/eventos/eventos/11027.jpg?1679514160',
 'https://www.lunapark.com.ar/images/eventos/eventos/11477.jpg?1690910639']
@@ -49,10 +59,11 @@ export default function Home() {
             </div>
             <EventFilter />
             <div className={styles.cards}>
-                {events && events.map( event => {
+                {eventosAMostrar && eventosAMostrar.map( event => {
                     return <Card event={event}/>
                 } )}
             </div>
+            <Paginado eventsPerPage={eventsPerPage} events={events} page={currentPage} paginado={setCurrentPage} />
         </div>
 
     );
