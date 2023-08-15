@@ -14,7 +14,7 @@ export default function Card({ event }) {
             {id &&
                 <Link to={`/event/${id}`} className={style.container}>
                     <div>
-                        <img src={image} alt="imagen event" width='230'/>
+                        <img className={style.image} src={image} alt="imagen event"/>
                     </div>
                     <div className={style.info}>
                         <p className={style.location}>{adress} - {country} <span> /{eventType}</span></p>
