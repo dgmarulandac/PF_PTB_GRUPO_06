@@ -16,6 +16,11 @@ const rootReducer = (state = initialState, action)=>{
             return {...state, events: payload};
         case GET_DETAIL:
             return {...state, Detail: {...state.Detail,...action.payload}};
+            case FILTER_GET_EVENTS: //Para filtrar eventos
+			return {
+				...state,
+				events: action.payload,
+			};
         default: return state;
     }
 }
