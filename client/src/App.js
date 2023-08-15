@@ -9,7 +9,7 @@ import Register from './Components/register/register';
 import Login from './Components/login/login';
 import FormEvent from './Components/FormEvent/FormEvent';
 import Detail from './Components/Detail/Detail';
-axios.defaults.baseURL = 'https://pf-grupo06-back.onrender.com/'
+axios.defaults.baseURL = 'https://pf-grupo06-back.onrender.com'
 
 
 function App() {

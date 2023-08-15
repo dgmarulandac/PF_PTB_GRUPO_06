@@ -9,7 +9,6 @@ const router = Router();
 
 router.use("/events", eventRouter);
 router.use("/users", userRouter);
-router.use("/detail",detailRoute)
 // router.use("/sales", saleRouter);
 
 
