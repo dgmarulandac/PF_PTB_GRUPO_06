@@ -12,7 +12,7 @@ export default function Card({ event }) {
     return (
         <div>
             {id &&
-                <Link to={`/detail/${id}`} className={style.container}>
+                <Link to={`/event/${id}`} className={style.container}>
                     <div>
                         <img src={image} alt="imagen event" width='230'/>
                     </div>
