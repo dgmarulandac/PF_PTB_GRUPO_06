@@ -13,22 +13,16 @@ server.name = 'API';
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
+
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-  const allowedOrigins = [
-    process.env.CLIENT_URL_DEPLOY_1,
-    process.env.CLIENT_URL_DEPLOY_2,
-     'http://localhost:3000' // Agrega la segunda página permitida aquí
-   ]
-   const origin = req.headers.origin
-   if (allowedOrigins.includes(origin)) {
-     res.header('Access-Control-Allow-Origin', origin)
-   }
+  res.header('Access-Control-Allow-Origin','*');
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
+
 });
 
 server.use('/', routes);
