@@ -30,17 +30,11 @@ function App() {
       client_id: "837161821953-g2c2ob0lolh4abs0ctt7dt4rga03evqm.apps.googleusercontent.com",
       callback: handleCallbackResponse
     });
-
-    google.accounts.id.renderButton(
-      document.getElementById("singInDiv"),
-      { theme: "outline", size: "large"}
-    )
   },[])
 
   return (
     <div className="App">
-      <Nav />
-      <div id='singInDiv'></div>
+      <Nav /> 
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/login' element={<Login />}/> 
