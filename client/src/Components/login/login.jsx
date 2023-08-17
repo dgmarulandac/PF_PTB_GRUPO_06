@@ -35,7 +35,7 @@ export default function Login() {
         }
     };
     useEffect(() => {
-        if (userSesion) {
+        if (Object.keys(userSesion).length) {
             navigate('/')
         }
     }, [userSesion])
