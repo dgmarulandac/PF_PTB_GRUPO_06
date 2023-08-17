@@ -3,6 +3,8 @@ import './App.css';
 import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
+import { postLogin } from './Redux/Action/action';
+import { useDispatch } from "react-redux";
 
 //Components
 import Home from './Components/Home/Home';
@@ -19,8 +21,10 @@ axios.defaults.baseURL = 'https://pf-grupo06-back.onrender.com';
 
 function App() {
 
+  const dispatch = useDispatch();
   function handleCallbackResponse(response) {
-    console.log(`Encoded JWT ID Token: ${response.credential}`);
+    const user = { jwt: response.credential };
+    dispatch( postLogin(user) );
   }
 
   useEffect(()=>{
