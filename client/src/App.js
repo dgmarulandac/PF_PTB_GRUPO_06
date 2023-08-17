@@ -2,6 +2,7 @@ import './App.css';
 //DEPENDENCIES
 import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
 
 //Components
 import Home from './Components/Home/Home';
@@ -17,9 +18,29 @@ axios.defaults.baseURL = 'https://pf-grupo06-back.onrender.com';
 
 
 function App() {
+
+  function handleCallbackResponse(response) {
+    console.log(`Encoded JWT ID Token: ${response.credential}`);
+  }
+
+  useEffect(()=>{
+    //Auth de google - global google
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: "837161821953-g2c2ob0lolh4abs0ctt7dt4rga03evqm.apps.googleusercontent.com",
+      callback: handleCallbackResponse
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById("singInDiv"),
+      { theme: "outline", size: "large"}
+    )
+  },[])
+
   return (
     <div className="App">
       <Nav />
+      <div id='singInDiv'></div>
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/login' element={<Login />}/> 
