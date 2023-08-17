@@ -1,0 +1,35 @@
+.Nav {
+  background-color: rgba(88, 88, 88, 0.425);
+  color: rgba(34, 32, 32, 0.384);
+  width: 100%;
+  justify-content: center; /* Centro horizontal */
+  align-items: center;
+  height: 4%;
+  display: flex;
+}
+
+.button {
+  display: flex;
+  justify-content: space-between; /* Espaciado entre botones */
+  align-items: center;
+  background-color: rgba(25, 119, 201, 0.411);
+  width: relative;
+  border-top-right-radius: 19rem;
+  border-top-left-radius: 19rem;
+  padding: 0.5rem; /* Agregado: Espacio interior */
+}
+
+.button button {
+  background-color: rgba(83, 83, 83, 0.411);
+  border: 0.5rem;
+  height: 1.5rem;
+  margin: 0 0.5rem; /* Margen izquierdo y derecho */
+  width: 7rem;
+  border-radius: 0.5rem;
+  color: aliceblue;
+}
+
+.button :hover button{
+    background-color: rgba(23, 255, 255, 0.342);
+    scale: 1.1;
+}

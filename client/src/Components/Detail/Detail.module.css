@@ -1,0 +1,86 @@
+/* Estilos para el componente Detail */
+
+.background {
+    background-color: black;
+    background-image: url(backgrown.jpg);
+    width: 100%;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .boho {
+    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .Detail {
+    margin-top: 5%;
+    background-color: rgba(140, 153, 165, 0.404);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 40rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.788), 0 0 5px rgba(253, 255, 253, 0.788);
+    margin-bottom: 5%;
+    padding: 5%;
+  }
+  
+  .title {
+    color: rgba(255, 217, 0, 0.726);
+  }
+  
+  .image {
+    width: relative;
+    height: relative;
+    border: solid white;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.788), 0 0 5px rgba(253, 255, 253, 0.788);
+    margin-bottom: 5%;
+  }
+  
+
+  .buttons button {
+    width: 15rem;
+    height: 5rem;
+    background-color: green;
+    border-radius: 1rem;
+    border: none;
+    font-size: 2rem;
+    color: white;
+    transition: transform 0.2s;
+  }
+  
+  .buttons button:hover {
+    background-color: gold;
+    animation: pulse 1s infinite, beat 1s infinite; /* Agregado beat animation */
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes beat {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+  /* Resto de los estilos... */
+  
