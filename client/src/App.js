@@ -23,7 +23,7 @@ function App() {
 
   const dispatch = useDispatch();
   function handleCallbackResponse(response) {
-    const user = { jwt: response.credential };
+    const user = { platform: "google", jwt: response.credential };
     dispatch( postLogin(user) );
   }
 

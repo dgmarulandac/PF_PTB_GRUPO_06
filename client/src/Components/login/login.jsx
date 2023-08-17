@@ -31,7 +31,8 @@ export default function Login() {
         const errores = userValidations(displayName, password);
         setErrors(errores);
         if( errores.length === 0 ) {
-            dispatch(postLogin(user));
+            const userToSend = { ...user, platform: "boho", jwt: "" };
+            dispatch(postLogin(userToSend));
         }
     };
     useEffect(() => {
