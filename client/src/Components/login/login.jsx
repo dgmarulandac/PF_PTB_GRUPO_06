@@ -7,14 +7,14 @@ import video from "../../Utils/videos/backgroundLogin.mp4"
 import styles from './login.module.css'
 
 export default function Login() {
-    const userSesion = useSelector(state => state.userSesion)
+    const userSesion = useSelector(state => state.user)
     const navigate = useNavigate()
     const [users, setUsers] = useState({
         displayName: '',
         password: ''
     })
     const [errors, setErrors] = useState([])
-    const [result, setResult] = useState(false)
+
     function handleForm(e) {
         const value = e.currentTarget.value
         const name = e.currentTarget.name
@@ -53,24 +53,6 @@ export default function Login() {
                 </div>
             <section>
                 <video className={styles.Video} src={video} autoPlay muted loop />
-                {
-                    errors.length > 0 ?
-                        <article className={styles.ErrorPopUp}>
-                            <div>
-                                {
-                                    errors?.map((element, key) => {
-                                        return (
-                                            <div key={key++}>
-                                                <p>{element}</p>
-                                            </div>
-                                        )
-                                    })
-                                }
-                            </div>
-                        </article>
-                        :
-                        null
-                }
                 <div className={styles.center}>
                     <article>
                         <form onSubmit={handleSubmit}  className={styles.LoginWindow}>

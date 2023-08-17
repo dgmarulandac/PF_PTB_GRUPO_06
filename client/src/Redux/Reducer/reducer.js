@@ -5,7 +5,7 @@ const initialState = {
     eventTypes: ['Musical', 'Deportivo', 'Artistico', 'Otro'],
     events: [],
     detail: {},
-    user: {}
+    userSesion: {}
 }
 
 const rootReducer = (state = initialState, action)=>{
@@ -20,7 +20,7 @@ const rootReducer = (state = initialState, action)=>{
         case FILTER_GET_EVENTS: //Para filtrar eventos
             return {...state, events: payload};
         case POST_LOGIN:
-            return {...state, user: payload};
+            return {...state, userSesion: payload};
         default: 
             return state;
     }
