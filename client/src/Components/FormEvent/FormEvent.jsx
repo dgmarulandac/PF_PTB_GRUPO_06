@@ -32,20 +32,29 @@ export default function FormEvent() {
         setError(validation(newEvent))
     }
 
-
-    const handleCreate = async (e) => {
-        e.preventDefault();
-        if (Object.keys(error).length === 0 && event.name.length > 0) {
-            await dispatch(createEvent(event))
-            setEvent({ ...event, exito: 'Evento creado con exito' })
-        }
-    }
-
     const handleImageUpload = (secure_url) => {
         const newEvent = { ...event, image: secure_url };
         setEvent(newEvent);
         setError(validation(newEvent))
     };
+
+    const handleCreate = async (e) => {
+        e.preventDefault();
+        if (Object.keys(error).length === 0 && event.name.length > 0) {
+            await dispatch(createEvent(event))
+            setEvent({ 
+            name: '',
+            description: '',
+            date: '',
+            hour: '',
+            cantTickets: '',
+            address: '',
+            country: '',
+            image: '',
+            eventType: '',
+            ticketPrice: '', exito: 'Evento creado con exito' })
+        }
+    }
 
     return (
         <div className={style.body}>
