@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING
         },
         nationality: {
-            type: DataTypes.ENUM('Colombia', 'Venezuela', 'Argentina', 'Uruguay')
+            type: DataTypes.ENUM('Colombia', 'Venezuela', 'Argentina', 'Uruguay', 'Chile')
         },
         isCompany: {
             type: DataTypes.BOOLEAN,
