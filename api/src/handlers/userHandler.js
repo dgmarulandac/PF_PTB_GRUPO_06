@@ -47,8 +47,8 @@ const getUserCheckHandler = async (req, res) => {
 const postUserLoginHandler = async (req, res) => {
     try {
         // Debe retornar el JWT
-        const { displayName, email, password } = req.body;
-        const response = await postUserLogin( {displayName, email, password} );
+        const { displayName, email, password, jwt, platform } = req.body;
+        const response = await postUserLogin( {displayName, email, password, jwt, platform} );
         res.status(201).json(response);
     } catch (error) {
         res.status(404).json({error: error.message});

@@ -5,13 +5,13 @@ const { buyerRole } = require("../../rolesSpec");
 const postUser = async ( user ) => {
     
     if( ! await userVerificationDisplay(user.displayName) ) {
-        throw Error(`The displayName ${user.displayName} is not available.`);
+        throw Error(`El nombre de ususario ${user.displayName} no esta disponible.`);
     }
     if ( !emailVerification(user.email) ) {
-        throw Error("Email Invalid")
+        throw Error("Correo electronico invalido.")
     }
     if( ! await userVerificationEmail(user.email) ) {
-        throw Error(`The email ${user.email} is already in use, please log in.`);
+        throw Error(`El correo ${user.email} ya esta en uso, por favor inicia sesion.`);
     }
 
     let {password} = user;
@@ -25,7 +25,8 @@ const postUser = async ( user ) => {
     });
     newUser.addRoles(defaultRole);
 
-    return {message: "The user was created succesfully."};
+    // ACA CECI
+    return {message: "El usuario se ha creado satisfactoriamente."};
 };
 
 const userVerificationDisplay = async ( displayName ) => {
