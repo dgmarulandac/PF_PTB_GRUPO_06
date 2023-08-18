@@ -69,7 +69,7 @@ export default function Home() {
             <EventFilter />
             <div className={styles.cards}>
                 {eventosAMostrar && eventosAMostrar.map( event => {
-                    return <Card event={event}/>
+                    return <Card event={event} key={event.id}/>
                 } )}
             </div>
             <Paginado eventsPerPage={eventsPerPage} events={events} page={currentPage} paginado={setCurrentPage} />

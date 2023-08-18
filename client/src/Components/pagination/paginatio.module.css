@@ -1,0 +1,60 @@
+
+.nav {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .number {
+    margin-left: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding: 8px;
+  }
+  
+  .btn {
+    background-color: black;
+    transition-duration: 0.4s;
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+    margin: 2px;
+    color: white;
+  }
+  
+  .btnNP {
+    font-family: cursive;
+    background-color: black;
+    color: white;
+    width: auto;
+    border-radius: 12px;
+    height: 27px;
+    margin-top: 4px;
+    margin: 2px;
+  }
+  
+  .btn:focus {
+    outline: none;
+  }
+  
+  .btn:hover {
+    cursor: pointer;
+    background-color: white;
+    color: rgb(8, 8, 8);
+  }
+  
+  .btn:disabled {
+    background-color: white;
+    color: black;
+  }
+  
+  .btnNP:hover {
+    cursor: pointer;
+    background-color: white;
+    color: rgb(8, 8, 8);
+  }
+  
+  .currentPage {
+    background-color: white;
+    color: rgb(8, 8, 8);
+  }

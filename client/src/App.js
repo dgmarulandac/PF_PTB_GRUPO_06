@@ -2,6 +2,9 @@ import './App.css';
 //DEPENDENCIES
 import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
+import { postLogin } from './Redux/Action/action';
+import { useDispatch } from "react-redux";
 
 //Components
 import Home from './Components/Home/Home';
@@ -17,9 +20,25 @@ axios.defaults.baseURL = 'https://pf-grupo06-back.onrender.com';
 
 
 function App() {
+
+  const dispatch = useDispatch();
+  function handleCallbackResponse(response) {
+    const user = { platform: "google", jwt: response.credential };
+    dispatch( postLogin(user) );
+  }
+
+  useEffect(()=>{
+    //Auth de google - global google
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: "837161821953-g2c2ob0lolh4abs0ctt7dt4rga03evqm.apps.googleusercontent.com",
+      callback: handleCallbackResponse
+    });
+  },[])
+
   return (
     <div className="App">
-      <Nav />
+      <Nav /> 
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/login' element={<Login />}/> 

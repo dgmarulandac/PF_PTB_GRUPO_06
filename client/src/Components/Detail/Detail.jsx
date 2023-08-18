@@ -8,7 +8,7 @@ import styles from "./Detail.module.css"
 const Detail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  console.log(id);
+
   const ticketid = useSelector((state) => state.detail)
   const { modalOn } = useSelector(state => state)
 
