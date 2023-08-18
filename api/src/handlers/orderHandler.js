@@ -1,4 +1,5 @@
 const {Orders} = require('../db.js');
+const getOrdertById = require('../controllers/Orders/getOrderById.js');
 
 const postCreateOrdertHandler = async (req, res) => {
     try {
@@ -30,4 +31,14 @@ const postCreateOrdertHandler = async (req, res) => {
     }
 };
 
-module.exports = { postCreateOrdertHandler}; 
+const getOrderByIdHandler = async (req, res) => {
+    const { id } = req.params;  
+    try {
+        const ordertById = await getOrdertById(id);
+        res.status(200).json(ordertById);
+    } catch (error) {
+        res.status(404).send(error.message)
+    }
+};
+
+module.exports = { postCreateOrdertHandler, getOrderByIdHandler}; 
