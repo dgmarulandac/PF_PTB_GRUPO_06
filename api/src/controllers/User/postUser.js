@@ -1,6 +1,8 @@
 const { User, Role } = require("../../db");
 const bcrypt = require("bcryptjs");
 const { buyerRole } = require("../../rolesSpec");
+const { sendPostUser} = require ("../Email/emailController.js")
+
 
 const postUser = async ( user ) => {
     
@@ -25,6 +27,8 @@ const postUser = async ( user ) => {
     });
     newUser.addRoles(defaultRole);
 
+    sendPostUser(newUser);
+    
     return {message: "The user was created succesfully."};
 };
 

@@ -1,4 +1,4 @@
-//require('dotenv').config();
+require('dotenv').config();
 const nodemailer = require("nodemailer");
 
 const { USER, PASS } = process.env;
