@@ -9,15 +9,12 @@ module.exports = (sequelize) => {
             primaryKey : true
           },
 
-        idSeller:{
-            type: DataTypes.INTEGER,
+        idOrder:{
+            type: DataTypes.STRING,
             allowNull:false
         },
 
-        idBuyer:{
-            type: DataTypes.INTEGER,
-            allowNull:false
-        },
+        
 
         currency:{
             type: DataTypes.ENUM('COP'),
@@ -29,21 +26,12 @@ module.exports = (sequelize) => {
            allowNull:false,
 
         },
-
-        quantity: {
-            type:DataTypes.INTEGER,
-            allowNull:false,
-        },
-        price: {
-            type:DataTypes.INTEGER,
-            allowNull:false,
-
-        },
-        idEvent: {
+      
+        
+        pasarelaId: {
             type: DataTypes.INTEGER,
             allowNull:false
         }
-
 
 
     });
