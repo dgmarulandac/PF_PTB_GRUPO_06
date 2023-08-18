@@ -1,11 +1,13 @@
-import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN } from "../Action/action-type";
+import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL } from "../Action/action-type";
+
 
 const initialState = {
     country: ['Colombia', 'Venezuela', 'Argentina', 'Uruguay'],
     eventTypes: ['Musical', 'Deportivo', 'Artistico', 'Otro'],
     events: [],
     detail: {},
-    userSesion: {}
+    userSesion: {},
+    modalOn: false
 }
 
 const rootReducer = (state = initialState, action)=>{
@@ -21,6 +23,8 @@ const rootReducer = (state = initialState, action)=>{
             return {...state, events: payload};
         case POST_LOGIN:
             return {...state, userSesion: payload};
+        case MODAL:
+            return {...state, modalOn: payload};
         default: 
             return state;
     }
