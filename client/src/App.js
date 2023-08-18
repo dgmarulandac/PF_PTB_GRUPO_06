@@ -32,6 +32,8 @@ function App() {
       client_id: "837161821953-g2c2ob0lolh4abs0ctt7dt4rga03evqm.apps.googleusercontent.com",
       callback: handleCallbackResponse
     });
+
+    google.accounts.id.prompt();
   },[])
 
   return (
