@@ -1,6 +1,7 @@
 const { User } = require("../../../db");
 const {SECRET} = process.env;
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const bohoLogin = async (user) => {
     if( !user.displayName && !user.password ) {
