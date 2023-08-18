@@ -23,7 +23,7 @@ const postUserLogin = async ( user ) => {
         if( !candidateUser ) {
             const password = crypto.randomBytes(25).toString('hex');
             const userCreate = { password, email: decodedUser.email, name: decodedUser.name, displayName: decodedUser.email, image: decodedUser.picture };
-            postUser(userCreate);
+            await postUser(userCreate);
         }
 
         return googleLogin(decodedUser.email);

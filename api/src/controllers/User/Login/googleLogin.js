@@ -1,5 +1,6 @@
 const { User } = require("../../../db");
 const jwt = require("jsonwebtoken");
+const {SECRET} = process.env;
 
 const googleLogin = async (email) => {
 
