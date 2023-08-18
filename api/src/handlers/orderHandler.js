@@ -43,4 +43,35 @@ const getOrderByIdHandler = async (req, res) => {
     }
 };
 
-module.exports = { postCreateOrdertHandler, getOrderByIdHandler}; 
+const putOrderHandler = async (req, res, next) => {
+try{
+    let order = await Orders.findByPk(req.params.id);
+
+    if(!order){
+        return res.json({
+            success:false,
+            message: "Order ID doesn't exist"
+        });
+    }else{
+        let orders = await Orders.findByPk(req.params.id);
+        console.log(orders);
+        let updateOrder = await orders.update({
+            quantity: req.body.quantity
+        });
+
+        res.json({
+            success: false,
+            message:" order update successfully",
+            order: updateOrder
+
+        });
+    }
+
+}catch (error){
+    next(error)
+
+}
+    
+}
+
+module.exports = { postCreateOrdertHandler, getOrderByIdHandler, putOrderHandler}; 
