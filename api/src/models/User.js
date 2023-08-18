@@ -29,11 +29,10 @@ module.exports = (sequelize) => {
         nationality: {
             type: DataTypes.ENUM('Colombia', 'Venezuela', 'Argentina', 'Uruguay', 'Chile')
         },
-        isCompany: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false
-        },
         address: {
+            type: DataTypes.STRING,
+        },
+        image: {
             type: DataTypes.STRING,
         },
         password: {
