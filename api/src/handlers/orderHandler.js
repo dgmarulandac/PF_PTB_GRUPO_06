@@ -33,9 +33,11 @@ const postCreateOrdertHandler = async (req, res) => {
 
 const getOrderByIdHandler = async (req, res) => {
     const { id } = req.params;  
+    
     try {
         const ordertById = await getOrdertById(id);
         res.status(200).json(ordertById);
+
     } catch (error) {
         res.status(404).send(error.message)
     }

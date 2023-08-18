@@ -6,7 +6,7 @@ const orderRouter = Router();
 
 
 orderRouter.post("/createOrder", postCreateOrdertHandler);
-orderRouter.get("/getOrders", getOrderByIdHandler);
+orderRouter.get("/:id", getOrderByIdHandler);
 
 
 module.exports = orderRouter;
