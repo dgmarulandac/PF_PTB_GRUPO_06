@@ -9,8 +9,8 @@ import { Provider } from 'react-redux';
 import store from "./Redux/Store/store";
 import axios from 'axios';
 
-axios.defaults.baseURL = "http://localhost:3001/";
-//axios.defaults.baseURL = 'https://pf-grupo06-back.onrender.com';
+// axios.defaults.baseURL = "http://localhost:3001/";
+axios.defaults.baseURL = 'https://pf-grupo06-back.onrender.com';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
