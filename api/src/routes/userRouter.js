@@ -2,6 +2,7 @@ const {Router} = require("express");
 const {getUserHandler, getUserByIdHandler, postUserHandler, getUserCheckHandler, postUserLoginHandler } = require("../handlers/userHandler");
 
 const { verifyToken, isAdmin } = require("../middleware/authJwt");
+const { verifyGoogle } = require("../middleware/googleUser");
 
 const userRouter = Router();
 
@@ -13,6 +14,6 @@ userRouter.post("/register", postUserHandler);
 
 userRouter.get("/check", getUserCheckHandler);
 
-userRouter.post("/login", postUserLoginHandler);
+userRouter.post("/login", [verifyGoogle], postUserLoginHandler);
 
 module.exports = userRouter;

@@ -1,38 +1,35 @@
 const { User } = require("../../db");
 const jwt = require("jsonwebtoken");
-const {SECRET} = process.env;
-const bcrypt = require("bcryptjs");
+const crypto = require("crypto");
+const postUser = require("./postUser");
+
+const bohoLogin = require("./Login/bohoLogin");
+const googleLogin = require("./Login/googleLogin");
 
 const postUserLogin = async ( user ) => {
-    const candidateUser = await User.findOne({where: { displayName: user.displayName }});
 
-    if( candidateUser === null ) {
-        throw Error('The user does not exist, please sign up.');
+    if( user.platform === "boho" ) {
+        
+        return bohoLogin(user);
+
+    } else if( user.platform === 'google' ) {
+        
+        const decodedUser = jwt.decode(user.jwt);
+      
+        const candidateUser = await User.findOne({where: { email: decodedUser.email }});
+
+        if( !candidateUser ) {
+            const password = crypto.randomBytes(25).toString('hex');
+            const userCreate = { password, email: decodedUser.email, name: decodedUser.name, displayName: decodedUser.email, image: decodedUser.picture };
+            await postUser(userCreate);
+        }
+
+        return googleLogin(decodedUser.email);
+
+    } else {
+        throw Error('Plataforma indefinida, error al iniciar sesión.')
     }
 
-    const validation = bcrypt.compareSync( user.password, candidateUser.password );
-
-    if( !validation ) {
-        throw Error('Invalid Password.');
-    }
-
-    const token = jwt.sign({id: candidateUser.id}, SECRET, {
-        algorithm: 'HS256',
-        allowInsecureKeySizes: false,
-        expiresIn: 604800, // 7 days
-    });
-
-    let roles = await candidateUser.getRoles();
-    roles = roles.map( role => role.type );
-    
-    return {
-        id: candidateUser.id,
-        displayName: candidateUser.displayName,
-        email: candidateUser.email,
-        name: candidateUser.name,
-        roles: roles,
-        accessToken: token
-    };
 };
 
 module.exports = postUserLogin;

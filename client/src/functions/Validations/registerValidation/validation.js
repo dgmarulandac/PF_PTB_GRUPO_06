@@ -6,7 +6,7 @@ const mailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;// detectar m
 const dirRegex = /^[a-zA-ZñÑ\s.,]+ \d+, [a-zA-ZñÑ\s.,]+$/ // detectar la direccion que este bien escrita
 function registerValidation(user, name, password, dir, email, typeOfUser, numPhone, country) {
     const errors = [];
-    axios.get(`https://pf-grupo06-back.onrender.com/users/check?displayName=${user}&email=${email}`)
+    axios.get(`/users/check?displayName=${user}&email=${email}`)
 
         .then(res => res.data)
         .then(data => {
