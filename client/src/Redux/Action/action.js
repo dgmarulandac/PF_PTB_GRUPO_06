@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS } from "./action-type";
+import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN } from "./action-type";
 import Swal from "sweetalert2";
 
 export const getAllEvent = ()=>{
@@ -58,6 +58,21 @@ export const getDetail = (id) => {
 				icon: "error",
 			});
             dispatch({type: GET_DETAIL, payload: {}})
+        });
+    };
+};
+
+export const postLogin = (user) => {
+    return function(dispatch){
+        axios.post(`/users/login`, user)
+        .then(data=>dispatch({type: POST_LOGIN, payload: data.data}))
+        .catch( reason => {
+            Swal.fire({
+				title: "Error",
+				text: `${reason.response.data.error}`,
+				icon: "error",
+			});
+            dispatch({type: POST_LOGIN, payload: {}})
         });
     };
 };
