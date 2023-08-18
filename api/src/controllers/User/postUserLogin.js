@@ -15,9 +15,7 @@ const postUserLogin = async ( user ) => {
     } else if( user.platform === 'google' ) {
         
         const decodedUser = jwt.decode(user.jwt);
-
-        console.log(decodedUser);
-        
+      
         const candidateUser = await User.findOne({where: { email: decodedUser.email }});
 
         if( !candidateUser ) {
