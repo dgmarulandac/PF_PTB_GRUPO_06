@@ -5,6 +5,8 @@ const bcrypt = require("bcryptjs");
 
 const postUserLogin = async ( user ) => {
 
+    console.log(user);
+
     if( user.platform === "boho" ) {
         if( !user.displayName && !user.password ) {
             throw Error("Datos de ususario incorrectos.")
