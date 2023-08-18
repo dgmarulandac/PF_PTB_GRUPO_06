@@ -12,7 +12,7 @@ const getEventFilterController = async (
 	const whereClause = {};
 
 	if (name) {
-		whereClause.name = { [Op.like]: `%${name}%` };
+		whereClause.name = { [Op.iLike]: `%${name}%` };
 	}
 	if (eventType) {
 		whereClause.eventType = eventType;
