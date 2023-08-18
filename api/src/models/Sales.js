@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
           },
 
         idOrder:{
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull:false
         },
 
