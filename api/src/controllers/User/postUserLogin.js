@@ -5,8 +5,6 @@ const bcrypt = require("bcryptjs");
 
 const postUserLogin = async ( user ) => {
 
-    console.log(user);
-
     if( user.platform === "boho" ) {
         if( !user.displayName && !user.password ) {
             throw Error("Datos de ususario incorrectos.")
@@ -38,14 +36,17 @@ const postUserLogin = async ( user ) => {
             displayName: candidateUser.displayName,
             email: candidateUser.email,
             name: candidateUser.name,
+            image: candidateUser.image,
             roles: roles,
             jwt: token
         };
 
     } else if( user.platform === 'google' ) {
         
-        console.log(user.jwt);
-        console.log(jwt.decode(user.jwt));
+        jwt.decode(user.jwt);
+
+        // Validate token google.
+        // check if user exists
 
     } else {
         throw Error('Plataforma indefinida, error al iniciar sesión.')
