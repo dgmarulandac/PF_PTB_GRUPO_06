@@ -1,6 +1,8 @@
 const { User, Role } = require("../../db");
 const bcrypt = require("bcryptjs");
 const { buyerRole } = require("../../rolesSpec");
+const sendPostUser = require ("../Email/emailController.js")
+
 
 const postUser = async ( user ) => {
     
@@ -24,8 +26,9 @@ const postUser = async ( user ) => {
         where: { type: buyerRole }
     });
     newUser.addRoles(defaultRole);
-
-    // ACA CECI
+    
+    sendPostUser(newUser.dataValues);
+    
     return {message: "El usuario se ha creado satisfactoriamente."};
 };
 
