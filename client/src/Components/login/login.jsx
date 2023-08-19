@@ -33,6 +33,7 @@ export default function Login() {
         if( errores.length === 0 ) {
             const userToSend = { ...user, platform: "boho", jwt: "" };
             dispatch(postLogin(userToSend));
+            localStorage.setItem(JSON.stringify(userToSend))
         }
     };
     useEffect(() => {
@@ -40,6 +41,13 @@ export default function Login() {
             navigate('/')
         }
     }, [userSesion])
+    useEffect(()=>{
+        if(localStorage.getItem(userToSend.jwt)){
+            const user = localStorage.getItem("user")
+            const userToObj = JSON.parse(user)
+            dispatch(postLogin(userToObj))
+        }
+    }, [])
     return (
         <div className={styles.Background}>
                             <div className={styles.titleContainer}>

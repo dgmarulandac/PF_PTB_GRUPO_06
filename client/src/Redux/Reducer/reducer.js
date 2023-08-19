@@ -6,7 +6,15 @@ const initialState = {
     eventTypes: ['Musical', 'Deportivo', 'Artistico', 'Otro'],
     events: [],
     detail: {},
-    userSesion: {},
+    userSesion: {
+        id: "",
+        displayName: "",
+        email: "",
+        name: "",
+        image: "",
+        roles: [],
+        jwt: ""
+    },
     modalOn: false
 }
 
