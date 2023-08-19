@@ -1,9 +1,7 @@
 const { User } = require ("../../db");
 const { transporter } = require ("../../config/mailer");
 
-
-
-const sendPostUser = async( name, lastName, email, displayName, registed, password ) =>{
+const sendPostUser = async( {name, email, displayName} ) =>{
     
 // send mail with defined transport object
 await transporter.sendMail({
@@ -12,7 +10,7 @@ await transporter.sendMail({
     subject: "¡Bienvenido/a a Boho! REGISTRO EXITOSO 🎈", // Subject line
     // text: "Hello world?", // plain text body
     html: `
-    <h1> ${name} ${lastName}, te damos la bienvenida a nuestra increíble plataforma de venta de boletos para eventos! 🎉</h1>
+    <h1> ${name}, te damos la bienvenida a nuestra increíble plataforma de venta de boletos para eventos! 🎉</h1>
     
     <h3>Le informamos que su registro en nuestra plataforma ha sido exitoso</h3>
 
