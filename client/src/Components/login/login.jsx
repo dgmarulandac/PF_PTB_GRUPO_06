@@ -42,7 +42,7 @@ export default function Login() {
         }
     }, [userSesion])
     useEffect(()=>{
-        if(localStorage.getItem(userToSend.jwt)){
+        if(localStorage.getItem('jwt')){
             const user = localStorage.getItem("user")
             const userToObj = JSON.parse(user)
             dispatch(postLogin(userToObj))

@@ -3,6 +3,7 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
 import { postLogin } from './Redux/Action/action';
+import { postAuth } from './Redux/Action/action';
 import { useDispatch } from "react-redux";
 import axios from "axios";
 //Components
