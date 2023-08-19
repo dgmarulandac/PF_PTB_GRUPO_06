@@ -3,6 +3,7 @@ const getUserById = require("../controllers/User/getUserById");
 const postUser = require("../controllers/User/postUser");
 const getUserCheck = require("../controllers/User/getUserCheck");
 const postUserLogin = require("../controllers/User/postUserLogin");
+const postAuth = require("");
 
 const getUserHandler = async (req, res) => {
     try {
@@ -55,4 +56,14 @@ const postUserLoginHandler = async (req, res) => {
     }
 };
 
-module.exports = { getUserHandler, getUserByIdHandler, postUserHandler, getUserCheckHandler, postUserLoginHandler };
+const postAuthHandler = async (req, res) => {
+    try {
+        const { jwt } = req.body;
+        const response = await postAuth( jwt );
+        res.status(201).json(response);
+    } catch (error) {
+        res.status(404).json({error: error.message});
+    }
+};
+
+module.exports = { getUserHandler, getUserByIdHandler, postUserHandler, getUserCheckHandler, postUserLoginHandler, postAuthHandler };
