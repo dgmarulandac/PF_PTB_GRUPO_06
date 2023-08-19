@@ -15,6 +15,7 @@ import Nav from './Components/Nav/Nav';
 import Footer from './Components/Footer/Footer';
 import TermsAndConditions from './Components/TermsAndConditions/TermsAndConditions';
 import FAQ from './Components/FAQs/FAQs';
+import Error404 from './Components/Error 404/Error404';
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
           <Route path='/createEvent' element={<FormEvent/>}/>
           <Route path='/TaC' element={<TermsAndConditions/>}/>
           <Route path='/FAQ' element={<FAQ/>}/>
+          <Route path='/*' element={<Error404/>}/>
         </Routes>
       <Footer/>
     </div>
