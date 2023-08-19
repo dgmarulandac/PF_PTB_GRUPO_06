@@ -54,7 +54,7 @@ const BrowseFileUpdate = ({ onImageUpload }) => {
                     </svg>
                 </div>
                 <div className={styles.text}>
-                    <span>Click to upload image</span>
+                    <span>Click para subir imagen</span>
                 </div>
                 {imagePreview && <img src={imagePreview} className={styles.imageUrl} alt="Uploaded preview" />}
 

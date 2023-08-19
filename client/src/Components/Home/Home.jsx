@@ -43,7 +43,7 @@ export default function Home() {
 'https://www.lunapark.com.ar/images/eventos/eventos/11477.jpg?1690910639']
 
     return (
-        <div>
+        <div className="bg-gray-50">
             <div>
               <Swiper spaceBetween={20}
                 centeredSlides={true}
