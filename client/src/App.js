@@ -23,10 +23,21 @@ function App() {
   const dispatch = useDispatch();
   function handleCallbackResponse(response) {
     const user = { platform: "google", jwt: response.credential };
-    dispatch( postLogin(user) );
+    dispatch(postLogin(user));
   }
 
-  useEffect(()=>{
+  useEffect(() => {
+    // Auth token
+    if (localStorage.getItem("jwt")) {
+      const userToken = localStorage.getItem("jwt")
+      axios.defaults.headers.common = {
+        'x-access-token': userToken
+      }
+      dispatch(postAuth(userToken))
+    }
+  }, [])
+
+  useEffect(() => {
     //Auth de google - global google
     /* global google */
     google.accounts.id.initialize({
@@ -35,22 +46,22 @@ function App() {
     });
 
     google.accounts.id.prompt();
-  },[])
+  }, [])
 
   return (
     <div className="App">
-      <Nav /> 
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/login' element={<Login />}/> 
-          <Route path='/register' element={<Register />} />
-          <Route path='/event/:id' element={<Detail/>}/>
-          <Route path='/createEvent' element={<FormEvent/>}/>
-          <Route path='/TaC' element={<TermsAndConditions/>}/>
-          <Route path='/FAQ' element={<FAQ/>}/>
-          <Route path='/*' element={<Error404/>}/>
-        </Routes>
-      <Footer/>
+      <Nav />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/event/:id' element={<Detail />} />
+        <Route path='/createEvent' element={<FormEvent />} />
+        <Route path='/TaC' element={<TermsAndConditions />} />
+        <Route path='/FAQ' element={<FAQ />} />
+        <Route path='/*' element={<Error404 />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }
