@@ -33,22 +33,32 @@ export default function FormEvent() {
         setError(validation(newEvent))
     }
 
-
-    const handleCreate = async (e) => {
-        e.preventDefault();
-        if (Object.keys(error).length === 0 && event.name.length > 0) {
-            await dispatch(createEvent(event))
-            setEvent({ ...event, result: '✅ Evento creado con exito' })
-        } else {
-            setEvent({ ...event, result: '⚠️ Completa los campos' })
-        }
-    }
-
     const handleImageUpload = (secure_url) => {
         const newEvent = { ...event, image: secure_url };
         setEvent(newEvent);
         setError(validation(newEvent))
     };
+
+    const handleCreate = async (e) => {
+        e.preventDefault();
+        if (Object.keys(error).length === 0 && event.name.length > 0) {
+            await dispatch(createEvent(event))
+            setEvent({ 
+            name: '',
+            description: '',
+            date: '',
+            hour: '',
+            cantTickets: '',
+            address: '',
+            country: '',
+            image: '',
+            eventType: '',
+            ticketPrice: '', 
+            result: '✅ Evento creado con exito' })
+        }else{
+            setEvent({...event, result: '⚠️ Completa los campos'})
+        }
+    }
 
     return (
         <div className={styles.body}>

@@ -7,12 +7,12 @@ const verifyToken = (req, res, next) => {
     const token = req.headers["x-access-token"];
 
     if( !token ) {
-        return res.status(403).json({error: "No token provided."});
+        return res.status(403).json({error: "No se ha enviado un token."});
     }
 
     jwt.verify(token, SECRET, (err, decoded) => {
               if (err) {
-                return res.status(401).json({error: "Unauthorized."});
+                return res.status(401).json({error: "No Autorizado."});
               }
               req.id = decoded.id;
               next();
@@ -20,7 +20,6 @@ const verifyToken = (req, res, next) => {
 };
 
 const isAdmin = async (req, res, next) => {
-  console.log(req.id);
   const user = await User.findByPk(req.id);
   const roles = await user.getRoles();
   roles.forEach(role => {
@@ -29,7 +28,7 @@ const isAdmin = async (req, res, next) => {
         return;
     }
   });
-  res.status(403).json({error: "Admin role is required."})
+  res.status(403).json({error: "Se requiere el rol de admin para ver esto."})
 };
 
 const isSeller = async (req, res, next) => {
@@ -41,7 +40,7 @@ const isSeller = async (req, res, next) => {
         return;
     }
   });
-  res.status(403).json({error: "Seller role is required."})
+  res.status(403).json({error: "Se requiere el rol de vendedor para ver esto."})
 };
 
 const isBuyer = async (req, res, next) => {
@@ -53,7 +52,7 @@ const isBuyer = async (req, res, next) => {
         return;
     }
   });
-  res.status(403).json({error: "Buyer role is required."})
+  res.status(403).json({error: "Se requiere el rol de comprador para ver esto."})
 };
 
 module.exports = { verifyToken, isAdmin, isBuyer, isSeller };

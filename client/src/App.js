@@ -1,6 +1,5 @@
 import './App.css';
 //DEPENDENCIES
-import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
 import { postLogin } from './Redux/Action/action';
@@ -16,7 +15,7 @@ import Nav from './Components/Nav/Nav';
 import Footer from './Components/Footer/Footer';
 import TermsAndConditions from './Components/TermsAndConditions/TermsAndConditions';
 import FAQ from './Components/FAQs/FAQs';
-axios.defaults.baseURL = 'https://pf-grupo06-back.onrender.com';
+import Error404 from './Components/Error 404/Error404';
 
 
 function App() {
@@ -34,6 +33,8 @@ function App() {
       client_id: "837161821953-g2c2ob0lolh4abs0ctt7dt4rga03evqm.apps.googleusercontent.com",
       callback: handleCallbackResponse
     });
+
+    google.accounts.id.prompt();
   },[])
 
   return (
@@ -47,6 +48,7 @@ function App() {
           <Route path='/createEvent' element={<FormEvent/>}/>
           <Route path='/TaC' element={<TermsAndConditions/>}/>
           <Route path='/FAQ' element={<FAQ/>}/>
+          <Route path='/*' element={<Error404/>}/>
         </Routes>
       <Footer/>
     </div>
