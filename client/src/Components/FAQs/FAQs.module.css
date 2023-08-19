@@ -57,12 +57,12 @@
     max-height: 80vh;
 }
 
-h2 {
+.container h2 {
     font-size: 2rem;
     margin-bottom: 10px;
 }
 
-p {
+.container p {
     font-size: 1.6rem;
     margin-bottom: 20px;
 }

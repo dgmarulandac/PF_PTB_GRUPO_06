@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styles from './BrowseFileUpdate.module.css';
+import { style } from './style';
 
 const BrowseFileUpdate = ({ onImageUpload }) => {
     const [imageFile, setImageFile] = useState(null);
@@ -59,8 +60,8 @@ const BrowseFileUpdate = ({ onImageUpload }) => {
 
             </label>
             <div className={styles.buttonContainerUpdate}>
-                <button type="button" className={styles.buttonCreateUpdate} onClick={removeImage}>Eliminar</button>
-                <button type="button" className={styles.buttonCreateUpdate} onClick={submitImage}>Confirmar</button>
+                <button type="button" className={style.button} onClick={removeImage}>Eliminar</button>
+                <button type="button" className={style.button} onClick={submitImage}>Confirmar</button>
             </div>
         </div>
     );
