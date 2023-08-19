@@ -7,13 +7,13 @@ const { sendPostUser} = require ("../Email/emailController.js")
 const postUser = async ( user ) => {
     
     if( ! await userVerificationDisplay(user.displayName) ) {
-        throw Error(`The displayName ${user.displayName} is not available.`);
+        throw Error(`El nombre de ususario ${user.displayName} no esta disponible.`);
     }
     if ( !emailVerification(user.email) ) {
-        throw Error("Email Invalid")
+        throw Error("Correo electronico invalido.")
     }
     if( ! await userVerificationEmail(user.email) ) {
-        throw Error(`The email ${user.email} is already in use, please log in.`);
+        throw Error(`El correo ${user.email} ya esta en uso, por favor inicia sesion.`);
     }
 
     let {password} = user;
@@ -26,10 +26,9 @@ const postUser = async ( user ) => {
         where: { type: buyerRole }
     });
     newUser.addRoles(defaultRole);
-
     sendPostUser(newUser);
     
-    return {message: "The user was created succesfully."};
+    return {message: "El usuario se ha creado satisfactoriamente."};
 };
 
 const userVerificationDisplay = async ( displayName ) => {
