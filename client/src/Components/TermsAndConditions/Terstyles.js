@@ -1,5 +1,5 @@
 export const h1 = "mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl";
-export const span = "text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400";
+export const span = "font-bungee text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400";
 export const container = "flex flex-col items-center justify-center min-h-screen p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600";
 export const h2 = "text-4xl font-bold dark:text-white";
 export const p = "mb-3 mx-auto text-center text-gray-500 dark:text-gray-400 max-w-screen-md";
