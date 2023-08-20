@@ -1,7 +1,7 @@
 const Router = require("express");
 const {
 	VerifyPostHandler,
-} = require("../handler/VerifyHandler/VerifyPostHandler");
+} = require("../handlers/VerifyHandler/VerifyPostHandler");
 
 const verifyRouter = Router();
 

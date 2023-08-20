@@ -9,12 +9,13 @@ const RecoverPass = async (req, res) => {
 		const { email } = req.body;
 
 		if (!email) {
-			return res
+			res
 				.status(400)
 				.json({
 					success: false,
 					message: "No se proporcionó ningún email.",
 				});
+			return;
 		}
 
 		const token = JWTgenerate({ email });
@@ -24,13 +25,14 @@ const RecoverPass = async (req, res) => {
 		});
 
 		if (!user) {
-			return res
+			res
 				.status(404)
 				.json({
 					success: false,
 					message:
 						"No se encontró ningún usuario con ese email.",
 				});
+				return;
 		}
 
 		const transporter = nodemailer.createTransport({
@@ -60,18 +62,20 @@ const RecoverPass = async (req, res) => {
 
 		await transporter.sendMail(mailOptions);
 
-		return res
+		res
 			.status(200)
 			.json({ success: true, message: "Email enviado con éxito." });
+			return;
 	} catch (error) {
 		console.error("Error:", error);
-		return res
+		res
 			.status(500)
 			.json({
 				success: false,
 				message: "Error interno del servidor.",
 				error: error.toString(),
 			});
+			return;
 	}
 };
 
