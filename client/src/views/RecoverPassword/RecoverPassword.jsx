@@ -19,7 +19,7 @@ const RecoverPassword = () => {
 
 		try {
 			const res = await axios.post(
-				`http://localhost:3001/recover/${token}`,
+				`${process.env.REACT_APP_RECOVER_PASSWORD}${token}`,
 				{
 					password: password,
 				}
@@ -27,10 +27,10 @@ const RecoverPassword = () => {
 			if (res.data.success) {
 				Swal.fire({
 					icon: "success",
-					title: "Contraseña cambiada",
-					text: "Contraseña cambiada con éxito.",
+					title: "Exito!",
+					text: "Contraseña cambiada.",
 				});
-				navigate("/");
+				navigate("/login");
 			} else {
 				Swal.fire({
 					icon: "error",
@@ -61,7 +61,7 @@ const RecoverPassword = () => {
 				/>
 
 				<button type='submit' className={styles.loginButtonP}>
-					Verificacion
+					Cambiar
 				</button>
 			</form>
 		</div>

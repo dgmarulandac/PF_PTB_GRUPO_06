@@ -16,6 +16,9 @@ import Footer from './Components/Footer/Footer';
 import TermsAndConditions from './Components/TermsAndConditions/TermsAndConditions';
 import FAQ from './Components/FAQs/FAQs';
 import Error404 from './Components/Error 404/Error404';
+import Verify from './views/Verify/Verify';
+import RecoverPassword from './views/RecoverPassword/RecoverPassword';
+import GmailRecovery from './views/GmailRecovery/GmailRecovery';
 
 
 function App() {
@@ -49,6 +52,9 @@ function App() {
           <Route path='/TaC' element={<TermsAndConditions/>}/>
           <Route path='/FAQ' element={<FAQ/>}/>
           <Route path='/*' element={<Error404/>}/>
+          <Route path='/verify' element={<Verify/>}/>
+          <Route path='/recover/:token' element={<RecoverPassword/>}/>
+          <Route path='/gmailRecovery' element={<GmailRecovery/>}/>
         </Routes>
       <Footer/>
     </div>

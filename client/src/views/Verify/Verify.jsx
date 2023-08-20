@@ -5,19 +5,11 @@ import styles from "./Verify.module.css";
 import axios from "axios";
 
 const Verify = () => {
-	const [name, setName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [cuil, setCuil] = useState("");
+	const [user, setUser] = useState("");
 	const navigate = useNavigate();
 
-	const handleNameChange = (event) => {
-		setName(event.target.value);
-	};
-	const handleLastNameChange = (event) => {
-		setLastName(event.target.value);
-	};
-	const handleCuilChange = (event) => {
-		setCuil(event.target.value);
+	const handleUserChange = (event) => {
+		setUser(event.target.value);
 	};
 
 	const handleVerify = async (event) => {
@@ -27,18 +19,16 @@ const Verify = () => {
 			const res = await axios.post(
 				`${process.env.REACT_APP_VERIFY_API}`,
 				{
-					name: name,
-					lastName: lastName,
-					cuil: cuil,
+					displayName: user,
 				}
 			);
 			if (res.data.success) {
-				navigate("/selectRecoveryMethod", { state: { cuil } });
+				navigate("/gmailRecovery");
 			} else {
 				Swal.fire({
 					icon: "error",
 					title: "Oops... Algo salio mal",
-					text: res.data.message,
+					text: "No se pudo verificar su identidad.",
 				});
 			}
 		} catch (error) {
@@ -54,33 +44,14 @@ const Verify = () => {
 		<div className={styles.containerP}>
 			<div className={styles.headerP}>Verificación</div>
 			<form className={styles.formP} onSubmit={handleVerify}>
-				<div className={styles.TextFormP}>Nombre</div>
+				<div className={styles.TextFormP}>Usuario</div>
 				<input
 					type='text'
-					value={name}
+					value={user}
 					className={styles.inputFormP}
-					onChange={handleNameChange}
-					placeholder='Nombre'
+					onChange={handleUserChange}
+					placeholder='User'
 				/>
-				<div className={styles.TextFormP}>Apellido</div>
-				<input
-					type='text'
-					value={lastName}
-					className={styles.inputFormP}
-					onChange={handleLastNameChange}
-					placeholder='Apellido'
-				/>
-				<div className={styles.TextFormP}>Cuil</div>
-				<input
-					type='text'
-					value={cuil}
-					className={styles.inputFormP}
-					onChange={handleCuilChange}
-					maxLength='11'
-					pattern='\d*'
-					placeholder='Cuil'
-				/>
-
 				<button type='submit' className={styles.loginButtonP}>
 					Verificacion
 				</button>
