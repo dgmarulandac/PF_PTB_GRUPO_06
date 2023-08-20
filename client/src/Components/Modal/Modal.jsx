@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import validation from '../../functions/Validations/validationModal/validation'
+import { styles } from "./modalStyle";
 
 export default function Modal() {
     const { id } = useParams()
@@ -9,10 +10,10 @@ export default function Modal() {
     const [error, setError] = useState({})
     const [ticket, setTicket] = useState('')
 
-    const handleChange = (e)=>{
-        const {value} = e.target;
+    const handleChange = (e) => {
+        const { value } = e.target;
         setTicket(value)
-        setError({...error, cantTickets: validation(value, event.cantTickets)})
+        setError({ ...error, cantTickets: validation(value, event.cantTickets) })
     }
     useEffect(() => {
         axios.get(`/events/${id}`)
@@ -21,7 +22,7 @@ export default function Modal() {
                 setError('')
             })
             .catch(reason =>
-                setError({...error, petition: reason.response.data.error}))
+                setError({ ...error, petition: reason.response.data.error }))
         setEvent({})
 
         return () => {
@@ -31,20 +32,23 @@ export default function Modal() {
     }, [id])
 
     return (
-        <div>
+        <div className={styles.errorPopUp}>
             {error.petition ?
-             (<p>{error.petition}</p>) : 
-             (<div>
-                <label>Seleccione la cantidad de entradas que desea comprar</label>
-                <input type="number" placeholder="ejem 1,2" value={ticket} onChange={handleChange}/>
-                {error.cantTickets && <p>{error.cantTickets}</p>}
-
-                <p>Metodo de Pago</p>
-
-                <p>Confirmacion</p>
-
-                <button>Comprar</button>
-            </div>)
+                (<p>{error.petition}</p>) :
+                (<div className={''}>
+                    <div>
+                        <label className={styles.label}>Seleccione la cantidad de entradas que desea comprar</label>
+                        <input className={styles.input} type="number" placeholder="ejem 1,2" value={ticket} onChange={handleChange} />
+                        {error.cantTickets && <p>{error.cantTickets}</p>}
+                    </div>
+                    <div>
+                        <p className={styles.p}>Metodo de Pago</p>
+                    </div>
+                    <div>
+                        <p className={styles.p}>Confirmacion</p>
+                    </div>
+                    <button className={styles.button}>Comprar</button>
+                </div>)
             }
         </div>
     )
