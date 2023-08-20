@@ -4,8 +4,6 @@ import { getAllEvent } from "../../Redux/Action/action";
 import Card from "../Card/Card";
 import Paginado from "../pagination/pagination";
 import EventFilter from "../EventFilter/EventFilter";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay, Navigation, Keyboard } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -36,40 +34,9 @@ export default function Home() {
     setEventosAMostrar(events.slice(primerIndex, ultimoIndex));
   }, [events, currentPage]);
 
-  const slides = [
-    "https://www.lunapark.com.ar/images/eventos/eventos/11066.jpg?1680027036",
-    "https://www.lunapark.com.ar/images/eventos/eventos/11027.jpg?1679514160",
-    "https://www.lunapark.com.ar/images/eventos/eventos/11477.jpg?1690910639",
-  ];
 
   return (
     <div>
-      {/* <div>
-        <Swiper
-          spaceBetween={20}
-          centeredSlides={true}
-          autoplay={{
-            delay: 4000,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={true}
-          keyboard={{
-            enabled: true,
-          }}
-          modules={[Autoplay, Pagination, Navigation, Keyboard]}
-        >
-          {slides.map((s, i) => {
-            return (
-              <SwiperSlide key={i}>
-                <img src={s} alt="evento" width="852" height="457" />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-      </div> */}
       <div>
         <Slider></Slider>
       </div>
