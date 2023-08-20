@@ -1,7 +1,5 @@
 const Router = require("express");
-const {
-	RecoverConfirmHandler,
-} = require("../handlers/RecoverHandler/RecoverConfirmHandler");
+const {	RecoverConfirmHandler } = require("../handlers/RecoverHandler/RecoverConfirmHandler");
 const { RecoverPostPassHandler } = require("../handlers/RecoverHandler/RecoverPostPassHandler");
 
 const recoverRouter = Router();

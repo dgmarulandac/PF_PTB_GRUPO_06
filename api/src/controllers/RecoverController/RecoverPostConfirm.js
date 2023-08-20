@@ -28,9 +28,10 @@ const ConfirmRecover = async (req, res) => {
 
 	user.password = password;
 	await user.save();
+						//genera un nuevo token JWT para el user actualizado con la funcion JWT generate
+	const newToken = JWTgenerate({ email: user.email }); //con el correo electronico del usuario
 
-	const newToken = JWTgenerate({ email: user.email });
-
+	//enviamos respuesta con un estado 200 y msje de exito 
 	res.status(200).send({
 		success: true,
 		message: "Contraseña actualizada con éxito.",

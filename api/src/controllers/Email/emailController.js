@@ -8,7 +8,7 @@ await transporter.sendMail({
     from: '"¡Bienvenido(a) a Boho!! REGISTRO EXITOSO 🎈" <bohocompany@gmail.com>', // sender address
     to: email, // list of receivers
     subject: "¡Bienvenido/a a Boho! REGISTRO EXITOSO 🎈", // Subject line
-    // text: "Hello world?", // plain text body
+   
     html: `
     <h1> ${name}, te damos la bienvenida a nuestra increíble plataforma de venta de boletos para eventos! 🎉</h1>
     
