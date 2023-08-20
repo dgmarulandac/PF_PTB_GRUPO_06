@@ -1,4 +1,5 @@
 import './App.css';
+import 'tailwindcss/tailwind.css';
 //DEPENDENCIES
 import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -16,6 +17,7 @@ import Footer from './Components/Footer/Footer';
 import TermsAndConditions from './Components/TermsAndConditions/TermsAndConditions';
 import FAQ from './Components/FAQs/FAQs';
 import Error404 from './Components/Error 404/Error404';
+
 
 
 function App() {

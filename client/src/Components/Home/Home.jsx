@@ -10,6 +10,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import styles from "./Home.module.css";
+import Slider from "../Slider/Slider";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ export default function Home() {
 
   return (
     <div>
-      <div>
+      {/* <div>
         <Swiper
           spaceBetween={20}
           centeredSlides={true}
@@ -68,6 +69,9 @@ export default function Home() {
             );
           })}
         </Swiper>
+      </div> */}
+      <div>
+        <Slider></Slider>
       </div>
       <EventFilter />
       <div className={styles.cards}>

@@ -43,7 +43,7 @@ const Detail = () => {
               <p>{ticketid.cantTickets}</p>
             </div>
             <div className={styles.buttons}>
-              <button onClick={handleClick}>Comprar tickete</button>
+              <button data-modal-target="staticModal" data-modal-toggle="staticModal" onClick={handleClick}>Comprar tickete</button>
             </div>
           </div>
           {modalOn && <div key='1'><Modal /></div>}
