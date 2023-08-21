@@ -9,7 +9,7 @@ import { Pagination, Autoplay, Navigation, Keyboard } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import styles from "./Home.module.css";
+import * as styles from "./HomeStiles";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -43,48 +43,53 @@ export default function Home() {
 
   return (
     <div>
-      <div>
-        <Swiper
-          spaceBetween={20}
-          centeredSlides={true}
-          autoplay={{
-            delay: 4000,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={true}
-          keyboard={{
-            enabled: true,
-          }}
-          modules={[Autoplay, Pagination, Navigation, Keyboard]}
-        >
-          {slides.map((s, i) => {
-            return (
-              <SwiperSlide key={i}>
-                <img src={s} alt="evento" width="852" height="457" />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-      </div>
+<div className={styles.swiper}>
+  <Swiper
+    spaceBetween={20}
+    centeredSlides={true}
+    autoplay={{
+      delay: 4000,
+      disableOnInteraction: false,
+    }}
+    pagination={{
+      clickable: true,
+    }}
+    navigation={true}
+    keyboard={{
+      enabled: true,
+    }}
+    modules={[Autoplay, Pagination, Navigation, Keyboard]}
+  >
+    {slides.map((s, i) => {
+      return (
+        <SwiperSlide key={i}>
+          <div className="flex items-center justify-center">
+            <img src={s} alt="evento" width="852" height="457" className="mb-4" /> 
+          </div>
+        </SwiperSlide>
+      );
+    })}
+  </Swiper>
+</div>
+
       <EventFilter />
-      <div className={styles.cards}>
+      <div className={styles.cardcontainer}>
         {eventosAMostrar.length === 0 ? (
-          <p>No existe ningún evento con ese nombre.</p>
+          <h2 className={styles.error}>No existe ningún evento con ese nombre.</h2>
         ) : (
           eventosAMostrar.map((event) => {
             return <Card event={event} key={event.id} />;
           })
         )}
       </div>
-      <Paginado
-        eventsPerPage={eventsPerPage}
-        events={events}
-        page={currentPage}
-        paginado={setCurrentPage}
-      />
+      <div className={styles.paginado}>
+        <Paginado
+          eventsPerPage={eventsPerPage}
+          events={events}
+          page={currentPage}
+          paginado={setCurrentPage}
+        />
+      </div>
     </div>
   );
 }
