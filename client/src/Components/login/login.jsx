@@ -41,6 +41,7 @@ export default function Login() {
             navigate('/')
         }
     }, [userSesion])
+    
     return (
         <div className={styles.body}>
             <div className={styles.header}>
