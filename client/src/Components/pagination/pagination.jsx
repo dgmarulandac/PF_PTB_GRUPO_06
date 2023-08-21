@@ -1,5 +1,6 @@
 import React from "react";
-import s from './paginado.module.css';
+import * as styles from "./pagStiles"
+
 
 export default function Paginado({ eventsPerPage,events, paginado, page }) {
   const pageNumbers = [];
@@ -26,34 +27,34 @@ export default function Paginado({ eventsPerPage,events, paginado, page }) {
   }
 
   return (
-    <nav className={s.nav}>
-      <div className={s.number}>
-        {page > 1 && (
-          <div>
-            <button className={s.btnNP} onClick={() => paginado(page - 1)}>
-              {"<<"} Anterior
-            </button>
-          </div>
-        )}
-        {pageNumbers.map((number, index) => (
-          <div key={index}>
-            <button
-              className={`${s.btn} ${number === page ? s.currentPage : ""} ${number === "..." ? s.dotsButton : ""}`}
-              onClick={() => (number !== "..." ? paginado(number) : null)}
-              disabled={number === page}
-            >
-              {number === "..." ? "..." : number}
-            </button>
-          </div>
-        ))}
-        {page < totalPages && (
-          <div>
-            <button className={s.btnNP} onClick={() => paginado(page + 1)}>
-              Siguiente {">>"}
-            </button>
-          </div>
-        )}
-      </div>
+    <nav className={styles.container}>
+      {page > 1 && (
+        <div>
+          <button className={styles.backbuton} onClick={() => paginado(page - 1)}>
+            {"<"} 
+          </button>
+        </div>
+      )}
+      {pageNumbers.map((number, index) => (
+        <div key={index}>
+          <button
+            className={`${styles.button} ${number === page ? styles.colorbutton : styles.hovbutton}`}
+            onClick={() => (number !== "..." ? paginado(number) : null)}
+            disabled={number === page}
+          >
+            {number === "..." ? "..." : number}
+          </button>
+        </div>
+      ))}
+      {page < totalPages && (
+        <div>
+          <button className={styles.nexbutton} onClick={() => paginado(page + 1)}>
+             {">"}
+          </button>
+        </div>
+      )}
     </nav>
   );
+  
+  
 }
