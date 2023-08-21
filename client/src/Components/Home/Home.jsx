@@ -38,7 +38,7 @@ export default function Home() {
   return (
     <div>
       <div>
-        <Slider></Slider>
+        <Slider/>
       </div>
       <EventFilter />
       <div className={styles.cards}>

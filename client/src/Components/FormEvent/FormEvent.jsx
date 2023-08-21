@@ -43,20 +43,21 @@ export default function FormEvent() {
         e.preventDefault();
         if (Object.keys(error).length === 0 && event.name.length > 0) {
             await dispatch(createEvent(event))
-            setEvent({ 
-            name: '',
-            description: '',
-            date: '',
-            hour: '',
-            cantTickets: '',
-            address: '',
-            country: '',
-            image: '',
-            eventType: '',
-            ticketPrice: '', 
-            result: '✅ Evento creado con exito' })
-        }else{
-            setEvent({...event, result: '⚠️ Completa los campos'})
+            setEvent({
+                name: '',
+                description: '',
+                date: '',
+                hour: '',
+                cantTickets: '',
+                address: '',
+                country: '',
+                image: '',
+                eventType: '',
+                ticketPrice: '',
+                result: '✅ Evento creado con exito'
+            })
+        } else {
+            setEvent({ ...event, result: '⚠️ Completa los campos' })
         }
     }
 
@@ -92,7 +93,7 @@ export default function FormEvent() {
                         </div>
                     </div>
                     <div className={styles.div_g}>
-                        <label className={styles.label}>imagen</label>
+                        <label className={styles.label}>Imagen</label>
                         <BrowseFileUpdate onImageUpload={handleImageUpload} />
                         <div>
                             {error.image && <p className={styles.error}>{error.image}</p>}
