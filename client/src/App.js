@@ -15,6 +15,9 @@ import Nav from './Components/Nav/Nav';
 import Footer from './Components/Footer/Footer';
 import TermsAndConditions from './Components/TermsAndConditions/TermsAndConditions';
 import FAQ from './Components/FAQs/FAQs';
+import MisEventos from './Pages/vendedor/MisEventos';
+import MisVentas from './Pages/vendedor/MisVentas';
+import EditEvent from './Components/EditEvent/EditEvent';
 
 
 function App() {
@@ -47,6 +50,9 @@ function App() {
           <Route path='/createEvent' element={<FormEvent/>}/>
           <Route path='/TaC' element={<TermsAndConditions/>}/>
           <Route path='/FAQ' element={<FAQ/>}/>
+          <Route path='/mis-ventas' element={<MisVentas/>}/>
+          <Route path='/mis-eventos' element={<MisEventos/>}/>
+          <Route path='/editar-evento/:id' element={<EditEvent/>}/> 
         </Routes>
       <Footer/>
     </div>
