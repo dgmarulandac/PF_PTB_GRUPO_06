@@ -1,59 +1,16 @@
-.footer {
-    background-color: #f2f2f2;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.footerContent {
-    display: flex;
-    justify-content: space-between;
-}
-
-.footerSection {
-    margin-right: 70px;
-    margin-left: 70px;
-}
-
-h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: black;
-    font-family: 'Linotype Didot Pro';
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-ul li {
-    margin-bottom: 10px;
-}
-
-ul li a {
-    text-decoration: none;
-    color: #333333;
-}
-
-.socialIcons {
-    display: flex;
-    flex-direction: column;
-}
-
-.socialIcons li {
-    margin-bottom: 10px;
-}
-
-.footerBottom {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.footerrr{
-    font-size: 1rem;
-    margin-bottom: 20px;
-}
+.rotatingBar {
+    width: 100%;
+    height: 0.2rem;
+    background-image: linear-gradient(to right, #00f, #0f0, rgb(255, 0, 255), #0ff, #ff0, #00f);
+    background-size: 600% 100%; /* 6 colores en total */
+    animation: rotateColors 10s linear infinite;
+  }
+  
+  @keyframes rotateColors {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 100% 0;
+    }
+  }
