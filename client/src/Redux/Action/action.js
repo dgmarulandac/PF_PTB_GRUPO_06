@@ -63,17 +63,35 @@ export const getDetail = (id) => {
 };
 
 export const postLogin = (user) => {
-    return function(dispatch){
+    return function (dispatch) {
         axios.post(`/users/login`, user)
-        .then(data=>dispatch({type: POST_LOGIN, payload: data.data}))
-        .catch( reason => {
-            Swal.fire({
-				title: "Error",
-				text: `${reason.response.data.error}`,
-				icon: "error",
-			});
-            dispatch({type: POST_LOGIN, payload: {}})
-        });
+            .then(data => dispatch({ type: POST_LOGIN, payload: data.data }))
+            .catch(reason => {
+                Swal.fire({
+                    title: "Error",
+                    text: `${reason.response.data.error}`,
+                    icon: "error",
+                });
+                dispatch({ type: POST_LOGIN, payload: {} })
+            });
+    };
+};
+
+export const postAuth = (jwt) => {
+    return function (dispatch) {
+        axios.post(`/users/auth`, jwt)
+            .then(data => {
+                localStorage.setItem('jwt', data.data.jwt)
+                return dispatch({ type: POST_LOGIN, payload: data.data })
+            })
+            .catch(reason => {
+                Swal.fire({
+                    title: "Error",
+                    text: `${reason.response.data.error}`,
+                    icon: "error",
+                });
+                return dispatch({ type: POST_LOGIN, payload: {} })
+            });
     };
 };
 

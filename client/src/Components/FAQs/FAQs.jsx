@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import style from "./FAQs.module.css";
-import video from "../../Utils/videos/backgroundLogin.mp4"
+import * as Fstyles from "./Fstyles"
+import styles from './FAQs.module.css'
 
 const faqData = [
     {
@@ -61,41 +61,49 @@ function FAQ({ setValidateState, setCurrentUserStore2 }) {
     };
 
     return (
-        <div className={style.container}>
-            
-            <div className={style.title}>
-                <video src={video} className={style.videoBackground} loop muted autoPlay />
-                <h2 className={style.titulito}>Preguntas frecuentes</h2>
-            </div>
-            <div className={style.Preguntas}>
-                <div>
-                    {faqData.map((faq, index) => (
-                        <div
-                            key={index}
-                            className={`${style.card} ${activeIndex === index ? style.active : ""
-                                }`}
+        <div className={Fstyles.container}>
+            <div className="space-y-2">
+                {faqData.map((faq, index) => (
+                    <div key={index} className={Fstyles.border}>
+                        <button
+                            type="button"
+                            className={`${Fstyles.unactive}${
+                                activeIndex === index ? `${Fstyles.active}`: ""
+                            }`}
                             onClick={() => handleToggle(index)}
+                            aria-expanded={activeIndex === index}
                         >
-                            <h2>{faq.question}</h2>
-                            {activeIndex === index && (
-                                <div>
-                                    <p>{faq.answer}</p>
-                                    {faq.steps && (
-                                        <ol>
-                                            {faq.steps.map(
-                                                (step, stepIndex) => (
-                                                    <li key={stepIndex}>
-                                                        {step}
-                                                    </li>
-                                                )
-                                            )}
-                                        </ol>
-                                    )}
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                </div>
+                            <span>{faq.question}</span>
+                            <svg
+                                className={Fstyles.svg}
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 10 6"
+                            >
+                                <path
+                                    stroke="currentColor"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M9 5 5 1 1 5"
+                                />
+                            </svg>
+                        </button>
+                        {activeIndex === index && (
+                            <div className={Fstyles.desplegable}>
+                                <p className={Fstyles.P}>{faq.answer}</p>
+                                {faq.steps && (
+                                    <ol className={Fstyles.ol}>
+                                        {faq.steps.map((step, stepIndex) => (
+                                            <li key={stepIndex}>{step}</li>
+                                        ))}
+                                    </ol>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                ))}
             </div>
         </div>
     );

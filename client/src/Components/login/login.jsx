@@ -4,7 +4,8 @@ import userValidations from "../../functions/Validations/loginValidation/validat
 import { useSelector, useDispatch } from "react-redux";
 import { postLogin } from "../../Redux/Action/action";
 import video from "../../Utils/videos/backgroundLogin.mp4"
-import styles from './login.module.css'
+// import styles from './login.module.css'
+import { styles } from "./loginStyle";
 
 export default function Login() {
     const dispatch = useDispatch();
@@ -30,7 +31,7 @@ export default function Login() {
         const { displayName, password } = user
         const errores = userValidations(displayName, password);
         setErrors(errores);
-        if( errores.length === 0 ) {
+        if (errores.length === 0) {
             const userToSend = { ...user, platform: "boho", jwt: "" };
             dispatch(postLogin(userToSend));
         }
@@ -40,29 +41,44 @@ export default function Login() {
             navigate('/')
         }
     }, [userSesion])
+    
     return (
-        <div className={styles.Background}>
-                            <div className={styles.titleContainer}>
-                    <h1>BOHO</h1>
-                    <p>¡¡Compra tus tickets seguro con nosotros!!</p>
-                </div>
-            <section>
-                <video className={styles.Video} src={video} autoPlay muted loop />
+        <div className={styles.body}>
+            <div className={styles.header}>
+                <h1 className={styles.logo}>BOHO</h1>
+                <p className={styles.p}>¡¡Compra tus tickets seguro con nosotros!!</p>
+            </div>
+            <div className={styles.container}>
+                <form onSubmit={handleSubmit} className={styles.form}>
+                <h5 className={styles.h5}>Inciar Sesion</h5>
+                    <div className={styles.div_ind}>
+                        <label className={styles.label}>Usuario:</label>
+                        <input className={styles.input} onChange={handleForm} type="text" placeholder="Jorgito17" name="displayName" />
+                    </div>
+                    <div className={styles.div_ind}>
+                       <label className={styles.label}>Contraseña:</label>
+                    <input className={styles.input} onChange={handleForm} type="password" placeholder="*********" name="password" /> 
+                    </div>
+                    <button className={styles.button}>Iniciar Sesión</button>
+                </form>
+                <p className={styles.p}>¿No tienes cuenta?, <Link style={{ textDecoration: "none", color: "rgb(191, 132, 29)" }} to='/register'> Registrate </Link></p>
+            </div>
+            {/* <section>
                 <div className={styles.center}>
                     <article>
-                        <form onSubmit={handleSubmit}  className={styles.LoginWindow}>
+                        <form onSubmit={handleSubmit} className={styles.LoginWindow}>
                             <label htmlFor="">Usuario:</label>
                             <input className={styles.LoginInput} onChange={handleForm} type="text" placeholder="Jorgito17" name="displayName" />
                             <label htmlFor="">Contraseña:</label>
                             <input className={styles.LoginInput} onChange={handleForm} type="password" placeholder="*********" name="password" />
-                            <button className={styles.LoginButton}>Iniciar Sesión</button>
+                            <button className={styles.button}>Iniciar Sesión</button>
                         </form>
                     </article>
                     <article>
                         <p className={styles.window}>¿No tienes cuenta?, <Link style={{ textDecoration: "none", color: "rgb(191, 132, 29)" }} to='/register'> Registrate </Link></p>
                     </article>
                 </div>
-            </section>
+            </section> */}
         </div>
     )
 };
