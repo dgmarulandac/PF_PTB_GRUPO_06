@@ -4,12 +4,8 @@ import { getAllEvent } from "../../Redux/Action/action";
 import Card from "../Card/Card";
 import Paginado from "../pagination/pagination";
 import EventFilter from "../EventFilter/EventFilter";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay, Navigation, Keyboard } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 import * as styles from "./HomeStiles";
+import Slider from "../Slider/Slider";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -43,35 +39,7 @@ export default function Home() {
 
   return (
     <div>
-<div className={styles.swiper}>
-  <Swiper
-    spaceBetween={20}
-    centeredSlides={true}
-    autoplay={{
-      delay: 4000,
-      disableOnInteraction: false,
-    }}
-    pagination={{
-      clickable: true,
-    }}
-    navigation={true}
-    keyboard={{
-      enabled: true,
-    }}
-    modules={[Autoplay, Pagination, Navigation, Keyboard]}
-  >
-    {slides.map((s, i) => {
-      return (
-        <SwiperSlide key={i}>
-          <div className="flex items-center justify-center">
-            <img src={s} alt="evento" width="852" height="457" className="mb-4" /> 
-          </div>
-        </SwiperSlide>
-      );
-    })}
-  </Swiper>
-</div>
-
+      <Slider />
       <EventFilter />
       <div className={styles.cardcontainer}>
         {eventosAMostrar.length === 0 ? (
