@@ -1,68 +1,45 @@
-.videoBackground {
-	position: fixed;
-	right: 0;
-	bottom: 0;
-	min-width: 100%;
-	min-height: 100%;
-	z-index: -1; 
-}
-
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 10vw;
-    margin-bottom: 5vw;
+.animatedborder {
     position: relative;
-	
-}
-
-.title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-bottom: 30px;
-    color: #e1ecfc;
-}
-
-.titulito {
-    font-size: 3.2rem;
-}
-
-.Preguntas {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 30px;
-}
-
-.card {
-    background: #E1ECFC;
-    color: #333;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-
-}
-
-.active {
-    background: linear-gradient(0deg, #25476e, #1e3a5a, #172a41);
-    color: #e1ecfc;
-    max-width: 150vh;
-    max-height: 80vh;
-}
-
-.container h2 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-
-.container p {
-    font-size: 1.6rem;
-    margin-bottom: 20px;
-}
+    border: 2px solid transparent;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  
+  .animatedborder::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 25px;
+    border: 2px solid transparent;
+    animation: colorAnimation 5s infinite linear, glowAnimation 1.5s infinite ease-in-out;
+  }
+  
+  @keyframes colorAnimation {
+    0% {
+      border-color: green;
+    }
+    25% {
+      border-color: blue;
+    }
+    50% {
+      border-color: green;
+    }
+    75% {
+      border-color: blue;
+    }
+    100% {
+      border-color: green;
+    }
+  }
+  
+  @keyframes glowAnimation {
+    0%, 100% {
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+    }
+    50% {
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.9);
+    }
+  }
