@@ -8,14 +8,6 @@ module.exports = (sequelize) => {
 				type: DataTypes.STRING,
 				trim: true,
 			},
-			expiresAt: {
-				type: DataTypes.DATE,
-				defaultValue: DataTypes.NOW,
-				expires: 3600, //1hs
-			},
-		},
-		{
-			timestamps: false,
 		}
 	);
 

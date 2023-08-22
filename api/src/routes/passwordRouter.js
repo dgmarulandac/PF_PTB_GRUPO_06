@@ -3,7 +3,7 @@ const {postVerifyHandler, postRecoverHandler}  = require ("../handlers/passwordH
 
 const passwordRouter = Router();
 
-orderRouter.post("/verify", postVerifyHandler);
-orderRouter.post("/recover", postRecoverHandler);
+passwordRouter.post("/verify", postVerifyHandler);
+passwordRouter.post("/recover", postRecoverHandler);
 
 module.exports = passwordRouter;
