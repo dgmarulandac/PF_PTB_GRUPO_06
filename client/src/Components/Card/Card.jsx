@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import style from './card.module.css'
 import * as styles from "./styles"
 
 export default function Card({ event }) {
