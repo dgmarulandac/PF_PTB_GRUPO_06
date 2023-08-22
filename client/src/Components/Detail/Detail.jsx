@@ -65,30 +65,10 @@ const Detail = () => {
               </div>
             )}
           </div>
-<<<<<<< HEAD
-          <div key='0' className={styles.Detail}>
-            <div>
-              <h2 className={styles.title}>{ticketid.name}</h2>
-            </div>
-            <img src={ticketid.image} alt="" className={styles.image} />
-            <div className={styles.information}>
-              <p>{ticketid.country}</p>
-              <p>{ticketid.date}</p>
-              <p>{ticketid.description}</p>
-              <p>{ticketid.eventType}</p>
-              <p>{ticketid.cantTickets}</p>
-            </div>
-            <div className={styles.buttons}>
-              <button data-modal-target="staticModal" data-modal-toggle="staticModal" onClick={handleClick}>Comprar tickete</button>
-            </div>
-          </div>
-          {modalOn && <div key='1'><Modal /></div>}
-=======
->>>>>>> dev
         </div>
       )}
     </div>
   );
 }
 
-export default Detail;
+export default Detail
