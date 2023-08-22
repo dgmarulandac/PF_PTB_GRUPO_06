@@ -3,7 +3,7 @@ const getUserById = require("../controllers/User/getUserById");
 const postUser = require("../controllers/User/postUser");
 const getUserCheck = require("../controllers/User/getUserCheck");
 const postUserLogin = require("../controllers/User/postUserLogin");
-const postAuth = require("");
+const postAuth = require("../controllers/User/postAuth");
 
 const getUserHandler = async (req, res) => {
     try {
