@@ -180,7 +180,7 @@ export default function FormEvent() {
                             </div>
                         </div>
                     </div>
-                    {event.result && <p className={event.result[0] == '✅' ? styles.exito : styles.error}>{event.result}</p>}
+                    {event.result && <p className={event.result[0] === '✅' ? styles.exito : styles.error}>{event.result}</p>}
                     <button type="submit" className={styles.button}>Crear Evento</button>
                 </form>
             </div>
