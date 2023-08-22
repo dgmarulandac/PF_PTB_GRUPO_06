@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { useEffect } from 'react';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {logOut} from "../../Redux/Action/action";
 import * as navStyles from "./navStyles"
 import styles from "./Nav.module.css"
 
@@ -8,6 +9,7 @@ import styles from "./Nav.module.css"
 const Nav = () => {
 
   const userSesion = useSelector((state) => state.userSesion);
+  const dispatch = useDispatch();
 
   useEffect(()=>{
       //Auth de google - global google
@@ -52,6 +54,7 @@ const Nav = () => {
             <Link to='/createEvent' ><button className={navStyles.buttonClasses}><span class="relative z-10">Crear Evento</span></button></Link>
             <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
             <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y Condiciones</span></button></Link>
+            <button className={navStyles.buttonClasses} onClick={() => {dispatch(logOut())}}><span class="relative z-10">Cerrar Sesión</span></button>
           </div>
         </div>
         <div className={styles.rotatingBar}></div>
@@ -68,6 +71,7 @@ const Nav = () => {
             <Link to='/createEvent' ><button className={navStyles.buttonClasses}><span class="relative z-10">Crear Evento</span></button></Link>
             <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
             <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y condiciones</span></button></Link>
+            <button className={navStyles.buttonClasses} onClick={() => {dispatch(logOut())}}><span class="relative z-10">Cerrar Sesión</span></button>
           </div>
         </div>
         <div className={styles.rotatingBar}></div>
@@ -82,6 +86,7 @@ const Nav = () => {
         <div className={navStyles.linkContainerClasses}>
           <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
           <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y condiciones</span></button></Link>
+          <button className={navStyles.buttonClasses} onClick={() => {dispatch(logOut())}}><span class="relative z-10">Cerrar Sesión</span></button>
         </div>
       </div>
       <div className={styles.rotatingBar}></div>
