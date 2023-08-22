@@ -1,5 +1,9 @@
+require('dotenv').config();
 const {Orders} = require('../db.js');
 const getOrdertById = require('../controllers/Orders/getOrderById.js');
+const {Event} = require  ('../db.js')
+var mercadopago = require('mercadopago');
+const {MERCADOPAGO_TOKEN} = process.env;
 
 const postCreateOrdertHandler = async (req, res) => {
     try {
@@ -23,8 +27,32 @@ const postCreateOrdertHandler = async (req, res) => {
             idEvent,    
         });
 
-        
-        res.status(200).json(createOrder);
+        mercadopago.configure({
+            access_token: `${MERCADOPAGO_TOKEN}`,
+            
+        });
+    
+        const result = await mercadopago.preferences.create({
+            items:[
+                {
+                    title: Event.findByPk(idEvent).name,
+                    unit_price: price,
+                    currency_id: Event.findByPk(idEvent).currency,
+                    quantity: quantity,
+                }
+            ],
+            back_urls: {
+                success: "http://localhost:3001/success",
+                failure: "http://localhost:3001/failure",
+                pending: "http://localhost:3001/pending"
+            },
+            notification_url: "https://6172-186-113-173-20.ngrok.io/webHook"
+    
+        });
+    
+        console.log(result)
+           
+        res.status(200).json(result.body.init_point);
     } catch (error) {
         
         res.status(500).json({ error: "Hubo un error al crear la orden: " + error.message });
