@@ -54,24 +54,7 @@ function App() {
 
   return (
     <div className="App">
-<<<<<<< HEAD
-      <Nav /> 
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/login' element={<Login />}/> 
-          <Route path='/register' element={<Register />} />
-          <Route path='/event/:id' element={<Detail/>}/>
-          <Route path='/createEvent' element={<FormEvent/>}/>
-          <Route path='/TaC' element={<TermsAndConditions/>}/>
-          <Route path='/FAQ' element={<FAQ/>}/>
-          <Route path='/*' element={<Error404/>}/>
-          <Route path='/verify' element={<Verify/>}/>
-          <Route path='/recover/:token' element={<RecoverPassword/>}/>
-          <Route path='/gmailRecovery' element={<GmailRecovery/>}/>
-        </Routes>
-      <Footer/>
-=======
-      <Nav />
+     <Nav />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
@@ -81,9 +64,12 @@ function App() {
         <Route path='/TaC' element={<TermsAndConditions />} />
         <Route path='/FAQ' element={<FAQ />} />
         <Route path='/*' element={<Error404 />} />
+        <Route path='/verify' element={<Verify/>}/>
+        <Route path='/recover/:token' element={<RecoverPassword/>}/>
+        <Route path='/gmailRecovery' element={<GmailRecovery/>}/>
       </Routes>
       <Footer />
->>>>>>> dev
+
     </div>
   );
 }
