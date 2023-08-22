@@ -34,8 +34,8 @@ function App() {
 
     // Auth token
     if (localStorage.getItem("jwt")) {
-      const userToken = localStorage.getItem("jwt");
-      dispatch(postAuth(userToken));
+      const userToken = localStorage.getItem("jwt")
+      dispatch(postAuth(userToken))
     }
 
     //Auth de google - global google
