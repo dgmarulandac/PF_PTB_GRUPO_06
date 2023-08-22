@@ -15,7 +15,7 @@ const BrowseFileUpdate = ({ onImageUpload }) => {
 
     const submitImage = () => {
         if (!imageFile) return;
-
+        
         const data = new FormData();
         data.append("file", imageFile);
         data.append("cloud_name", "boho-pf");
