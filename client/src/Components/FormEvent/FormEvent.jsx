@@ -43,9 +43,9 @@ export default function FormEvent() {
         e.preventDefault();
         if (Object.keys(error).length === 0 && event.name.length > 0) {
 
-            const eventToSend = {...event, sellerId: userSession.id};
+            const eventToSend = {...event, idSeller: userSession.id};
 
-            dispatch(createEvent(event))
+            dispatch(createEvent(eventToSend))
             setEvent({ 
             name: '',
             description: '',

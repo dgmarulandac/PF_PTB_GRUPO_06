@@ -68,7 +68,7 @@ module.exports = (sequelize) => {
             allowNull:false
         },
 
-        sellerId: {
+        idSeller: {
             type: DataTypes.UUID,
             allowNull: false
         }
