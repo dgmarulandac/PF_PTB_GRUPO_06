@@ -32,7 +32,7 @@ export default function Home() {
   }, [events]);
 
   useEffect(() => {
-    setEventosAMostrar(events.slice(primerIndex, ultimoIndex));
+    setEventosAMostrar(events && events.slice(primerIndex, ultimoIndex));
   }, [events, currentPage]);
 
   const slides = [

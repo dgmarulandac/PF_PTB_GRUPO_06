@@ -17,6 +17,8 @@ import Footer from './Components/Footer/Footer';
 import TermsAndConditions from './Components/TermsAndConditions/TermsAndConditions';
 import FAQ from './Components/FAQs/FAQs';
 import Error404 from './Components/Error 404/Error404';
+import ResetPassword from './Components/ResetPassword/ResetPassword';
+import RecoverPassword from './Components/RecoverPassword/RecoverPassword';
 
 
 function App() {
@@ -51,7 +53,7 @@ function App() {
 
   return (
     <div className="App">
-      <Nav />
+     <Nav />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
@@ -60,9 +62,12 @@ function App() {
         <Route path='/createEvent' element={<FormEvent />} />
         <Route path='/TaC' element={<TermsAndConditions />} />
         <Route path='/FAQ' element={<FAQ />} />
+        <Route path='/passwordReset' element={<ResetPassword/>}/>
+        <Route path='/passwordRecover/:token' element={<RecoverPassword/>}/>
         <Route path='/*' element={<Error404 />} />
       </Routes>
       <Footer />
+
     </div>
   );
 }

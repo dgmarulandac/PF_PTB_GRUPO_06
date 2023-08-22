@@ -19,7 +19,7 @@ const Nav = () => {
     return(
 <nav className={navStyles.navClasses}>
   <div className={`${navStyles.containerClasses} flex justify-between items-center`}>
-    <h3 className={navStyles.logoClasses}>BOHO</h3>
+    <Link to="/" ><h3 className={navStyles.logoClasses}>BOHO</h3></Link>
     <div className={navStyles.linkContainerClasses}>
       <Link to="/" ><button 
       className={navStyles.buttonClasses}><span class="relative z-10">Inicio</span></button></Link>
