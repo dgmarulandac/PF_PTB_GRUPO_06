@@ -11,12 +11,12 @@ const verifyToken = (req, res, next) => {
     }
 
     jwt.verify(token, SECRET, (err, decoded) => {
-              if (err) {
-                return res.status(401).json({error: "No Autorizado."});
-              }
-              req.id = decoded.id;
-              next();
-            });
+      if (err) {
+        return res.status(401).json({error: "No Autorizado."});
+      }
+      req.id = decoded.id;
+      next();
+    });
 };
 
 const isAdmin = async (req, res, next) => {
