@@ -36,11 +36,12 @@ const postCreateEventHandler = async (req, res) => {
             image,
             eventType,
             ticketPrice,
-            currency
+            currency,
+            idSeller
         } = req.body;
 
         console.log(currency)
-        if (!name || !date || !hour || !cantTickets || !address || !country || !ticketPrice || !currency) {
+        if (!name || !date || !hour || !cantTickets || !address || !country || !ticketPrice || !currency || !idSeller) {
             return res.status(400).json({ error: "Faltan campos obligatorios" });
         }
 
@@ -55,7 +56,8 @@ const postCreateEventHandler = async (req, res) => {
             image,
             eventType,
             ticketPrice,
-            currency   
+            currency,
+            idSeller   
         });
 
         
