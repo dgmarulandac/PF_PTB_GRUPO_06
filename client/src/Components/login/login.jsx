@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import userValidations from "../../functions/Validations/loginValidation/validation";
 import { useSelector, useDispatch } from "react-redux";
@@ -7,19 +7,11 @@ import { styles } from "./loginStyle";
 
 export default function Login() {
     const dispatch = useDispatch();
-    const userSesion = useSelector(state => state.userSesion)
-    const navigate = useNavigate()
     const [user, setUsers] = useState({
         displayName: '',
         password: ''
     })
     const [errors, setErrors] = useState([])
-
-    useEffect(() => {
-        if (Object.keys(userSesion).length > 0) {
-            navigate('/')
-        }
-    }, [userSesion])
 
     function handleForm(e) {
         const value = e.currentTarget.value
@@ -63,22 +55,6 @@ export default function Login() {
                 <p className={styles.p}>¿No tienes cuenta?, <Link style={{ textDecoration: "none", color: "rgb(191, 132, 29)" }} to='/register'> Registrate </Link></p>
                 <p className={styles.p}>¿Olvidaste tu contraseña?, <Link style={{ textDecoration: "none", color: "rgb(191, 132, 29)" }} to='/passwordReset'> Recupera tu contraseña </Link></p>
             </div>
-            {/* <section>
-                <div className={styles.center}>
-                    <article>
-                        <form onSubmit={handleSubmit} className={styles.LoginWindow}>
-                            <label htmlFor="">Usuario:</label>
-                            <input className={styles.LoginInput} onChange={handleForm} type="text" placeholder="Jorgito17" name="displayName" />
-                            <label htmlFor="">Contraseña:</label>
-                            <input className={styles.LoginInput} onChange={handleForm} type="password" placeholder="*********" name="password" />
-                            <button className={styles.button}>Iniciar Sesión</button>
-                        </form>
-                    </article>
-                    <article>
-                        <p className={styles.window}>¿No tienes cuenta?, <Link style={{ textDecoration: "none", color: "rgb(191, 132, 29)" }} to='/register'> Registrate </Link></p>
-                    </article>
-                </div>
-            </section> */}
         </div>
     )
 };
