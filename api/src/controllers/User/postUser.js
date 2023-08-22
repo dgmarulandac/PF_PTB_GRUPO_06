@@ -1,7 +1,7 @@
 const { User, Role } = require("../../db");
 const bcrypt = require("bcryptjs");
 const { buyerRole } = require("../../rolesSpec");
-const sendPostUser = require ("../Email/emailController.js")
+const sendPostUser = require ("../Email/emailRegisterController.js")
 
 
 const postUser = async ( user ) => {
