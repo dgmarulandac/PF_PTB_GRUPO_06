@@ -20,13 +20,6 @@ const postCreateOrdertHandler = async (req, res) => {
             return res.status(400).json({ error: "Faltan campos obligatorios" });
         }
 
-        const createOrder = await Orders.create({
-            idBuyer, 
-            quantity, 
-            price, 
-            idEvent,    
-        });
-
         mercadopago.configure({
             access_token: `${MERCADOPAGO_TOKEN}`,
             
@@ -48,6 +41,14 @@ const postCreateOrdertHandler = async (req, res) => {
             },
             notification_url: "https://6172-186-113-173-20.ngrok.io/webHook"
     
+        });
+
+        const createOrder = await Orders.create({
+            idBuyer, 
+            quantity, 
+            price, 
+            idEvent,
+            idMercadoPago: result.body.id
         });
     
         console.log(result)
