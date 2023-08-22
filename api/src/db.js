@@ -45,11 +45,17 @@ const { Event, Role, Sale, User, Review, InvalidToken } = sequelize.models;
 User.belongsToMany(Role, {through: "User_Role"}); 
 Role.belongsToMany(User, {through: "User_Role"});
 
-User.hasMany(Review);
-Review.belongsTo(User);
+// Toca revisar https://sequelize.org/docs/v6/advanced-association-concepts/polymorphic-associations/
+// User.hasMany(Review);
+// Review.belongsTo(User);
 
-Event.hasMany(Review);
-Review.belongsTo(Event);
+// Event.hasMany(Review);
+// Review.belongsTo(Event);
+
+User.hasMany(Event, {
+  foreignKey: 'sellerId'
+});
+Event.belongsTo(User, {foreignKey: 'sellerId'});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

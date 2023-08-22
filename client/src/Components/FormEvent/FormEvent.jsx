@@ -9,7 +9,7 @@ import { styles } from "./formEventStyle";
 export default function FormEvent() {
 
 
-    const { country, eventTypes } = useSelector(state => state)
+    const { country, eventTypes, userSession } = useSelector(state => state)
     const dispatch = useDispatch()
 
     const [event, setEvent] = useState({
@@ -42,6 +42,9 @@ export default function FormEvent() {
     const handleCreate = async (e) => {
         e.preventDefault();
         if (Object.keys(error).length === 0 && event.name.length > 0) {
+
+            const eventToSend = {...event, sellerId: userSession.id};
+
             dispatch(createEvent(event))
             setEvent({ 
             name: '',

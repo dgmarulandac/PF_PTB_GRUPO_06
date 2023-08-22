@@ -66,6 +66,11 @@ module.exports = (sequelize) => {
         currency: {
             type:DataTypes.ENUM('COP', 'ARS', 'VEF', 'UYU'),
             allowNull:false
+        },
+
+        sellerId: {
+            type: DataTypes.UUID,
+            allowNull: false
         }
     });
 };
