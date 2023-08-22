@@ -61,6 +61,11 @@ module.exports = (sequelize) => {
         ticketPrice:{
             type: DataTypes.INTEGER,
             allowNull:false
+        },
+
+        currency: {
+            type:DataTypes.ENUM('COP'),
+            allowNull:false
         }
     });
 };
