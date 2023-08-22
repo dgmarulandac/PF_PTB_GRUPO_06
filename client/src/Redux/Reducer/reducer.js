@@ -4,6 +4,7 @@ import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN,
 const initialState = {
     country: ['Colombia', 'Venezuela', 'Argentina', 'Uruguay'],
     eventTypes: ['Musical', 'Deportivo', 'Artistico', 'Otro'],
+    moneyTypes:['COP', 'ARS', 'VEF', 'UYU'],
     events: [],
     detail: {},
     userSesion: {},
