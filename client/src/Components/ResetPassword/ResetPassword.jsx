@@ -49,7 +49,7 @@ export default function ResetPassword() {
             if( pasa ) pasa = err.length === 0;
         });
         if( pasa ) {
-            axios.post("/verify", {email: emails.email1})
+            axios.post("/password/verify", {email: emails.email1})
             .then( data => {
                 Swal.fire({
 					icon: "success", 

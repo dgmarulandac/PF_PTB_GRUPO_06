@@ -44,7 +44,7 @@ export default function RecoverPassword() {
             if( pasa ) pasa = err.length === 0;
         });
         if( pasa ) {
-            axios.post("/recover", {password: passwords.password1, token: token})
+            axios.post("/password/recover", {password: passwords.password1, token: token})
             .then( data => {
                 Swal.fire({
 					icon: "success", 
