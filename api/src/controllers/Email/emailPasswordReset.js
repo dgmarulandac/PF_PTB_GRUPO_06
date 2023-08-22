@@ -1,5 +1,5 @@
 const { transporter } = require ("../../config/mailer");
-const { mainHtmlContent } = require ("../../config/mainHtmlContent");
+const mainHtmlContent = require ("../../config/mainHtmlContent");
 
 const sendPasswordReset = async ( token, email ) => {
     await transporter.sendMail({
@@ -9,7 +9,7 @@ const sendPasswordReset = async ( token, email ) => {
         text: "¿Te olvidaste la contraseña?",
         html: mainHtmlContent(
             "Recuperar contraseña",
-            `https://pf-ptb-grupo-06.vercel.app/recover/${token}`
+            `https://pf-ptb-grupo-06.vercel.app/passwordRecover/${token}`
         ),
     });
 };

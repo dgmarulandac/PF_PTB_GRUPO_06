@@ -29,4 +29,4 @@ const postVerify = async (email) => {
 	return("Correo encontrado, enviando correo de reincio de contraseña.")
 };
 
-module.exports = { postVerify };
+module.exports = postVerify;
