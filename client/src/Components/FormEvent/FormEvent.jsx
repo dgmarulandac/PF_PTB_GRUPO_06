@@ -9,7 +9,9 @@ import { styles } from "./formEventStyle";
 export default function FormEvent() {
 
 
-    const { country, eventTypes, moneyTypes } = useSelector(state => state)
+
+    const { country, eventTypes, moneyTypes, userSession } = useSelector(state => state)
+
     const dispatch = useDispatch()
 
     const [event, setEvent] = useState({
@@ -42,22 +44,24 @@ export default function FormEvent() {
     const handleCreate = async (e) => {
         e.preventDefault();
         if (Object.keys(error).length === 0 && event.name.length > 0) {
-            await dispatch(createEvent(event))
-            setEvent({
-                name: '',
-                description: '',
-                date: '',
-                hour: '',
-                cantTickets: '',
-                address: '',
-                country: '',
-                image: '',
-                eventType: '',
-                ticketPrice: '',
-                result: '✅ Evento creado con exito'
-            })
-        } else {
-            setEvent({ ...event, result: '⚠️ Completa los campos' })
+
+            const eventToSend = {...event, idSeller: userSession.id};
+
+            dispatch(createEvent(eventToSend))
+            setEvent({ 
+            name: '',
+            description: '',
+            date: '',
+            hour: '',
+            cantTickets: '',
+            address: '',
+            country: '',
+            image: '',
+            eventType: '',
+            ticketPrice: '', 
+            result: '✅ Evento creado con exito' })
+        }else{
+            setEvent({...event, result: '⚠️ Completa los campos'})
         }
     }
 
@@ -196,7 +200,8 @@ export default function FormEvent() {
                         </div>
                     </div>
 
-                    {event.result && <p className={event.result[0] == '✅' ? styles.exito : styles.error}>{event.result}</p>}
+                    {event.result && <p className={event.result[0] === '✅' ? styles.exito : styles.error}>{event.result}</p>}
+
                     <button type="submit" className={styles.button}>Crear Evento</button>
                 </form>
             </div>

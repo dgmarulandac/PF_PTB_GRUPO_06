@@ -2,7 +2,7 @@ const { User } = require("../../db");
 const jwt = require("jsonwebtoken");
 const {SECRET} = process.env;
 
-postAuth = async (token) => {
+const postAuth = async (token) => {
     // verify jwt
 
     let userId = "";

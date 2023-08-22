@@ -15,7 +15,6 @@ axios.defaults.baseURL = 'https://pf-grupo06-back.onrender.com';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-
     <React.StrictMode>
       <BrowserRouter>
         <App />

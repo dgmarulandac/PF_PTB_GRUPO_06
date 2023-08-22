@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('Orders', {
+    sequelize.define('Order', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4, 
@@ -10,11 +10,9 @@ module.exports = (sequelize) => {
           },
 
         idBuyer:{
-            type: DataTypes.STRING,
+            type: DataTypes.UUID,
             allowNull:false
         },
-
-        
 
         quantity:{
             type: DataTypes.INTEGER,
@@ -27,9 +25,8 @@ module.exports = (sequelize) => {
 
         },
       
-        
         idEvent: {
-            type: DataTypes.STRING,
+            type: DataTypes.UUID,
             allowNull:false
         },
 
@@ -37,7 +34,5 @@ module.exports = (sequelize) => {
             type:DataTypes.STRING,
             allowNull:false
         }
-
-
     });
 };
