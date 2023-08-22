@@ -42,7 +42,7 @@ export default function FormEvent() {
     const handleCreate = async (e) => {
         e.preventDefault();
         if (Object.keys(error).length === 0 && event.name.length > 0) {
-            await dispatch(createEvent(event))
+            dispatch(createEvent(event))
             setEvent({ 
             name: '',
             description: '',
