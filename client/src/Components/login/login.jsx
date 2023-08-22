@@ -62,6 +62,7 @@ export default function Login() {
                     <button className={styles.button}>Iniciar Sesión</button>
                 </form>
                 <p className={styles.p}>¿No tienes cuenta?, <Link style={{ textDecoration: "none", color: "rgb(191, 132, 29)" }} to='/register'> Registrate </Link></p>
+                <p className={styles.p}>¿Olvidaste tu contraseña?, <Link style={{ textDecoration: "none", color: "rgb(191, 132, 29)" }} to='/passwordReset'> Recupera tu contraseña </Link></p>
             </div>
             {/* <section>
                 <div className={styles.center}>
