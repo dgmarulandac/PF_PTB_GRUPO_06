@@ -52,12 +52,14 @@ Role.belongsToMany(User, {through: "User_Role"});
 // Event.hasMany(Review);
 // Review.belongsTo(Event);
 
-User.hasMany(Event, {
-  foreignKey: 'idSeller'
-});
+User.hasMany(Event, {foreignKey: 'idSeller'});
 Event.belongsTo(User, {foreignKey: 'idSeller'});
 
-Event.hasMany(Order, {foreignKey: 'eventId'})
+Event.hasMany(Order, {foreignKey: 'idEvent'});
+Order.belongsTo(Event, {foreignKey: 'idEvent'});
+
+User.hasMany(Order, {foreignKey: 'idBuyer'});
+Order.belongsTo(User, {foreignKey: 'idBuyer'});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

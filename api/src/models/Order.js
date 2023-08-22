@@ -10,11 +10,10 @@ module.exports = (sequelize) => {
           },
 
         idBuyer:{
-            type: DataTypes.STRING,
+            type: DataTypes.UUID,
             allowNull:false
         },
 
-        
         quantity:{
             type: DataTypes.INTEGER,
             allowNull:false
