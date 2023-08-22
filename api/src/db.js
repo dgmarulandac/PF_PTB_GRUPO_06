@@ -11,9 +11,9 @@ const sequelize = new Sequelize(`${DB_URL_DEPLOY}`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed,
   dialectOptions: {
-    ssl: {
-      require: true
-    }
+    // ssl: {
+    //   require: true
+    // }
   }
 });
 
@@ -60,6 +60,9 @@ Order.belongsTo(Event, {foreignKey: 'idEvent'});
 
 User.hasMany(Order, {foreignKey: 'idBuyer'});
 Order.belongsTo(User, {foreignKey: 'idBuyer'});
+
+Order.hasOne(Sale, {foreignKey: 'idOrder'});
+Sale.belongsTo(Order, {foreignKey: 'idOrder'});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
