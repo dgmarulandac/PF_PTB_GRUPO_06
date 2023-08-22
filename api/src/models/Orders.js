@@ -31,6 +31,11 @@ module.exports = (sequelize) => {
         idEvent: {
             type: DataTypes.STRING,
             allowNull:false
+        },
+
+        idMercadoPago: {
+            type:DataTypes.STRING,
+            allowNull:false
         }
 
 
