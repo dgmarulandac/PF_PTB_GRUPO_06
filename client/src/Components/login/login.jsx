@@ -3,8 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import userValidations from "../../functions/Validations/loginValidation/validation";
 import { useSelector, useDispatch } from "react-redux";
 import { postLogin } from "../../Redux/Action/action";
-import video from "../../Utils/videos/backgroundLogin.mp4"
-// import styles from './login.module.css'
 import { styles } from "./loginStyle";
 
 export default function Login() {
@@ -16,6 +14,12 @@ export default function Login() {
         password: ''
     })
     const [errors, setErrors] = useState([])
+
+    useEffect(() => {
+        if (Object.keys(userSesion).length > 0) {
+            navigate('/')
+        }
+    }, [userSesion])
 
     function handleForm(e) {
         const value = e.currentTarget.value
@@ -36,11 +40,6 @@ export default function Login() {
             dispatch(postLogin(userToSend));
         }
     };
-    useEffect(() => {
-        if (Object.keys(userSesion).length > 0) {
-            navigate('/')
-        }
-    }, [userSesion])
     
     return (
         <div className={styles.body}>
