@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import style from './card.module.css'
+import * as styles from "./styles"
 
 export default function Card({ event }) {
     let { name, date, hour, adress, image, id, eventType, country } = event
@@ -10,20 +10,18 @@ export default function Card({ event }) {
       ];
     date = `${monthsInLetters[new Date(date).getMonth()]} ${new Date(date).getDate()+1} ${new Date(date).getFullYear()}`
     return (
-        <div>
+        <div className={styles.container}>
             {id &&
-                <Link to={`/event/${id}`} className={style.container}>
+                <Link to={`/event/${id}`} >
                     <div>
-                        <img className={style.image} src={image} alt="imagen event"/>
+                        <img className={styles.image} src={image} alt="imagen event"/>
                     </div>
-                    <div className={style.info}>
-                        <p className={style.location}>{adress} - {country} <span> /{eventType}</span></p>
-                        <h2>{name}</h2>
-                        <p>{date} - {hour}</p>
+                    <div className={styles.div}>
+                        <h5 className={styles.name}>{name}</h5>
+                        <p className={styles.p}>{adress} - {country} <span className={styles.span}> /{eventType}</span></p>
+                        
+                        <p className={styles.p}>{date} - {hour}</p>
                     </div>
-                    <button>
-                        comprar
-                    </button>
                 </Link>
             }
 

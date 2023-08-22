@@ -3,8 +3,9 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
 import { postLogin } from './Redux/Action/action';
+import { postAuth } from './Redux/Action/action';
 import { useDispatch } from "react-redux";
-
+import axios from "axios";
 //Components
 import Home from './Components/Home/Home';
 import Register from './Components/register/register';
@@ -18,6 +19,9 @@ import FAQ from './Components/FAQs/FAQs';
 import MisEventos from './Pages/vendedor/MisEventos';
 import MisVentas from './Pages/vendedor/MisVentas';
 import EditEvent from './Components/EditEvent/EditEvent';
+import Error404 from './Components/Error 404/Error404';
+import ResetPassword from './Components/ResetPassword/ResetPassword';
+import RecoverPassword from './Components/RecoverPassword/RecoverPassword';
 
 
 function App() {
@@ -25,10 +29,21 @@ function App() {
   const dispatch = useDispatch();
   function handleCallbackResponse(response) {
     const user = { platform: "google", jwt: response.credential };
-    dispatch( postLogin(user) );
+    dispatch(postLogin(user));
   }
 
-  useEffect(()=>{
+  useEffect(() => {
+    // Auth token
+    if (localStorage.getItem("jwt")) {
+      const userToken = localStorage.getItem("jwt")
+      axios.defaults.headers.common = {
+        'x-access-token': userToken
+      }
+      dispatch(postAuth(userToken))
+    }
+  }, [])
+
+  useEffect(() => {
     //Auth de google - global google
     /* global google */
     google.accounts.id.initialize({
@@ -37,24 +52,28 @@ function App() {
     });
 
     google.accounts.id.prompt();
-  },[])
+  }, [])
 
   return (
     <div className="App">
-      <Nav /> 
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/login' element={<Login />}/> 
-          <Route path='/register' element={<Register />} />
-          <Route path='/event/:id' element={<Detail/>}/>
-          <Route path='/createEvent' element={<FormEvent/>}/>
-          <Route path='/TaC' element={<TermsAndConditions/>}/>
-          <Route path='/FAQ' element={<FAQ/>}/>
-          <Route path='/mis-ventas' element={<MisVentas/>}/>
-          <Route path='/mis-eventos' element={<MisEventos/>}/>
-          <Route path='/editar-evento/:id' element={<EditEvent/>}/> 
-        </Routes>
-      <Footer/>
+     <Nav />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/event/:id' element={<Detail />} />
+        <Route path='/createEvent' element={<FormEvent />} />
+        <Route path='/TaC' element={<TermsAndConditions />} />
+        <Route path='/FAQ' element={<FAQ />} />
+        <Route path='/passwordReset' element={<ResetPassword/>}/>
+        <Route path='/passwordRecover/:token' element={<RecoverPassword/>}/>
+        <Route path='/mis-ventas' element={<MisVentas/>}/>
+        <Route path='/mis-eventos' element={<MisEventos/>}/>
+        <Route path='/editar-evento/:id' element={<EditEvent/>}/> 
+        <Route path='/*' element={<Error404 />} />
+      </Routes>
+      <Footer />
+
     </div>
   );
 }
