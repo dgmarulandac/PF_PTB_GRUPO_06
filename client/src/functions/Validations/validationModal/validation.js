@@ -1,3 +1,6 @@
 export default function validation(value, ticketsTotal){
-    if(value > ticketsTotal) return '⚠️ no hay suficientes tickets'
+    const error = {};
+    if(value > ticketsTotal ) error['cantTickets'] = '⚠️ no hay suficientes tickets'
+
+    return error
 }
