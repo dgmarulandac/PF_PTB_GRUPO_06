@@ -27,8 +27,6 @@ import SellerOrAdminElement from './Utils/AutorizationComponents/SellerOrAdminEl
 import LoggedElement from './Utils/AutorizationComponents/LoggedElement';
 
 
-
-import MisEventos from './Pages/vendedor/MisEventos';
 import MisVentas from './Pages/vendedor/MisVentas';
 
 
@@ -79,8 +77,8 @@ function App() {
         <Route path='/passwordRecover/:token' element={<NotLoggedElement><RecoverPassword/></NotLoggedElement>}/>
         <Route path='/TaC' element={<LoggedElement><TermsAndConditions /></LoggedElement>} />
         <Route path='/createEvent' element={<SellerOrAdminElement><FormEvent /></SellerOrAdminElement>} />
-        <Route path='/mis-eventos' element={<SellerOrAdminElement><EventsDashboard/></SellerOrAdminElement>}/>
-        <Route path='/editar-evento/:id' element={<SellerOrAdminElement><EditEvent/></SellerOrAdminElement>}/> 
+        <Route path='/myEvents' element={<SellerOrAdminElement><EventsDashboard/></SellerOrAdminElement>}/>
+        <Route path='/editEvent/:id' element={<SellerOrAdminElement><EditEvent/></SellerOrAdminElement>}/> 
       </Routes>
       <Footer/>
     </div>

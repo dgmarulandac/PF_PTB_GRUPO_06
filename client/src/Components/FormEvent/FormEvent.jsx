@@ -24,7 +24,8 @@ export default function FormEvent() {
         country: '',
         image: '',
         eventType: '',
-        ticketPrice: ''
+        ticketPrice: '',
+        currency: 'COP'
     })
     const [error, setError] = useState({})
 
@@ -188,7 +189,7 @@ export default function FormEvent() {
                             <input type="number" name="ticketPrice" id="10"
                             value={event.ticketPrice} onChange={handleChange}
                             class={styles.input_price} placeholder="ejem: 600" />
-                            <select className={styles.select_m} name='currency' onChange={handleChange}>
+                            <select className={styles.select_m} value={event.curency} name='currency' onChange={handleChange}>
                                 <option value="">-Moneda-</option>
                                 {moneyTypes.map((m, i) => {
                                     return (<option value={m} key={i}>{m}</option>)
