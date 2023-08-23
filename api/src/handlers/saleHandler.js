@@ -1,6 +1,16 @@
 const getSaleById = require("../controllers/Sale/getSales");
-const {Order, Event, Sale, User} = require ('../db')
+const getMySales = require("../controllers/Sale/getMySales");
+const {Order, Event, User} = require ('../db')
 
+const getMySalesHandler = async (req, res) => {
+    try {
+        const id = req.id;
+        const response = await getMySales( id );
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(404).json({error: error.message});
+    }
+};
 
 const getSaleByIdHandler = async (req, res) => {
     const { id } = req.params;  
@@ -37,4 +47,4 @@ const getSaleByIdHandler = async (req, res) => {
     }
 };
 
-module.exports = getSaleByIdHandler;
+module.exports = {getSaleByIdHandler, getMySalesHandler};
