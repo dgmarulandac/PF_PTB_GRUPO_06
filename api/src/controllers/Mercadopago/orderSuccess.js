@@ -7,6 +7,8 @@ const orderSuccess = async (req, res) => {
 
    const {preference_id, collection_status, status, payment_type } = req.params;
 
+   const isSuccesful = collection_status === status;
+
    const order = await Order.findOne({where: {
       idMercadoPago: preference_id
    }});
@@ -16,7 +18,7 @@ const orderSuccess = async (req, res) => {
    event.cantTickets = event.cantTickets - order.quantity;
    event.save();
 
-   const sale = await Sale.create( {idOrder: order.id, paymentMethod:payment_type, isSuccesful: true } );
+   const sale = await Sale.create( {idOrder: order.id, paymentMethod:payment_type, isSuccesful: isSuccesful } );
 
    // correo de ceci
    //emailSuccessPayment();
