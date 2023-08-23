@@ -50,7 +50,7 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
+    <div className="App bg-gray-900">
       <Nav />
       <Routes>
         <Route path='/' element={<Home />} />
@@ -62,7 +62,7 @@ function App() {
         <Route path='/FAQ' element={<FAQ />} />
         <Route path='/*' element={<Error404 />} />
       </Routes>
-      <Footer />
+      <Footer/>
     </div>
   );
 }
