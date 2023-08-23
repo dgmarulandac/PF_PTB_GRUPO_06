@@ -51,9 +51,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-      if (Object.keys(userSesion).length > 0) {
-          navigate('/')
-      }
+        navigate('/')
     }, [userSesion])
 
   return (
