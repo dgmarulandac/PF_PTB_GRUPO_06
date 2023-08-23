@@ -5,7 +5,6 @@ const {Order, Event, Sale} = require ('../../db');
 
 const orderSuccess = async (req, res) => {
 
-   console.log(req.query);
    const {preference_id, collection_status, status, payment_type } = req.query;
 
    const isSuccesful = collection_status === status;
@@ -15,8 +14,6 @@ const orderSuccess = async (req, res) => {
          idMercadoPago: preference_id
       }
    });
-
-   
 
    const event = await Event.findByPk(order.idEvent);
 
