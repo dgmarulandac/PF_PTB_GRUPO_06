@@ -28,7 +28,7 @@ export default function Home() {
   }, [events]);
 
   useEffect(() => {
-    setEventosAMostrar(events && events.slice(primerIndex, ultimoIndex));
+    setEventosAMostrar(events.length && events.slice(primerIndex, ultimoIndex));
   }, [events, currentPage]);
 
   const slides = [
@@ -42,10 +42,10 @@ export default function Home() {
       <Slider />
       <EventFilter />
       <div className={styles.cardcontainer}>
-        {eventosAMostrar.length === 0 ? (
+        {!eventosAMostrar ? (
           <h2 className={styles.error}>No existe ningún evento con estas caracteristicas.</h2>
         ) : (
-          eventosAMostrar.map((event) => {
+          eventosAMostrar && eventosAMostrar.map((event) => {
             return <Card event={event} key={event.id} />;
           })
         )}

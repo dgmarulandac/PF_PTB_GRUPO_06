@@ -15,15 +15,21 @@ import Nav from './Components/Nav/Nav';
 import Footer from './Components/Footer/Footer';
 import TermsAndConditions from './Components/TermsAndConditions/TermsAndConditions';
 import FAQ from './Components/FAQs/FAQs';
-import MisEventos from './Pages/vendedor/MisEventos';
-import MisVentas from './Pages/vendedor/MisVentas';
 import EditEvent from './Components/EditEvent/EditEvent';
 import Error404 from './Components/Error 404/Error404';
 import ResetPassword from './Components/ResetPassword/ResetPassword';
 import RecoverPassword from './Components/RecoverPassword/RecoverPassword';
+import EventsDashboard from './Components/EventsDashboard/EventsDashboard';
+
+//Componentes Autorizacion
 import NotLoggedElement from './Utils/AutorizationComponents/NotLoggedElement';
 import SellerOrAdminElement from './Utils/AutorizationComponents/SellerOrAdminElement';
 import LoggedElement from './Utils/AutorizationComponents/LoggedElement';
+
+
+
+import MisEventos from './Pages/vendedor/MisEventos';
+import MisVentas from './Pages/vendedor/MisVentas';
 
 
 function App() {
@@ -73,8 +79,7 @@ function App() {
         <Route path='/passwordRecover/:token' element={<NotLoggedElement><RecoverPassword/></NotLoggedElement>}/>
         <Route path='/TaC' element={<LoggedElement><TermsAndConditions /></LoggedElement>} />
         <Route path='/createEvent' element={<SellerOrAdminElement><FormEvent /></SellerOrAdminElement>} />
-        <Route path='/mis-ventas' element={<SellerOrAdminElement><MisVentas/></SellerOrAdminElement>}/>
-        <Route path='/mis-eventos' element={<SellerOrAdminElement><MisEventos/></SellerOrAdminElement>}/>
+        <Route path='/mis-eventos' element={<SellerOrAdminElement><EventsDashboard/></SellerOrAdminElement>}/>
         <Route path='/editar-evento/:id' element={<SellerOrAdminElement><EditEvent/></SellerOrAdminElement>}/> 
       </Routes>
       <Footer/>
