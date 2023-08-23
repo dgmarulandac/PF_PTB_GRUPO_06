@@ -43,7 +43,7 @@ export default function Home() {
       <EventFilter />
       <div className={styles.cardcontainer}>
         {eventosAMostrar.length === 0 ? (
-          <h2 className={styles.error}>No existe ningún evento con ese nombre.</h2>
+          <h2 className={styles.error}>No existe ningún evento con estas caracteristicas.</h2>
         ) : (
           eventosAMostrar.map((event) => {
             return <Card event={event} key={event.id} />;
