@@ -7,7 +7,7 @@ const Orders = require ('../../db');
 const orderSuccess = async (req, res) => {
 
     
-   res.send ('Operation Succes')
+   res.send (req.body)
 }
     
 
