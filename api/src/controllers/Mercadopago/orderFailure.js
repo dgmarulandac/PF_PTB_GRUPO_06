@@ -13,9 +13,6 @@ const orderFailure = async (req, res) => {
    });
 
    const sale = await Sale.create( {idOrder: order.id, paymentMethod:payment_type, isSuccesful: false } );
-
-   // correo de ceci
-   //emailSuccessPayment();
     
    res.status(301).redirect(`https://pf-ptb-grupo-06.vercel.app/sales/${sale.id}`);
 }
