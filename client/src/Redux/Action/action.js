@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, GET_MY_EVENTS, PUT_EVENT } from "./action-type";
+import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT } from "./action-type";
 import Swal from "sweetalert2";
 
 export const getAllEvent = () => {
@@ -141,4 +141,22 @@ export const logOut = () => {
         type: LOG_OUT,
         payload: {}
     };
+}
+
+export const orderPay = (order) => {
+    return (dispatch)=>{
+        axios.post('orders/createOrder', order).then(data =>{
+            dispatch({
+                type: ORDER_PAY,
+                payload: data
+            }).catch(reason => {
+                Swal.fire({
+                    title: "Error",
+                    text: `${reason.response.data.error}`,
+                    icon: "error",
+                });
+                dispatch({ type: ORDER_PAY, payload: {} })
+            });
+        })
+    }
 }

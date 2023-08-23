@@ -1,4 +1,4 @@
-import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, GET_MY_EVENTS, PUT_EVENT } from "../Action/action-type";
+import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT } from "../Action/action-type";
 
 
 const initialState = {
@@ -8,8 +8,9 @@ const initialState = {
     events: [],
     detail: {},
     userSesion: {},
+    modalOn: false,
     myEvents: [],
-    modalOn: false
+    preferenceId: false,
 }
 
 const rootReducer = (state = initialState, action)=>{
@@ -33,6 +34,8 @@ const rootReducer = (state = initialState, action)=>{
             return {...state, myEvents: payload};
         case PUT_EVENT:
             return {...state, myEvents: [...state.myEvents.filter( event => { return event.id !== payload.id } ), payload], events: [...state.events.filter( event => { return event.id !== payload.id } ), payload]};
+        case ORDER_PAY:
+            return {...state, preferenceId: payload};
         default: 
             return state;
     }

@@ -34,7 +34,7 @@ export default function Modal() {
     const prueba = async () => {
         try {
             const response = await axios.post('orders/createOrder', order)
-            setUrlMp(response.data)
+            setUrlMp(response.data.response.init_point)
             console.log(response)
         } catch (error) {
             setError({ ...error, post: error.response.data.error })
@@ -51,7 +51,6 @@ export default function Modal() {
             .catch(reason =>
                 setError({ ...error, petition: reason.response.data.error }))
         setEvent({})
-
         return () => {
             setEvent({})
             setError('')
@@ -76,14 +75,14 @@ export default function Modal() {
                             <div className="text-start">
                                 <span className="text-lg">{event.name}/ </span>
                                 <span className="text-xs m-0">{event.ticketPrice}{event.currency}</span>
-                                {order.quantity && <p className="text-xs m-0">Tickets a comprar: {order.quantity}</p>}
-                                {order.price && <p className="text-xs m-0">Total a pagar: {order.price}</p>}
+                                {order.quantity > 0 && <p className="text-xs m-0">Tickets a comprar: {order.quantity}</p>}
+                                {order.price > 0 && <p className="text-xs m-0">Total a pagar: {order.price}</p>}
                             </div>
                         </div>
                         {urlMp ? (
                             <div>
                                 <div>
-                                    <p className={styles.p}>Metodo de Pago</p>
+                                    <p className={styles.p}>Metodos de Pago</p>
                                 </div>
                                 <div className="m-5 mb-2">
                                     <a id='mercadoPago' href={urlMp} target="_blank">
@@ -97,7 +96,6 @@ export default function Modal() {
                                 <label className={styles.label}>Seleccione la cantidad de entradas que desea comprar</label>
                                 <input className={styles.input} type="number" placeholder="ejem 1,2" value={ticket} onChange={handleChange} />
                                 {error.cantTickets && <p className={styles.error}>{error.cantTickets}</p>}
-                                <p>Total: {order.price}</p>
                                 <button className={styles.button} onClick={prueba}>Confirmar orden</button>
                             </div>
                         )}
