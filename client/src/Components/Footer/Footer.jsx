@@ -5,7 +5,7 @@ import styles from "./Footer.module.css"; // Importa tus estilos CSS aquí
 
 const Footer = () => {
   return (
-    <footer className=" bg-white dark:bg-gray-900">
+    <footer className=" bg-white dark:bg-gray-900 absolute end-0 w-screen">
       <div className={"mx-auto w-full p-4 py-6 lg:py-8"}>
         <div className={"md:flex md:justify-between"}>
           <div className={"mb-6 md:mb-0"}>
@@ -86,7 +86,7 @@ const Footer = () => {
         >
           © 2023 MiEmpresa. Todos los derechos reservados.
         </span>
-        <div className={"flex mt-4 space-x-5 sm:justify-center sm:mt-0"}>
+        <div className={"flex mt-4 space-x-5 sm:justify-center mx-5 my-1 sm:mt-0"}>
           <a
             href="#"
             className={
@@ -104,6 +104,15 @@ const Footer = () => {
           >
             <SiTwitter className={"w-4 h-4"} />
             <span className={"sr-only"}>Twitter page</span>
+          </a>
+          <a
+            href="#"
+            className={
+              "text-gray-500 hover:text-gray-900 dark:hover:text-white"
+            }
+          >
+            <SiInstagram className={"w-4 h-4"} />
+            <span className={"sr-only"}>Instagram page</span>
           </a>
         </div>
       </div>

@@ -55,8 +55,8 @@ function App() {
     }, [userSesion])
 
   return (
-    <div className="App">
-     <Nav />
+    <div className="App bg-gray-900"> 
+      <Nav />
       <Routes>
         <Route path='/*' element={<Error404 />} />
         <Route path='/' element={<Home />} />
@@ -69,8 +69,7 @@ function App() {
         <Route path='/TaC' element={<LoggedElement><TermsAndConditions /></LoggedElement>} />
         <Route path='/createEvent' element={<SellerOrAdminElement><FormEvent /></SellerOrAdminElement>} />
       </Routes>
-      <Footer />
-
+      <Footer/>
     </div>
   );
 }
