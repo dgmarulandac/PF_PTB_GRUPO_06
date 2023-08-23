@@ -61,7 +61,7 @@ function App() {
   //   }, [userSesion])
 
   return (
-    <div className="App bg-gray-900"> 
+    <div className="App bg-whithe dark:bg-fondoDark"> 
       <Nav />
       <Routes>
         <Route path='/*' element={<Error404 />} />

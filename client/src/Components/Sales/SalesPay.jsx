@@ -9,23 +9,13 @@ export default function SalesPay() {
     const { id } = useParams()
     const [result, setResult] = useState(null)
     const [error, setError] = useState({})
-
-    const handlePay = async () => {
-        try {
-            const response = await axios.get('/sales/' + id)
-            console.log(response)
-            if (response.data.isSuccesful !== null) {
-                setResult(response.data.isSuccesful)
-            }
-        } catch (error) {
-            setError({ ...error, sales: error })
-        }
-
-    }
+   
     useEffect(() => {
         axios.get('/sales/' + id)
             .then(response => setResult(response.data))
             .catch(error => setError(error))
+
+        return setResult({})
 
     }, [id])
 
@@ -39,23 +29,25 @@ export default function SalesPay() {
                     </div>
                 </div>) : (
 
-                    <div className={styles.container}>
-                        <p>Nombre del evento: {result.eventName}</p>
-                        <img src={result.eventImage} alt="" />
-                        <p>Cantidad de tickets: {result.quantity}</p>
-                        <p>Fecha: {result.date}</p>
-                        <p>Hour: {result.hour}</p>
-                        <p>Direccion: {result.address}</p>
+                    <div className="m-10">
                         {result.isSuccesful ? (
                             <div>
-                                <div>
-                                    <img src={sucess} alt="aprobado" />
+                                <p className={styles.p}>Nombre del evento: {result.eventName}</p>
+                                {/* <div className="flex justify-center">
+                                    <img src={result.eventImage} alt="evento" /> 
+                                </div> */}
+                                <p className={styles.p}>Cantidad de tickets: {result.quantity}</p>
+                                <p className={styles.p}>Fecha: {result.date}</p>
+                                <p className={styles.p}>Hour: {result.hour}</p>
+                                <p className={styles.p}>Direccion: {result.address}</p>
+                                <div className="flex justify-center">
+                                   <img src={sucess} alt="aprobado" /> 
                                 </div>
                                 <p className={styles.exito}>tu pago fue aceptado!</p>
                             </div>) : (
-                            <div>
-                                <div>
-                                    <img src={reject} alt="rechazado" />
+                            <div className={styles.info}>
+                                <div className="flex justify-center">
+                                  <img src={reject} alt="rechazado" />  
                                 </div>
                                 <p className={styles.error}>tu pago fue rechazado</p>
                             </div>
