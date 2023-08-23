@@ -1,0 +1,1 @@
+export const swiper = "bg-white dark:bg-gray-700 py-2 text-center";

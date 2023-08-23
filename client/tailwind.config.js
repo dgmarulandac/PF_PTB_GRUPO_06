@@ -7,13 +7,18 @@ module.exports = {
     extend: {
       gridTemplateRows:{
         'divForm': '0.5fr 1fr 1fr',
-        'divDesImg': '0.3fr 1fr 0.2fr' 
+        'divDesImg': '0.2fr 2fr 0.2fr',
+        'divDesModal': '0.5fr 1fr 0.5fr',
       },
       colors:{
-        'fondoDark': '#111827'
+        'fondoDark': '#111827',
+        'fondoModal' : 'rgba(0, 0, 0, 0.752)'
       },
       fontFamily:{
         'bungee': ['Bungee Shade', 'cursive']
+      },
+      gridTemplateColumns: {
+        'slider' : '0.2fr 2fr 0.2fr'
       }
 
     },

@@ -1,4 +1,5 @@
 import './App.css';
+import 'tailwindcss/tailwind.css';
 //DEPENDENCIES
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -20,6 +21,7 @@ import RecoverPassword from './Components/RecoverPassword/RecoverPassword';
 import NotLoggedElement from './Utils/AutorizationComponents/NotLoggedElement';
 import SellerOrAdminElement from './Utils/AutorizationComponents/SellerOrAdminElement';
 import LoggedElement from './Utils/AutorizationComponents/LoggedElement';
+
 
 function App() {
 
