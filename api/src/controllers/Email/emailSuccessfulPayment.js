@@ -1,5 +1,5 @@
 const { transporter } = require("../../config/mailer");
-const QRCode = require('qrcode');
+const generateQRCode = require("../../config/generateQRCode"); // Import the QR code generator
 
 const emailSuccessfulPayment = async ({ name, eventName, email, eventImage, price, quantity, currency, date, hour, address, country }) => {
   const qrCodeDataURL = await QRCode.toDataURL(JSON.stringify({ eventName, date, hour, address }));
@@ -11,8 +11,7 @@ const emailSuccessfulPayment = async ({ name, eventName, email, eventImage, pric
     subject: " PAGO EXITOSO ", // Subject line
 
     html: `
-    <img src="{pagoexitoso.jpg}" alt="Pago Exitoso" width="200"> 
-
+    
     <h1> ${name}, Le informamos que su Pago ha sido exitoso 🎉</h1>
     
     <h2>Ticket de Venta:</h2>
