@@ -16,9 +16,7 @@ const orderSuccess = async (req, res) => {
       }
    });
 
-   where: {
-			token: token
-		}
+   
 
    const event = await Event.findByPk(order.idEvent);
 
