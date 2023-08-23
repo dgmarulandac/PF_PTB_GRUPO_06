@@ -1,5 +1,6 @@
 const {getEventFilterController} = require('../controllers/Event/getEventWithFilter')
 const getEventById = require("../controllers/Event/getEventById");
+const getMyEvents = require("../controllers/Event/getMyEvents");
 const {Event} = require('../db.js');
 
 
@@ -20,6 +21,16 @@ const getEventByIdHandler = async (req, res) => {
         res.status(200).json(eventById);
     } catch (error) {
         res.status(404).send(error.message)
+    }
+};
+
+const getMyEventHandler = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const events = await getMyEvents(id,req.id);
+        res.status(200).json(events);
+    } catch (error) {
+        res.status(404).send(error.message);
     }
 };
 
@@ -109,4 +120,4 @@ const putEventHandler = async (req, res, next) => {
     }
     
 
-module.exports = { getEventHandler, getEventByIdHandler, postCreateEventHandler, putEventHandler};
+module.exports = { getEventHandler, getEventByIdHandler, postCreateEventHandler, putEventHandler, getMyEventHandler};

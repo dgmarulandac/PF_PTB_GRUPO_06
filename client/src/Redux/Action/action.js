@@ -79,7 +79,7 @@ export const getMyEvents = (id) => {
 
 export const putEvent = (id, event) => {
     return function (dispatch) {
-        axios.put(`/events/edit/${id}`, event)
+        axios.put(`/events/updateEvent/${id}`, event)
             .then(data => dispatch({ type: PUT_EVENT, payload: data.data }))
             .catch(reason => {
                 Swal.fire({
