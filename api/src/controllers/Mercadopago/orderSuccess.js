@@ -1,7 +1,7 @@
 require('dotenv').config();
 var mercadopago = require('mercadopago');
-const {Order, Event, Sale} = require ('../../db');
-// const emailSuccessPayment = require( '../Email/emailSuccessPayment' );
+const {Order, Event, Sale, User} = require ('../../db');
+const emailSuccessfulPayment = require( '../Email/emailSuccessfulPayment' );
 
 const orderSuccess = async (req, res) => {
 
@@ -15,6 +15,7 @@ const orderSuccess = async (req, res) => {
       }
    });
 
+   const user = await User.findByPk(order.idBuyer);
    const event = await Event.findByPk(order.idEvent);
 
    event.cantTickets = event.cantTickets - order.quantity;
@@ -22,8 +23,20 @@ const orderSuccess = async (req, res) => {
 
    const sale = await Sale.create( {idOrder: order.id, paymentMethod:payment_type, isSuccesful: isSuccesful } );
 
-   // correo de ceci
-   //emailSuccessPayment();
+   const emailData = {
+      name: user.name,
+      email: user.email,
+      eventName: event.name,
+      eventImage: event.image,
+      price: order.price,
+      quantity: order.quantity,
+      currency: event.currency,
+      date: event.date,
+      hour: event.hour,
+      address: event.address,
+      country: event.country
+   }
+   await emailSuccessfulPayment(emailData);
     
    res.status(301).redirect(`https://pf-ptb-grupo-06.vercel.app/sales/${sale.id}`);
 }

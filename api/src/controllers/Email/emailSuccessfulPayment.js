@@ -2,7 +2,7 @@ const { transporter } = require("../../config/mailer");
 const QRCode = require('qrcode');
 
 const emailSuccessfulPayment = async ({ name, eventName, email, eventImage, price, quantity, currency, date, hour, address, country }) => {
-const qrCodeDataURL = await QRCode.toDataURL(JSON.stringify({ eventName, date, hour, address }));
+  const qrCodeDataURL = await QRCode.toDataURL(JSON.stringify({ eventName, date, hour, address }));
 
   // send mail with defined transport object
   await transporter.sendMail({

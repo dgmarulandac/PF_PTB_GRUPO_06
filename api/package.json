@@ -23,6 +23,7 @@
     "nodemailer": "^6.9.4",
     "pg": "^8.11.2",
     "pg-hstore": "^2.3.4",
+    "qrcode": "^1.5.3",
     "sequelize": "^6.32.1"
   },
   "devDependencies": {
