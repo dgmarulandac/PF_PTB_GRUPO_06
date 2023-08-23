@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getMyEvents } from "../../Redux/Action/action";
+import { getMyEvents, getMySales } from "../../Redux/Action/action";
 import { Link } from "react-router-dom";
 import Card from "../Card/Card";
 import SalesChart from "../SalesChart/SalesChart";
@@ -11,8 +11,9 @@ const EventsDashboard = () => {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.userSesion);
     const events = useSelector((state) => state.myEvents);
+    const sales = useSelector((state) => state.mySales);
 
-    const sales = [
+    const sales1 = [
         { month: 'Enero', sales: 1500 },
         { month: 'Febrero', sales: 1800 },
         { month: 'Marzo', sales: 2100 },
@@ -21,6 +22,7 @@ const EventsDashboard = () => {
 
     useEffect(() => {
         dispatch(getMyEvents(user.id));
+        dispatch(getMySales());
     }, []);
 
 
@@ -28,7 +30,7 @@ const EventsDashboard = () => {
         <div>
             <h1 className={styles.error}>Mis Ventas</h1>
             <div>
-                <SalesChart sales={sales} />
+                <SalesChart sales={sales1} />
             </div>
             <h1 className={styles.error}>Mis Eventos</h1>
             <div className={styles.cardcontainer}>
