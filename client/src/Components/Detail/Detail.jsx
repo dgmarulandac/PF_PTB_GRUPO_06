@@ -30,7 +30,7 @@ const Detail = () => {
         <div>
           <h1 className="font-bungee text-5xl bg-gradient-to-r text-transparent bg-clip-text from-blue-500 to-green-500">BOHO</h1>
           <br />
-          <p className="font-bold text-gray-600 dark:text-gray-300 mb-4"> compra tu voleta aqui</p>
+          <p className="font-bold text-gray-600 dark:text-gray-300 mb-4">compra tu boleta aqui</p>
           <br />
           <div className="bg-white dark:bg-gradient-to-r from-gray-800 to-gray-900 p-8 rounded-lg shadow-lg shadow-blue-800/50">
             <div key="0">
@@ -48,8 +48,8 @@ const Detail = () => {
                 <p> Hora: {ticketid.hour}</p>
                 <p> Descripción: {ticketid.description}</p>
                 <p> Tipo de evento: {ticketid.eventType}</p>
-                <p> Cantidad de voletos: {ticketid.cantTickets}</p>
-                <p> Precio: ${ticketid.ticketPrice}</p>
+                <p> Cantidad de boletos: {ticketid.cantTickets}</p>
+                <p> Precio: ${ticketid.ticketPrice} {ticketid.currency}</p>
               </div>
               <div>
                 <button
@@ -71,4 +71,4 @@ const Detail = () => {
   );
 }
 
-export default Detail;
+export default Detail

@@ -10,14 +10,7 @@ module.exports = (sequelize) => {
           },
 
         idOrder:{
-            type: DataTypes.STRING,
-            allowNull:false
-        },
-
-        
-
-        currency:{
-            type: DataTypes.ENUM('COP'),
+            type: DataTypes.UUID,
             allowNull:false
         },
 
@@ -25,14 +18,7 @@ module.exports = (sequelize) => {
            type:DataTypes.STRING,
            allowNull:false,
 
-        },
-      
-        
-        pasarelaId: {
-            type: DataTypes.INTEGER,
-            allowNull:false
         }
-
 
     });
 };

@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import userValidations from "../../functions/Validations/loginValidation/validation";
 import { useSelector, useDispatch } from "react-redux";
 import { postLogin } from "../../Redux/Action/action";
-import video from "../../Utils/videos/backgroundLogin.mp4"
-// import styles from './login.module.css'
 import { styles } from "./loginStyle";
 
 export default function Login() {
     const dispatch = useDispatch();
-    const userSesion = useSelector(state => state.userSesion)
-    const navigate = useNavigate()
     const [user, setUsers] = useState({
         displayName: '',
         password: ''
@@ -36,11 +32,6 @@ export default function Login() {
             dispatch(postLogin(userToSend));
         }
     };
-    useEffect(() => {
-        if (Object.keys(userSesion).length) {
-            navigate('/')
-        }
-    }, [userSesion])
     
     return (
         <div className={styles.body}>
@@ -62,23 +53,8 @@ export default function Login() {
                     <button className={styles.button}>Iniciar Sesión</button>
                 </form>
                 <p className={styles.p}>¿No tienes cuenta?, <Link style={{ textDecoration: "none", color: "rgb(191, 132, 29)" }} to='/register'> Registrate </Link></p>
+                <p className={styles.p}>¿Olvidaste tu contraseña?, <Link style={{ textDecoration: "none", color: "rgb(191, 132, 29)" }} to='/passwordReset'> Recupera tu contraseña </Link></p>
             </div>
-            {/* <section>
-                <div className={styles.center}>
-                    <article>
-                        <form onSubmit={handleSubmit} className={styles.LoginWindow}>
-                            <label htmlFor="">Usuario:</label>
-                            <input className={styles.LoginInput} onChange={handleForm} type="text" placeholder="Jorgito17" name="displayName" />
-                            <label htmlFor="">Contraseña:</label>
-                            <input className={styles.LoginInput} onChange={handleForm} type="password" placeholder="*********" name="password" />
-                            <button className={styles.button}>Iniciar Sesión</button>
-                        </form>
-                    </article>
-                    <article>
-                        <p className={styles.window}>¿No tienes cuenta?, <Link style={{ textDecoration: "none", color: "rgb(191, 132, 29)" }} to='/register'> Registrate </Link></p>
-                    </article>
-                </div>
-            </section> */}
         </div>
     )
 };

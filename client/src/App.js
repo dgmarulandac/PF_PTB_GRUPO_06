@@ -1,11 +1,10 @@
 import './App.css';
+import 'tailwindcss/tailwind.css';
 //DEPENDENCIES
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { postLogin } from './Redux/Action/action';
-import { postAuth } from './Redux/Action/action';
-import { useDispatch } from "react-redux";
-import axios from "axios";
+import { postLogin, postAuth } from './Redux/Action/action';
+import { useSelector, useDispatch } from "react-redux";
 //Components
 import Home from './Components/Home/Home';
 import Register from './Components/register/register';
@@ -22,28 +21,30 @@ import EditEvent from './Components/EditEvent/EditEvent';
 import Error404 from './Components/Error 404/Error404';
 import ResetPassword from './Components/ResetPassword/ResetPassword';
 import RecoverPassword from './Components/RecoverPassword/RecoverPassword';
+import NotLoggedElement from './Utils/AutorizationComponents/NotLoggedElement';
+import SellerOrAdminElement from './Utils/AutorizationComponents/SellerOrAdminElement';
+import LoggedElement from './Utils/AutorizationComponents/LoggedElement';
 
 
 function App() {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userSesion = useSelector(state => state.userSesion)
+
   function handleCallbackResponse(response) {
     const user = { platform: "google", jwt: response.credential };
     dispatch(postLogin(user));
   }
 
   useEffect(() => {
+
     // Auth token
     if (localStorage.getItem("jwt")) {
       const userToken = localStorage.getItem("jwt")
-      axios.defaults.headers.common = {
-        'x-access-token': userToken
-      }
       dispatch(postAuth(userToken))
     }
-  }, [])
 
-  useEffect(() => {
     //Auth de google - global google
     /* global google */
     google.accounts.id.initialize({
@@ -54,26 +55,29 @@ function App() {
     google.accounts.id.prompt();
   }, [])
 
-  return (
-    <div className="App">
-     <Nav />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/event/:id' element={<Detail />} />
-        <Route path='/createEvent' element={<FormEvent />} />
-        <Route path='/TaC' element={<TermsAndConditions />} />
-        <Route path='/FAQ' element={<FAQ />} />
-        <Route path='/passwordReset' element={<ResetPassword/>}/>
-        <Route path='/passwordRecover/:token' element={<RecoverPassword/>}/>
-        <Route path='/mis-ventas' element={<MisVentas/>}/>
-        <Route path='/mis-eventos' element={<MisEventos/>}/>
-        <Route path='/editar-evento/:id' element={<EditEvent/>}/> 
-        <Route path='/*' element={<Error404 />} />
-      </Routes>
-      <Footer />
+  useEffect(() => {
+        navigate('/')
+    }, [userSesion])
 
+  return (
+    <div className="App bg-gray-900"> 
+      <Nav />
+      <Routes>
+        <Route path='/*' element={<Error404 />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/FAQ' element={<FAQ />} />
+        <Route path='/event/:id' element={<Detail />} />
+        <Route path='/login' element={<NotLoggedElement><Login /></NotLoggedElement>} />
+        <Route path='/register' element={<NotLoggedElement><Register /></NotLoggedElement>} />
+        <Route path='/passwordReset' element={<NotLoggedElement><ResetPassword/></NotLoggedElement>}/>
+        <Route path='/passwordRecover/:token' element={<NotLoggedElement><RecoverPassword/></NotLoggedElement>}/>
+        <Route path='/TaC' element={<LoggedElement><TermsAndConditions /></LoggedElement>} />
+        <Route path='/createEvent' element={<SellerOrAdminElement><FormEvent /></SellerOrAdminElement>} />
+        <Route path='/mis-ventas' element={<SellerOrAdminElement><MisVentas/></SellerOrAdminElement>}/>
+        <Route path='/mis-eventos' element={<SellerOrAdminElement><MisEventos/></SellerOrAdminElement>}/>
+        <Route path='/editar-evento/:id' element={<SellerOrAdminElement><EditEvent/></SellerOrAdminElement>}/> 
+      </Routes>
+      <Footer/>
     </div>
   );
 }

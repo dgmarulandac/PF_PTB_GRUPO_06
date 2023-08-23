@@ -9,7 +9,9 @@ import { styles } from "./formEventStyle";
 export default function FormEvent() {
 
 
-    const { country, eventTypes } = useSelector(state => state)
+
+    const { country, eventTypes, moneyTypes, userSession } = useSelector(state => state)
+
     const dispatch = useDispatch()
 
     const [event, setEvent] = useState({
@@ -42,7 +44,10 @@ export default function FormEvent() {
     const handleCreate = async (e) => {
         e.preventDefault();
         if (Object.keys(error).length === 0 && event.name.length > 0) {
-            dispatch(createEvent(event))
+
+            const eventToSend = {...event, idSeller: userSession.id};
+
+            dispatch(createEvent(eventToSend))
             setEvent({ 
             name: '',
             description: '',
@@ -92,7 +97,7 @@ export default function FormEvent() {
                         </div>
                     </div>
                     <div className={styles.div_g}>
-                        <label className={styles.label}>imagen</label>
+                        <label className={styles.label}>Imagen</label>
                         <BrowseFileUpdate onImageUpload={handleImageUpload} />
                         <div>
                             {error.image && <p className={styles.error}>{error.image}</p>}
@@ -157,27 +162,46 @@ export default function FormEvent() {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.dual}>
-                        <div className={styles.div_ind}>
-                            <label className={styles.label}>Cantidad de Tickets</label>
-                            <input type="number" name="cantTickets" id="5"
-                                value={event.cantTickets} onChange={handleChange}
-                                className={styles.input} placeholder="ejem: 400" />
-                            <div>
-                                {error.cantTickets && <p className={styles.error}>{error.cantTickets}</p>}
-                            </div>
-                        </div>
-                        <div className={styles.div_ind}>
-                            <label className={styles.label}>Precio de los Tickets</label>
-                            <input type="number" name="ticketPrice" id="10"
-                                value={event.ticketPrice} onChange={handleChange}
-                                className={styles.input} placeholder="ejem: 600" />
-                            <div>
-                                {error.ticketPrice && <span className={styles.error}>{error.ticketPrice}</span>}
-                            </div>
+                    <div className={styles.div_ind}>
+                        <label className={styles.label}>Cantidad de Tickets</label>
+                        <input type="number" name="cantTickets" id="5"
+                            value={event.cantTickets} onChange={handleChange}
+                            className={styles.input} placeholder="ejem: 400" />
+                        <div>
+                            {error.cantTickets && <p className={styles.error}>{error.cantTickets}</p>}
                         </div>
                     </div>
-                    {event.result && <p className={event.result[0] == '✅' ? styles.exito : styles.error}>{event.result}</p>}
+
+                    {/* <label className={styles.label}>Precio de los Tickets</label>
+                    <div className='relative'>
+                        <input type="number" name="ticketPrice" id="10"
+                            value={event.ticketPrice} onChange={handleChange}
+                            className={styles.input} 
+                            placeholder="ejem: 600" />
+                        <div>
+                            {error.ticketPrice && <span className={styles.error}>{error.ticketPrice}</span>}
+                        </div>
+                    </div> */}
+                    <div className={styles.div_ind}>
+                        <label className={styles.label}>Precio de los Tickets</label>
+                        <div class="relative">
+                            <input type="number" name="ticketPrice" id="10"
+                            value={event.ticketPrice} onChange={handleChange}
+                            class={styles.input_price} placeholder="ejem: 600" />
+                            <select className={styles.select_m} name='currency' onChange={handleChange}>
+                                <option value="">-Moneda-</option>
+                                {moneyTypes.map((m, i) => {
+                                    return (<option value={m} key={i}>{m}</option>)
+                                })}
+                            </select>
+                        </div>
+                        <div>
+                            {error.ticketPrice && <span className={styles.error}>{error.ticketPrice}</span>}
+                        </div>
+                    </div>
+
+                    {event.result && <p className={event.result[0] === '✅' ? styles.exito : styles.error}>{event.result}</p>}
+
                     <button type="submit" className={styles.button}>Crear Evento</button>
                 </form>
             </div>

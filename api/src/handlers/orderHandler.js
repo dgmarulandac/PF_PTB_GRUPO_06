@@ -1,5 +1,5 @@
 require('dotenv').config();
-const {Orders} = require('../db.js');
+const {Order} = require('../db.js');
 const getOrdertById = require('../controllers/Orders/getOrderById.js');
 const {Event} = require  ('../db.js')
 var mercadopago = require('mercadopago');
@@ -43,7 +43,7 @@ const postCreateOrdertHandler = async (req, res) => {
     
         });
 
-        const createOrder = await Orders.create({
+        const createOrder = await Order.create({
             idBuyer, 
             quantity, 
             price, 

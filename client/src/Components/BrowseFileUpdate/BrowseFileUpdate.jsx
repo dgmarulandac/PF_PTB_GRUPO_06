@@ -15,7 +15,7 @@ const BrowseFileUpdate = ({ onImageUpload }) => {
 
     const submitImage = () => {
         if (!imageFile) return;
-
+        
         const data = new FormData();
         data.append("file", imageFile);
         data.append("cloud_name", "boho-pf");
@@ -42,7 +42,7 @@ const BrowseFileUpdate = ({ onImageUpload }) => {
 
     return (
         <div className={styles.containerCloud}>
-            <label className={styles.customFileUpload} htmlFor="file">
+            {/* <label className={styles.customFileUpload} htmlFor="file">
                 <div className={styles.icon}>
                     <input type="file" id="file" onChange={handleImageChange} />
                     <svg xmlns="http://www.w3.org/2000/svg" fill="" viewBox="0 0 24 24">
@@ -62,6 +62,25 @@ const BrowseFileUpdate = ({ onImageUpload }) => {
             <div className={styles.buttonContainerUpdate}>
                 <button type="button" className={style.button} onClick={removeImage}>Eliminar</button>
                 <button type="button" className={style.button} onClick={submitImage}>Confirmar</button>
+            </div> */}
+            <div>
+                <div className={style.container}>
+                    <label for="dropzone-file" className={style.cube}>
+                        <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                            <svg className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                            </svg>
+                            <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF.</p>
+                        </div>
+                        <input id="dropzone-file" type="file" className="hidden" onChange={handleImageChange}/>
+                        {imagePreview && <img src={imagePreview} className={style.img} alt="Uploaded preview" />}
+                    </label>
+                </div>
+                <div className={styles.buttonContainerUpdate}>
+                    <button type="button" className={style.button} onClick={removeImage}>Eliminar</button>
+                    <button type="button" className={style.button} onClick={submitImage}>Confirmar</button>
+                </div>
             </div>
         </div>
     );
