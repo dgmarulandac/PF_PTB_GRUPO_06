@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL } from "./action-type";
+import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT } from "./action-type";
 import Swal from "sweetalert2";
 
 export const getAllEvent = () => {
@@ -9,7 +9,7 @@ export const getAllEvent = () => {
             .catch(reason => {
                 Swal.fire({
                     title: "Error",
-                    text: `${reason.response.data.error}`,
+                    text: `${reason.response}`,
                     icon: "error",
                 });
                 dispatch({ type: GET_ALL_EVENT, payload: [] })
@@ -39,7 +39,7 @@ export const getEventsFilter = (name, eventType, country, date, order) => {
             .catch(reason => {
                 Swal.fire({
                     title: "Error",
-                    text: `${reason.response.data.error}`,
+                    text: `${reason.response}`,
                     icon: "error",
                 });
                 dispatch({ type: FILTER_GET_EVENTS, payload: {} })
@@ -65,7 +65,13 @@ export const getDetail = (id) => {
 export const postLogin = (user) => {
     return function (dispatch) {
         axios.post(`/users/login`, user)
-            .then(data => dispatch({ type: POST_LOGIN, payload: data.data }))
+            .then(data => {
+                axios.defaults.headers.common = {
+                    'x-access-token': data.data.jwt
+                };
+                localStorage.setItem('jwt', data.data.jwt);
+                return dispatch({ type: POST_LOGIN, payload: data.data });
+            })
             .catch(reason => {
                 Swal.fire({
                     title: "Error",
@@ -79,10 +85,13 @@ export const postLogin = (user) => {
 
 export const postAuth = (jwt) => {
     return function (dispatch) {
-        axios.post(`/users/auth`, jwt)
+        axios.post(`/users/auth`, {jwt})
             .then(data => {
-                localStorage.setItem('jwt', data.data.jwt)
-                return dispatch({ type: POST_LOGIN, payload: data.data })
+                axios.defaults.headers.common = {
+                    'x-access-token': jwt
+                }
+                localStorage.setItem('jwt', data.data.jwt);
+                return dispatch({ type: POST_LOGIN, payload: data.data });
             })
             .catch(reason => {
                 Swal.fire({
@@ -99,5 +108,16 @@ export const modal = (value) => {
     return {
         type: MODAL,
         payload: value
-    }
+    };
+};
+
+export const logOut = () => {
+    localStorage.removeItem('jwt');
+    axios.defaults.headers.common = {
+        'x-access-token': ''
+    };
+    return {
+        type: LOG_OUT,
+        payload: {}
+    };
 }

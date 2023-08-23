@@ -9,7 +9,7 @@ import { styles } from "./formEventStyle";
 export default function FormEvent() {
 
 
-    const { country, eventTypes } = useSelector(state => state)
+    const { country, eventTypes, userSession } = useSelector(state => state)
     const dispatch = useDispatch()
 
     const [event, setEvent] = useState({
@@ -42,7 +42,10 @@ export default function FormEvent() {
     const handleCreate = async (e) => {
         e.preventDefault();
         if (Object.keys(error).length === 0 && event.name.length > 0) {
-            await dispatch(createEvent(event))
+
+            const eventToSend = {...event, idSeller: userSession.id};
+
+            dispatch(createEvent(eventToSend))
             setEvent({ 
             name: '',
             description: '',
@@ -177,7 +180,7 @@ export default function FormEvent() {
                             </div>
                         </div>
                     </div>
-                    {event.result && <p className={event.result[0] == '✅' ? styles.exito : styles.error}>{event.result}</p>}
+                    {event.result && <p className={event.result[0] === '✅' ? styles.exito : styles.error}>{event.result}</p>}
                     <button type="submit" className={styles.button}>Crear Evento</button>
                 </form>
             </div>

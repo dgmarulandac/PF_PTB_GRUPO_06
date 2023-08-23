@@ -37,7 +37,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Event, Role, Sale, User, Review } = sequelize.models;
+const { Event, Role, Sale, User, Review, InvalidToken, Order } = sequelize.models;
 
 // Aca vendrian las relaciones
 //TODO: Agregar las relaciones para cada modelo.
@@ -45,15 +45,27 @@ const { Event, Role, Sale, User, Review } = sequelize.models;
 User.belongsToMany(Role, {through: "User_Role"}); 
 Role.belongsToMany(User, {through: "User_Role"});
 
-User.hasMany(Review);
-Review.belongsTo(User);
+// Toca revisar https://sequelize.org/docs/v6/advanced-association-concepts/polymorphic-associations/
+// User.hasMany(Review);
+// Review.belongsTo(User);
 
-Event.hasMany(Review);
-Review.belongsTo(Event);
+// Event.hasMany(Review);
+// Review.belongsTo(Event);
 
+User.hasMany(Event, {foreignKey: 'idSeller'});
+Event.belongsTo(User, {foreignKey: 'idSeller'});
+
+Event.hasMany(Order, {foreignKey: 'idEvent'});
+Order.belongsTo(Event, {foreignKey: 'idEvent'});
+
+User.hasMany(Order, {foreignKey: 'idBuyer'});
+Order.belongsTo(User, {foreignKey: 'idBuyer'});
+
+Order.hasOne(Sale, {foreignKey: 'idOrder'});
+Sale.belongsTo(Order, {foreignKey: 'idOrder'});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
-  Event, Role, Sale, User, Review
+  Event, Role, Sale, User, Review, InvalidToken, Order
 };

@@ -36,10 +36,12 @@ const postCreateEventHandler = async (req, res) => {
             image,
             eventType,
             ticketPrice,
+            currency,
+            idSeller
         } = req.body;
 
-        
-        if (!name || !date || !hour || !cantTickets || !address || !country || !ticketPrice) {
+        console.log(currency)
+        if (!name || !date || !hour || !cantTickets || !address || !country || !ticketPrice || !currency || !idSeller) {
             return res.status(400).json({ error: "Faltan campos obligatorios" });
         }
 
@@ -53,7 +55,9 @@ const postCreateEventHandler = async (req, res) => {
             country,
             image,
             eventType,
-            ticketPrice,      
+            ticketPrice,
+            currency,
+            idSeller   
         });
 
         
@@ -64,4 +68,45 @@ const postCreateEventHandler = async (req, res) => {
     }
 };
 
-module.exports = { getEventHandler, getEventByIdHandler, postCreateEventHandler};
+const putEventHandler = async (req, res, next) => {
+    try{
+        let event = await Event.findByPk(req.params.id);
+    
+        if(!event){
+            return res.json({
+                success:false,
+                message: "Order ID doesn't exist"
+            });
+        }else{
+            
+            let updateEvent = await event.update({
+                    name: req.body.name, 
+                    description: req.body.description, 
+                    date: req.body.date, 
+                    hour: req.body.hour, 
+                    cantTickets: req.body.cantTickets,  
+                    address: req.body.address,
+                    country: req.body.country,
+                    image: req.body.image,
+                    eventType: req.body.eventType,
+                    ticketPrice: req.body.ticketPrice, 
+                    currency: req.body.currency
+            });
+    
+            res.json({
+                success: true,
+                message:" order update successfully",
+                event: updateEvent
+    
+            });
+        }
+    
+    }catch (error){
+        next(error)
+    
+    }
+        
+    }
+    
+
+module.exports = { getEventHandler, getEventByIdHandler, postCreateEventHandler, putEventHandler};
