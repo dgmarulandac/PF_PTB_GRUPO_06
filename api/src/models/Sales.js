@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
 
         },
 
-        isSuccesfull: {
+        isSuccesful: {
             type: DataTypes.BOOLEAN,
             allowNull: false
         }
