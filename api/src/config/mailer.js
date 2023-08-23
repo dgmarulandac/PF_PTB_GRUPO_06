@@ -15,7 +15,7 @@ const { USER, PASS } = process.env;
   });
 
   transporter.verify().then(() => {
-    console.log("Ready for send emails");
+    console.log("Ready to send emails");
   });
 
   module.exports = {transporter}

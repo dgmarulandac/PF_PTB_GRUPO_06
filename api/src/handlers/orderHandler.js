@@ -35,9 +35,9 @@ const postCreateOrdertHandler = async (req, res) => {
                 }
             ],
             back_urls: {
-                success: "http://localhost:3001/success",
-                failure: "http://localhost:3001/failure",
-                pending: "http://localhost:3001/pending"
+                success: "https://pf-grupo06-back.onrender.com/orderMercadoPago/success",
+                failure: "https://pf-grupo06-back.onrender.com/orderMercadoPago/failure",
+                pending: "https://pf-grupo06-back.onrender.com/orderMercadoPago/pending"
             },
             notification_url: "https://6172-186-113-173-20.ngrok.io/webHook"
     
@@ -53,7 +53,10 @@ const postCreateOrdertHandler = async (req, res) => {
     
         console.log(result)
            
-        res.status(200).json(result.body.init_point);
+        res.status(200).json({
+            response: result.response,
+            preferenceId: result.preferenceId
+        });
     } catch (error) {
         
         res.status(500).json({ error: "Hubo un error al crear la orden: " + error.message });
