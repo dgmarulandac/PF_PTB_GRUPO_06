@@ -27,6 +27,6 @@ conn.sync({ alter: true }).then(() => {
   server.listen(port, () => {
     console.log(`%s listening at ${port}`); // eslint-disable-line no-console
     //! SOLO PARA DEV Y TESTING EN PRODUCCION NO DEBE IR.
-    initial(Role);
+    //initial(Role); - Debe ir en force
   });
 });
