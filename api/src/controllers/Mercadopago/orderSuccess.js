@@ -5,13 +5,20 @@ const {Order, Event, Sale} = require ('../../db');
 
 const orderSuccess = async (req, res) => {
 
+   console.log(req.params);
    const {preference_id, collection_status, status, payment_type } = req.params;
 
    const isSuccesful = collection_status === status;
 
-   const order = await Order.findOne({where: {
-      idMercadoPago: preference_id
-   }});
+   const order = await Order.findOne({
+      where: {
+         idMercadoPago: preference_id
+      }
+   });
+
+   where: {
+			token: token
+		}
 
    const event = await Event.findByPk(order.idEvent);
 
