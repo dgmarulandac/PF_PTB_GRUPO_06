@@ -145,7 +145,7 @@ export const logOut = () => {
 
 export const orderPay = (order) => {
     return (dispatch)=>{
-        axios.post('orders/createOrder', order, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+        axios.post('/orders/createOrder', order, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
         .then(data =>{
             dispatch({
                 type: ORDER_PAY,
@@ -164,7 +164,7 @@ export const orderPay = (order) => {
 
 export const getMySales = () => {
     return (dispatch)=>{
-        axios.get('sales/mySales', { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+        axios.get('/sales/mySales', { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
         .then(data =>{
             dispatch({
                 type: GET_MY_SALES,

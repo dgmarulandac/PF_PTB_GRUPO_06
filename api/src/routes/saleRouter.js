@@ -4,8 +4,8 @@ const {getSaleByIdHandler, getMySalesHandler} = require ("../handlers/saleHandle
 const { verifyToken, isAdmin, isSeller } = require("../middleware/authJwt");
 const salesRouter = Router();
 
-salesRouter.get("/:id", getSaleByIdHandler);
 salesRouter.get("/mySales", [verifyToken, isSeller], getMySalesHandler);
+salesRouter.get("/:id", getSaleByIdHandler);
 
 module.exports = salesRouter;
 
