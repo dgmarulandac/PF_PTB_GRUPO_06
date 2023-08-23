@@ -5,8 +5,8 @@ const {Order, Event, Sale} = require ('../../db');
 
 const orderSuccess = async (req, res) => {
 
-   console.log(req.params);
-   const {preference_id, collection_status, status, payment_type } = req.params;
+   console.log(req.query);
+   const {preference_id, collection_status, status, payment_type } = req.query;
 
    const isSuccesful = collection_status === status;
 
