@@ -1,9 +1,9 @@
 import './App.css';
 //DEPENDENCIES
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { postLogin, postAuth } from './Redux/Action/action';
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 //Components
 import Home from './Components/Home/Home';
 import Register from './Components/register/register';
@@ -24,6 +24,8 @@ import LoggedElement from './Utils/AutorizationComponents/LoggedElement';
 function App() {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userSesion = useSelector(state => state.userSesion)
 
   function handleCallbackResponse(response) {
     const user = { platform: "google", jwt: response.credential };
@@ -48,7 +50,9 @@ function App() {
     google.accounts.id.prompt();
   }, [])
 
-
+  useEffect(() => {
+        navigate('/')
+    }, [userSesion])
 
   return (
     <div className="App">
