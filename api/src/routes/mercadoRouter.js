@@ -11,7 +11,7 @@ const mercadoRouter = Router();
 mercadoRouter.get("/success", orderSuccess);
 mercadoRouter.get("/failure", orderFailure);
 mercadoRouter.get("/pending", orderPending);
-mercadoRouter.post("/webHook", receiveWebHook);
+
 
 
 

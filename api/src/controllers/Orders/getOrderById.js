@@ -1,7 +1,7 @@
-const { Orders } = require("../../db");
+const { Order } = require("../../db");
 
 const getOrdertById = async (id) => {
-    const order = await Orders.findByPk(id);
+    const order = await Order.findByPk(id);
     return order;
 };
 
