@@ -29,6 +29,7 @@ const sendPostUser = async( {name, email } ) =>{
     <span> Atentamente, </span>
     <br/>
     <span> El equipo de Boho!! </span>
+    <a href="https://pf-grupo06-back.onrender.com/" style="display: inline-block; background-color: #3498db; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Ingresa Aqui</a> 
       `
     });
 
