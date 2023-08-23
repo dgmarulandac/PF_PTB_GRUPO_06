@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT } from "./action-type";
+import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, GET_MY_EVENTS, PUT_EVENT } from "./action-type";
 import Swal from "sweetalert2";
 
 export const getAllEvent = () => {
@@ -58,6 +58,36 @@ export const getDetail = (id) => {
                     icon: "error",
                 });
                 dispatch({ type: GET_DETAIL, payload: {} })
+            });
+    };
+};
+
+export const getMyEvents = (id) => {
+    return function (dispatch) {
+        axios.get(`/events/myEvents/${id}`)
+            .then(data => dispatch({ type: GET_MY_EVENTS, payload: data.data }))
+            .catch(reason => {
+                Swal.fire({
+                    title: "Error",
+                    text: `${reason.response.data.error}`,
+                    icon: "error",
+                });
+                dispatch({ type: GET_MY_EVENTS, payload: {} })
+            });
+    };
+};
+
+export const putEvent = (id, event) => {
+    return function (dispatch) {
+        axios.put(`/events/edit/${id}`, event)
+            .then(data => dispatch({ type: PUT_EVENT, payload: data.data }))
+            .catch(reason => {
+                Swal.fire({
+                    title: "Error",
+                    text: `${reason.response.data.error}`,
+                    icon: "error",
+                });
+                dispatch({ type: PUT_EVENT, payload: {} })
             });
     };
 };
