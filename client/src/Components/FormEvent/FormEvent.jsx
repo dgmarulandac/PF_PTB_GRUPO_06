@@ -10,7 +10,7 @@ export default function FormEvent() {
 
 
 
-    const { country, eventTypes, moneyTypes, userSession } = useSelector(state => state)
+    const { country, eventTypes, moneyTypes, userSesion } = useSelector(state => state)
 
     const dispatch = useDispatch()
 
@@ -46,7 +46,7 @@ export default function FormEvent() {
         e.preventDefault();
         if (Object.keys(error).length === 0 && event.name.length > 0) {
 
-            const eventToSend = {...event, idSeller: userSession.id};
+            const eventToSend = {...event, idSeller: userSesion.id};
 
             dispatch(createEvent(eventToSend))
             setEvent({ 
