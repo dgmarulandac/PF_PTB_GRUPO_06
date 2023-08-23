@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT } from "./action-type";
+import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES } from "./action-type";
 import Swal from "sweetalert2";
 
 export const getAllEvent = () => {
@@ -145,7 +145,8 @@ export const logOut = () => {
 
 export const orderPay = (order) => {
     return (dispatch)=>{
-        axios.post('orders/createOrder', order).then(data =>{
+        axios.post('orders/createOrder', order, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+        .then(data =>{
             dispatch({
                 type: ORDER_PAY,
                 payload: data
@@ -156,6 +157,25 @@ export const orderPay = (order) => {
                     icon: "error",
                 });
                 dispatch({ type: ORDER_PAY, payload: {} })
+            });
+        })
+    }
+}
+
+export const getMySales = () => {
+    return (dispatch)=>{
+        axios.get('sales/mySales', { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+        .then(data =>{
+            dispatch({
+                type: GET_MY_SALES,
+                payload: data
+            }).catch(reason => {
+                Swal.fire({
+                    title: "Error",
+                    text: `${reason.response.data.error}`,
+                    icon: "error",
+                });
+                dispatch({ type: GET_MY_SALES, payload: [] })
             });
         })
     }
