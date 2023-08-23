@@ -9,10 +9,14 @@ export default function SalesPay() {
     const { id } = useParams()
     const [result, setResult] = useState(null)
     const [error, setError] = useState({})
+    const [isSuccesFul, setIsSuccesFul] = useState(null)
    
     useEffect(() => {
         axios.get('/sales/' + id)
-            .then(response => setResult(response.data))
+            .then(({data}) => {
+                setResult(data)
+                setIsSuccesFul(data.dataValues)
+            })
             .catch(error => setError(error))
 
         return setResult({})
@@ -21,6 +25,7 @@ export default function SalesPay() {
 
     return (
         <div className={styles.body}>
+            {console.log(isSuccesFul["isSuccesful"])}
             {result === null ?
                 (<div class="flex items-center justify-center">
                     <div role="status">
@@ -30,7 +35,7 @@ export default function SalesPay() {
                 </div>) : (
 
                     <div className="m-10">
-                        {result.isSuccesful ? (
+                        {(isSuccesFul["isSuccesful"]) ? (
                             <div>
                                 <p className={styles.p}>Nombre del evento: {result.eventName}</p>
                                 {/* <div className="flex justify-center">
