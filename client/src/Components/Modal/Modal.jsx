@@ -6,6 +6,7 @@ import validation from '../../functions/Validations/validationModal/validation'
 import { styles } from "./modalStyle";
 import { modal } from "../../Redux/Action/action";
 import mp from './MP.png'
+import { Link } from "react-router-dom";
 
 export default function Modal() {
     const { id } = useParams()
@@ -17,13 +18,13 @@ export default function Modal() {
     const [order, setOrder] = useState({
         idBuyer
     })
-    const [orderCreated, setOrderCreated] = useState({})
+    const [urlMp, setUrlMp] = useState(false)
 
     const handleChange = (e) => {
         const { value } = e.target;
         setTicket(value)
-        setOrder({ ...order, quantity: value, price: value * event.ticketPrice })
-        setError({ ...error, cantTickets: validation(value, event.cantTickets) })
+        setOrder({ ...order, quantity: Number(value), price: value * event.ticketPrice })
+        setError(validation(value, event.cantTickets))
     }
 
     const handleClose = () => {
@@ -33,25 +34,12 @@ export default function Modal() {
     const prueba = async () => {
         try {
             const response = await axios.post('orders/createOrder', order)
-            setOrderCreated(response.data)
+            setUrlMp(response.data)
             console.log(response)
         } catch (error) {
-            setError({...error, post: error.response.data.error})
+            setError({ ...error, post: error.response.data.error })
         }
     }
-
-    const urlInA = async () => {
-        try {
-            const mercadoPago = document.getElementById('mercadoPago')
-            const { data } = await axios.post('/orderMercadoPago/create_Order',
-                { description: event.name, price: order.price, quantity: order.quantity, currency_id: 'COP' });
-            console.log(data)
-            mercadoPago.href = data.init_point
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
 
     useEffect(() => {
         axios.get(`/events/${id}`)
@@ -81,25 +69,24 @@ export default function Modal() {
                         <span className="sr-only">Close modal</span>
                     </button>
                 </div>
-                {error.petition ?
-                    (<p>{error.petition}</p>) :
+                {idBuyer ?
                     (<div className={''}>
                         <div className='m-5'>
                             <p className={styles.p}>Resumen de la orden</p>
                             <div className="text-start">
-                                <p className="text-lg">{event.name}</p>
-                                <span className="text-xs m-0">{event.ticketPrice}$/ {event.cantTickets} entradas disponibles</span>
-                                {orderCreated.quantity && <p className="text-xs m-0">Tickets a comprar: {orderCreated.quantity}</p>}
-                                {orderCreated.price && <p className="text-xs m-0">Total a pagar: {orderCreated.price}</p>}
+                                <span className="text-lg">{event.name}/ </span>
+                                <span className="text-xs m-0">{event.ticketPrice}{event.currency}</span>
+                                {order.quantity && <p className="text-xs m-0">Tickets a comprar: {order.quantity}</p>}
+                                {order.price && <p className="text-xs m-0">Total a pagar: {order.price}</p>}
                             </div>
                         </div>
-                        {orderCreated.id ? (
+                        {urlMp ? (
                             <div>
                                 <div>
                                     <p className={styles.p}>Metodo de Pago</p>
                                 </div>
                                 <div className="m-5 mb-2">
-                                    <a id='mercadoPago' href="">
+                                    <a id='mercadoPago' href={urlMp} target="_blank">
                                         <img src={mp} alt="logo de mercado pago" width='80' />
                                     </a>
                                 </div>
@@ -115,6 +102,11 @@ export default function Modal() {
                             </div>
                         )}
                         {error.post && <p className={styles.error}>⚠️ {error.post}</p>}
+                    </div>) : (<div>
+                        <p>Inicia sesion para comprar las entradas!</p>
+                        <Link to='/login'>
+                            <button onClick={handleClose} className={styles.button}>iniciar sesion</button>
+                        </Link>
                     </div>)
                 }
             </div>

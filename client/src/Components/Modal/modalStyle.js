@@ -16,5 +16,5 @@ export const styles = {
     p: "font-medium text-gray-900 dark:text-white border-b-[3px] p-2",
     header: "mt-5 mr-5 ml-5 mb-0 w-full max-w-sm p-4 sm:p-6 md:p-8 dark:text-white",
     logo: 'font-bungee text-5xl',
-    container: " fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-90 min-h-[300px] grid items-center z-50 rounded-lg border border-black p-4 pt-0 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white"
+    container: "h-auto w-96 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-90  items-center z-50 rounded-lg border border-black p-4 pt-0 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white"
 }
