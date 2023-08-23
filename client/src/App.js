@@ -24,6 +24,7 @@ import RecoverPassword from './Components/RecoverPassword/RecoverPassword';
 import NotLoggedElement from './Utils/AutorizationComponents/NotLoggedElement';
 import SellerOrAdminElement from './Utils/AutorizationComponents/SellerOrAdminElement';
 import LoggedElement from './Utils/AutorizationComponents/LoggedElement';
+import SalesPay from './Components/Sales/SalesPay';
 
 
 function App() {
@@ -55,18 +56,19 @@ function App() {
     google.accounts.id.prompt();
   }, [])
 
-  useEffect(() => {
-        navigate('/')
-    }, [userSesion])
+  // useEffect(() => {
+  //       navigate('/')
+  //   }, [userSesion])
 
   return (
-    <div className="App bg-gray-900"> 
+    <div className="App bg-whithe dark:bg-fondoDark"> 
       <Nav />
       <Routes>
         <Route path='/*' element={<Error404 />} />
         <Route path='/' element={<Home />} />
         <Route path='/FAQ' element={<FAQ />} />
         <Route path='/event/:id' element={<Detail />} />
+        <Route path='/sales/:id' element={<SalesPay/>}/>
         <Route path='/login' element={<NotLoggedElement><Login /></NotLoggedElement>} />
         <Route path='/register' element={<NotLoggedElement><Register /></NotLoggedElement>} />
         <Route path='/passwordReset' element={<NotLoggedElement><ResetPassword/></NotLoggedElement>}/>
@@ -76,6 +78,7 @@ function App() {
         <Route path='/mis-ventas' element={<SellerOrAdminElement><MisVentas/></SellerOrAdminElement>}/>
         <Route path='/mis-eventos' element={<SellerOrAdminElement><MisEventos/></SellerOrAdminElement>}/>
         <Route path='/editar-evento/:id' element={<SellerOrAdminElement><EditEvent/></SellerOrAdminElement>}/> 
+         
       </Routes>
       <Footer/>
     </div>
