@@ -28,19 +28,24 @@ const isAdmin = async (req, res, next) => {
         return;
     }
   });
-  res.status(403).json({error: "Se requiere el rol de admin para ver esto."})
+  return res.status(403).json({error: "Se requiere el rol de admin para ver esto."})
 };
 
 const isSeller = async (req, res, next) => {
   const user = await User.findByPk(req.id);
   const roles = await user.getRoles();
+  let pass = false;
   roles.forEach(role => {
     if( role.type === sellerRole ) {
         next();
-        return;
+        pass = true;
     }
   });
-  res.status(403).json({error: "Se requiere el rol de vendedor para ver esto."})
+  if( !pass ) {
+    return res.status(403).json({error: "Se requiere el rol de vendedor para ver esto."})
+  } else {
+    return pass;
+  }
 };
 
 const isBuyer = async (req, res, next) => {
@@ -52,7 +57,7 @@ const isBuyer = async (req, res, next) => {
         return;
     }
   });
-  res.status(403).json({error: "Se requiere el rol de comprador para ver esto."})
+  return res.status(403).json({error: "Se requiere el rol de comprador para ver esto."})
 };
 
 module.exports = { verifyToken, isAdmin, isBuyer, isSeller };
