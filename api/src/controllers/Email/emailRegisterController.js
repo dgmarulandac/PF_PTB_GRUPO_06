@@ -11,10 +11,10 @@ const sendPostUser = async( {name, email } ) =>{
       html: `
       <h1> ${name}, te damos la bienvenida a nuestra increíble plataforma de venta de boletos para eventos! 🎉</h1>
       
-      <h3>Le informamos que su registro en nuestra plataforma ha sido exitoso</h3>
+      <h3> Le informamos que su registro ha sido exitoso </h3>
 
       <span>Estamos emocionados de tenerte aquí y ser parte de tu experiencia en la venta y compra de boletos para los eventos más 
-      emocionantes y entretenidos. Desde hoy podras comprar tus eTicket desde nuestro sitio web, conocer nuestra cartelera
+      emocionantes y entretenidos. Desde hoy podras comprar tus Tickets desde nuestro sitio web, conocer nuestra cartelera
       y adicionalmente podras crear tus propios eventos.</span>
 
       <br/>
