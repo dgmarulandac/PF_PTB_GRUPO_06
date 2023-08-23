@@ -5,3 +5,4 @@ export const FILTER_GET_EVENTS = "FILTER_GET_EVENTS";
 export const MODAL = 'MODAL'
 export const POST_LOGIN = 'POST_LOGIN';
 export const LOG_OUT = 'LOG_OUT';
+export const ORDER_PAY = 'ORDER_PAY';
