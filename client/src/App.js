@@ -63,9 +63,9 @@ function App() {
         <Route path='/FAQ' element={<FAQ />} />
         <Route path='/login' element={<NotLoggedElement><Login /></NotLoggedElement>} />
         <Route path='/register' element={<NotLoggedElement><Register /></NotLoggedElement>} />
+        <Route path='/event/:id' element={<NotLoggedElement><Detail /></NotLoggedElement>} />
         <Route path='/passwordReset' element={<NotLoggedElement><ResetPassword/></NotLoggedElement>}/>
         <Route path='/passwordRecover/:token' element={<NotLoggedElement><RecoverPassword/></NotLoggedElement>}/>
-        <Route path='/event/:id' element={<LoggedElement><Detail /></LoggedElement>} />
         <Route path='/TaC' element={<LoggedElement><TermsAndConditions /></LoggedElement>} />
         <Route path='/createEvent' element={<SellerOrAdminElement><FormEvent /></SellerOrAdminElement>} />
       </Routes>
