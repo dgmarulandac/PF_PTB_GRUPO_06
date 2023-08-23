@@ -61,9 +61,9 @@ function App() {
         <Route path='/*' element={<Error404 />} />
         <Route path='/' element={<Home />} />
         <Route path='/FAQ' element={<FAQ />} />
+        <Route path='/event/:id' element={<Detail />} />
         <Route path='/login' element={<NotLoggedElement><Login /></NotLoggedElement>} />
         <Route path='/register' element={<NotLoggedElement><Register /></NotLoggedElement>} />
-        <Route path='/event/:id' element={<NotLoggedElement><Detail /></NotLoggedElement>} />
         <Route path='/passwordReset' element={<NotLoggedElement><ResetPassword/></NotLoggedElement>}/>
         <Route path='/passwordRecover/:token' element={<NotLoggedElement><RecoverPassword/></NotLoggedElement>}/>
         <Route path='/TaC' element={<LoggedElement><TermsAndConditions /></LoggedElement>} />
