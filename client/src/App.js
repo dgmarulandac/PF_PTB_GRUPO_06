@@ -3,10 +3,8 @@ import 'tailwindcss/tailwind.css';
 //DEPENDENCIES
 import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
-import { postLogin } from './Redux/Action/action';
-import { postAuth } from './Redux/Action/action';
+import { postLogin, postAuth } from './Redux/Action/action';
 import { useDispatch } from "react-redux";
-import axios from "axios";
 //Components
 import Home from './Components/Home/Home';
 import Register from './Components/register/register';
@@ -18,29 +16,30 @@ import Footer from './Components/Footer/Footer';
 import TermsAndConditions from './Components/TermsAndConditions/TermsAndConditions';
 import FAQ from './Components/FAQs/FAQs';
 import Error404 from './Components/Error 404/Error404';
-
+import ResetPassword from './Components/ResetPassword/ResetPassword';
+import RecoverPassword from './Components/RecoverPassword/RecoverPassword';
+import NotLoggedElement from './Utils/AutorizationComponents/NotLoggedElement';
+import SellerOrAdminElement from './Utils/AutorizationComponents/SellerOrAdminElement';
+import LoggedElement from './Utils/AutorizationComponents/LoggedElement';
 
 
 function App() {
 
   const dispatch = useDispatch();
+
   function handleCallbackResponse(response) {
     const user = { platform: "google", jwt: response.credential };
     dispatch(postLogin(user));
   }
 
   useEffect(() => {
+
     // Auth token
     if (localStorage.getItem("jwt")) {
       const userToken = localStorage.getItem("jwt")
-      axios.defaults.headers.common = {
-        'x-access-token': userToken
-      }
       dispatch(postAuth(userToken))
     }
-  }, [])
 
-  useEffect(() => {
     //Auth de google - global google
     /* global google */
     google.accounts.id.initialize({
@@ -51,20 +50,25 @@ function App() {
     google.accounts.id.prompt();
   }, [])
 
+
+
   return (
     <div className="App">
-      <Nav />
+     <Nav />
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/event/:id' element={<Detail />} />
-        <Route path='/createEvent' element={<FormEvent />} />
-        <Route path='/TaC' element={<TermsAndConditions />} />
-        <Route path='/FAQ' element={<FAQ />} />
         <Route path='/*' element={<Error404 />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/FAQ' element={<FAQ />} />
+        <Route path='/login' element={<NotLoggedElement><Login /></NotLoggedElement>} />
+        <Route path='/register' element={<NotLoggedElement><Register /></NotLoggedElement>} />
+        <Route path='/passwordReset' element={<NotLoggedElement><ResetPassword/></NotLoggedElement>}/>
+        <Route path='/passwordRecover/:token' element={<NotLoggedElement><RecoverPassword/></NotLoggedElement>}/>
+        <Route path='/event/:id' element={<LoggedElement><Detail /></LoggedElement>} />
+        <Route path='/TaC' element={<LoggedElement><TermsAndConditions /></LoggedElement>} />
+        <Route path='/createEvent' element={<SellerOrAdminElement><FormEvent /></SellerOrAdminElement>} />
       </Routes>
       <Footer />
+
     </div>
   );
 }
