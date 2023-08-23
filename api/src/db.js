@@ -40,7 +40,6 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Event, Role, Sale, User, Review, InvalidToken, Order } = sequelize.models;
 
 // Aca vendrian las relaciones
-//TODO: Agregar las relaciones para cada modelo.
 
 User.belongsToMany(Role, {through: "User_Role"}); 
 Role.belongsToMany(User, {through: "User_Role"});
