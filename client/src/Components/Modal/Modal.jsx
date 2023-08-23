@@ -7,7 +7,6 @@ import { styles } from "./modalStyle";
 import { modal } from "../../Redux/Action/action";
 import mp from './MP.png'
 import { Link } from "react-router-dom";
-import SalesPay from "../Sales/SalesPay";
 
 export default function Modal() {
     const { id } = useParams()
@@ -20,7 +19,6 @@ export default function Modal() {
         idBuyer
     })
     const [urlMp, setUrlMp] = useState(false)
-    const [pay, setPay] = useState(false)
 
     const handleChange = (e) => {
         const { value } = e.target;
@@ -33,9 +31,6 @@ export default function Modal() {
         dispatch(modal(false))
     }
 
-    const handlePay = ()=>{
-        setPay(true)
-    }
     const prueba = async () => {
         try {
             const response = await axios.post('orders/createOrder', order)
@@ -87,13 +82,12 @@ export default function Modal() {
                         {urlMp ? (
                             <div>
                                 <div>
-                                    <p className={styles.p}>Metodo de Pago</p>
+                                    <p className={styles.p}>Metodos de Pago</p>
                                 </div>
                                 <div className="m-5 mb-2">
-                                    <a id='mercadoPago' href={urlMp} target="_blank" onClick={handlePay}>
+                                    <a id='mercadoPago' href={urlMp} target="_blank">
                                         <img src={mp} alt="logo de mercado pago" width='80' />
                                     </a>
-                                    {pay && <SalesPay/>}
                                 </div>
                             </div>
                         ) : (
