@@ -130,7 +130,7 @@ export default function EditEvent() {
                     <div className={styles.dual}>
                         <div className={styles.div_ind}>
                             <label className={styles.label}>Pais</label>
-                            <select name="country" id="7" onChange={handleChange}
+                            <select name="country" id="7" value={event.country} onChange={handleChange}
                                 className={styles.select}>
                                 <option value="">-elige un pais-</option>
                                 {country.map((c, i) => {
@@ -143,7 +143,7 @@ export default function EditEvent() {
                         </div>
                         <div className={styles.div_ind}>
                             <label className={styles.label}>Tipo de Evento</label>
-                            <select name="eventType" id="9" onChange={handleChange}
+                            <select name="eventType" id="9" value={event.eventType} onChange={handleChange}
                                 className={styles.select}>
                                 <option value="">-evento-</option>
                                 {eventTypes.map((e, i) => {
