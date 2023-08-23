@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
             defaultValue: DataTypes.UUIDV4, 
             allowNull: false,
             primaryKey : true
-          },
+        },
 
         idOrder:{
             type: DataTypes.UUID,
@@ -18,6 +18,11 @@ module.exports = (sequelize) => {
            type:DataTypes.STRING,
            allowNull:false,
 
+        },
+
+        isSuccesfull: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
         }
 
     });
