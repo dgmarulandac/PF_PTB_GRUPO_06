@@ -44,7 +44,7 @@ const emailSuccessfulPayment = async ({ name, eventName, email, eventImage, pric
 
     <br/>
     <br/>
-    <a href="https://pf-grupo06-back.onrender.com/">Ir al Inicio</a> 
+    <a href="https://pf-ptb-grupo-06.vercel.app/">Ir al Inicio</a> 
     `
   });
 
