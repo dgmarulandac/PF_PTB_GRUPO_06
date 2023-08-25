@@ -1,4 +1,5 @@
-const { Sale, Order, Event, User } = require("../../db");
+const { Order, Event } = require("../../db");
+const compareMonths = require("../../utils/compareMonths")
 
 const getMySales = async (idSeller) => {
     const events = await Event.findAll({where: {
@@ -21,7 +22,7 @@ const getMySales = async (idSeller) => {
         const ordersEvent = await Order.findAll({where: {
             idEvent: events[i].id
         }});
-        ordersEvent.map( order => {return {sales: order.quantity * order.price, month: myString }} );
+        ordersEvent.map( order => {return {sales: order.getSale().isSuccesful ? order.quantity * order.price : 0, month: myString }} );
         orders = [...orders, ...ordersEvent];
     }
 
@@ -41,27 +42,5 @@ const getMySales = async (idSeller) => {
 
     return sales;
 };
-
-function compareMonths( a,b ) {
-    const aMonth = parseInt(a.split('-')[0]);
-    const aYear = parseInt(a.split('-')[1]);
-
-    const bMonth = parseInt(b.split('-')[0]);
-    const bYear = parseInt(b.split('-')[1]);
-
-    if( aYear < bYear ) {
-        return -1;
-    } else if ( bYear < aYear ) {
-        return 1;
-    } else {
-        if( aMonth < bMonth ) {
-            return -1;
-        } else if( bMonth < aMonth ) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-}
 
 module.exports = getMySales;
