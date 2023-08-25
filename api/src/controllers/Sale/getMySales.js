@@ -9,11 +9,12 @@ const getMySales = async (idSeller) => {
         throw Error("")
     }
 
-    const orders = [];
+    let orders = [];
     const monthYears = [];
 
     for( let i = 0; i < events.length; i++ ) {
-        const myString = `${events[i].date.getMonth()}-${events[i].date.getYear()}`;
+        const date = new Date(events[i].date);
+        const myString = `${date.getMonth()}-${date.getFullYear()}`;
         if( monthYears.filter(my => {return my === myString }).length === 0 ) {
             monthYears.push(myString);
         }

@@ -147,18 +147,15 @@ export const orderPay = (order) => {
     return (dispatch)=>{
         axios.post('/orders/createOrder', order, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
         .then(data =>{
-            dispatch({
-                type: ORDER_PAY,
-                payload: data
-            }).catch(reason => {
-                Swal.fire({
-                    title: "Error",
-                    text: `${reason.response.data.error}`,
-                    icon: "error",
-                });
-                dispatch({ type: ORDER_PAY, payload: {} })
+            return dispatch({type: ORDER_PAY, payload: data});
+        }).catch(reason => {
+            Swal.fire({
+                title: "Error",
+                text: `${reason.response.data.error}`,
+                icon: "error",
             });
-        })
+            return dispatch({ type: ORDER_PAY, payload: {} })
+        });
     }
 }
 
@@ -166,17 +163,14 @@ export const getMySales = () => {
     return (dispatch)=>{
         axios.get('/sales/mySales', { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
         .then(data =>{
-            dispatch({
-                type: GET_MY_SALES,
-                payload: data
-            }).catch(reason => {
-                Swal.fire({
-                    title: "Error",
-                    text: `${reason.response.data.error}`,
-                    icon: "error",
-                });
-                dispatch({ type: GET_MY_SALES, payload: [] })
+            return dispatch({type: GET_MY_SALES, payload: data.data});
+        }).catch(reason => {
+            Swal.fire({
+                title: "Error",
+                text: `${reason.response.data.error}`,
+                icon: "error",
             });
-        })
+            return dispatch({ type: GET_MY_SALES, payload: [] })
+        });
     }
-}
+};
