@@ -23,7 +23,7 @@ export default function Modal() {
     const handleChange = (e) => {
         const { value } = e.target;
         setTicket(value)
-        setOrder({ ...order, quantity: Number(value), price: value * event.ticketPrice })
+        setOrder({ ...order, quantity: Number(value), price: event.ticketPrice })
         setError(validation(value, event.cantTickets))
     }
 
@@ -60,6 +60,7 @@ export default function Modal() {
     return (
         <div className={styles.body}>
             <div className={styles.container}>
+                {console.log(order)}
                 <div>
                     <button onClick={handleClose} type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto grid justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="staticModal">
                         <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -76,7 +77,7 @@ export default function Modal() {
                                 <span className="text-lg">{event.name}/ </span>
                                 <span className="text-xs m-0">{event.ticketPrice}{event.currency}</span>
                                 {order.quantity > 0 && <p className="text-xs m-0">Tickets a comprar: {order.quantity}</p>}
-                                {order.price > 0 && <p className="text-xs m-0">Total a pagar: {order.price}</p>}
+                                {order.price > 0 && <p className="text-xs m-0">Total a pagar: {order.price * ticket}</p>}
                             </div>
                         </div>
                         {urlMp ? (
