@@ -25,7 +25,7 @@ const Detail = () => {
 
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-700 p-4 rounded-lg shadow-md">
+    <div className="flex justify-center items-center min-h-screen bg-gray-700 p-4 rounded-lg shadow-md dark:bg-fondoDark">
       {ticketid.error ? (
         <h1 className=" text-gray-600 dark:text-gray-300 mb-4">{ticketid?.error}</h1>
       ) : (
