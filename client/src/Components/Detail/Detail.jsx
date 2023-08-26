@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDetail, modal } from "../../Redux/Action/action";
 import Modal from "../Modal/Modal";
+import { Link } from "react-router-dom";
 import * as styles from "./DetStiles"
+import { FiArrowLeft } from 'react-icons/fi';
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -21,17 +23,20 @@ const Detail = () => {
     dispatch(getDetail(id));
   }, []);
 
-  
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-700 p-4 rounded-lg shadow-md">
       {ticketid.error ? (
         <h1 className=" text-gray-600 dark:text-gray-300 mb-4">{ticketid?.error}</h1>
       ) : (
         <div>
-          <h1 className="font-bungee text-5xl bg-gradient-to-r text-transparent bg-clip-text from-blue-500 to-green-500">BOHO</h1>
-          <br />
-          <p className="font-bold text-gray-600 dark:text-gray-300 mb-4">compra tu boleta aqui</p>
-          <br />
+          <Link className="absolute m-5 mt-0 left-0" to="/">
+            <button className={styles.button}><FiArrowLeft/></button>
+          </Link>
+          <div>
+            <h1 className="font-bungee text-5xl bg-gradient-to-r text-transparent bg-clip-text from-blue-500 to-green-500 m-5">BOHO</h1>
+            <p className="font-bold text-gray-600 dark:text-gray-300 mb-4">compra tu boleta aqui</p>
+          </div>
           <div className="bg-white dark:bg-gradient-to-r from-gray-800 to-gray-900 p-8 rounded-lg shadow-lg shadow-blue-800/50">
             <div key="0">
               <h2 className="text-5xl bg-gradient-to-r text-transparent bg-clip-text from-blue-500 to-green-500 font-bold mb-4">{ticketid.name}</h2>

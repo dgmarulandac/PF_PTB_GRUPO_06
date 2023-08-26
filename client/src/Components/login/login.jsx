@@ -12,7 +12,7 @@ export default function Login() {
         password: ''
     })
     const [errors, setErrors] = useState([])
-
+    const navigate = useNavigate()
     function handleForm(e) {
         const value = e.currentTarget.value
         const name = e.currentTarget.name
@@ -30,6 +30,7 @@ export default function Login() {
         if (errores.length === 0) {
             const userToSend = { ...user, platform: "boho", jwt: "" };
             dispatch(postLogin(userToSend));
+            navigate("/")
         }
     };
     
