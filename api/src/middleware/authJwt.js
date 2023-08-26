@@ -22,13 +22,18 @@ const verifyToken = (req, res, next) => {
 const isAdmin = async (req, res, next) => {
   const user = await User.findByPk(req.id);
   const roles = await user.getRoles();
+  let pass = false;
   roles.forEach(role => {
     if( role.type === adminRole ) {
         next();
-        return;
+        pass = true;
     }
   });
-  return res.status(403).json({error: "Se requiere el rol de admin para ver esto."})
+  if( !pass ) {
+    return res.status(403).json({error: "Se requiere el rol de Administrador para ver esto."})
+  } else {
+    return pass;
+  }
 };
 
 const isSeller = async (req, res, next) => {
@@ -42,7 +47,7 @@ const isSeller = async (req, res, next) => {
     }
   });
   if( !pass ) {
-    return res.status(403).json({error: "Se requiere el rol de vendedor para ver esto."})
+    return res.status(403).json({error: "Se requiere el rol de Vendedor para ver esto."})
   } else {
     return pass;
   }
@@ -51,13 +56,18 @@ const isSeller = async (req, res, next) => {
 const isBuyer = async (req, res, next) => {
   const user = await User.findByPk(req.id);
   const roles = await user.getRoles();
+  let pass = false;
   roles.forEach(role => {
     if( role.type === buyerRole ) {
         next();
-        return;
+        pass = true;
     }
   });
-  return res.status(403).json({error: "Se requiere el rol de comprador para ver esto."})
+  if( !pass ) {
+    return res.status(403).json({error: "Se requiere el rol de Comprador para ver esto."})
+  } else {
+    return pass;
+  }
 };
 
 module.exports = { verifyToken, isAdmin, isBuyer, isSeller };
