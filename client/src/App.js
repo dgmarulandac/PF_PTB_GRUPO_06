@@ -20,6 +20,7 @@ import Error404 from './Components/Error 404/Error404';
 import ResetPassword from './Components/ResetPassword/ResetPassword';
 import RecoverPassword from './Components/RecoverPassword/RecoverPassword';
 import EventsDashboard from './Components/EventsDashboard/EventsDashboard';
+import AdminPanel from './Components/AdminPanel/AdminPanel';
 
 //Componentes Autorizacion
 import NotLoggedElement from './Utils/AutorizationComponents/NotLoggedElement';
@@ -68,6 +69,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path='/*' element={<Error404 />} />
+        <Route path='/Admin/Panel' element={<AdminPanel />} />
         <Route path='/' element={<Home />} />
         <Route path='/FAQ' element={<FAQ />} />
         <Route path='/event/:id' element={<Detail />} />
