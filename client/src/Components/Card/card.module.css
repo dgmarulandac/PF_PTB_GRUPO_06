@@ -1,52 +1,7 @@
-.container{
-    padding: 10px 10px 0 10px;
-    margin: 10px;
-    display: grid;
-    justify-content: center;
-    grid-template-rows: 3fr 2fr 1fr;
-    width: 350px;
-    height: 300px;
-    overflow: hidden;
-    background-color: #D9D9D9;
-    color: black;
-    text-decoration: none;
-    border-radius: 15px;
-    font-family: 'Barlow Condensed', sans-serif;
-    transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
-}
+.cardscale {
+    transition: transform 0.5s; /* Agregamos una transición suave */
+  }
 
-.container:hover {
-    transform: scale(1.05);
-}
-
-.info{
-    text-align: start;
-    margin: 3px 10px 3px 10px;
-    justify-self: start;
-}
-
-.location{
-    font-weight: 800;
-}
-
-.location span{
-    color: blue;
-}
-
-.image {
-    height: 100px;
-}
-
-
-.container button{
-    color: white;
-    background-color: #D71313;
-    border: none;
-    width: 350px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.container button:hover{
-    background-color: #d71313aa;
-}
+  .cardscale:hover {
+    transform: scale(1.1); /* Aumenta la escala al hacer hover */
+  }
