@@ -22,10 +22,16 @@ module.exports = (sequelize) => {
 
         approved: {
             type: DataTypes.BOOLEAN,
+            defaultValue:false,
             allowNull: false,
         },
 
-        userId: {
+        idUser: {
+            type:DataTypes.UUID,
+            allowNull: false,
+        },
+
+        idEvent: {
             type:DataTypes.UUID,
             allowNull: false,
         }
