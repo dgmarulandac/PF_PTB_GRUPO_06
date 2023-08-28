@@ -48,6 +48,7 @@ export const getEventsFilter = (name, eventType, country, date, order) => {
 };
 
 export const getDetail = (id) => {
+    if(id===undefined) return {type:GET_DETAIL, payload:[]}
     return function (dispatch) {
         axios.get(`/events/${id}`,{ headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
             .then(data => dispatch({ type: GET_DETAIL, payload: data.data }))
