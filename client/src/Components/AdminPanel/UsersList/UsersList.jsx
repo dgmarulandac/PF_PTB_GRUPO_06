@@ -5,7 +5,7 @@ const UsersList = () =>{
     const [users, setUsers] = useState([]);
     const [errors, setErrors] = useState(null);
     useEffect(()=>{
-        axios.get('https://pf-grupo06-back.onrender.com/')
+        axios.get('/users')
             .then(res => res.data)
             .then(data =>{
                 setUsers(data)
