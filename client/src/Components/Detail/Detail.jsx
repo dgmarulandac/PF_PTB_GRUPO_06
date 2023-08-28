@@ -60,7 +60,7 @@ const Detail = () => {
                 <button
                   onClick={handleClick}
                   className="text-white bg-blue-600 px-4 py-2 rounded relative overflow-hidden transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-gradient-to-r from-blue-500 to-green-500 before:transition-all before:duration-500 hover:text-white hover:shadow-green-500 hover:before:left-0 hover:before:w-full"
-                ><span class="relative z-10">Comprar ticket</span>
+                ><span class="relative">Comprar ticket</span>
                 </button>
               </div>
             </div>

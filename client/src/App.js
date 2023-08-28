@@ -28,6 +28,7 @@ import LoggedElement from './Utils/AutorizationComponents/LoggedElement';
 
 
 import SalesPay from './Components/Sales/SalesPay';
+import findOrCreateShoppingCar from './Utils/CreateShoppingCar/shoppingCar';
 
 
 function App() {
@@ -42,7 +43,8 @@ function App() {
   }
 
   useEffect(() => {
-
+    //Creacion del localStorage para el carrito en caso de no estar logueado
+    findOrCreateShoppingCar()
     // Auth token
     if (localStorage.getItem("jwt")) {
       const userToken = localStorage.getItem("jwt")

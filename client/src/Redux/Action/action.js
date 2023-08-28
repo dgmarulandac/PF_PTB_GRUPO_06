@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES } from "./action-type";
+import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES, ADD_CAR } from "./action-type";
 import Swal from "sweetalert2";
 
 export const getAllEvent = () => {
@@ -174,3 +174,10 @@ export const getMySales = () => {
         });
     }
 };
+
+export const addCar = (order)=>{
+    return {
+        type: ADD_CAR,
+        payload: order
+    }
+}
