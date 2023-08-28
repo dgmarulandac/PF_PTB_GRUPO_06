@@ -9,7 +9,7 @@ const DetailUser = () => {
     const [ error, setError] = useState(null);
     const [ success, setSuccess] = useState(null);
     useEffect(()=>{
-        axios.get(`https://pf-grupo06-back.onrender.com/users/${id}`)
+        axios.get(`/users/${id}`)
             .then(res => res.data)
             .then(data =>{
                 setUser(data)
@@ -20,7 +20,7 @@ const DetailUser = () => {
             })
     }, [id])
     const banUser = () =>{
-        axios.delete(`https://pf-grupo06-back.onrender.com/users/${id}`)
+        axios.delete(`/users/${id}`)
             .then(res => res.data)
             .then(data => {
                 setSuccess('Usuario borrado')
@@ -28,7 +28,7 @@ const DetailUser = () => {
     };
     const changeUser = () =>{
         
-        axios.put('https://pf-grupo06-back.onrender.com/users', user)
+        axios.put(`/users/${id}`, user)
             .then(res => res.data)
             .then(data => {
                 setSuccess('Usuario cambiado')
