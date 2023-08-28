@@ -1,4 +1,4 @@
-/* SalesChart.module.css */
+/* SalesChart.module.css
 .salesChartContainer {
     border: 1px solid #ccc;
     padding: 20px;
@@ -12,5 +12,86 @@
   .salesChartTitle {
     font-size: 24px;
     margin-bottom: 10px;
-  }
-  
+  } */
+  /* SalesChart.module.css */
+
+.salesChartContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 20px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 8px;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+.chartWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px; /* Ajusta el ancho máximo deseado */
+  margin-top: 20px;
+}
+
+.salesChartTitle {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.salesChart {
+  flex: 1;
+  width: 48%; /* Ancho del 48% para que ambos gráficos se ajusten en una fila */
+}
+
+.salesData {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.month {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.salesValue {
+  margin-right: 10px;
+}
+
+.ganancia {
+  margin-right: 10px;
+  color: #00a000;
+}
+
+.percentage {
+  color: #888;
+}
+
+/* Estilos adicionales específicos para el gráfico diario */
+.salesChartTitle + .salesChart {
+  margin-top: 20px;
+}
+
+.dailySalesData {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.day {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/* Estilos para el fondo blanco de los gráficos */
+.chartContainer {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
