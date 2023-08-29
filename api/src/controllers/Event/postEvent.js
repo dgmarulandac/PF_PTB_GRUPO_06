@@ -23,7 +23,7 @@ const postEvent = async (event) => {
         idSeller
     });
 
-    return createdEven;
+    return createdEvent;
 };
 
 module.exports = postEvent;
