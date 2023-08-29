@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 
 export default function EditEvent() {
     let { id } = useParams();
-    const { country, eventTypes, moneyTypes, userSession, events } = useSelector(state => state)
+    const { country, eventTypes, moneyTypes, events } = useSelector(state => state)
 
     const dispatch = useDispatch()
 
@@ -166,10 +166,10 @@ export default function EditEvent() {
                     </div>
                     <div className={styles.div_ind}>
                         <label className={styles.label}>Precio de los Tickets</label>
-                        <div class="relative">
+                        <div className="relative">
                             <input type="number" name="ticketPrice" id="10"
                             value={event.ticketPrice} onChange={handleChange}
-                            class={styles.input_price} placeholder="ejem: 600" />
+                            className={styles.input_price} placeholder="ejem: 600" />
                             <select className={styles.select_m} value={event.currency} name='currency' onChange={handleChange}>
                                 {moneyTypes.map((m, i) => {
                                     return (<option value={m} key={i}>{m}</option>)
