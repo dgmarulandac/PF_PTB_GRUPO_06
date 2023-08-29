@@ -58,10 +58,13 @@ const EventFilter = () => {
 
         <select value={country} onChange={e => setCountry(e.target.value)} className={FilStyles.select}>
           <option value="">Selecciona un país</option>
+          <option value="Argentina">Argentina</option>
+          <option value="Colombia">Chile</option>
+          <option value="Colombia">Colombia</option>
           <option value="Uruguay">Uruguay</option>
           <option value="Venezuela">Venezuela</option>
-          <option value="Colombia">Colombia</option>
-          <option value="Argentina">Argentina</option>
+          
+          
         </select>
 
         <nav className={FilStyles.filterclases}>
@@ -88,6 +91,7 @@ const EventFilter = () => {
           <option value="name">Nombre</option>
           <option value="date">Fecha</option>
           <option value="eventType">Tipo de Evento</option>
+          <option value="ticketPrice">Precio</option>
         </select>
 
         <select value={sortOrder} onChange={e => setSortOrder(e.target.value)} className={FilStyles.select}>
