@@ -53,6 +53,7 @@ const Nav = () => {
         <div className={`${navStyles.containerClasses} flex justify-between items-center`}>
           <Link to="/" ><h3 className={navStyles.logoClasses}>BOHO</h3></Link>
           <div className={navStyles.linkContainerClasses}>
+            <Car />
             <Link to='/createEvent' ><button className={navStyles.buttonClasses}><span class="relative z-10">Crear Evento</span></button></Link>
             <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
             <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y Condiciones</span></button></Link>
@@ -71,6 +72,7 @@ const Nav = () => {
         <div className={`${navStyles.containerClasses} flex justify-between items-center`}>
           <Link to="/" ><h3 className={navStyles.logoClasses}>BOHO</h3></Link>
           <div className={navStyles.linkContainerClasses}>
+            <Car />
             <Link to='/createEvent' ><button className={navStyles.buttonClasses}><span class="relative z-10">Crear Evento</span></button></Link>
             <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
             <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y condiciones</span></button></Link>
