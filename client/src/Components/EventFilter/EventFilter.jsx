@@ -94,11 +94,11 @@ const EventFilter = () => {
           <option value="">Orden</option>
           <option value="ASC">
             Ascendente
-            <img src={asc_Icon.png} alt="Ascendente" className={FilStyles.sortIcon} />
+            <img src={asc_Icon} alt="Ascendente" className={FilStyles.sortIcon} />
           </option>
           <option value="DESC">
             Descendente
-            <img src={desc_Icon.png} alt="Descendente" className={FilStyles.sortIcon} />
+            <img src={desc_Icon} alt="Descendente" className={FilStyles.sortIcon} />
           </option>
         </select>
 
