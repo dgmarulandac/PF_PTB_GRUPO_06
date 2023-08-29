@@ -21,7 +21,7 @@ const verifyToken = (req, res, next) => {
 
 const isAdmin = async (req, res, next) => {
   const user = await User.findByPk(req.id);
-  const roles = await user.getRoles();
+  const roles = user ? await user.getRoles() : [];
   let pass = false;
   roles.forEach(role => {
     if( role.type === adminRole ) {
@@ -38,7 +38,7 @@ const isAdmin = async (req, res, next) => {
 
 const isSeller = async (req, res, next) => {
   const user = await User.findByPk(req.id);
-  const roles = await user.getRoles();
+  const roles = user ? await user.getRoles() : [];
   let pass = false;
   roles.forEach(role => {
     if( role.type === sellerRole ) {
@@ -55,7 +55,7 @@ const isSeller = async (req, res, next) => {
 
 const isBuyer = async (req, res, next) => {
   const user = await User.findByPk(req.id);
-  const roles = await user.getRoles();
+  const roles = user ? await user.getRoles() : [];
   let pass = false;
   roles.forEach(role => {
     if( role.type === buyerRole ) {
