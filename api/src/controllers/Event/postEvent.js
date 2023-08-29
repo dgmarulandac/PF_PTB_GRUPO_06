@@ -1,4 +1,4 @@
-const {Event} = require('../db.js');
+const {Event} = require('../../db.js');
 
 const postEvent = async (event) => {
 
@@ -8,7 +8,7 @@ const postEvent = async (event) => {
         throw Error ("Faltan campos obligatorios");
     }
 
-    const event = await Event.create({
+    const createdEvent = await Event.create({
         name, 
         description, 
         date,
@@ -23,7 +23,7 @@ const postEvent = async (event) => {
         idSeller
     });
 
-    return event;
+    return createdEven;
 };
 
 module.exports = postEvent;

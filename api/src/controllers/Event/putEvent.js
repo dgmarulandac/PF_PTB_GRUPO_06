@@ -1,4 +1,4 @@
-const {Event} = require('../db.js');
+const {Event} = require('../../db.js');
 
 const putEvent = async (id, data) => {
     let event = await Event.findByPk(id);
