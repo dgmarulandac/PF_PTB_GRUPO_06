@@ -69,8 +69,8 @@ User.belongsTo(Review, {foreignKey: 'idUser'});
 Event.hasMany(Review, {foreignKey: 'idEvent'});
 Review.belongsTo(Event, {foreignKey: 'idEvent'});
 
-Cart.belongsToMany(Event, {through: "Cart_Event", foreignKey:"idCart"}); 
-Event.belongsToMany(Cart, {through: "Cart_Event", foreignKey:"idEvent"});
+Cart.belongsToMany(Event, {through: Cart_Event, foreignKey:"idCart"}); 
+Event.belongsToMany(Cart, {through: Cart_Event, foreignKey:"idEvent"});
 
 
 
