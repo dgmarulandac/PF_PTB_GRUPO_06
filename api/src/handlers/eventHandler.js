@@ -1,6 +1,7 @@
 const {getEventFilterController} = require('../controllers/Event/getEventWithFilter')
 const getEventById = require("../controllers/Event/getEventById");
 const getMyEvents = require("../controllers/Event/getMyEvents");
+const postEvent = require("../controllers/Event/postEvent")
 const {Event} = require('../db.js');
 
 
@@ -25,7 +26,25 @@ const getEventByIdHandler = async (req, res) => {
 };
 
 const getMyEventHandler = async (req, res) => {
-    const { id } = req.params;
+    try {
+        const { id } = req.params;
+        const events = await getMyEvents(id,req.id);
+        res.status(200).json(events);
+    } catch (error) {
+        res.status(404).send(error.message);
+    }
+};
+
+const getAdminEventsHandler = async (req, res) => {
+    try {
+        const events = await getMyEvents(id,req.id);
+        res.status(200).json(events);
+    } catch (error) {
+        res.status(404).send(error.message);
+    }
+};
+
+const toggleEventHandler = async (req, res) => {
     try {
         const events = await getMyEvents(id,req.id);
         res.status(200).json(events);
@@ -36,43 +55,9 @@ const getMyEventHandler = async (req, res) => {
 
 const postCreateEventHandler = async (req, res) => {
     try {
-        const { 
-            name, 
-            description, 
-            date, 
-            hour, 
-            cantTickets,  
-            address,
-            country,
-            image,
-            eventType,
-            ticketPrice,
-            currency,
-            idSeller
-        } = req.body;
-
-        console.log(currency)
-        if (!name || !date || !hour || !cantTickets || !address || !country || !ticketPrice || !currency || !idSeller) {
-            return res.status(400).json({ error: "Faltan campos obligatorios" });
-        }
-
-        const createEvent = await Event.create({
-            name, 
-            description, 
-            date, 
-            hour, 
-            cantTickets,  
-            address,
-            country,
-            image,
-            eventType,
-            ticketPrice,
-            currency,
-            idSeller   
-        });
-
-        
-        res.status(200).json(createEvent);
+        const { name, description, date, hour, cantTickets, address, country, image, eventType, ticketPrice, currency } = req.body;
+        const event = await postEvent( { idSeller: req.id, name, description, date, hour, cantTickets, address, country, image, eventType, ticketPrice, currency } );
+        res.status(200).json(event);
     } catch (error) {
         
         res.status(500).json({ error: "Hubo un error al crear el evento: " + error.message });
@@ -81,6 +66,7 @@ const postCreateEventHandler = async (req, res) => {
 
 const putEventHandler = async (req, res, next) => {
     try{
+        const {id} = req.params;
         let event = await Event.findByPk(req.params.id);
     
         if(!event){
@@ -120,4 +106,12 @@ const putEventHandler = async (req, res, next) => {
     }
     
 
-module.exports = { getEventHandler, getEventByIdHandler, postCreateEventHandler, putEventHandler, getMyEventHandler};
+module.exports = { 
+    getEventHandler,
+    getEventByIdHandler,
+    postCreateEventHandler,
+    putEventHandler,
+    getMyEventHandler,
+    getAdminEventsHandler,
+    toggleEventHandler
+};
