@@ -20,13 +20,15 @@ const putUser = async ( id, user ) => {
     }
 
     const {displayName, name, phone, email, nationality, address, roles} = user;
-
+    
     const updatedUser = await existingUser.update({displayName, name, phone, email, nationality, address});
-
-    const newRoles = await Role.findAll({
-        where: { type: { [Op.in]: roles } }
-    });
-    updatedUser.addRoles(newRoles);
+    
+    if( roles && roles.length > 0 ) {
+        const newRoles = await Role.findAll({
+            where: { type: { [Op.in]: roles } }
+        });
+        updatedUser.addRoles(newRoles);
+    }
     
     return updatedUser;
 };
