@@ -6,7 +6,9 @@ const {
     getUserCheckHandler, 
     postUserLoginHandler, 
     postAuthHandler,
-    toggleUserHandler
+    toggleUserHandler,
+    putUserHandler
+    
 } = require("../handlers/userHandler");
 
 const { verifyToken, isAdmin } = require("../middleware/authJwt");
@@ -20,6 +22,7 @@ userRouter.post("/register", postUserHandler);
 userRouter.get("/check", getUserCheckHandler);
 userRouter.post("/login", [verifyGoogle], postUserLoginHandler);
 userRouter.post("/auth", postAuthHandler);
-userRouter.put("/toggleUser/:id", [verifyToken, isAdmin], toggleUserHandler)
+userRouter.put("/toggleUser/:id", [verifyToken, isAdmin], toggleUserHandler);
+userRouter.put("/update/:id", [verifyToken, isAdmin], putUserHandler);
 
 module.exports = userRouter;
