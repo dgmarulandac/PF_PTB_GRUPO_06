@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useSelector } from "react-redux";
 import { Pagination, Autoplay, Navigation, Keyboard } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { swiper } from './styles'
+import { swiper } from './styles';
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 export default function Slider() {
-  const slides = [
-    "https://www.lunapark.com.ar/images/eventos/eventos/11066.jpg?1680027036",
-    "https://www.lunapark.com.ar/images/eventos/eventos/11027.jpg?1679514160",
-    "https://www.lunapark.com.ar/images/eventos/eventos/11477.jpg?1690910639",
-  ];
+  const events = useSelector((state) => state.events);
+
   return (
     <div className={swiper}>
       <Swiper
@@ -30,19 +29,19 @@ export default function Slider() {
         }}
         modules={[Autoplay, Pagination, Navigation, Keyboard]}
       >
-        {slides.map((s, i) => {
+        {events.map((event, i) => {
+          const eventDetailUrl = `/event/${event.id}`; // Construct the event detail URL
           return (
-           
-              <SwiperSlide key={i}>
-                <div className="flex items-center justify-center">
-                  <img src={s} alt="evento" width="852" height="457" className="mb-4" />
-                </div>
-              </SwiperSlide>
-
+            <SwiperSlide key={i}>
+              <div className="flex items-center justify-center">
+                <Link to={eventDetailUrl}> {/* Use Link to navigate to event detail */}
+                  <img src={event.image} alt={event.title} width="352" height="157" className="mb-4" />
+                </Link>
+              </div>
+            </SwiperSlide>
           );
         })}
       </Swiper>
     </div>
-
-  )
+  );
 }

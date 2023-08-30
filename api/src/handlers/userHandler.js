@@ -4,6 +4,8 @@ const postUser = require("../controllers/User/postUser");
 const getUserCheck = require("../controllers/User/getUserCheck");
 const postUserLogin = require("../controllers/User/postUserLogin");
 const postAuth = require("../controllers/User/postAuth");
+const toggleUser = require("../controllers/User/toggleUser");
+const putUser = require("../controllers/User/putUser");
 
 const getUserHandler = async (req, res) => {
     try {
@@ -26,8 +28,8 @@ const getUserByIdHandler = async (req, res) => {
 
 const postUserHandler = async (req, res) => {
     try {
-        const {displayName, name, phone, email, nationality, address, isCompany, password} = req.body;
-        const newUser = await postUser({displayName, name, phone, email, nationality, address, isCompany, password});
+        const {displayName, name, phone, email, nationality, address, password} = req.body;
+        const newUser = await postUser({displayName, name, phone, email, nationality, address, password});
         res.status(201).json(newUser);
     } catch (error) {
         res.status(404).json({error: error.message});
@@ -66,4 +68,34 @@ const postAuthHandler = async (req, res) => {
     }
 };
 
-module.exports = { getUserHandler, getUserByIdHandler, postUserHandler, getUserCheckHandler, postUserLoginHandler, postAuthHandler };
+const toggleUserHandler = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await toggleUser( id );
+        res.status(201).json(user);
+    } catch (error) {
+        res.status(404).json({error: error.message});
+    }
+};
+
+const putUserHandler = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const {displayName, name, phone, email, nationality, address, roles} = req.body;
+        const user = await putUser( id, {displayName, name, phone, email, nationality, address, roles} );
+        res.status(201).json(user);
+    } catch (error) {
+        res.status(404).json({error: error.message});
+    }
+};
+
+module.exports = { 
+    getUserHandler, 
+    getUserByIdHandler, 
+    postUserHandler, 
+    getUserCheckHandler, 
+    postUserLoginHandler, 
+    postAuthHandler, 
+    toggleUserHandler,
+    putUserHandler
+};
