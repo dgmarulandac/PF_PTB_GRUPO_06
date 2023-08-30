@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 
 const bohoLogin = async (user) => {
     if( !user.displayName && !user.password ) {
-        throw Error("Datos de ususario incorrectos.")
+        throw Error("Datos de usuario incorrectos.")
     }
 
     const candidateUser = await User.findOne({where: { displayName: user.displayName }});
