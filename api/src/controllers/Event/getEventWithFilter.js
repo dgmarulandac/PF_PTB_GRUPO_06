@@ -9,7 +9,7 @@ const getEventFilterController = async (
 	date,
 	order
 ) => {
-	const whereClause = {cantTickets: {[Op.gt]: 0}};
+	const whereClause = {cantTickets: {[Op.gt]: 0}, active: true};
 
 	if (name) {
 		whereClause.name = { [Op.iLike]: `%${name}%` };
