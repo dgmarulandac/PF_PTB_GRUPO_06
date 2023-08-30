@@ -4,92 +4,81 @@ import { useParams } from "react-router-dom";
 
 const DetailUser = () => {
     const { id } = useParams();
-    const [ user, setUser] = useState({});
-    const [ roles, setRoles] = useState([])
-    const [ error, setError] = useState(null);
-    const [ success, setSuccess] = useState(null);
-    useEffect(()=>{
+    const [user, setUser] = useState({});
+    const [roles, setRoles] = useState([])
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
+    useEffect(() => {
         axios.get(`/users/${id}`)
             .then(res => res.data)
-            .then(data =>{
+            .then(data => {
                 setUser(data)
                 setRoles(data.roles)
             })
-            .then(err =>{
+            .then(err => {
                 setError(err)
             })
     }, [id])
-    const banUser = () =>{
-        axios.delete(`/users/${id}`)
-            .then(res => res.data)
-            .then(data => {
-                setSuccess('Usuario borrado')
-            })
-    };
-    const changeUser = () =>{
-        
+    const changeUser = () => {
+
         axios.put(`/users/${id}`, user)
             .then(res => res.data)
             .then(data => {
                 setSuccess('Usuario cambiado')
             })
     };
-    const handleChange = (e) =>{
-       const {value, name} = e.currentTarget;
-       setUser({
-        ... user,
-        [name]: value
-       })
+    const handleChange = (e) => {
+        const { value, name } = e.currentTarget;
+        setUser({
+            ...user,
+            [name]: value
+        })
     };
-    const handleCheck = (e) =>{
-        const {checked, name} = e.currentTarget;
-        if(checked){
-            setRoles([... roles, name])
-        }else{
+    const handleCheck = (e) => {
+        const { checked, name } = e.currentTarget;
+        if (checked) {
+            setRoles([...roles, name])
+        } else {
             setRoles(roles.filter((role) => role !== name))
         }
         setUser({
-            ... user,
+            ...user,
             roles: roles
         })
     }
 
-    return(
+    return (
         <div>
             <div>
                 <h1>{user.displayName}</h1>
-                <img src={user.image}/>
+                <img src={user.image} />
                 <h2>{user.name}</h2>
-                <input type="text" onChange={handleChange} name="name"/>
+                <input type="text" onChange={handleChange} name="name" />
                 <p>{user.email}</p>
-                <input type="text" onChange={handleChange} name="email"/>
+                <input type="text" onChange={handleChange} name="email" />
                 <p>{user.address}</p>
-                <input type="text" onChange={handleChange} name="address"/>
+                <input type="text" onChange={handleChange} name="address" />
                 <p>{user.phone}</p>
-                <input type="number" onChange={handleChange} name="address"/>
+                <input type="number" onChange={handleChange} name="address" />
 
                 <input type="checkbox" name="admin" checked={user.roles.includes("admin")} onChange={handleCheck} />
                 <input type="checkbox" name="buyer" checked={user.roles.includes("buyer")} onChange={handleCheck} />
                 <input type="checkbox" name="seller" checked={user.roles.includes("seller")} onChange={handleCheck} />
+                <input type="radio" id="contactChoice1" name="contact" value="email" />
+                
+                <label for="active">Baneado</label>
+                <input type="radio" name="active" value="false" onChange={handleChange}/>
+                <label for="active">Desbaneado</label>
+                <input type="radio" name="active" value="true" onChange={handleChange}/>
+
                 <button onClick={changeUser}>Cambiar usuario</button>
                 {
-                    success.includes('Usuario cambiado') ? 
-                    <div>
-                        <button>x</button>
-                        <p>{`${success}`}</p>
-                    </div> : null
+                    success.includes('Usuario cambiado') ?
+                        <div>
+                            <button>x</button>
+                            <p>{`${success}`}</p>
+                        </div> : null
                 }
-            </div>
-            <div>
-
-            <button onClick={banUser}>Borrar usuario</button>
-            {
-                success.includes('Usuario borrado') ? 
-                <div>
-                    <button>x</button>
-                    <p>{`${success}`}</p>
-                </div> : null
-            }
             </div>
         </div>
     )
