@@ -4,10 +4,10 @@ const eventRouter = require("./eventRouter");
 const userRouter = require("./userRouter");
 const orderRouter = require("./orderRouter");
 const mercadoRouter = require("./mercadoRouter");
-// const saleRouter = require("./saleRouter");
 const passwordRouter = require("./passwordRouter");
 const saleRouter = require('./saleRouter');
-
+const reviewsRouter = require('./reviewsRouter')
+const dashboardUserRouter = require('./dashboardUserRouter')
 const router = Router();
 
 router.use("/events", eventRouter);
@@ -16,6 +16,9 @@ router.use("/orders", orderRouter);
 router.use("/orderMercadoPago", mercadoRouter);
 router.use("/password", passwordRouter);
 router.use("/sales", saleRouter);
+router.use("/reviews", reviewsRouter);
+router.use("/dashboardUser", dashboardUserRouter)
+
 
 
 
