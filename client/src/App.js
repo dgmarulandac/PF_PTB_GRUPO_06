@@ -2,7 +2,7 @@ import './App.css';
 import 'tailwindcss/tailwind.css';
 //DEPENDENCIES
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { postLogin, postAuth } from './Redux/Action/action';
 import { useSelector, useDispatch } from "react-redux";
 //Components
@@ -37,7 +37,7 @@ function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userSesion = useSelector(state => state.userSesion)
-
+  
   function handleCallbackResponse(response) {
     const user = { platform: "google", jwt: response.credential };
     dispatch(postLogin(user));

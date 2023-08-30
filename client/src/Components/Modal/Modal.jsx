@@ -6,6 +6,7 @@ import validation from '../../functions/Validations/validationModal/validation'
 import { styles } from "./modalStyle";
 import { addCar, modal } from "../../Redux/Action/action";
 import mp from './MP.png'
+import sucess from './sucess.png'
 
 export default function Modal() {
     const { id } = useParams()
@@ -18,7 +19,7 @@ export default function Modal() {
     const [order, setOrder] = useState({
         idBuyer
     })
-    const [urlMp, setUrlMp] = useState(false)
+    const [orderCar, setOrderCar] = useState(false)
 
     const handleChange = (e) => {
         const { value } = e.target;
@@ -40,7 +41,8 @@ export default function Modal() {
             try {
                 const response = await axios.post('orders/createOrder', order)
                 dispatch(addCar(order))
-                setUrlMp(response.data.response.init_point)
+                setOrderCar(true)
+                // setUrlMp(response.data.response.init_point)
                 console.log(response)
             } catch (error) {
                 setError({ ...error, post: error.response.data.error })
@@ -87,26 +89,23 @@ export default function Modal() {
                             {order.price > 0 && <p className="text-xs m-0">Total a pagar: {order.price * ticket}</p>}
                         </div>
                     </div>
-                    {urlMp ? (
+                    {orderCar ? (
                         <div>
-                            <div>
-                                <p className={styles.p}>Metodos de Pago</p>
-                            </div>
-                            <div className="m-5 mb-2">
-                                <a id='mercadoPago' href={urlMp} target="_blank">
-                                    <img src={mp} alt="logo de mercado pago" width='80' />
-                                </a>
-                            </div>
+                             <div className="flex justify-center">
+                                    <img src={sucess} alt="aprobado" />
+                                </div>
+                                <p className={styles.exito}>tu orden fue generada!</p>
                         </div>
-                    ) : (
-                        <div className={''}>
-                            <p className={styles.p}>Genere la orden</p>
-                            <label className={styles.label}>Seleccione la cantidad de entradas que desea comprar</label>
-                            <input className={styles.input} type="number" placeholder="ejem 1,2" value={ticket} onChange={handleChange} />
-                            {error.cantTickets && <p className={styles.error}>{error.cantTickets}</p>}
-                            <button className={styles.button} onClick={prueba}>Confirmar orden</button>
-                        </div>
-                    )}
+                    ):(
+                    <div className={''}>
+                        <p className={styles.p}>Genere la orden</p>
+                        <label className={styles.label}>Seleccione la cantidad de entradas que desea comprar</label>
+                        <input className={styles.input} type="number" placeholder="ejem 1,2" value={ticket} onChange={handleChange} />
+                        {error.cantTickets && <p className={styles.error}>{error.cantTickets}</p>}
+                        <button className={styles.button} onClick={prueba}>Confirmar orden</button>
+                    </div>)}
+                    
+
                     {error.post && <p className={styles.error}>⚠️ {error.post}</p>}
                 </div>
             </div>
