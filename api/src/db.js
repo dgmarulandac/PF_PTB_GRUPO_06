@@ -56,8 +56,8 @@ Order.belongsTo(User, {foreignKey: 'idBuyer'});
 Order.hasOne(Sale, {foreignKey: 'idOrder'});
 Sale.belongsTo(Order, {foreignKey: 'idOrder'});
 
-Review.hasMany(User, {foreignKey: 'idUser'});
-User.belongsTo(Review, {foreignKey: 'idUser'});
+User.hasMany(Review, {foreignKey: 'idUser'});
+Review.belongsTo(User, {foreignKey: 'idUser'});
 
 Event.hasMany(Review, {foreignKey: 'idEvent'});
 Review.belongsTo(Event, {foreignKey: 'idEvent'});
