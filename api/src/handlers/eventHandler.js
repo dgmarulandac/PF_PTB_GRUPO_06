@@ -65,9 +65,11 @@ const postCreateEventHandler = async (req, res) => {
 
 const putEventHandler = async (req, res) => {
     try {
+        const userId = req.id;
+        const {isAdmin, isSeller} = req;
         const {id} = req.params;
         const { name, description, date, hour, cantTickets, address, country, image, eventType, ticketPrice, currency } = req.body;
-        const event = await putEvent( id, { name, description, date, hour, cantTickets, address, country, image, eventType, ticketPrice, currency } );
+        const event = await putEvent( {userId, isAdmin, isSeller}, id, { name, description, date, hour, cantTickets, address, country, image, eventType, ticketPrice, currency } );
         res.status(200).json(event);
     } catch (error) {
         res.status(500).json({ error: "Hubo un error al modificar el evento: " + error.message });

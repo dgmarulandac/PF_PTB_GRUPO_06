@@ -8,6 +8,10 @@ const postEvent = async (event) => {
         throw Error ("Faltan campos obligatorios");
     }
 
+    if( cantTickets <= 0 ) {
+        throw Error("La cantidad de tickets debe ser mayor a 0.")
+    }
+
     const createdEvent = await Event.create({
         name, 
         description, 

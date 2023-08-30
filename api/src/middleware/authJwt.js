@@ -70,4 +70,26 @@ const isBuyer = async (req, res, next) => {
   }
 };
 
-module.exports = { verifyToken, isAdmin, isBuyer, isSeller };
+const isSellerOrAdmin = async (req, res, next) => {
+  const user = await User.findByPk(req.id);
+  const roles = user ? await user.getRoles() : [];
+  let pass = false;
+  roles.forEach(role => {
+    if( role.type === sellerRole ) {
+        req.isSeller = true;
+        pass = true;
+    }
+    if( role.type === adminRole ) {
+        req.isAdmin = true;
+        pass = true;
+    }
+  });
+  if( !pass ) {
+    return res.status(403).json({error: "Se requiere el rol de Vendedor o Administrador para ver esto."})
+  } else {
+    next();
+    return pass;
+  }
+};
+
+module.exports = { verifyToken, isAdmin, isBuyer, isSeller, isSellerOrAdmin };
