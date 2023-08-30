@@ -23,10 +23,10 @@ const {initial} = require('./src/rolesSpec.js')
 const port = process.env.PORT || 3001
 
 // Syncing all the models at once.
-conn.sync({ alter: true }).then(() => {
+conn.sync({ force: true }).then(() => {
   server.listen(port, () => {
     console.log(`%s listening at ${port}`); // eslint-disable-line no-console
     //! SOLO PARA DEV Y TESTING EN PRODUCCION NO DEBE IR.
-    //initial(Role);
+    initial(Role);
   });
 });
