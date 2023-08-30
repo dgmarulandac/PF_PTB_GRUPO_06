@@ -15,9 +15,13 @@ const getCartToken = async (token) => {
             cartId= decoded.id;
         });
 
-        const cart = await Cart.findByPk(cartId, {include: {model: Event, attributes: ["id"], through:{attributes:["quantity"]}}} )
-
-
+        const cart = await Cart.findByPk(cartId, {
+            include: {
+                model: Event,
+                attributes: ["id"],
+                through: { attributes: ["quantity"] }
+            }
+        });
         
         return cart;
 
