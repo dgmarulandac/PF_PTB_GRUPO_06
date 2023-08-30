@@ -54,11 +54,12 @@ const Nav = () => {
           <Link to="/" ><h3 className={navStyles.logoClasses}>BOHO</h3></Link>
           <div className={navStyles.linkContainerClasses}>
             <Car />
-            <Link to='/createEvent' ><button className={navStyles.buttonClasses}><span class="relative z-10">Crear Evento</span></button></Link>
-            <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
-            <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y Condiciones</span></button></Link>
-            <Link to='/myEvents'><button className={navStyles.buttonClasses}><span class="relative z-10">Mis Eventos</span></button></Link>
-            <button className={navStyles.buttonClasses} onClick={() => { dispatch(logOut()) }}><span class="relative z-10">Cerrar Sesión</span></button>
+            <Link to='/Admin/Panel'><button>Mi perfil</button></Link>
+            <Link to='/createEvent' ><button className={navStyles.buttonClasses}><span class="relative">Crear Evento</span></button></Link>
+            <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative">Preguntas Frecuentes</span></button></Link>
+            <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative">Terminos y Condiciones</span></button></Link>
+            <Link to='/myEvents'><button className={navStyles.buttonClasses}><span class="relative">Mis Eventos</span></button></Link>
+            <button className={navStyles.buttonClasses} onClick={() => { dispatch(logOut()) }}><span class="relative">Cerrar Sesión</span></button>
           </div>
         </div>
         <div className={styles.rotatingBar}></div>
