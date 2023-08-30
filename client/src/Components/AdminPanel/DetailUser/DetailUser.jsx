@@ -15,7 +15,7 @@ const DetailUser = () => {
                 setUser(data)
                 setRoles(data.roles)
             })
-            .then(err => {
+            .catch(err => {
                 setError(err)
             })
     }, [id])
@@ -65,7 +65,7 @@ const DetailUser = () => {
                 <input type="checkbox" name="admin" checked={user.roles.includes("admin")} onChange={handleCheck} />
                 <input type="checkbox" name="buyer" checked={user.roles.includes("buyer")} onChange={handleCheck} />
                 <input type="checkbox" name="seller" checked={user.roles.includes("seller")} onChange={handleCheck} />
-                <input type="radio" id="contactChoice1" name="contact" value="email" />
+                {/* <input type="radio" id="contactChoice1" name="contact" value="email" /> */}
 
                 <button onClick={changeUser}>Cambiar usuario</button>
                 {
