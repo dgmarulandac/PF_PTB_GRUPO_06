@@ -5,11 +5,8 @@ const AdminPanel = () => {
 
     return (
         <div className='bg-whithe dark:bg-fondoDark'>
-            <div className="m-3">
                 {/* <UsersList /> */}
                 <MyEvents />
-            </div>
-
         </div>
     )
 };

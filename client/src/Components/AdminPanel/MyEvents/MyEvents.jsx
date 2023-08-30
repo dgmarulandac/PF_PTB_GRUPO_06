@@ -4,34 +4,40 @@ import { useSelector } from "react-redux";
 import CardEvent from "./CardEvent/CardEvent";
 
 export default function MyEvents() {
-    // const [events, setEvents] = useState({})
+    const [events, setEvents] = useState([])
     const [error, seterror] = useState(false)
 
-    // useEffect(() => {
-    //     axios.get('/events/admin')
-    //         .then(response => setEvents(response.data))
-    //         .catch(error => seterror(error))
+    useEffect(() => {
+        axios.get('/events/admin', { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+            .then(response => setEvents(response.data))
+            .catch(error => seterror(error))
 
-    //     return setEvents(false)
-    // }, [])
-    const events = useSelector(state => state.events)
-
+        return setEvents([])
+    }, [])
+    // const events = useSelector(state => state.events)
 
     return (
         <div>
+            {console.log(events)}
             {error ? (
                 <div>
                     <p>{error}</p>
                 </div>
             ) : (
-
                 <div className="grid gap-3 justify-center border">
-                    {events.map((e, i) => {
-                        return (
-                            <CardEvent e={e} key={i}/>
-                        )
+                    {events.length === 0 ? (
+                        <div>
+                            <h1>No hay eventos para mostrar</h1>
+                        </div>
+                    ) : (
+                        events.map((e, i) => {
+                            return (
+                                <CardEvent e={e} key={i} />
+                            )
 
-                    })}
+                        })
+                    )}
+
                 </div>
             )}
         </div>)
