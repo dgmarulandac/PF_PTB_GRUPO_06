@@ -31,12 +31,6 @@ export default function Home() {
     setEventosAMostrar(events.length && events.slice(primerIndex, ultimoIndex));
   }, [events, currentPage]);
 
-  const slides = [
-    "https://www.lunapark.com.ar/images/eventos/eventos/11066.jpg?1680027036",
-    "https://www.lunapark.com.ar/images/eventos/eventos/11027.jpg?1679514160",
-    "https://www.lunapark.com.ar/images/eventos/eventos/11477.jpg?1690910639",
-  ];
-
   return (
     <div>
       <Slider />
