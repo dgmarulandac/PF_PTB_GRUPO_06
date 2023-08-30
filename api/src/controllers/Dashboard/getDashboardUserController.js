@@ -5,7 +5,7 @@ const getDashboardUserController = async (id) => {
         const orders = await Order.findAll({
             where: { idBuyer: id },
             include: [
-                { model: Sale, required: true },
+                { model: Sale, required: false }, // false para que tome la venta aun sin que tenga que volver al sitio
                 { model: Event, required: true }
             
             ]
