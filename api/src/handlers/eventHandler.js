@@ -3,6 +3,8 @@ const getEventById = require("../controllers/Event/getEventById");
 const getMyEvents = require("../controllers/Event/getMyEvents");
 const postEvent = require("../controllers/Event/postEvent");
 const putEvent = require('../controllers/Event/putEvent');
+const getAdminEvents = require('../controllers/Event/getAdminEvents');
+const toggleEvent = require('../controllers/Event/toggleEvent');
 
 
 const getEventHandler = async (req, res) => {
@@ -37,7 +39,7 @@ const getMyEventHandler = async (req, res) => {
 
 const getAdminEventsHandler = async (req, res) => {
     try {
-        const events = await getMyEvents(id,req.id);
+        const events = await getAdminEvents();
         res.status(200).json(events);
     } catch (error) {
         res.status(404).json({error: error.message});
@@ -46,7 +48,10 @@ const getAdminEventsHandler = async (req, res) => {
 
 const toggleEventHandler = async (req, res) => {
     try {
-        const events = await getMyEvents(id,req.id);
+        const {id} = req.params;
+        const userId = req.id;
+        const {isAdmin, isSeller} = req;
+        const events = await toggleEvent(id, {userId, isAdmin, isSeller});
         res.status(200).json(events);
     } catch (error) {
         res.status(404).json({error: error.message});

@@ -1,21 +1,22 @@
 const {Event} = require('../../db.js');
 
-const toggleEvent = async (id, data) => {
+const toggleEvent = async (id, userInfo) => {
     let event = await Event.findByPk(id);
 
     if( !event ) {
         throw Error("El evento no existe");
     }
 
-    const { name, description, date, hour, cantTickets, address, country, image, eventType, ticketPrice, currency, idSeller, active } = data
-
-    if( cantTickets <= 0 ) {
-        throw Error("La cantidad de boletas debe ser mayor o igual a 0.")
+    if( userInfo.isSeller && !userInfo.isAdmin ) {
+        if( event.idSeller !== userInfo.id ) {
+            throw Error("Este evento no le pertenenece.");
+        }
     }
 
-    let updatedEvent = await event.update({ name, description, date, hour, cantTickets, address, country, image, eventType, ticketPrice, currency, idSeller, active });
+    event.active = !event.active;
+    event.save();
 
-    return updatedEvent;
+    return event;
     
 };
 
