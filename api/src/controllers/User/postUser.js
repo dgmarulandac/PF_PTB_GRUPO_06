@@ -7,7 +7,7 @@ const sendPostUser = require ("../Email/emailRegisterController.js")
 const postUser = async ( user ) => {
     
     if( ! await userVerificationDisplay(user.displayName) ) {
-        throw Error(`El nombre de ususario ${user.displayName} no esta disponible.`);
+        throw Error(`El nombre de usuario ${user.displayName} no esta disponible.`);
     }
     if ( !emailVerification(user.email) ) {
         throw Error("Correo electronico invalido.")
