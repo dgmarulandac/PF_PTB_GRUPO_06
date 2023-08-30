@@ -30,7 +30,7 @@ const UsersList = () =>{
                     return(
                         <div>
                             <Link to={`/Admin/Panel/${element.id}`}><p>{element.displayName}</p></Link>
-                            <button value={element.id}>Banear/Desbanear</button>
+                            <button value={element.id} onClick={handleChange}>Banear/Desbanear</button>
                             {
                                 success ? 
                                 <div>
