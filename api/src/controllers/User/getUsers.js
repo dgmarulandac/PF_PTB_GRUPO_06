@@ -1,9 +1,7 @@
 const { User } = require("../../db");
 
-const getUsers = async (condition) => {
-    const users = await User.findAll({
-        where: condition,
-    });
+const getUsers = async () => {
+    const users = await User.findAll();
     return users;
 };
 

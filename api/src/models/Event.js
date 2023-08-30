@@ -71,6 +71,12 @@ module.exports = (sequelize) => {
         idSeller: {
             type: DataTypes.UUID,
             allowNull: false
+        },
+        
+        active:{
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: true
         }
     });
 };
