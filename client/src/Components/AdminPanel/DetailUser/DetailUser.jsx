@@ -9,7 +9,7 @@ const DetailUser = () => {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
     useEffect(() => {
-        axios.get(`/users/${id}`)
+        axios.get(`/users/${id}`,{ headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
             .then(res => res.data)
             .then(data => {
                 setUser(data)
@@ -21,7 +21,8 @@ const DetailUser = () => {
     }, [id])
     const changeUser = () => {
 
-        axios.put(`/users/${id}`, user)
+        axios.put(`/users/update/${id}`, user,{ headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+                // User puede recibir: {displayName, name, phone, email, nationality, address, roles}
             .then(res => res.data)
             .then(data => {
                 setSuccess('Usuario cambiado')
@@ -65,11 +66,6 @@ const DetailUser = () => {
                 <input type="checkbox" name="buyer" checked={user.roles.includes("buyer")} onChange={handleCheck} />
                 <input type="checkbox" name="seller" checked={user.roles.includes("seller")} onChange={handleCheck} />
                 <input type="radio" id="contactChoice1" name="contact" value="email" />
-                
-                <label for="active">Baneado</label>
-                <input type="radio" name="active" value="false" onChange={handleChange}/>
-                <label for="active">Desbaneado</label>
-                <input type="radio" name="active" value="true" onChange={handleChange}/>
 
                 <button onClick={changeUser}>Cambiar usuario</button>
                 {
