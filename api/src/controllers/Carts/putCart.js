@@ -7,6 +7,8 @@ const {Cart, Event, Cart_Event} = require("../../db");
 const updateCartQuantity = async (req, res) => {
     try {
         const { token, events} = req.body;
+        const id = req.id;
+
         let cartId = "";
         
         jwt.verify(token, SECRET, (err, decoded) => {
@@ -27,6 +29,11 @@ const updateCartQuantity = async (req, res) => {
         if (!cart) {
             return res.status(404).json({message: 'Carrito no encontrado' });
         }
+        if(id){
+            cart.idUser = id;
+            cart.save();
+        }
+        
         for(let i=0; i<events.length; i++){
             
             const cartEvent = await Cart_Event.findOne({
