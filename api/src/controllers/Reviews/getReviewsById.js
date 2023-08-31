@@ -1,4 +1,4 @@
-const { Review } = require("../../db");
+const { Review, User } = require("../../db");
 
 const getReviewById = async (id) => {
 
@@ -7,7 +7,13 @@ const getReviewById = async (id) => {
         where: {
             approved: true,
             idEvent: id
-        }
+        },
+        include: [
+            {
+                model: User, 
+                attributes: ['name', 'displayName'], 
+            }
+        ]
     })
 
 
