@@ -6,7 +6,7 @@ const {Cart, Event, Cart_Event} = require("../../db");
 
 const updateCartQuantity = async (req, res) => {
     try {
-        const { token, eventId, newQuantity } = req.body;
+        const { token, events} = req.body;
         let cartId = "";
         
         jwt.verify(token, SECRET, (err, decoded) => {
@@ -16,7 +16,7 @@ const updateCartQuantity = async (req, res) => {
             cartId= decoded.id;
         });
 
-        const cart = await Cart.findByPk(cartId, {
+        let cart = await Cart.findByPk(cartId, {
             include: {
                 model: Event,
                 attributes: ["id"],
@@ -27,15 +27,30 @@ const updateCartQuantity = async (req, res) => {
         if (!cart) {
             return res.status(404).json({message: 'Carrito no encontrado' });
         }
+        for(let i=0; i<events.length; i++){
+            
+            const cartEvent = await Cart_Event.findOne({
+                where: { idEvent: events[i].idEvent, idCart: cart.id }
+            });
+            if(cartEvent){
 
-        const cartEvent = await Cart_Event.findOne({
-            where: { idEvent: eventId, idCart: cart.id }
+                await cartEvent.update({ quantity: events[i].quantity});
+
+            }else{
+
+                await Cart_Event.create({idEvent: events[i].idEvent, quantity: events[i].quantity, idCart: cart.id})
+            }
+        }
+
+        cart = await Cart.findByPk(cartId, {
+            include: {
+                model: Event,
+                attributes: ["id", "ticketPrice", "name"],
+                through: { attributes: ["quantity"] }
+            }
         });
 
-        await cartEvent.update({ quantity: newQuantity });
-
-       
-        return res.status(200).json({message: 'Cantidad actualizada en el carrito' });
+        return res.status(200).json(cart);
     
     } catch (error) {
         
