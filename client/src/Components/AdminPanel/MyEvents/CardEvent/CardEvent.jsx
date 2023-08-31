@@ -6,6 +6,7 @@ import { AiOutlineClose, AiOutlineCheck, AiOutlineEdit } from "react-icons/ai";
 import styles from "./CardEventStyle";
 import axios from "axios";
 import { BiBlock } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 export default function CardEvent({ e }) {
     const [v, setV] = useState(false)
@@ -28,11 +29,13 @@ export default function CardEvent({ e }) {
             <div className="w-40 h-32">
                 <img src={e.image} alt="evento" className="w-full h-32" />
             </div>
-            <div className="text-start">
-                <h2 className="text-lg font-medium">{e.name}</h2>
-                <p>{e.ticketPrice}{e.currency} /<span>{e.country}</span></p>
-                {active ? (<p className={styles.exito}>✅visible</p>) : (<p className={styles.error}>🚫 no visible</p>)}
-            </div>
+            <Link to={`/event/${e.id}`}>
+                <div className="text-start">
+                    <h2 className="text-lg font-medium">{e.name}</h2>
+                    <p>{e.ticketPrice}{e.currency} /<span>{e.country}</span></p>
+                    {active ? (<p className={styles.exito}>✅visible</p>) : (<p className={styles.error}>🚫 no visible</p>)}
+                </div>
+            </Link>
             <div className="grid grid-rows-2">
                 {/* <button className="bg-[#FE0000] rounded-tr-lg grid place-items-center"><AiOutlineClose /></button> */}
                 {active ?

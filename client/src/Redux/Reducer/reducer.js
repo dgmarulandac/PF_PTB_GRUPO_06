@@ -36,7 +36,9 @@ const rootReducer = (state = initialState, action)=>{
         case GET_MY_EVENTS:
             return {...state, myEvents: payload};
         case PUT_EVENT:
-            return {...state, myEvents: [...state.myEvents.filter( event => { return event.id !== payload.id } ), payload], events: [...state.events.filter( event => { return event.id !== payload.id } ), payload], eventsAdmin: [...state.eventsAdmin.filter( event => { return event.id !== payload.id } ), payload]};
+            return {...state, myEvents: [...state.myEvents.filter( event => { return event.id !== payload.id } ), payload], 
+            events: [...state.events.filter( event => { return event.id !== payload.id } ), payload], 
+            eventsAdmin: state.eventsAdmin.map(e => e.id === payload.id ? payload : e)};
         case ORDER_PAY:
             return {...state, preferenceId: payload};
         case GET_MY_SALES:

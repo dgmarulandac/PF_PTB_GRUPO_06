@@ -14,6 +14,7 @@ export default function MyEvents() {
     const dispatch = useDispatch()
     const events = useSelector(state => state.eventsAdmin)
 
+
     useEffect(() => {
         const loader = async()=>{
             try {
@@ -25,7 +26,7 @@ export default function MyEvents() {
         }
         loader()
         
-    }, [events])
+    }, [])
 
 
     return (
