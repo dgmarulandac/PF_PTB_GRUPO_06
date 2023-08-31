@@ -55,7 +55,7 @@ export default function Modal() {
         axios.get(`/events/${id}`)
             .then(({ data }) => {
                 setEvent(data)
-                setOrder({ ...order, idEvent: data.id })
+                setOrder({ ...order, idEvent: data.id, name: data.name })
                 setError('')
             })
             .catch(reason =>

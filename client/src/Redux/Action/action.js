@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES, ADD_CAR } from "./action-type";
+import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES, ADD_CAR, GET_EVENTS_ADMIN } from "./action-type";
 import Swal from "sweetalert2";
 
 export const getAllEvent = () => {
@@ -175,6 +175,24 @@ export const getMySales = () => {
         });
     }
 };
+
+export const eventsAdmin = ()=>{
+    return (dispatch)=>{
+        axios.get('/events/admin', { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+        .then(({data}) => {
+           return dispatch({type: GET_EVENTS_ADMIN, payload: data})
+        })
+        .catch(reason => {
+            Swal.fire({
+                title: "Error",
+                text: `${reason.response.data.error}`,
+                icon: "error",
+            });
+            return dispatch({type: GET_EVENTS_ADMIN, payload: []})
+        })
+    
+    }
+}
 
 export const addCar = (order)=>{
     return {

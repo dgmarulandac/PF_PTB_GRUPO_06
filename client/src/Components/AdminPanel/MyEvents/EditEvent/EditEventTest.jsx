@@ -5,9 +5,8 @@ import { useDispatch } from "react-redux";
 // import BrowseFileUpdate from "../../../BrowseFileUpdate/BrowseFileUpdate";
 import { styles } from "./formEventEditStyle";
 import BrowseFileUpdate from "../BrowseFileUpdateEdit/BrowseFileUpdateEdit";
-import { putEvent } from "../../../../Redux/Action/action";
 
-export default function EditEventAdmin({ handleEdit, e }) {
+export default function EditEventTest({ handleEdit, e }) {
     const { country, eventTypes, moneyTypes, userSesion } = useSelector(state => state)
 
     const dispatch = useDispatch()
@@ -35,20 +34,39 @@ export default function EditEventAdmin({ handleEdit, e }) {
         // setError(validation(newEvent))
     }
 
+    const handleCha = (e) => {
+        const { value, name } = e.target
+        const newEvent = { ...event, [name]: value }
+        setEvent(newEvent)
+        // setError(validation(newEvent))
+    }
+
     const handleImageUpload = (secure_url) => {
         const newEvent = { ...event, image: secure_url };
         setEvent(newEvent);
-        // setError(validation(newEvent))
+        setError(validation(newEvent))
     };
 
     const handleCreate = async (e) => {
         e.preventDefault();
         if (Object.keys(error).length === 0 && event.name.length > 0) {
-            dispatch(putEvent(event.id, event))
+
             // const eventToSend = { ...event, idSeller: userSesion.id };
 
             // dispatch(createEvent(eventToSend))
-            setEvent({...event, result: '✅ Evento editado con exito'})
+            setEvent({
+                name: '',
+                description: '',
+                date: '',
+                hour: '',
+                cantTickets: '',
+                address: '',
+                country: '',
+                image: '',
+                eventType: '',
+                ticketPrice: '',
+                result: '✅ Evento editado con exito'
+            })
         } else {
             setEvent({ ...event, result: '⚠️ Completa los campos' })
         }
@@ -69,7 +87,7 @@ export default function EditEventAdmin({ handleEdit, e }) {
                         <label className={styles.label}>Nombre</label>
                         <input type="text" name="name" id="1"
                             placeholder="nombre del evento..."
-                            value={event.name} onChange={handleChange}
+                            value={event.name} onChange={handleCha}
                             className={styles.input} />
                         <div>
                             {error.name && <p className={styles.error}>{error.name}</p>}

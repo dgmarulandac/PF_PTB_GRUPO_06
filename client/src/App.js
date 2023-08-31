@@ -37,7 +37,7 @@ function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userSesion = useSelector(state => state.userSesion)
-  
+
   function handleCallbackResponse(response) {
     const user = { platform: "google", jwt: response.credential };
     dispatch(postLogin(user));
@@ -67,7 +67,7 @@ function App() {
   //   }, [userSesion])
 
   return (
-    <div className="App bg-whithe dark:bg-fondoDark"> 
+    <div className="App bg-whithe dark:bg-fondoDark">
       <Nav />
       <Routes>
         <Route path='/*' element={<Error404 />} />
@@ -75,17 +75,17 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/FAQ' element={<FAQ />} />
         <Route path='/event/:id' element={<Detail />} />
-        <Route path='/sales/:id' element={<SalesPay/>}/>
+        <Route path='/sales/:id' element={<SalesPay />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<NotLoggedElement><Register /></NotLoggedElement>} />
-        <Route path='/passwordReset' element={<NotLoggedElement><ResetPassword/></NotLoggedElement>}/>
-        <Route path='/passwordRecover/:token' element={<NotLoggedElement><RecoverPassword/></NotLoggedElement>}/>
+        <Route path='/passwordReset' element={<NotLoggedElement><ResetPassword /></NotLoggedElement>} />
+        <Route path='/passwordRecover/:token' element={<NotLoggedElement><RecoverPassword /></NotLoggedElement>} />
         <Route path='/TaC' element={<LoggedElement><TermsAndConditions /></LoggedElement>} />
         <Route path='/createEvent' element={<SellerOrAdminElement><FormEvent /></SellerOrAdminElement>} />
-        <Route path='/myEvents' element={<SellerOrAdminElement><EventsDashboard/></SellerOrAdminElement>}/>
-        <Route path='/editEvent/:id' element={<SellerOrAdminElement><EditEvent/></SellerOrAdminElement>}/> 
+        <Route path='/myEvents' element={<SellerOrAdminElement><EventsDashboard /></SellerOrAdminElement>} />
+        <Route path='/editEvent/:id' element={<SellerOrAdminElement><EditEvent /></SellerOrAdminElement>} />
       </Routes>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
