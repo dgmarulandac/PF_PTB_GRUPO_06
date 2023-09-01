@@ -1,7 +1,7 @@
-const { Event, Review } = require("../../db");
+const { Event } = require("../../db");
 
 const getEventById = async (id) => {
-    const event = await Event.findByPk(id,);
+    const event = await Event.findByPk(id);
     return event;
 };
 
