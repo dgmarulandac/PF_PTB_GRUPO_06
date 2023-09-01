@@ -1,4 +1,4 @@
-export const container = "flex justify-center items-center  bg-gray-700 p-4 rounded-lg shadow-md";
+export const container = "flex justify-center items-center bg-gray-700 p-4 shadow-md";
 export const h1 =" text-gray-600 dark:text-gray-300 mb-4"
 export const boho = 'font-bungee text-5xl text-black dark:text-white'
 export const comen = "font-medium text-gray-900 dark:text-white "
