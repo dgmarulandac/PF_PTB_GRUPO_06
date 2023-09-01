@@ -12,7 +12,7 @@ transition: height 0.3s ease-in-out;
 overflow: hidden;
 `
 
-const Nav = (props) => {
+const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const handleMenu = () => {
     console.log(isMenuOpen)
