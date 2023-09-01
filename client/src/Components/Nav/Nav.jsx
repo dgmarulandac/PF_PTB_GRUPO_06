@@ -48,6 +48,10 @@ const Nav = (props) => {
     setWindowWitdth(window.innerWidth)
   }
 
+  useEffect( ()=>{
+    setWindowWitdth(window.innerWidth);
+  }, [] )
+
   if (windowWidth <= 860) {
     if (Object.keys(userSesion).length === 0) {
       return (
