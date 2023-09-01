@@ -15,19 +15,9 @@ overflow: hidden;
 `
 
 const Nav = (props) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const handleMenu = () => {
-    console.log(isMenuOpen)
-    setIsMenuOpen(!isMenuOpen)
-  }
   const userSesion = useSelector((state) => state.userSesion);
   const dispatch = useDispatch();
-  const [showContainer, setShowContainer] = useState(false);
-  const [windowWidth, setWindowWitdth] = useState(0);
-  useEffect(() => {
-    setWindowWitdth(window.innerWidth)
-  }, [])
-
+  
   function handleCallbackResponse(response) {
     const user = { platform: "google", jwt: response.credential };
     dispatch(postLogin(user));
@@ -40,14 +30,23 @@ const Nav = (props) => {
       icon: "error",
     });
   }
+
+  //Hamburguer icon
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  
+  const handleMenu = () => {
+    console.log(isMenuOpen)
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+  const [showContainer, setShowContainer] = useState(false);
+  const [windowWidth, setWindowWitdth] = useState(0);
+
   useEffect(() => {
-    //Auth de google - global google
-    /* global google */
-    google.accounts.id.renderButton(
-      document.getElementById("singInDiv"),
-      { theme: "outline", size: "large" }
-    )
-  }, [windowWidth])
+    setWindowWitdth(window.innerWidth)
+  }, [window.innerWidth])
+
 
   if (windowWidth <= 860) {
     if (Object.keys(userSesion).length === 0) {
@@ -66,7 +65,7 @@ const Nav = (props) => {
               <Link to="/login" ><button className={navStyles.buttonClasses}><span >Inicia Sesión</span></button></Link>
               <Link to="/register" ><button className={navStyles.buttonClasses}><span >Registrate</span></button></Link>
               <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span>Preguntas Frecuentes</span></button></Link>
-              <div id='singInDiv' className={navStyles.googleButtonIconMobile}></div>
+              <GoogleLogin onSuccess={handleCallbackResponse} onError={errorMessage}/>
             </div>
           </div>
           <div className={styles.rotatingBar}></div>
@@ -82,7 +81,7 @@ const Nav = (props) => {
       isSeller = isSeller || role === "seller";
     });
 
-    if (isSeller) {
+    if (isSeller && !isAdmin) {
       return (
         <Hamburguer isOpen={isMenuOpen} className={navStyles.navClasses}>
           <div className={`${navStyles.containerClassesMobile} flex justify-between items-center`} id="navwrap">
@@ -163,7 +162,7 @@ const Nav = (props) => {
               <Link to="/login" ><button className={navStyles.buttonClasses}><span class="relative z-10">Inicia Sesión</span></button></Link>
               <Link to="/register" ><button className={navStyles.buttonClasses}><span class="relative z-10">Registrate</span></button></Link>
               <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
-              <div id='singInDiv' className={navStyles.googleButtonIcon}></div>
+              <GoogleLogin onSuccess={handleCallbackResponse} onError={errorMessage}/>
             </div>
           </div>
           <div className={styles.rotatingBar}></div>
