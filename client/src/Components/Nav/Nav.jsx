@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom"
-import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import {logOut} from "../../Redux/Action/action";
+import { GoogleLogin } from '@react-oauth/google';
+import {logOut, postLogin} from "../../Redux/Action/action";
 import * as navStyles from "./navStyles"
 import styles from "./Nav.module.css"
+import Swal from "sweetalert2";
 
 
 const Nav = () => {
@@ -11,14 +12,18 @@ const Nav = () => {
   const userSesion = useSelector((state) => state.userSesion);
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-      //Auth de google - global google
-      /* global google */
-      google.accounts.id.renderButton(
-      document.getElementById("singInDiv"),
-      { theme: "outline", size: "large"}
-      )
-  },[])
+  function handleCallbackResponse(response) {
+    const user = { platform: "google", jwt: response.credential };
+    dispatch(postLogin(user));
+  }
+
+  function errorMessage(response) {
+    Swal.fire({
+                title: "Error",
+                text: `${response}`,
+                icon: "error",
+              });
+  }
 
   if( Object.keys(userSesion).length === 0 ) {
     return(
@@ -29,7 +34,7 @@ const Nav = () => {
             <Link to="/login" ><button className={navStyles.buttonClasses}><span class="relative z-10">Inicia Sesión</span></button></Link>
             <Link to="/register" ><button className={navStyles.buttonClasses}><span class="relative z-10">Registrate</span></button></Link>
             <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
-            <div id='singInDiv' className={navStyles.googleButtonIcon}></div>
+            <GoogleLogin onSuccess={handleCallbackResponse} onError={errorMessage}/>
           </div>
         </div>
         <div className={styles.rotatingBar}></div>

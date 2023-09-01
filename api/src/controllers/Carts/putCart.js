@@ -41,7 +41,8 @@ const updateCartQuantity = async (req, res) => {
             });
             if(cartEvent){
 
-                await cartEvent.update({ quantity: events[i].quantity});
+                cartEvent.quantity += events[i].quantity;
+                await cartEvent.save();
 
             }else{
 
