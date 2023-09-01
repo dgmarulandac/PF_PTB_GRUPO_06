@@ -10,4 +10,6 @@ export const PUT_EVENT = 'PUT_EVENT';
 export const ORDER_PAY = 'ORDER_PAY';
 export const GET_MY_SALES = 'GET_MY_SALES';
 export const ADD_CAR = 'ADD_CAR';
+export const ADD_TO_CAR = 'ADD_TO_CAR'
 export const GET_EVENTS_ADMIN = 'GET_EVENTS_ADMIN'
+export const PLUS_LESS = 'PLUS_LESS'

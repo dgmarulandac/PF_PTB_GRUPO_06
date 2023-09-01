@@ -6,10 +6,12 @@ import Paginado from "../pagination/pagination";
 import EventFilter from "../EventFilter/EventFilter";
 import * as styles from "./HomeStiles";
 import Slider from "../Slider/Slider";
+import Modal from "../Modal/Modal";
 
 export default function Home() {
   const dispatch = useDispatch();
   const events = useSelector((state) => state.events);
+  const {modalOn} = useSelector(state => state)
 
   useEffect(() => {
     dispatch(getAllEvent());
@@ -63,6 +65,7 @@ export default function Home() {
           page={currentPage}
           paginado={setCurrentPage}
         />
+        {modalOn && <Modal/>}
       </div>
     </div>
   );

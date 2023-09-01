@@ -45,7 +45,7 @@ function App() {
 
   useEffect(() => {
     //Creacion del localStorage para el carrito en caso de no estar logueado
-    findOrCreateShoppingCar()
+    // findOrCreateShoppingCar()
     // Auth token
     if (localStorage.getItem("jwt")) {
       const userToken = localStorage.getItem("jwt")

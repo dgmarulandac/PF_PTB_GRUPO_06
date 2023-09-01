@@ -79,7 +79,13 @@ export default function Modal() {
                         <span className="sr-only">Close modal</span>
                     </button>
                 </div>
-                <div className={''}>
+                <div className="m-5">
+                    <div className="flex justify-center">
+                        <img src={sucess} alt="aprobado" />
+                    </div>
+                    <p className={styles.exito}>se agrego este evento a tu carrito!</p>
+                </div>
+                {/* <div className={''}>
                     <div className='m-5'>
                         <p className={styles.p}>Resumen de la orden</p>
                         <div className="text-start">
@@ -107,7 +113,7 @@ export default function Modal() {
                     
 
                     {error.post && <p className={styles.error}>⚠️ {error.post}</p>}
-                </div>
+                </div> */}
             </div>
         </div>
 

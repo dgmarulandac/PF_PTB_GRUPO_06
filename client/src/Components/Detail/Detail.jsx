@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetail, modal } from "../../Redux/Action/action";
+import { addCar, addToCar, getDetail, modal } from "../../Redux/Action/action";
 import Modal from "../Modal/Modal";
 import { Link } from "react-router-dom";
 import * as styles from "./DetStiles"
@@ -16,8 +16,8 @@ const Detail = () => {
   const { modalOn } = useSelector(state => state)
 
   const handleClick = () => {
+    dispatch(addToCar({idEvent: id, quantity: '1'}))
     dispatch(modal(true))
-    console.log(modalOn)
   }
 
   useEffect(() => {
@@ -80,7 +80,7 @@ const Detail = () => {
                   <button
                     onClick={handleClick}
                     className={styles.button}
-                  ><span class="relative">Comprar ticket</span>
+                  ><span class="relative">Agregar al carrito</span>
                   </button>
                 </div>
               </div>

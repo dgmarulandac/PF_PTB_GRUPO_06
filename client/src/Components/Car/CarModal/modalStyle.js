@@ -1,7 +1,7 @@
 export const styles = {
     input: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white",
-    body: "fixed top-0 left-0 w-full h-screen bg-black bg-opacity-75 grid place-items-center",
-    form: "space-y-1",
+    body: "overflow-auto fixed top-0 left-0 w-full h-screen bg-black bg-opacity-75 grid place-items-center",
+    form: "overflow-auto space-y-1",
     label: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
     h5: "text-xl font-medium text-gray-900 dark:text-white",
     dual: "grid grid-cols-2 gap-4 justify-center",
@@ -16,5 +16,5 @@ export const styles = {
     p: "font-medium text-gray-900 dark:text-white border-b-[3px] p-2",
     header: "mt-5 mr-5 ml-5 mb-0 w-full max-w-sm p-4 sm:p-6 md:p-8 dark:text-white",
     logo: 'font-bungee text-5xl',
-    container: "h-auto w-96 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-90  items-center z-50 rounded-lg border border-black p-4 pt-0 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white"
+    container: "overflow-auto w-96 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-90  items-center z-50 rounded-lg border border-black p-4 pt-0 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white"
 }

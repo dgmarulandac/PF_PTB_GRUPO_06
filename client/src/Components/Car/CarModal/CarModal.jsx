@@ -1,14 +1,30 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { styles } from "./modalStyle";
+import { styles } from "./formEventEditStyle";
+import axios from "axios";
+import MP from './MP.png'
+import { Link } from "react-router-dom";
 
 export default function CarModal({ handleModal }) {
     const { shoppingCar } = useSelector(state => state)
     const [urlMP, setUrlMP] = useState(false)
+    const { userSesion } = useSelector(state => state)
+    const result = shoppingCar.map((e)=>{return e.ticketPrice * e.Cart_Event.quantity}).reduce(function(a, v){return a + v}, 0)
+
+
+    const handlerOrder = () => {
+        axios.post('orders/createOrder', { token: localStorage.getItem('shoppingCar') }, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+            .then(({ data }) => {
+                console.log(data)
+                // setUrlMP(data.init_point)
+            })
+            .catch(error => console.log(error))
+    }
 
     return (
         <div className="fixed top-0 left-0 w-full h-screen bg-black bg-opacity-75 grid place-items-center z-50">
-            {console.log(shoppingCar)}
+            {console.log(result)}
+
             <div className={styles.container}>
                 <button onClick={handleModal} type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto grid justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="staticModal">
                     <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -16,17 +32,54 @@ export default function CarModal({ handleModal }) {
                     </svg>
                     <span className="sr-only">Close modal</span>
                 </button>
+            {urlMP ? (
                 <div>
-                    <div className="text-start">
-                        <h2>Nombre del evento</h2>
-                        <p className="text-sm">cantidad <span>precio</span></p>
+                    {Object.keys(userSesion).length > 0 ?
+                        (
+                            <div>
+                                <div>
+                                    <p className={styles.p}>Metodos de pago</p>
+                                </div>
+                                <div className="m-5 mb-2">
+                                    <a href={urlMP} target="_blank">
+                                        <img src={MP} alt="logo de mercadpago" width='80' />
+                                    </a>
+                                </div>
+                            </div>
+                        ) : (
+                            <div>
+                                <p>inicia sesion para poder seguir con la compra</p>
+                                <Link to={'/login'}>
+                                    <button className={styles.button}>Iniciar sesion</button>
+                                </Link>
+
+                            </div>
+                        )}
+                </div>
+            ) : (
+                <div>
+                    <h1 className={styles.p}>Resumen de compra</h1>
+                    <div className="divide-y">
+                        {shoppingCar?.map((e, i) => {
+                            return (
+                                <div className="text-start m-5" key={i}>
+                                    <h1 className="text-lg">{e.name}</h1>
+                                    <div className="flex justify-between">
+                                        <p className="text-sm ">Cantidad de tickets: <span><button>+</button>{e?.Cart_Event?.quantity}<button>-</button></span></p>
+                                        <p className="text-sm">Precio: {e.ticketPrice}$</p>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                        <div className={styles.p}></div>
                     </div>
                     <div>
-                        <h3>Total a pagar: $</h3>
+                        <h3>Total a pagar: {result}$</h3>
                     </div>
-                    <button className={styles.button}>Comprar</button>
+                    <button className={styles.button} onClick={handlerOrder}>Comprar</button>
                 </div>
-            </div>
+            )}
+            </div> 
         </div>
     )
 }
