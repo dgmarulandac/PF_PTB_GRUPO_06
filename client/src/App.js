@@ -20,6 +20,7 @@ import Error404 from './Components/Error 404/Error404';
 import ResetPassword from './Components/ResetPassword/ResetPassword';
 import RecoverPassword from './Components/RecoverPassword/RecoverPassword';
 import EventsDashboard from './Components/EventsDashboard/EventsDashboard';
+import AdminPanel from './Components/AdminPanel/AdminPanel';
 import SalesPay from './Components/Sales/SalesPay';
 
 //Componentes Autorizacion
