@@ -35,7 +35,7 @@ const postEventReview = async (req, res) => {
                     return res.status(200).json(createEventReview);  
             }}
         
-        return res.status(404).json({ error: "Evento de venta no encontrado" });
+        return res.status(404).json({ error: "Compra este evento para poder hacer una review" });
     
     
     } catch (error) {
