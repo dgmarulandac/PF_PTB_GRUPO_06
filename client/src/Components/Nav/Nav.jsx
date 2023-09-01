@@ -4,6 +4,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import {logOut, postLogin} from "../../Redux/Action/action";
 import * as navStyles from "./navStyles"
 import styles from "./Nav.module.css"
+import Swal from "sweetalert2";
 
 
 const Nav = () => {
@@ -17,7 +18,11 @@ const Nav = () => {
   }
 
   function errorMessage(response) {
-    console.log(response);
+    Swal.fire({
+                title: "Error",
+                text: `${response}`,
+                icon: "error",
+              });
   }
 
   if( Object.keys(userSesion).length === 0 ) {
