@@ -5,8 +5,8 @@ import styles from "./misCompras.module.css"; // Importa el archivo de módulo C
 
 const MisCompras = () => {
     const exampleSales = [
-        { id: 1, purchaseNumber: "ABC123", eventName: "Festival de Cine1", price: 15.5, quantity: 2, isCompra: true, date: "2023-06-20", image: "cine.jpg" },
-        { id: 2, purchaseNumber: "DEF456", eventName: "Festival de Cine", price: 15.5, quantity: 1, isCompra: true, date: "2023-07-20", image: "cine.jpg" },
+        { id: 1, purchaseNumber: "ABC123", eventName: "Festival de Cine-1", price: 15.5, quantity: 2, isCompra: true, date: "2023-06-20", image: "cine.jpg" },
+        { id: 2, purchaseNumber: "DEF456", eventName: "Festival de Cine-2", price: 15.5, quantity: 1, isCompra: true, date: "2023-07-20", image: "cine.jpg" },
         { id: 3, purchaseNumber: "GHI789", eventName: "Concierto de Rock", price: 25.99, quantity: 3, isCompra: true, date: "2023-08-15", image: "concierto.jpg" },
         { id: 4, purchaseNumber: "JKL012", eventName: "Exposición de Arte", price: 10.0, quantity: 10, isCompra: true, date: "2023-08-05", image: "arte.jpg" },
     ];
