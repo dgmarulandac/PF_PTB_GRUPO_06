@@ -1,6 +1,6 @@
 export const styles = {
     input: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white",
-    body: "fixed top-0 left-0 w-full h-screen bg-black bg-opacity-75 grid place-items-center z-50",
+    body: "z-50 fixed top-0 left-0 w-full h-screen bg-black bg-opacity-75 grid place-items-center z-50",
     form: "space-y-1",
     label: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
     h5: "text-xl font-medium text-gray-900 dark:text-white",
