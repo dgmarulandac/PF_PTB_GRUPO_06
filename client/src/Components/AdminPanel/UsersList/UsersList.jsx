@@ -10,7 +10,7 @@ const UsersList = () =>{
             .then(data =>{
                 setUsers(data)
             })
-            .catch(setErrors('no se pudo encontrar ningun usuario'))
+            .catch(setErrors('no se pudo encontrar ningun usuario') )
     }, [])
     return(
         <div>

@@ -4,7 +4,7 @@ import 'tailwindcss/tailwind.css';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { postLogin, postAuth } from './Redux/Action/action';
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 //Components
 import Home from './Components/Home/Home';
 import Register from './Components/register/register';
@@ -21,6 +21,7 @@ import ResetPassword from './Components/ResetPassword/ResetPassword';
 import RecoverPassword from './Components/RecoverPassword/RecoverPassword';
 import EventsDashboard from './Components/EventsDashboard/EventsDashboard';
 import AdminPanel from './Components/AdminPanel/AdminPanel';
+import SalesPay from './Components/Sales/SalesPay';
 
 //Componentes Autorizacion
 import NotLoggedElement from './Utils/AutorizationComponents/NotLoggedElement';
@@ -28,20 +29,9 @@ import SellerOrAdminElement from './Utils/AutorizationComponents/SellerOrAdminEl
 import LoggedElement from './Utils/AutorizationComponents/LoggedElement';
 
 
-import SalesPay from './Components/Sales/SalesPay';
-import findOrCreateShoppingCar from './Utils/CreateShoppingCar/shoppingCar';
-
-
 function App() {
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const userSesion = useSelector(state => state.userSesion)
-
-  function handleCallbackResponse(response) {
-    const user = { platform: "google", jwt: response.credential };
-    dispatch(postLogin(user));
-  }
 
   useEffect(() => {
     //Creacion del localStorage para el carrito en caso de no estar logueado
@@ -51,20 +41,7 @@ function App() {
       const userToken = localStorage.getItem("jwt")
       dispatch(postAuth(userToken))
     }
-
-    //Auth de google - global google
-    /* global google */
-    google.accounts.id.initialize({
-      client_id: "837161821953-g2c2ob0lolh4abs0ctt7dt4rga03evqm.apps.googleusercontent.com",
-      callback: handleCallbackResponse
-    });
-
-    google.accounts.id.prompt();
   }, [])
-
-  // useEffect(() => {
-  //       navigate('/')
-  //   }, [userSesion])
 
   return (
     <div className="App bg-whithe dark:bg-fondoDark">
