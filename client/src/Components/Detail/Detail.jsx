@@ -187,22 +187,78 @@ const Detail = () => {
         <div>
           {reviews.map((review) => (
             <div key={review.id}>
-              <p>Score: {review.score}</p>
-              <p>Comment: {review.comment}</p>
+              <p>Nombre {review.comment.name}</p>
+              <p>Puntiacion: {review.score}</p>
+              <p>Comentario: {review.comment}</p>    
             </div>
           ))}
         </div>
         {idUser && (
-          <form className={styles.container} onSubmit={handledsummit}>
-            <label htmlFor="">
-              <input
-                name="score"
-                value={review.score}
-                type="range"
-                min={0}
-                max={5}
-                onChange={changereview}
-              />
+          <div className={styles.container}>
+          <form  onSubmit={handledsummit}>
+            <label htmlFor=""> Deja tu comentario</label>
+              <div className={style.rating}>
+                <input
+                  type="radio"
+                  id="star-1"
+                  name="score"
+                  value="5"
+                  onChange={changereview}
+                />
+                <label htmlFor="star-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
+                  </svg>
+                </label>
+                <input
+                  type="radio"
+                  id="star-2"
+                  name="score"
+                  value="4"
+                  onChange={changereview}
+                />
+                <label htmlFor="star-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
+                  </svg>
+                </label>
+                <input
+                  type="radio"
+                  id="star-3"
+                  name="score"
+                  value="3"
+                  onChange={changereview}
+                />
+                <label htmlFor="star-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
+                  </svg>
+                </label>
+                <input
+                  type="radio"
+                  id="star-4"
+                  name="score"
+                  value="2"
+                  onChange={changereview}
+                />
+                <label htmlFor="star-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
+                  </svg>
+                </label>
+                <input
+                  type="radio"
+                  id="star-5"
+                  name="score"
+                  value="1"
+                  onChange={changereview}
+                />
+                <label htmlFor="star-5">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
+                  </svg>
+                </label>
+              </div>
               <br />
               <textarea
                 name="comment"
@@ -210,12 +266,14 @@ const Detail = () => {
                 id=""
                 cols="40"
                 rows="10"
+                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-800 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                 onChange={changereview}
               ></textarea>
               <br />
               <button type="submit">comentar</button>
-            </label>
+           
           </form>
+          </div>
         )}
       </>
     );
