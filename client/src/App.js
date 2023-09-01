@@ -27,16 +27,9 @@ import NotLoggedElement from './Utils/AutorizationComponents/NotLoggedElement';
 import SellerOrAdminElement from './Utils/AutorizationComponents/SellerOrAdminElement';
 import LoggedElement from './Utils/AutorizationComponents/LoggedElement';
 
-
-
 function App() {
 
   const dispatch = useDispatch();
-
-  function handleCallbackResponse(response) {
-    const user = { platform: "google", jwt: response.credential };
-    dispatch(postLogin(user));
-  }
 
   useEffect(() => {
 
