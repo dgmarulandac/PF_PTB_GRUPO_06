@@ -40,7 +40,6 @@ const Nav = (props) => {
     setIsMenuOpen(!isMenuOpen)
   }
 
-  const [showContainer, setShowContainer] = useState(false);
   const [windowWidth, setWindowWitdth] = useState(0);
 
   window.addEventListener("resize", updateWindoWith);
