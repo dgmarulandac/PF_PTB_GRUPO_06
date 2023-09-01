@@ -7,12 +7,19 @@ const UsersList = () =>{
     const [errors, setErrors] = useState(null);
     const [ success, setSuccess ] = useState(null);
     useEffect(()=>{
-        axios.get('/users',{ headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+        // axios.get('/users',{ headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+        //     .then(res => res.data)
+        //     .then(data =>{
+        //         console.log(data)
+        //         setUsers(data)
+        //     })
+        //     .catch(err => {setErrors(err)} )
+        axios.get('/users', { headers: { 'X-Access-Token': localStorage.getItem('jwt')}})
             .then(res => res.data)
-            .then(data =>{
-                setUsers(data)
+            .then(data => {
+                setUser(data)
             })
-            .catch(setErrors('no se pudo encontrar ningun usuario') )
+            .catch((err) => {console.log(err)})
     }, [])
 
     const handleChange = (e) => {
