@@ -16,7 +16,7 @@ const Detail = () => {
   const { modalOn } = useSelector(state => state)
 
   const handleClick = () => {
-    dispatch(addToCar({idEvent: id, quantity: '1'}))
+    dispatch(addToCar({idEvent: id, quantity: 1}))
     dispatch(modal(true))
   }
 

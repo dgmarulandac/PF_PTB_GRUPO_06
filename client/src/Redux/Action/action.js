@@ -205,7 +205,6 @@ export const addToCar = (event)=>{
     return (dispatch)=>{
         axios.put('carts/updateCart', {events: [event], token: localStorage.getItem('shoppingCar')}, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
         .then(({data}) => {
-            console.log(data)
            return dispatch({type: ADD_CAR, payload: data.Events})
         })
         .catch(reason => {
