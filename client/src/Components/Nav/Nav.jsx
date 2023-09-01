@@ -93,6 +93,7 @@ const Nav = () => {
         <div className={navStyles.linkContainerClasses}>
           <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
           <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y condiciones</span></button></Link>
+          <Link to='/misCompras' ><button className={navStyles.buttonClasses}><span class="relative z-10">Mis compras</span></button></Link>
           <button className={navStyles.buttonClasses} onClick={() => {dispatch(logOut())}}><span class="relative z-10">Cerrar Sesión</span></button>
         </div>
       </div>

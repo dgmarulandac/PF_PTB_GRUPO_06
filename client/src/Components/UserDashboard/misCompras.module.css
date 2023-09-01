@@ -1,0 +1,53 @@
+/* Estilos para el encabezado */
+.heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* Estilos para los contenedores de meses */
+.monthContainer {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+/* Estilos para la tabla de ventas */
+.salesTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+}
+
+.salesTable th,
+.salesTable td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.salesTable th {
+    background-color: #f2f2f2;
+}
+
+/* Estilos para las imágenes de eventos */
+.eventImage {
+    max-width: 100px;
+    height: auto;
+}
+
+/* Estilos para el botón de regreso */
+.backButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.backButton:hover {
+    background-color: #0056b3;
+}
