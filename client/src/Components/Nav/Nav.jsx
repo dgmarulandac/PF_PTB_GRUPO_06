@@ -48,8 +48,6 @@ const Nav = (props) => {
     setWindowWitdth(window.innerWidth)
   }
 
-  updateWindowWith();
-
   if (windowWidth <= 860) {
     if (Object.keys(userSesion).length === 0) {
       return (
