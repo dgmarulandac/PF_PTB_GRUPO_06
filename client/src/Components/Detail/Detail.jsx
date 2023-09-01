@@ -8,6 +8,7 @@ import * as styles from "./DetStiles";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import React from "react";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -52,6 +53,11 @@ const Detail = () => {
     try {
       const response = await axios.post("/reviews/createReview", review, {
         headers: { "X-Access-Token": localStorage.getItem("jwt") },
+      });
+      setReview({
+        score: 0,
+        comment: "",
+        idEvent: id,
       });
     } catch (error) {
       Swal.fire({
@@ -184,94 +190,58 @@ const Detail = () => {
             </div>
           )}
         </div>
-        <div>
-          {reviews.map((review) => (
-            <div key={review.id}>
-              <p>Nombre {review.comment.name}</p>
-              <p>Puntiacion: {review.score}</p>
-              <p>Comentario: {review.comment}</p>    
-            </div>
-          ))}
-        </div>
+        <div className={styles.container}>
+          <div >
+  {reviews.map((review) => (
+    <div key={review.id} className="box conten h-32 max-h-max px-4 pb-2 m-3 border bg-gray-100 dark:bg-gray-900 rounded-lg dark:border-blue-800 "  >
+      <p className="text-white font-bold text-justify">{review.User.name}</p>
+      <div>
+        {Array.from({ length: 5 }).map((_, index) => (
+          <span key={index} >{index + 1 <= review.score ? "⭐" : ""}</span>
+        ))}
+      </div>
+      <div className="box conten h-16 max-h-max p-2 rounded-lg dark:text-gray-300 border border-gay-200 dark:border-gray-400 dark:bg-gray-700 text-justify"><p >{review.comment}</p></div>
+      
+    </div>
+  ))}
+  </div>
+</div>
         {idUser && (
           <div className={styles.container}>
-          <form  onSubmit={handledsummit}>
-            <label htmlFor=""> Deja tu comentario</label>
-              <div className={style.rating}>
-                <input
-                  type="radio"
-                  id="star-1"
-                  name="score"
-                  value="5"
-                  onChange={changereview}
-                />
-                <label htmlFor="star-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
-                  </svg>
-                </label>
-                <input
-                  type="radio"
-                  id="star-2"
-                  name="score"
-                  value="4"
-                  onChange={changereview}
-                />
-                <label htmlFor="star-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
-                  </svg>
-                </label>
-                <input
-                  type="radio"
-                  id="star-3"
-                  name="score"
-                  value="3"
-                  onChange={changereview}
-                />
-                <label htmlFor="star-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
-                  </svg>
-                </label>
-                <input
-                  type="radio"
-                  id="star-4"
-                  name="score"
-                  value="2"
-                  onChange={changereview}
-                />
-                <label htmlFor="star-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
-                  </svg>
-                </label>
-                <input
-                  type="radio"
-                  id="star-5"
-                  name="score"
-                  value="1"
-                  onChange={changereview}
-                />
-                <label htmlFor="star-5">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
-                  </svg>
-                </label>
-              </div>
+          <form  onSubmit={handledsummit} className="box conten h-62 w-5/12 px-4 pb-2 border bg-gray-100 dark:bg-gray-900 rounded-lg dark:border-blue-800 " >
+            <br />
+            <label className="text-white font-bold"> Puntuacion</label>
+    <div className={style.rating}>
+      {[5, 4, 3, 2, 1].map((value, index) => (
+        <React.Fragment key={index}>
+          <input
+            type="radio"
+            id={`star-${value}`}
+            name="score"
+            value={value}
+            onChange={changereview}
+          />
+          <label htmlFor={`star-${value}`}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
+            </svg>
+          </label>
+        </React.Fragment>
+      ))}
+    </div>
               <br />
               <textarea
                 name="comment"
                 value={review.comment}
                 id=""
                 cols="40"
-                rows="10"
-                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-800 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 onChange={changereview}
+                placeholder="comenta tu experiencia"
               ></textarea>
               <br />
-              <button type="submit">comentar</button>
-           
+              <button type="submit" className={styles.button}><span className="relative z-index-1">comentar</span></button>
+  
           </form>
           </div>
         )}
