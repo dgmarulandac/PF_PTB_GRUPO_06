@@ -34,7 +34,7 @@ const Nav = (props) => {
   //Hamburguer icon
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  
+
   const handleMenu = () => {
     console.log(isMenuOpen)
     setIsMenuOpen(!isMenuOpen)
@@ -43,10 +43,11 @@ const Nav = (props) => {
   const [showContainer, setShowContainer] = useState(false);
   const [windowWidth, setWindowWitdth] = useState(0);
 
-  useEffect(() => {
-    setWindowWitdth(window.innerWidth)
-  }, [window.innerWidth])
+  window.addEventListener("resize", updateWindoWith);
 
+  function updateWindoWith(){
+    setWindowWitdth(window.innerWidth)
+  }
 
   if (windowWidth <= 860) {
     if (Object.keys(userSesion).length === 0) {
