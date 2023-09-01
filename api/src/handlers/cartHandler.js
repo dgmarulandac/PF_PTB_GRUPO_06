@@ -2,6 +2,7 @@ const getCart = require ("../controllers/Carts/getCart");
 const getCartToken = require("../controllers/Carts/getCartToken");
 const postCart = require("../controllers/Carts/postCart");
 const updateCartQuantity = require("../controllers/Carts/putCart");
+const getCartUser = require("../controllers/Carts/getCartUser");
 
 
 
@@ -48,6 +49,17 @@ const putCartTokenHandler = async (req, res) => {
     }
 };
 
+const getCartUserHandler = async (req, res) => {
+    
+    try {
+        const id = req.id;
+        const cartuser= await getCartUser(id);
+        res.status(200).json(cartuser);
+    } catch (error) {
+        res.status(404).json({error: "Error al enviar la data"});
+    }
+};
+
 updateCartQuantity 
 
-module.exports = {getCartsHandler, postCartsHandler, getCartTokenHandler, putCartTokenHandler };
+module.exports = {getCartsHandler, postCartsHandler, getCartTokenHandler, putCartTokenHandler, getCartUserHandler };
