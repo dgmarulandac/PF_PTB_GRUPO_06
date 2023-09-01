@@ -42,11 +42,13 @@ const Nav = (props) => {
 
   const [windowWidth, setWindowWitdth] = useState(0);
 
-  window.addEventListener("resize", updateWindoWith);
+  window.addEventListener("resize", updateWindowWith);
 
-  function updateWindoWith(){
+  function updateWindowWith(){
     setWindowWitdth(window.innerWidth)
   }
+
+  updateWindowWith();
 
   if (windowWidth <= 860) {
     if (Object.keys(userSesion).length === 0) {
