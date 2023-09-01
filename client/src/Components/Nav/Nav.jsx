@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom"
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { logOut } from "../../Redux/Action/action";
+import { GoogleLogin } from '@react-oauth/google';
+import {logOut, postLogin} from "../../Redux/Action/action";
 import * as navStyles from "./navStyles"
 import styles from "./Nav.module.css"
+import Swal from "sweetalert2";
 import styled from "styled-components"
 
 const Hamburguer = styled.div`
@@ -26,6 +28,18 @@ const Nav = (props) => {
     setWindowWitdth(window.innerWidth)
   }, [])
 
+  function handleCallbackResponse(response) {
+    const user = { platform: "google", jwt: response.credential };
+    dispatch(postLogin(user));
+  }
+
+  function errorMessage(response) {
+    Swal.fire({
+      title: "Error",
+      text: `${response}`,
+      icon: "error",
+    });
+  }
   useEffect(() => {
     //Auth de google - global google
     /* global google */
