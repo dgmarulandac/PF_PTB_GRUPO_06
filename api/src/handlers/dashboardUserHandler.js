@@ -15,7 +15,7 @@ const dashboardUserHandler = async (req, res) => {
 
 const dashboardPutUserHandler = async (req, res) => {
     try {
-        const { id } = req.id;
+        const  id = req.id;
         const { name, phone, identification, nationality, address, image} = req.body;
         const user = await putDashboardUser( id, { name, phone, identification, nationality, address, image} );
         res.status(201).json(user);
