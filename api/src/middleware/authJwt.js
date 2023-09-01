@@ -19,6 +19,20 @@ const verifyToken = (req, res, next) => {
     });
 };
 
+const verifyTokenOptional = (req, res, next) => {
+    const token = req.headers["x-access-token"];
+
+    if( token ) {  
+      jwt.verify(token, SECRET, (err, decoded) => {
+        if (err) {
+          return res.status(401).json({error: "No Autorizado."});
+        }
+        req.id = decoded.id;
+      });
+    }
+    next();
+};
+
 const isAdmin = async (req, res, next) => {
   const user = await User.findByPk(req.id);
   const roles = user ? await user.getRoles() : [];
@@ -92,4 +106,4 @@ const isSellerOrAdmin = async (req, res, next) => {
   }
 };
 
-module.exports = { verifyToken, isAdmin, isBuyer, isSeller, isSellerOrAdmin };
+module.exports = { verifyToken, isAdmin, isBuyer, isSeller, isSellerOrAdmin, verifyTokenOptional };
