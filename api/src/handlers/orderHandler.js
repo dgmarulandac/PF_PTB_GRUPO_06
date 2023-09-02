@@ -27,4 +27,4 @@ const getOrderByIdHandler = async (req, res) => {
 
 
 
-module.exports = { postCreateOrdertHandler, getOrderByIdHandler, putOrderHandler}; 
+module.exports = { postCreateOrdertHandler, getOrderByIdHandler}; 
