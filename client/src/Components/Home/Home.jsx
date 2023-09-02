@@ -6,10 +6,12 @@ import Paginado from "../pagination/pagination";
 import EventFilter from "../EventFilter/EventFilter";
 import * as styles from "./HomeStiles";
 import Slider from "../Slider/Slider";
+import Modal from "../Modal/Modal";
 
 export default function Home() {
   const dispatch = useDispatch();
   const events = useSelector((state) => state.events);
+  const {modalOn} = useSelector(state => state)
 
   useEffect(() => {
     dispatch(getAllEvent());
@@ -32,10 +34,22 @@ export default function Home() {
   }, [events, currentPage]);
 
   return (
-    <div>
+    <div className="bg-white dark:bg-gray-700">
       <Slider />
       <EventFilter />
-      <div className={styles.cardcontainer}>
+      <div className="bg-white dark:bg-gray-700">
+        {!eventosAMostrar ? (
+          <div className="flex justify-center m-10">
+            <h2 className={styles.error}>No existe ningún evento para Mostrar.</h2>
+          </div>) : (
+          <div className={styles.cardcontainer}>
+            {eventosAMostrar && eventosAMostrar.map((event) => {
+              return <Card event={event} key={event.id} />
+            })}
+          </div>)
+        }
+      </div>
+      {/* <div className={styles.cardcontainer}>
         {!eventosAMostrar ? (
           <h2 className={styles.error}>No existe ningún evento con estas caracteristicas.</h2>
         ) : (
@@ -43,7 +57,7 @@ export default function Home() {
             return <Card event={event} key={event.id} />;
           })
         )}
-      </div>
+      </div> */}
       <div className={styles.paginado}>
         <Paginado
           eventsPerPage={eventsPerPage}
@@ -51,6 +65,7 @@ export default function Home() {
           page={currentPage}
           paginado={setCurrentPage}
         />
+        {modalOn && <Modal/>}
       </div>
     </div>
   );

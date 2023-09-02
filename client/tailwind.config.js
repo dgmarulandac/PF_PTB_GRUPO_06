@@ -9,6 +9,7 @@ module.exports = {
         'divForm': '0.5fr 1fr 1fr',
         'divDesImg': '0.2fr 2fr 0.2fr',
         'divDesModal': '0.5fr 1fr 0.5fr',
+        'divImgEdit' : '0.2fr 1fr 0,2fr'
       },
       colors:{
         'fondoDark': '#111827',
