@@ -1,5 +1,5 @@
 require('dotenv').config();
-const {Order, Event} = require('../../db.js');
+const {Order, Event, Order_Event} = require('../../db.js');
 const getCartToken = require('../Carts/getCartToken.js');
 var mercadopago = require('mercadopago');
 const {MERCADOPAGO_TOKEN} = process.env;
@@ -11,22 +11,30 @@ const postCreateOrder = async (idBuyer, token) => {
     }
 
     //Obtener el carrito del token
-    cart = getCartToken(token);
-    console.log(cart);
+    cart = await getCartToken(token);
+
+    if( cart.dataValues.idUser !== idBuyer ) {
+        throw new Error("Este carro no le pertenece al usuario.")
+    }
+
+    let items = [];
+
+    cart.dataValues.Events.forEach( event => {
+        const item = {
+            title: event.dataValues.name,
+            unit_price: event.dataValues.ticketPrice,
+            currency_id: Event.findByPk(event.dataValues.id).currency,
+            quantity: event.dataValues.Cart_Event.dataValues.quantity
+        };
+        items.push(item);
+    });
 
     mercadopago.configure({
         access_token: `${MERCADOPAGO_TOKEN}`,
     });
 
     const result = await mercadopago.preferences.create({
-        items:[
-            {
-                title: Event.findByPk(idEvent).name,
-                unit_price: price,
-                currency_id: Event.findByPk(idEvent).currency,
-                quantity: quantity,
-            }
-        ],
+        items,
         back_urls: {
             success: "https://pf-grupo06-back.onrender.com/orderMercadoPago/success",
             failure: "https://pf-grupo06-back.onrender.com/orderMercadoPago/failure",
@@ -42,8 +50,18 @@ const postCreateOrder = async (idBuyer, token) => {
     });
 
     //Agrega a Order_Event con ese createOrder id
-
-    console.log(result)
+    for( let i = 0; i < cart.dataValues.Events.length; i++) {
+        const event = cart.dataValues.Events[i];
+        await Order_Event.create({
+            idEvent: event.dataValues.id,
+            idOrder: createOrder.id,
+            quantity: event.dataValues.Cart_Event.dataValues.quantity,
+            price: event.dataValues.ticketPrice
+        });
+    }
+    
+    cart.active = false;
+    cart.save();
         
     return {response: result.response, preferenceId: result.preferenceId}
 };
