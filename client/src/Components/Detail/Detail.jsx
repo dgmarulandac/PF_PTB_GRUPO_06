@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetail, modal } from "../../Redux/Action/action";
+import { addCar, addToCar, getDetail, modal } from "../../Redux/Action/action";
 import Modal from "../Modal/Modal";
 import style from "./Detail.module.css";
 import * as styles from "./DetStiles";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { FiArrowLeft } from 'react-icons/fi';
 import React from "react";
 
 const Detail = () => {
@@ -27,9 +28,13 @@ const Detail = () => {
   const [reviews, setReviews] = useState([]);
 
   const handleClick = () => {
-    dispatch(modal(true));
-    console.log(modalOn);
-  };
+    dispatch(addToCar({idEvent: id, quantity: 1}))
+    dispatch(modal(true))
+  }
+
+  useEffect(() => {
+    return (() => dispatch(getDetail()))
+  }, [])
 
   useEffect(() => {
     const getreviews = async () => {
@@ -134,6 +139,7 @@ const Detail = () => {
             <h1 className={styles.h1}>{ticketid?.error}</h1>
           ) : (
             <div>
+              
               <h1 className={styles.boho}>BOHO</h1>
               <br />
               <p className={styles.comen}>compra tu boleta aqui</p>

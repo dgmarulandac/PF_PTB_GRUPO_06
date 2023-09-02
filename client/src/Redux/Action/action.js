@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES, POST_REVIEW } from "./action-type";
+import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES, POST_REVIEW, ADD_CAR, GET_EVENTS_ADMIN, ADD_TO_CAR, PLUS_LESS } from "./action-type";
 import Swal from "sweetalert2";
 
 export const getAllEvent = () => {
@@ -176,3 +176,51 @@ export const getMySales = () => {
     }
 };
 
+export const eventsAdmin = ()=>{
+    return (dispatch)=>{
+        axios.get('/events/admin', { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+        .then(({data}) => {
+           return dispatch({type: GET_EVENTS_ADMIN, payload: data})
+        })
+        .catch(reason => {
+            Swal.fire({
+                title: "Error",
+                text: `${reason.response.data.error}`,
+                icon: "error",
+            });
+            return dispatch({type: GET_EVENTS_ADMIN, payload: []})
+        })
+    
+    }
+}
+
+export const addCar = (car)=>{
+    return {
+        type: ADD_CAR,
+        payload: car
+    }
+}
+
+export const addToCar = (event)=>{
+    return (dispatch)=>{
+        axios.put('carts/updateCart', {events: [event], token: localStorage.getItem('shoppingCar')}, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+        .then(({data}) => {
+           return dispatch({type: ADD_CAR, payload: data.Events})
+        })
+        .catch(reason => {
+            console.log(reason)
+            Swal.fire({
+                title: "Error",
+                text: `${reason.response.data.error}`,
+                icon: "error",
+            });
+            return dispatch({type: ADD_CAR, payload: []})
+        })}
+}
+
+export const plussLess = (value, i)=>{
+    return{
+        type: PLUS_LESS,
+        payload: [value, i]
+    }
+}

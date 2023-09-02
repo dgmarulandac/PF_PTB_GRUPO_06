@@ -2,11 +2,12 @@ import { Link } from "react-router-dom"
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { GoogleLogin } from '@react-oauth/google';
-import {logOut, postLogin} from "../../Redux/Action/action";
+import { logOut, postLogin } from "../../Redux/Action/action";
 import * as navStyles from "./navStyles"
 import styles from "./Nav.module.css"
 import Swal from "sweetalert2";
 import styled from "styled-components"
+import Car from "../Car/Car";
 
 const Hamburguer = styled.div`
 height: ${(props) => (props.isOpen ? '100vh' : '48px')};
@@ -17,7 +18,7 @@ overflow: hidden;
 const Nav = (props) => {
   const userSesion = useSelector((state) => state.userSesion);
   const dispatch = useDispatch();
-  
+
   function handleCallbackResponse(response) {
     const user = { platform: "google", jwt: response.credential };
     dispatch(postLogin(user));
@@ -44,13 +45,13 @@ const Nav = (props) => {
 
   window.addEventListener("resize", updateWindowWith);
 
-  function updateWindowWith(){
+  function updateWindowWith() {
     setWindowWitdth(window.innerWidth)
   }
 
-  useEffect( ()=>{
+  useEffect(() => {
     setWindowWitdth(window.innerWidth);
-  }, [] )
+  }, [])
 
   if (windowWidth <= 860) {
     if (Object.keys(userSesion).length === 0) {
@@ -69,7 +70,7 @@ const Nav = (props) => {
               <Link to="/login" ><button className={navStyles.buttonClasses}><span >Inicia Sesión</span></button></Link>
               <Link to="/register" ><button className={navStyles.buttonClasses}><span >Registrate</span></button></Link>
               <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span>Preguntas Frecuentes</span></button></Link>
-              <GoogleLogin onSuccess={handleCallbackResponse} onError={errorMessage}/>
+              <GoogleLogin onSuccess={handleCallbackResponse} onError={errorMessage} />
             </div>
           </div>
           <div className={styles.rotatingBar}></div>
@@ -102,7 +103,7 @@ const Nav = (props) => {
               <Link to='/TaC' ><button className={navStyles.buttonClasses}><span >Terminos y Condiciones</span></button></Link>
               <Link to='/myEvents'><button className={navStyles.buttonClasses}><span >Mis Eventos</span></button></Link>
               <button className={navStyles.buttonClasses} onClick={() => { dispatch(logOut()) }}><span >Cerrar Sesión</span></button>
-
+              <Car />
             </div>
           </div>
           <div className={styles.rotatingBar}></div>
@@ -126,8 +127,9 @@ const Nav = (props) => {
               <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span >Preguntas Frecuentes</span></button></Link>
               <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y condiciones</span></button></Link>
               <Link to='/myEvents'><button className={navStyles.buttonClasses}><span >Mis Eventos</span></button></Link>
+              <Link to='/Admin/Panel'><button className={navStyles.buttonClasses}><span >Dashboard</span></button></Link>
               <button className={navStyles.buttonClasses} onClick={() => { dispatch(logOut()) }}><span >Cerrar Sesión</span></button>
-
+              <Car />
             </div>
           </div>
           <div className={styles.rotatingBar}></div>
@@ -139,7 +141,6 @@ const Nav = (props) => {
       <Hamburguer isOpen={isMenuOpen} className={navStyles.navClasses}>
         <div className={`${navStyles.containerClassesMobile} flex justify-between items-center`} id="navwrap">
           <div className="dark:border-gray-600 grid grid-cols-2 z-50 dark:bg-gray-900">
-
             <Link to="/" ><h3 className={navStyles.logoClasses}>BOHO</h3></Link>
             <button className="place-self-end	mx-10" onClick={handleMenu}><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" fill="white" viewBox="0 0 50 50">
               <path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"></path>
@@ -148,8 +149,9 @@ const Nav = (props) => {
           <div className={navStyles.linkContainerClassesMobile} id="container">
             <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span >Preguntas Frecuentes</span></button></Link>
             <Link to='/TaC' ><button className={navStyles.buttonClasses}><span >Terminos y condiciones</span></button></Link>
+            <Link to='/Admin/Panel'><button className={navStyles.buttonClasses}><span >Dashboard</span></button></Link>
             <button className={navStyles.buttonClasses} onClick={() => { dispatch(logOut()) }}><span >Cerrar Sesión</span></button>
-
+            <Car />
           </div>
         </div>
         <div className={styles.rotatingBar}></div>
@@ -166,7 +168,8 @@ const Nav = (props) => {
               <Link to="/login" ><button className={navStyles.buttonClasses}><span class="relative z-10">Inicia Sesión</span></button></Link>
               <Link to="/register" ><button className={navStyles.buttonClasses}><span class="relative z-10">Registrate</span></button></Link>
               <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
-              <GoogleLogin onSuccess={handleCallbackResponse} onError={errorMessage}/>
+              <GoogleLogin onSuccess={handleCallbackResponse} onError={errorMessage} />
+              <Car />
             </div>
           </div>
           <div className={styles.rotatingBar}></div>
@@ -188,11 +191,13 @@ const Nav = (props) => {
           <div className={`${navStyles.containerClasses} flex justify-between items-center`}>
             <Link to="/" ><h3 className={navStyles.logoClasses}>BOHO</h3></Link>
             <div className={navStyles.linkContainerClasses}>
-              <Link to='/createEvent' ><button className={navStyles.buttonClasses}><span class="relative z-10">Crear Evento</span></button></Link>
-              <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
-              <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y Condiciones</span></button></Link>
-              <Link to='/myEvents'><button className={navStyles.buttonClasses}><span class="relative z-10">Mis Eventos</span></button></Link>
-              <button className={navStyles.buttonClasses} onClick={() => { dispatch(logOut()) }}><span class="relative z-10">Cerrar Sesión</span></button>
+              <Link to='/createEvent' ><button className={navStyles.buttonClasses}><span class="relative">Crear Evento</span></button></Link>
+              <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative">Preguntas Frecuentes</span></button></Link>
+              <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative">Terminos y Condiciones</span></button></Link>
+              <Link to='/myEvents'><button className={navStyles.buttonClasses}><span class="relative">Mis Eventos</span></button></Link>
+              <Link to='/Admin/Panel'><button className={navStyles.buttonClasses}><span className="relative">Dashboard</span></button></Link>
+              <button className={navStyles.buttonClasses} onClick={() => { dispatch(logOut()) }}><span class="relative">Cerrar Sesión</span></button>
+              <Car />
             </div>
           </div>
           <div className={styles.rotatingBar}></div>
@@ -206,11 +211,13 @@ const Nav = (props) => {
           <div className={`${navStyles.containerClasses} flex justify-between items-center`}>
             <Link to="/" ><h3 className={navStyles.logoClasses}>BOHO</h3></Link>
             <div className={navStyles.linkContainerClasses}>
+
               <Link to='/createEvent' ><button className={navStyles.buttonClasses}><span class="relative z-10">Crear Evento</span></button></Link>
               <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
               <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y condiciones</span></button></Link>
               <Link to='/myEvents'><button className={navStyles.buttonClasses}><span class="relative z-10">Mis Eventos</span></button></Link>
               <button className={navStyles.buttonClasses} onClick={() => { dispatch(logOut()) }}><span class="relative z-10">Cerrar Sesión</span></button>
+              <Car />
             </div>
           </div>
           <div className={styles.rotatingBar}></div>
@@ -226,6 +233,7 @@ const Nav = (props) => {
             <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
             <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y condiciones</span></button></Link>
             <button className={navStyles.buttonClasses} onClick={() => { dispatch(logOut()) }}><span class="relative z-10">Cerrar Sesión</span></button>
+            <Car />
           </div>
         </div>
         <div className={styles.rotatingBar}></div>
