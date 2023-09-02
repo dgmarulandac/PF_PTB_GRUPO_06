@@ -26,6 +26,10 @@ const Detail = () => {
 
   const [reviews, setReviews] = useState([]);
 
+  const [send, setSend] = useState({
+    message: ""
+  })
+
   const handleClick = () => {
     dispatch(modal(true));
     console.log(modalOn);
@@ -59,6 +63,9 @@ const Detail = () => {
         comment: "",
         idEvent: id,
       });
+      setSend({
+        message: "su mensaje se ha enviado con exito sera revisado y postedo"
+      })
     } catch (error) {
       Swal.fire({
         title: "Error",
@@ -240,8 +247,9 @@ const Detail = () => {
                 placeholder="comenta tu experiencia"
               ></textarea>
               <br />
+              <p className="text-yellow-300 text-justify">{send.message}</p>
               <button type="submit" className={styles.button}><span className="relative z-index-1">comentar</span></button>
-  
+              
           </form>
           </div>
         )}
