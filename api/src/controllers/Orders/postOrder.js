@@ -19,15 +19,16 @@ const postCreateOrder = async (idBuyer, token) => {
 
     let items = [];
 
-    cart.dataValues.Events.forEach( event => {
+    for( let i = 0; i < cart.dataValues.Events.length; i++) {
+        const event = cart.dataValues.Events[i];
         const item = {
             title: event.dataValues.name,
             unit_price: event.dataValues.ticketPrice,
-            currency_id: Event.findByPk(event.dataValues.id).currency,
+            currency_id: await Event.findByPk(event.dataValues.id).currency,
             quantity: event.dataValues.Cart_Event.dataValues.quantity
         };
         items.push(item);
-    });
+    }
 
     mercadopago.configure({
         access_token: `${MERCADOPAGO_TOKEN}`,
