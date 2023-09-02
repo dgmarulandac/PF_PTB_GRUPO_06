@@ -1,4 +1,4 @@
-import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES, POST_REVIEW } from "../Action/action-type";
+import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES, POST_REVIEW, TOGGLE_EVENT_SUCCESS,TOGGLE_EVENT_FAILURE } from "../Action/action-type";
 
 
 const initialState = {
@@ -40,7 +40,17 @@ const rootReducer = (state = initialState, action)=>{
             return {...state, preferenceId: payload};
         case GET_MY_SALES:
             return {...state, mySales: payload};
-
+            case TOGGLE_EVENT_SUCCESS:
+                return {
+                  ...state,
+                  events: action.payload,
+                  error: null,
+                };
+              case TOGGLE_EVENT_FAILURE:
+                return {
+                  ...state,
+                  error: action.payload,
+                };
         default: 
             return state;
     }

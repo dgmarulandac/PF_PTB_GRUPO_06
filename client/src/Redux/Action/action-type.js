@@ -9,4 +9,6 @@ export const GET_MY_EVENTS = 'GET_MY_EVENTS';
 export const PUT_EVENT = 'PUT_EVENT';
 export const ORDER_PAY = 'ORDER_PAY';
 export const GET_MY_SALES = 'GET_MY_SALES';
-export const POST_REVIEW= "POST_REVIEW"
+export const POST_REVIEW= "POST_REVIEW";
+export const TOGGLE_EVENT_SUCCESS = 'TOGGLE_EVENT_SUCCESS';
+export const TOGGLE_EVENT_FAILURE = 'TOGGLE_EVENT_FAILURE'

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES, POST_REVIEW } from "./action-type";
+import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES, POST_REVIEW, TOGGLE_EVENT_SUCCESS, TOGGLE_EVENT_FAILURE } from "./action-type";
 import Swal from "sweetalert2";
 
 export const getAllEvent = () => {
@@ -176,3 +176,30 @@ export const getMySales = () => {
     }
 };
 
+export const toggleEvent = (eventId) => {
+    return async (dispatch) => {
+      try {
+        const token = localStorage.getItem('jwt'); // Obtén el token del localStorage
+        console.log(token);
+        const response = await axios.put(`/events/toggleEvent/${eventId}`, null, {
+          headers: {
+            'X-Access-Token': token, // Pasa el token como cabecera
+          },
+        });
+  
+        if (response && response.data) {
+          dispatch({
+            type: 'TOGGLE_EVENT_SUCCESS',
+            payload: response.data,
+          });
+        } else {
+          throw new Error('Respuesta inesperada del servidor');
+        }
+      } catch (error) {
+        dispatch({
+          type: 'TOGGLE_EVENT_FAILURE',
+          payload: error.response ? error.response.data.error : 'Error desconocido',
+        });
+      }
+    };
+  };
