@@ -8,8 +8,9 @@ const getDashboardUser = async (id) => {
             include: [
                 { model: Sale, required: true, attributes: [] }, // false para que tome la venta aun sin que tenga que volver al sitio
                 {
-                    model: Event, required: true,
-                    attributes: ['name', 'date', 'hour', 'image', 'address', 'country', 'ticketPrice', 'currency']
+                    model: Order_Event, required: true,
+                    attributes: ['quantity','price'],
+                    include: [{model: Event, required: true, attributes: ["name", "date", "hour", "address", "image", "currency"]}]
                 }
 
             ]
