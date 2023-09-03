@@ -3,6 +3,7 @@ const getCartToken = require("../controllers/Carts/getCartToken");
 const postCart = require("../controllers/Carts/postCart");
 const updateCartQuantity = require("../controllers/Carts/putCart");
 const getCartUser = require("../controllers/Carts/getCartUser");
+const deleteEventFromCart = require("../controllers/Carts/deleteEventCart")
 
 const getCartsHandler = async (req, res) => {
     
@@ -58,4 +59,14 @@ const getCartUserHandler = async (req, res) => {
     }
 };
 
-module.exports = {getCartsHandler, postCartsHandler, getCartTokenHandler, putCartTokenHandler, getCartUserHandler };
+const deleteEventFromCartHandler = async (req, res) => {
+    
+    try {
+        const result = await deleteEventFromCart(req, res);
+        return result;
+    } catch (error) {
+        res.status(404).json({error: error.message});
+    }
+};
+
+module.exports = {getCartsHandler, postCartsHandler, getCartTokenHandler, putCartTokenHandler, getCartUserHandler, deleteEventFromCartHandler };
