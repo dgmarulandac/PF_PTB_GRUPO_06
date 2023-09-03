@@ -16,8 +16,8 @@ export default function CarModal({ handleModal }) {
     const handlerOrder = () => {
         axios.post('orders/createOrder', { token: localStorage.getItem('shoppingCar') }, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
             .then(({ data }) => {
-                console.log(data)
-                // setUrlMP(data.init_point)
+                console.log(data.response.init_point)
+                setUrlMP(data.response.init_point)
             })
             .catch(error => console.log(error))
     }
