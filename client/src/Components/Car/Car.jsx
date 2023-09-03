@@ -9,27 +9,26 @@ import { addCar } from "../../Redux/Action/action";
 
 export default function Car() {
     const {shoppingCar} = useSelector(state => state)
-    let shoppingCarLocal = localStorage.getItem('shoppingCar')
     const {userSesion} = useSelector(state => state)
     // const result = localOrBack(shoppingCarLocal, shoppingCar, userSesion)
     const [modal, setModal] = useState(false)
     const dispatch = useDispatch()
-
+    
     useEffect(()=>{
         findOrCreateCar()
     }, [])
+    
     const findOrCreateCar = ()=>{
+        const shoppingCarLocal = localStorage.getItem('shoppingCar')
         if(shoppingCarLocal){
             axios.get(`/carts/${shoppingCarLocal}`, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
             .then(response => {
-                console.log(response)
                 localStorage.setItem('shoppingCar', response.data.token)
                 dispatch(addCar(response.data.Events))})
             .catch(error => console.log(error))
         }else{
             axios.post(`/carts/createCart`, {items: shoppingCar}, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
             .then(({data}) =>{
-                console.log(data)
                 localStorage.setItem('shoppingCar', data.token)
                 dispatch(addCar(data.events))
             })
