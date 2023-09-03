@@ -190,7 +190,7 @@ const Detail = () => {
 
                   <div>
                     <button onClick={handleClick} className={styles.button}>
-                      <span class="relative z-10">Comprar ticket</span>
+                      <span class="relative z-1">Comprar ticket</span>
                     </button>
                   </div>
                 </div>
