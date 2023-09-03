@@ -25,24 +25,24 @@ const orderSuccess = async (req, res) => {
       const event = await Event.findByPk(events[i].idEvent);
       event.cantTickets = event.cantTickets - events[i].quantity;
       event.save();
+      const emailData = {
+         name: user.name,
+         email: user.email,
+         eventName: event.name,
+         eventImage: event.image,
+         price: events[i].price,
+         quantity: events[i].quantity,
+         currency: event.currency,
+         date: event.date,
+         hour: event.hour,
+         address: event.address,
+         country: event.country
+      };
+      await emailSuccessfulPayment(emailData);
    }
 
    const sale = await Sale.create( {idOrder: order.id, paymentMethod:payment_type, isSuccesful: isSuccesful } );
 
-   const emailData = {
-      name: user.name,
-      email: user.email,
-      eventName: event.name,
-      eventImage: event.image,
-      price: order.price,
-      quantity: order.quantity,
-      currency: event.currency,
-      date: event.date,
-      hour: event.hour,
-      address: event.address,
-      country: event.country
-   }
-   await emailSuccessfulPayment(emailData);
     
    res.status(301).redirect(`https://pf-ptb-grupo-06.vercel.app/sales/${sale.id}`);
 }
