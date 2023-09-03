@@ -1,4 +1,6 @@
 const { Cart_Event } = require("../../db");
+const jwt = require("jsonwebtoken");
+const {SECRET} = process.env;
 
 const deleteEventFromCart = async (req, res) => {
   try {
@@ -18,7 +20,7 @@ const deleteEventFromCart = async (req, res) => {
     const cartEvent = await Cart_Event.findOne({
       where: {
         idEvent: eventId,
-        idCart: userId, 
+        
       },
     });
 
