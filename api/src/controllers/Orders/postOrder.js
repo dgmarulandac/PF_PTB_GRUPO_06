@@ -41,7 +41,7 @@ const postCreateOrder = async (idBuyer, token) => {
             failure: "https://pf-grupo06-back.onrender.com/orderMercadoPago/failure",
             pending: "https://pf-grupo06-back.onrender.com/orderMercadoPago/pending"
         },
-        notification_url: "https://6172-186-113-173-20.ngrok.io/webHook"
+        notification_url: "https://boho-mercado.free.beeceptor.com"
 
     });
 
