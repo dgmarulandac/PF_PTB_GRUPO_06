@@ -1,4 +1,4 @@
-const { Order, Sale, Event } = require('../../db');
+const { Order, Sale, Event, Order_Event } = require('../../db');
 
 const getDashboardUser = async (id) => {
     try {
