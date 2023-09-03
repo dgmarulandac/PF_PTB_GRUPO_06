@@ -1,6 +1,4 @@
-require('dotenv').config();
-var mercadopago = require('mercadopago');
-const {Order, Event, Sale, User} = require ('../../db');
+const {Order, Event, Sale, User, Order_Event} = require ('../../db');
 const emailSuccessfulPayment = require( '../Email/emailSuccessfulPayment' );
 
 const orderSuccess = async (req, res) => {
@@ -16,10 +14,18 @@ const orderSuccess = async (req, res) => {
    });
 
    const user = await User.findByPk(order.idBuyer);
-   const event = await Event.findByPk(order.idEvent);
+   
+   const events = await Order_Event.findAll({
+      where: {
+         idOrder: order.id
+      }
+   });
 
-   event.cantTickets = event.cantTickets - order.quantity;
-   event.save();
+   for( let i = 0; i < events.legth; i++ ) {
+      const event = await Event.findByPk(events[i].idEvent);
+      event.cantTickets = event.cantTickets - events[i].quantity;
+      event.save();
+   }
 
    const sale = await Sale.create( {idOrder: order.id, paymentMethod:payment_type, isSuccesful: isSuccesful } );
 
