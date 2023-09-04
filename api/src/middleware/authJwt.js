@@ -15,7 +15,17 @@ const verifyToken = (req, res, next) => {
         return res.status(401).json({error: "No Autorizado."});
       }
       req.id = decoded.id;
-      next();
+
+      User.findByPk(req.id)
+      .then( user => {
+        if( !user.dataValues.active ) {
+          return res.status(401).json({error: "Este usuario esta baneado, por favor contacta a un administrador."});
+        }
+        next();
+      } )
+      .catch( reason => {
+        return res.status(401).json({error: "Usuario No Existe."});
+      } );
     });
 };
 

@@ -1,5 +1,6 @@
 const getSaleById = require("../controllers/Sale/getSaleById");
 const getMySales = require("../controllers/Sale/getMySales");
+const getMyPurchases = require("../controllers/Sale/getMyPurchases");
 
 const getMySalesHandler = async (req, res) => {
     try {
@@ -22,4 +23,14 @@ const getSaleByIdHandler = async (req, res) => {
     }
 };
 
-module.exports = {getSaleByIdHandler, getMySalesHandler};
+const getMyPurchasesHandler = async (req, res) => {
+    try {
+        const id = req.id;
+        const response = await getMyPurchases(id);
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(404).json({error: error.message});
+    }
+};
+
+module.exports = {getSaleByIdHandler, getMySalesHandler, getMyPurchasesHandler};

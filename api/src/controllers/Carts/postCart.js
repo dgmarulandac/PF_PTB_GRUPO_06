@@ -1,12 +1,17 @@
 const {SECRET} = process.env;
 const {Cart, Cart_Event} = require("../../db");
 const jwt = require("jsonwebtoken");
-
+const getCartUser = require("./getCartUser");
 
 const postCart = async (id, items) => {
 
-    
-    let cart = null;
+    let cart = await getCartUser(id);
+
+    if( cart ) {
+        return cart;
+    }
+
+    cart = null;
 
     if(id){
         cart = await Cart.create({

@@ -46,7 +46,7 @@ function App() {
   }, [])
 
   return (
-    <div className="App bg-whithe dark:bg-fondoDark">
+    <div className="App bg-whithe dark:bg-fondoDark flex flex-col">
       <Nav />
       <Routes>
         <Route path='/*' element={<Error404 />} />

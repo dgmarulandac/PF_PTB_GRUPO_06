@@ -29,7 +29,7 @@ export default function Slider() {
         }}
         modules={[Autoplay, Pagination, Navigation, Keyboard]}
       >
-        {events.map((event, i) => {
+        {events && events.map((event, i) => {
           const eventDetailUrl = `/event/${event.id}`; // Construct the event detail URL
           return (
             <SwiperSlide key={i}>
