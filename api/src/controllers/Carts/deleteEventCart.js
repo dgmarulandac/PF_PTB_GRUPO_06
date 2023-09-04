@@ -20,7 +20,7 @@ const deleteEventFromCart = async (req, res) => {
     const cartEvent = await Cart_Event.findOne({
       where: {
         idEvent: eventId,
-        
+        idCart: userId, 
       },
     });
 
