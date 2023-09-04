@@ -19,25 +19,6 @@ const Detail = () => {
   const ticketid = useSelector((state) => state.detail);
   const { modalOn } = useSelector((state) => state);
 
-  const [review, setReview] = useState({
-    score: 0,
-    comment: "",
-    idEvent: id,
-  });
-
-  const [reviews, setReviews] = useState([
-
-  ]);
-
-  const [send, setSend] = useState({
-    message: "",
-  });
-
-  const handleClick = () => {
-    dispatch(addToCar({ idEvent: id, quantity: 1 }));
-    dispatch(modal(true));
-  };
-
   useEffect(() => {
     return () => dispatch(getDetail());
   }, []);
@@ -55,6 +36,19 @@ const Detail = () => {
 
     return () => dispatch(getDetail());
   }, []);
+
+  const [review, setReview] = useState({
+    score: 0,
+    comment: "",
+    idEvent: id,
+  });
+
+const [reviews, setReviews] = useState([]);
+
+  const handleClick = () => {
+    dispatch(addToCar({ idEvent: id, quantity: 1 }));
+    dispatch(modal(true));
+  };
 
   const changereview = (event) => {
     setReview({ ...review, [event.target.name]: event.target.value });
@@ -290,7 +284,6 @@ const Detail = () => {
                 placeholder="comenta tu experiencia"
               ></textarea>
               <br />
-              <p className="text-yellow-300 text-justify">{send.message}</p>
               <button type="submit" className={styles.button}>
                 <span className="relative z-index-1">comentar</span>
               </button>

@@ -34,16 +34,9 @@ export default function Card({ event }) {
   };
 
   useEffect(() => {
-    return () => dispatch(getDetail());
-  }, []);
-
-  const [reviews, setReviews] = useState([
-  ]);
-
-  useEffect(() => {
     const getreviews = async () => {
       const { data } = await axios.get(`/reviews/${id}`);
-      const combinedReviews = [...reviews, ...data];
+      const combinedReviews = [ ...data];
       setReviews(combinedReviews);
     };
 
@@ -51,8 +44,11 @@ export default function Card({ event }) {
       .then(() => dispatch(getDetail(id)))
       .catch((error) => console.log(error));
 
-    return () => dispatch(getDetail());
-  }, []);
+  }, [dispatch, event, id]);
+
+  const [reviews, setReviews] = useState([]);
+
+  
 
   const totalScore = reviews.reduce((sum, review) => sum + review.score, 0);
 
