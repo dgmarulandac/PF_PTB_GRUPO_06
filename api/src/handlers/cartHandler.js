@@ -31,7 +31,8 @@ const getCartTokenHandler = async (req, res) => {
     
     try {
         const{token} = req.params
-        const carttoken = await getCartToken(token);
+        const {userId} = req.id;
+        const carttoken = await getCartToken(token, userId);
         res.status(200).json(carttoken);
     } catch (error) {
         res.status(404).json({error: error.message});

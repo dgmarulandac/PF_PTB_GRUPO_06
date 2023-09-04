@@ -7,7 +7,7 @@ const getCart = async () => {
         const cart = await Cart.findAll({
                 include: {
                         model: Event, 
-                        attributes: ["id", "ticketPrice", "name"], 
+                        attributes: ["id", "ticketPrice", "name", "cantTickets"], 
                         through:{attributes:["quantity"]}
                 }});
 

@@ -11,7 +11,7 @@ const getCartUser = async (id) => {
             },    
             include: {
                         model: Event, 
-                        attributes: ["id", "ticketPrice", "name"], 
+                        attributes: ["id", "ticketPrice", "name", "cantTickets"], 
                         through:{attributes:["quantity"]}
                 }});
 
