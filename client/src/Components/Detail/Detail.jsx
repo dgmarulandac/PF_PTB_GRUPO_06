@@ -19,25 +19,6 @@ const Detail = () => {
   const ticketid = useSelector((state) => state.detail);
   const { modalOn } = useSelector((state) => state);
 
-  const [review, setReview] = useState({
-    score: 0,
-    comment: "",
-    idEvent: id,
-  });
-
-  const [reviews, setReviews] = useState([
-
-  ]);
-
-  const [send, setSend] = useState({
-    message: "",
-  });
-
-  const handleClick = () => {
-    dispatch(addToCar({ idEvent: id, quantity: 1 }));
-    dispatch(modal(true));
-  };
-
   useEffect(() => {
     return () => dispatch(getDetail());
   }, []);
@@ -56,6 +37,19 @@ const Detail = () => {
     return () => dispatch(getDetail());
   }, []);
 
+  const [review, setReview] = useState({
+    score: 0,
+    comment: "",
+    idEvent: id,
+  });
+
+const [reviews, setReviews] = useState([]);
+
+  const handleClick = () => {
+    dispatch(addToCar({ idEvent: id, quantity: 1 }));
+    dispatch(modal(true));
+  };
+
   const changereview = (event) => {
     setReview({ ...review, [event.target.name]: event.target.value });
   };
@@ -67,7 +61,7 @@ const Detail = () => {
   if (totalScore === 0) {
     averageRating = "Evento sin calificar";
   } else {
-    averageRating = totalScore / reviews.length;
+    averageRating = (totalScore / reviews.length).toFixed(2);
   }
   
   const handledsummit = async (event) => {
@@ -82,9 +76,11 @@ const Detail = () => {
         comment: "",
         idEvent: id,
       });
-      setSend({
-        message: "su mensaje se ha enviado con exito sera revisado y postedo",
-      });
+      Swal.fire({
+        title: "mensaje enviado",
+        text: `tu mensaje sera revisado y posteado`,
+        icon: "success",
+      });;
     } catch (error) {
       Swal.fire({
         title: "Error",
@@ -288,7 +284,6 @@ const Detail = () => {
                 placeholder="comenta tu experiencia"
               ></textarea>
               <br />
-              <p className="text-yellow-300 text-justify">{send.message}</p>
               <button type="submit" className={styles.button}>
                 <span className="relative z-index-1">comentar</span>
               </button>
