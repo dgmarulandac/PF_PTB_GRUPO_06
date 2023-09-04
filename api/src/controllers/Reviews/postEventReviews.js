@@ -12,10 +12,10 @@ const postEventReview = async (score, comment, idEvent, idBuyer) => {
     });
     
     for(let i=0; i < orders.length; i++ ){
-        const order = orders[i].dataValues;
-        if(order && order.Sale.dataValues.isSuccesful){
-            for( let j=0; j < order.Events.length; j++ ) {
-                if( order.Events[j] && order.Events[j].dataValues.id === idEvent ) {
+        const order = orders[i]?.dataValues;
+        if(order && orders[i]?.dataValues?.Sale?.dataValues?.isSuccesful){
+            for( let j=0; j < order?.Events?.length; j++ ) {
+                if( order?.Events[j] && order?.Events[j]?.dataValues?.id === idEvent ) {
                     const createEventReview = await Review.create({
                         score,
                         comment,
