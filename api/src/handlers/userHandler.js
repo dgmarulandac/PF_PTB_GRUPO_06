@@ -81,8 +81,8 @@ const toggleUserHandler = async (req, res) => {
 const putUserHandler = async (req, res) => {
     try {
         const { id } = req.params;
-        const {displayName, name, phone, email, nationality, address, roles} = req.body;
-        const user = await putUser( id, {displayName, name, phone, email, nationality, address, roles} );
+        const {displayName, name, phone, email, nationality, address, roles, active} = req.body;
+        const user = await putUser( id, {displayName, name, phone, email, nationality, address, roles, active} );
         res.status(201).json(user);
     } catch (error) {
         res.status(404).json({error: error.message});
