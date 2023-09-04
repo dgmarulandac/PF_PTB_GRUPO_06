@@ -1,4 +1,4 @@
-const { Review, Event ,Sale, Order, Order_Event } = require("../../db");
+const { Review, Event ,Sale, Order } = require("../../db");
 
 const postEventReview = async (score, comment, idEvent, idBuyer) => {
     
@@ -8,26 +8,27 @@ const postEventReview = async (score, comment, idEvent, idBuyer) => {
     
     const orders = await Order.findAll({
         where: { idBuyer: idBuyer },
-        include: [Order_Event, Sale]
+        include: [Sale, Event]
     });
-
-    console.log(orders);
-    return null;
     
     for(let i=0; i <orders.length; i++ ){
-        if(orders[i].dataValues.Sale.dataValues.isSuccesful){
-            
-                const createEventReview = await Review.create({
-                    score,
-                    comment,
-                    approved: false,
-                    idUser: idBuyer,
-                    idEvent
-                })
-                
-
-                return createEventReview;  
-        }}
+        const order = orders[i].dataValues;
+        if(order.Sale.dataValues.isSuccesful){
+            for( let j=0; j < order.Events.length; j++ ) {
+                const event = order.Events[j].dataValues;
+                if( event.id === idEvent ) {
+                    const createEventReview = await Review.create({
+                        score,
+                        comment,
+                        approved: false,
+                        idUser: idBuyer,
+                        idEvent
+                    })
+                    return createEventReview;  
+                }
+            }
+        }
+    }
     
     throw Error("Compra este evento para poder hacer una review");
 };
