@@ -61,7 +61,7 @@ export default function Card({ event }) {
   if (totalScore === 0) {
     averageRating = "Evento sin calificar";
   } else {
-    averageRating = totalScore / reviews.length;
+    averageRating = (totalScore / reviews.length).toFixed(2);
   }
 
   return (

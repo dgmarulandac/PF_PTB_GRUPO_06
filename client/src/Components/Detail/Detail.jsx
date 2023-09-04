@@ -67,7 +67,7 @@ const Detail = () => {
   if (totalScore === 0) {
     averageRating = "Evento sin calificar";
   } else {
-    averageRating = totalScore / reviews.length;
+    averageRating = (totalScore / reviews.length).toFixed(2);
   }
   
   const handledsummit = async (event) => {
@@ -82,9 +82,11 @@ const Detail = () => {
         comment: "",
         idEvent: id,
       });
-      setSend({
-        message: "su mensaje se ha enviado con exito sera revisado y postedo",
-      });
+      Swal.fire({
+        title: "mensaje enviado",
+        text: `tu mensaje sera revisado y posteado`,
+        icon: "success",
+      });;
     } catch (error) {
       Swal.fire({
         title: "Error",
