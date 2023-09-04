@@ -220,7 +220,7 @@ export const addToCar = (event)=>{
 
 export const deleteEventCar = (id)=>{
     return (dispatch)=>{
-        axios.delete('/carts/deleteEventCart', { token: localStorage.getItem('shoppingCar'), eventId: id }, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+        axios.delete('/carts/deleteEventCart', { data: { token: localStorage.getItem('shoppingCar'), eventId: id },headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
         .then(response => {
             console.log(response)
             return dispatch({
