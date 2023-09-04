@@ -41,7 +41,6 @@ export default function Card({ event }) {
     };
 
     getreviews()
-      .then(() => dispatch(getDetail(id)))
       .catch((error) => console.log(error));
 
   }, [dispatch, event, id]);
@@ -82,7 +81,7 @@ export default function Card({ event }) {
                   <div>
                   {Array.from({ length: 5 }).map((_, index) => (
                     <span key={index}>
-                      {index + 1 <= Math.round(averageRating) ? "⭐" : ""}
+                      {index + 1 <= Math.round(averageRating) ? "⭐" : "💥"}
                     </span>
                   ))}
                 </div></p>
