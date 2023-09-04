@@ -18,7 +18,7 @@ const getCartToken = async (token) => {
         const cart = await Cart.findByPk(cartId, {
             include: {
                 model: Event,
-                attributes: ["id", "ticketPrice", "name"],
+                attributes: ["id", "ticketPrice", "name", "cantTickets"],
                 through: { attributes: ["quantity"] }
             }
         });
