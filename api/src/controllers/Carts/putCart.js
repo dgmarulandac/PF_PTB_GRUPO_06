@@ -53,7 +53,7 @@ const updateCartQuantity = async (req, res) => {
         cart = await Cart.findByPk(cartId, {
             include: {
                 model: Event,
-                attributes: ["id", "ticketPrice", "name"],
+                attributes: ["id", "ticketPrice", "name", "cantTickets"],
                 through: { attributes: ["quantity"] }
             }
         });
