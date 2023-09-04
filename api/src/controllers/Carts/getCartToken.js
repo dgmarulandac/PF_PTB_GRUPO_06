@@ -6,37 +6,38 @@ const getCartUser = require("./getCartUser");
 
 const getCartToken = async (token, userId) => {
         
-        let cartId = "";
+    if( userId ) {
+        const posibleCart = getCartUser(userId);
+        if( posibleCart ) return posibleCart;
+    }
 
-        jwt.verify(token, SECRET, (err, decoded) => {
-            if (err) {
-                throw Error ("Carrito no existe");
-            }
-            cartId= decoded.id;
-        });
+    let cartId = "";
 
-        let cart = await Cart.findByPk(cartId, {
-            include: {
-                model: Event,
-                attributes: ["id", "ticketPrice", "name", "cantTickets"],
-                through: { attributes: ["quantity"] }
-            }
-        });
-
-        if( cart.idUser === null && userId ) {
-            const posibleCart = getCartUser(userId);
-            cart = posibleCart ? posibleCart : cart;
-            cart.idUser = userId;
-            cart.save();
+    jwt.verify(token, SECRET, (err, decoded) => {
+        if (err) {
+            throw Error ("Carrito no existe");
         }
+        cartId= decoded.id;
+    });
 
-        if( !cart.active ) {
-            cart = await postCart(userId, []);
+    let cart = await Cart.findByPk(cartId, {
+        include: {
+            model: Event,
+            attributes: ["id", "ticketPrice", "name", "cantTickets"],
+            through: { attributes: ["quantity"] }
         }
-        
-        return cart;
+    });
 
+    if( cart.idUser === null && userId ) {
+        cart.idUser = userId;
+        cart.save();
+    }
+
+    if( !cart.active ) {
+        cart = await postCart(userId, []);
+    }
     
+    return cart;
 };
 
 module.exports = getCartToken;
