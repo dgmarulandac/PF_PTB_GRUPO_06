@@ -1,4 +1,4 @@
-import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES, POST_REVIEW, ADD_CAR, GET_EVENTS_ADMIN, ADD_TO_CAR, PLUS_LESS } from "../Action/action-type";
+import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES, POST_REVIEW, ADD_CAR, GET_EVENTS_ADMIN, ADD_TO_CAR, PLUS_LESS, DELETE_EVENT_CAR } from "../Action/action-type";
 
 const initialState = {
     country: ['Colombia', 'Venezuela', 'Argentina', 'Uruguay'],
@@ -46,6 +46,8 @@ const rootReducer = (state = initialState, action)=>{
             return {...state, shoppingCar: payload}
         // case ADD_TO_CAR:
         //     return {...state, shoppingCar: [...state.shoppingCar, payload]}
+        case DELETE_EVENT_CAR:
+            return {...state, shoppingCar: [...state.shoppingCar.filter(e => e.id !== payload)]}
         case GET_EVENTS_ADMIN:
             return {...state, eventsAdmin: payload}
         default: 
