@@ -1,4 +1,4 @@
-const { Order, Event } = require("../../db");
+const { Order, Event, Order_Event, Sale } = require("../../db");
 const compareMonths = require("../../utils/compareMonths")
 
 const getMySales = async (idSeller) => {
@@ -19,11 +19,19 @@ const getMySales = async (idSeller) => {
         if( monthYears.filter(my => {return my === myString }).length === 0 ) {
             monthYears.push(myString);
         }
-        const ordersEvent = await Order.findAll({where: {
+        const ordersEvent = await Order_Event.findAll({where: {
             idEvent: events[i].id
         }});
-        ordersEvent.map( order => {return {sales: order.getSale().isSuccesful ? order.quantity * order.price : 0, month: myString }} );
-        orders = [...orders, ...ordersEvent];
+        let arr = [];
+        for( let j = 0; j < ordersEvent.length; j++ ) {
+            const order = await Order.findByPk( ordersEvent, {
+                include: [ {model: Sale, required: true, attributes: ['isSuccesful'] } ]
+            } );
+            if( order.dataValues.Sale.dataValues.isSuccesful ) {
+                arr.push( {sales: ordersEvent[j].dataValues.quantity * ordersEvent[j].dataValues.price, month: myString})
+            }
+        }
+        orders = [...orders, ...arr];
     }
 
     const sales = [];
