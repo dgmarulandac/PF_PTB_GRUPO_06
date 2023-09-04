@@ -26,9 +26,14 @@ export default function AdminElement({children}) {
             </div>
         );
     } else {
+        // return(
+        //     <div>
+        //         <Error404 />
+        //     </div>
+        // );
         return(
             <div>
-                <Error404 />
+                {children}
             </div>
         );
     }
