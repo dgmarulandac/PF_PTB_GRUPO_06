@@ -21,10 +21,10 @@ const orderSuccess = async (req, res) => {
       }
    });
 
-   for( let i = 0; i < events.legth; i++ ) {
+   for( let i = 0; i < events.length; i++ ) {
       const event = await Event.findByPk(events[i].idEvent);
       event.cantTickets = event.cantTickets - events[i].quantity;
-      event.save();
+      await event.save();
       const emailData = {
          name: user.name,
          email: user.email,
