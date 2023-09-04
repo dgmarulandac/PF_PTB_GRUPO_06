@@ -36,7 +36,7 @@ const DetailUser = () => {
     const changeUser = () => {
 
         axios.put(`/users/update/${id}`, user, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
-            // User puede recibir: {displayName, name, phone, email, nationality, address, roles}
+            // User puede recibir: {displayName, active, name, phone, email, nationality, address, roles}
             .then(res => res.data)
             .then(data => {
                 setSuccess('Usuario cambiado')
@@ -87,9 +87,20 @@ const DetailUser = () => {
                     <p className="text-white">{user.phone ? user.phone : "No tiene numero agregado todavia"}</p>
                     <input className="rounded-md" placeholder="Cambiar numero de telefono" type="number" onChange={handleChange} name="phone" />
                     {/* checked={user?.roles.includes("admin")} */}
-                    <input type="checkbox" name="admin" checked={user?.roles.includes("admin")} onChange={handleCheck} />
-                    <input type="checkbox" name="buyer" checked={user?.roles.includes("buyer")} onChange={handleCheck} />
-                    <input type="checkbox" name="seller" checked={user?.roles.includes("seller")} onChange={handleCheck} />
+                    <div>
+                        <div>
+                        <label className="text-white">Admin:</label>
+                        <input type="checkbox" name="admin" checked={user.roles.includes('admin')} onChange={handleCheck} />
+                        </div>
+                        <div>
+                        <label className="text-white">Comprador:</label>
+                        <input type="checkbox" name="buyer" checked={user.roles.includes('buyer')} onChange={handleCheck} />
+                        </div>
+                        <div>
+                        <label className="text-white">Vendedor:</label>
+                        <input type="checkbox" name="seller" checked={user.roles.includes('seller')} onChange={handleCheck} />
+                        </div>
+                    </div>
                     {/* <input type="radio" id="contactChoice1" name="contact" value="email" /> */}
 
                     <button onClick={changeUser} className="text-white bg-black border-solid border-white rounded-md p-2">Cambiar usuario</button>
