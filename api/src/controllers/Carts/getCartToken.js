@@ -1,10 +1,10 @@
 const {Cart, Event} = require("../../db");
 const jwt = require("jsonwebtoken");
 const {SECRET} = process.env;
+const postCart = require("./postCart");
+const getCartUser = require("./getCartUser");
 
-
-
-const getCartToken = async (token) => {
+const getCartToken = async (token, userId) => {
         
         let cartId = "";
 
@@ -15,13 +15,24 @@ const getCartToken = async (token) => {
             cartId= decoded.id;
         });
 
-        const cart = await Cart.findByPk(cartId, {
+        let cart = await Cart.findByPk(cartId, {
             include: {
                 model: Event,
                 attributes: ["id", "ticketPrice", "name", "cantTickets"],
                 through: { attributes: ["quantity"] }
             }
         });
+
+        if( cart.idUser === null && userId ) {
+            const posibleCart = getCartUser(userId);
+            cart = posibleCart ? posibleCart : cart;
+            cart.idUser = userId;
+            userId.save();
+        }
+
+        if( !cart.active ) {
+            cart = await postCart(userId, []);
+        }
         
         return cart;
 
