@@ -6,7 +6,6 @@ module.exports = (sequelize) => {
         idEvent: {
             type: DataTypes.UUID,
             allowNull: false,
-            
         },
         
         quantity: { 
@@ -23,7 +22,5 @@ module.exports = (sequelize) => {
             type: DataTypes.UUID,
             allowNull: false, 
         },
-
-
      }) 
     }
