@@ -46,7 +46,7 @@ const UsersList = () => {
     };
 
     return (
-        <div className="flex justify-center">
+        <div className="flex flex-col lg:flex-row justify-center">
 
             <div className="flex w-1/2 flex-col justify-center">
                 <h1 className="text-white ">Lista de usuarios activos</h1>
@@ -78,9 +78,9 @@ const UsersList = () => {
             </div>
             {
                 success ?
-                    <div className="absolute bg-black-900">
+                    <div className="absolute bg-slate-900 border-white-100 rounded-md border p-5"> 
                         <button onClick={() => { setSuccess(null) }}><p className="text-white">x</p></button>
-                        <p>{`${success}`}</p>
+                        <p className="text-white">{`${success}`}</p>
                     </div> : null
             }
         </div>
