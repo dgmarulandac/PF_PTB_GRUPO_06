@@ -1,7 +1,7 @@
 const {Router} = require ("express");
 const {getSaleByIdHandler, getMySalesHandler, getMyPurchasesHandler} = require ("../handlers/saleHandler");
 
-const { verifyToken, isAdmin, isSeller, isBuyer } = require("../middleware/authJwt");
+const { verifyToken, isSeller, isBuyer } = require("../middleware/authJwt");
 const salesRouter = Router();
 
 salesRouter.get("/mySales", [verifyToken, isSeller], getMySalesHandler);

@@ -13,7 +13,6 @@ const getMyPurchases = async (id) => {
                     attributes: ['quantity','price']
                 }
             }
-
         ]
     });
     return orders;
