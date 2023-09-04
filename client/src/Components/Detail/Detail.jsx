@@ -183,7 +183,7 @@ const Detail = () => {
 
                   <div>
                     <button onClick={handleClick} className={styles.button}>
-                      <span class="relative z-10">Comprar ticket</span>
+                      <span class="relative z-10">Agregar al carrito</span>
                     </button>
                   </div>
                 </div>

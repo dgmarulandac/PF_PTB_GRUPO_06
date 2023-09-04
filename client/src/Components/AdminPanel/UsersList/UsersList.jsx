@@ -43,8 +43,8 @@ const UsersList = () =>{
         }
     };
     return(
-        <div className="flex flex-col justify-center">
-            <h1 className="text-white ">Lista de usuarios</h1>
+        <div className="grid gap-3 justify-center">
+            <h1 className="font-semibold text-xl text-gray-900 dark:text-white border-b-[3px] p-2">Lista de usuarios</h1>
             {
                 errors ? <p>{`${errors}`}</p> : users?.map((element, key) => {
                     return(
