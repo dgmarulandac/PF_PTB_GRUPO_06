@@ -28,7 +28,8 @@ const getReviewsAdminHandler = async (req, res) => {
 const  postReviewsHandler = async (req, res) => {
     try {
         const { score, comment, idEvent } = req.body;
-        const newReviews = await postEventReview(score, comment, idEvent);
+        const idBuyer = req.id;
+        const newReviews = await postEventReview(score, comment, idEvent, idBuyer);
        res.status(200).json(newReviews);
     } catch (error) {
         res.status(403).json({ error: error.message });
