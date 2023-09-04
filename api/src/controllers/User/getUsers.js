@@ -2,7 +2,9 @@ const { User, Role } = require("../../db");
 
 const getUsers = async () => {
     const users = await User.findAll({
-        include: Role
+        include: {model: Role, attributes: ['type'], through: {
+            attributes: []
+        }}
     });
     return users;
 };
