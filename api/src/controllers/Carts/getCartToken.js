@@ -27,7 +27,7 @@ const getCartToken = async (token, userId) => {
             const posibleCart = getCartUser(userId);
             cart = posibleCart ? posibleCart : cart;
             cart.idUser = userId;
-            userId.save();
+            cart.save();
         }
 
         if( !cart.active ) {
