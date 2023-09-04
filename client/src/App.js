@@ -27,6 +27,8 @@ import SalesPay from './Components/Sales/SalesPay';
 import NotLoggedElement from './Utils/AutorizationComponents/NotLoggedElement';
 import SellerOrAdminElement from './Utils/AutorizationComponents/SellerOrAdminElement';
 import LoggedElement from './Utils/AutorizationComponents/LoggedElement';
+import AdminElement from './Utils/AutorizationComponents/AdminElement';
+import DetailUser from './Components/AdminPanel/DetailUser/DetailUser';
 
 
 function App() {
@@ -48,7 +50,6 @@ function App() {
       <Nav />
       <Routes>
         <Route path='/*' element={<Error404 />} />
-        <Route path='/Admin/Panel' element={<AdminPanel />} />
         <Route path='/' element={<Home />} />
         <Route path='/FAQ' element={<FAQ />} />
         <Route path='/event/:id' element={<Detail />} />
@@ -61,6 +62,8 @@ function App() {
         <Route path='/createEvent' element={<SellerOrAdminElement><FormEvent /></SellerOrAdminElement>} />
         <Route path='/myEvents' element={<SellerOrAdminElement><EventsDashboard /></SellerOrAdminElement>} />
         <Route path='/editEvent/:id' element={<SellerOrAdminElement><EditEvent /></SellerOrAdminElement>} />
+        <Route path='/Admin/Panel' element={<AdminPanel />} />
+        <Route path='/Admin/Panel/:id' element={<DetailUser />} />
       </Routes>
       <Footer />
     </div>
