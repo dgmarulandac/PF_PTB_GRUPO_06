@@ -19,9 +19,9 @@ const putUser = async ( id, user ) => {
         throw Error(`El correo ${user.email} ya esta en uso.`);
     }
 
-    const {displayName, name, phone, email, nationality, address, roles} = user;
+    const {displayName, name, phone, email, nationality, address, roles, active} = user;
     
-    const updatedUser = await existingUser.update({displayName, name, phone, email, nationality, address});
+    const updatedUser = await existingUser.update({displayName, name, phone, email, nationality, address, active});
     
     if( roles && roles.length > 0 ) {
         const newRoles = await Role.findAll({

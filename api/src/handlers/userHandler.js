@@ -6,6 +6,7 @@ const postUserLogin = require("../controllers/User/postUserLogin");
 const postAuth = require("../controllers/User/postAuth");
 const toggleUser = require("../controllers/User/toggleUser");
 const putUser = require("../controllers/User/putUser");
+const putUpdateUser = require("../controllers/User/putUpdateUser");
 
 const getUserHandler = async (req, res) => {
     try {
@@ -81,8 +82,19 @@ const toggleUserHandler = async (req, res) => {
 const putUserHandler = async (req, res) => {
     try {
         const { id } = req.params;
-        const {displayName, name, phone, email, nationality, address, roles} = req.body;
-        const user = await putUser( id, {displayName, name, phone, email, nationality, address, roles} );
+        const {displayName, name, phone, email, nationality, address, roles, active} = req.body;
+        const user = await putUser( id, {displayName, name, phone, email, nationality, address, roles, active} );
+        res.status(201).json(user);
+    } catch (error) {
+        res.status(404).json({error: error.message});
+    }
+};
+
+const putUpdateUserHandler = async (req, res) => {
+    try {
+        const id = req.id;
+        const { name, phone, identification, nationality, address, image} = req.body;
+        const user = await putUpdateUser( id, { name, phone, identification, nationality, address, image} );
         res.status(201).json(user);
     } catch (error) {
         res.status(404).json({error: error.message});
@@ -97,5 +109,6 @@ module.exports = {
     postUserLoginHandler, 
     postAuthHandler, 
     toggleUserHandler,
-    putUserHandler
+    putUserHandler,
+    putUpdateUserHandler
 };

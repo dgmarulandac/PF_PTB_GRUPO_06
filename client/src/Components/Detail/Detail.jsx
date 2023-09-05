@@ -8,7 +8,7 @@ import * as styles from "./DetStiles";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { FiArrowLeft } from 'react-icons/fi';
+import { FiArrowLeft } from "react-icons/fi";
 import React from "react";
 
 const Detail = () => {
@@ -19,28 +19,17 @@ const Detail = () => {
   const ticketid = useSelector((state) => state.detail);
   const { modalOn } = useSelector((state) => state);
 
-  const [review, setReview] = useState({
-    score: 0,
-    comment: "",
-    idEvent: id,
-  });
-
-  const [reviews, setReviews] = useState([]);
-
-  const handleClick = () => {
-    dispatch(addToCar({idEvent: id, quantity: 1}))
-    dispatch(modal(true))
-  }
-
   useEffect(() => {
-    return (() => dispatch(getDetail()))
-  }, [])
+    return () => dispatch(getDetail());
+  }, []);
 
   useEffect(() => {
     const getreviews = async () => {
       const { data } = await axios.get(`/reviews/${id}`);
-      setReviews(data);
+      const combinedReviews = [...reviews, ...data];
+      setReviews(combinedReviews);
     };
+
     getreviews()
       .then(() => dispatch(getDetail(id)))
       .catch((error) => console.log(error));
@@ -48,10 +37,33 @@ const Detail = () => {
     return () => dispatch(getDetail());
   }, []);
 
+  const [review, setReview] = useState({
+    score: 0,
+    comment: "",
+    idEvent: id,
+  });
+
+const [reviews, setReviews] = useState([]);
+
+  const handleClick = () => {
+    dispatch(addToCar({ idEvent: id, quantity: 1 }));
+    dispatch(modal(true));
+  };
+
   const changereview = (event) => {
     setReview({ ...review, [event.target.name]: event.target.value });
   };
 
+  const totalScore = reviews.reduce((sum, review) => sum + review.score, 0);
+
+  // Calcula el promedio
+  let averageRating;
+  if (totalScore === 0) {
+    averageRating = "Evento sin calificar";
+  } else {
+    averageRating = (totalScore / reviews.length).toFixed(2);
+  }
+  
   const handledsummit = async (event) => {
     event.preventDefault();
 
@@ -64,6 +76,11 @@ const Detail = () => {
         comment: "",
         idEvent: id,
       });
+      Swal.fire({
+        title: "mensaje enviado",
+        text: `tu mensaje sera revisado y posteado`,
+        icon: "success",
+      });;
     } catch (error) {
       Swal.fire({
         title: "Error",
@@ -139,7 +156,6 @@ const Detail = () => {
             <h1 className={styles.h1}>{ticketid?.error}</h1>
           ) : (
             <div>
-              
               <h1 className={styles.boho}>BOHO</h1>
               <br />
               <p className={styles.comen}>compra tu boleta aqui</p>
@@ -162,6 +178,14 @@ const Detail = () => {
               <br />
               <div className={styles.cardcon}>
                 <div key="0">
+                <p className={styles.ratingprom}>{averageRating}:
+                  <div>
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <span key={index}>
+                      {index + 1 <= Math.round(averageRating) ? "⭐" : ""}
+                    </span>
+                  ))}
+                </div></p>
                   <h2 className={styles.name}>{ticketid.name}</h2>
                   <div className="display: flex justify-center ">
                     <div className={styles.centerimg}>
@@ -183,7 +207,7 @@ const Detail = () => {
 
                   <div>
                     <button onClick={handleClick} className={styles.button}>
-                      <span class="relative z-10">Comprar ticket</span>
+                      <span class="relative z-1">Agregar a carrito</span>
                     </button>
                   </div>
                 </div>
@@ -197,58 +221,73 @@ const Detail = () => {
           )}
         </div>
         <div className={styles.container}>
-          <div >
-  {reviews.map((review) => (
-    <div key={review.id} className="box conten h-32 max-h-max px-4 pb-2 m-3 border bg-gray-100 dark:bg-gray-900 rounded-lg dark:border-blue-800 "  >
-      <p className="text-white font-bold text-justify">{review.User.name}</p>
-      <div>
-        {Array.from({ length: 5 }).map((_, index) => (
-          <span key={index} >{index + 1 <= review.score ? "⭐" : ""}</span>
-        ))}
-      </div>
-      <div className="box conten h-16 max-h-max p-2 rounded-lg dark:text-gray-300 border border-gay-200 dark:border-gray-400 dark:bg-gray-700 text-justify"><p >{review.comment}</p></div>
-      
-    </div>
-  ))}
-  </div>
-</div>
+          <div>
+            {reviews.map((review) => (
+              <div
+                key={review.id}
+                className={styles.reviewbox}
+              >
+                <p className={styles.username}>
+                  {review.User.name}
+                </p>
+                <div>
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <span key={index}>
+                      {index + 1 <= review.score ? "⭐" : ""}
+                    </span>
+                  ))}
+                </div>
+                <div className={styles.coment}>
+                  <p>{review.comment}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
         {idUser && (
           <div className={styles.container}>
-          <form  onSubmit={handledsummit} className="box conten h-62 w-5/12 px-4 pb-2 border bg-gray-100 dark:bg-gray-900 rounded-lg dark:border-blue-800 " >
-            <br />
-            <label className="text-white font-bold"> Puntuacion</label>
-    <div className={style.rating}>
-      {[5, 4, 3, 2, 1].map((value, index) => (
-        <React.Fragment key={index}>
-          <input
-            type="radio"
-            id={`star-${value}`}
-            name="score"
-            value={value}
-            onChange={changereview}
-          />
-          <label htmlFor={`star-${value}`}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
-            </svg>
-          </label>
-        </React.Fragment>
-      ))}
-    </div>
+            <form
+              onSubmit={handledsummit}
+              className={styles.reviewerbox}
+            >
+              <br />
+              <label className="text-white font-bold"> Puntuacion</label>
+              <div className={style.rating}>
+                {[5, 4, 3, 2, 1].map((value, index) => (
+                  <React.Fragment key={index}>
+                    <input
+                      type="radio"
+                      id={`star-${value}`}
+                      name="score"
+                      value={value}
+                      onChange={changereview}
+                    />
+                    <label htmlFor={`star-${value}`}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" />
+                      </svg>
+                    </label>
+                  </React.Fragment>
+                ))}
+              </div>
               <br />
               <textarea
                 name="comment"
                 value={review.comment}
                 id=""
                 cols="40"
-                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className={styles.reviewertext}
                 onChange={changereview}
                 placeholder="comenta tu experiencia"
               ></textarea>
               <br />
-              <button type="submit" className={styles.button}><span className="relative z-index-1">comentar</span></button>
-  
-          </form>
+              <button type="submit" className={styles.button}>
+                <span className="relative z-index-1">comentar</span>
+              </button>
+            </form>
           </div>
         )}
       </>

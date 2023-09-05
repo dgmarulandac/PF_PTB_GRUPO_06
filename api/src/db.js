@@ -47,9 +47,6 @@ Role.belongsToMany(User, {through: "User_Role"});
 User.hasMany(Event, {foreignKey: 'idSeller'});
 Event.belongsTo(User, {foreignKey: 'idSeller'});
 
-Event.hasMany(Order, {foreignKey: 'idEvent'});
-Order.belongsTo(Event, {foreignKey: 'idEvent'});
-
 User.hasMany(Order, {foreignKey: 'idBuyer'});
 Order.belongsTo(User, {foreignKey: 'idBuyer'});
 
@@ -67,8 +64,6 @@ Event.belongsToMany(Cart, {through: Cart_Event, foreignKey:"idEvent"});
 
 Order.belongsToMany(Event, {through: Order_Event, foreignKey:"idOrder"}); 
 Event.belongsToMany(Order, {through: Order_Event, foreignKey:"idEvent"});
-
-
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

@@ -1,46 +1,35 @@
-const { Review, Order, Sale } = require("../../db");
+const { Review, Event ,Sale, Order } = require("../../db");
 
-const postEventReview = async (req, res) => {
-    try {
-
-        const {
-            score,
-            comment,
-            idEvent
-        } = req.body;
-        
-        if (!score || !comment  || !idEvent) {
-            return res.status(400).json({ error: "Faltan campos obligatorios" });
-        }
-        
-        const orders = await Order.findAll({
-            where: {idBuyer : req.id,
-                   idEvent: idEvent
-            },
-            include:[Sale]
-        });
-       
-        for(let i=0; i <orders.length; i++ ){
-            if(orders[i].dataValues.Sale.dataValues.isSuccesful){
-                
+const postEventReview = async (score, comment, idEvent, idBuyer) => {
+    
+    if (!score || !comment  || !idEvent || !idBuyer) {
+        throw Error("Faltan campos obligatorios");
+    }
+    
+    const orders = await Order.findAll({
+        where: { idBuyer: idBuyer },
+        include: [Sale, Event]
+    });
+    
+    for(let i=0; i < orders.length; i++ ){
+        const order = orders[i]?.dataValues;
+        if(order && orders[i]?.dataValues?.Sale?.dataValues?.isSuccesful){
+            for( let j=0; j < order?.Events?.length; j++ ) {
+                if( order?.Events[j] && order?.Events[j]?.dataValues?.id === idEvent ) {
                     const createEventReview = await Review.create({
                         score,
                         comment,
                         approved: false,
-                        idUser: req.id,
+                        idUser: idBuyer,
                         idEvent
                     })
-                    
-
-                    return res.status(200).json(createEventReview);  
-            }}
-        
-        return res.status(404).json({ error: "Compra este evento para poder hacer una review" });
-    
-    
-    } catch (error) {
-        res.status(400).json({ error: "Hubo un error al crear la review" });
+                    return createEventReview;  
+                }
+            }
+        }
     }
+    
+    throw Error("Compra este evento para poder hacer una review");
 };
 
 module.exports = {postEventReview};
