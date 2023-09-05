@@ -30,17 +30,17 @@ const verifyToken = (req, res, next) => {
 };
 
 const verifyTokenOptional = (req, res, next) => {
-    const token = req.headers["x-access-token"];
-
-    if( token ) {  
-      jwt.verify(token, SECRET, (err, decoded) => {
-        if (err) {
-          return res.status(401).json({error: "No Autorizado."});
-        }
-        req.id = decoded.id;
-      });
-    }
-    next();
+  const token = req.headers["x-access-token"];
+  req.id = null;
+  if( token ) {  
+    jwt.verify(token, SECRET, (err, decoded) => {
+      if (err) {
+        return res.status(401).json({error: "No Autorizado."});
+      }
+      req.id = decoded.id;
+    });
+  }
+  next();
 };
 
 const isAdmin = async (req, res, next) => {
