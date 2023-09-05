@@ -1,4 +1,4 @@
-const { User, Role } = require("../../db");
+const { User, Role, User_Role } = require("../../db");
 const { Op } = require("sequelize");
 
 
@@ -19,15 +19,22 @@ const putUser = async ( id, user ) => {
         throw Error(`El correo ${user.email} ya esta en uso.`);
     }
 
-    const {displayName, name, phone, email, nationality, address, roles, active} = user;
+    const {displayName, name, phone, email, nationality, address, Roles, active} = user;
     
     const updatedUser = await existingUser.update({displayName, name, phone, email, nationality, address, active});
     
-    if( roles && roles.length > 0 ) {
+    if( Roles && Roles.length > 0 ) {
+
+        await User_Role.destroy( {where: {
+            UserId: id
+        }} );
+
+        const roles = Roles.map( role => role.type );
         const newRoles = await Role.findAll({
             where: { type: { [Op.in]: roles } }
         });
         updatedUser.addRoles(newRoles);
+        await updatedUser.save();
     }
     
     return updatedUser;
