@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES, POST_REVIEW, ADD_CAR, GET_EVENTS_ADMIN, ADD_TO_CAR, PLUS_LESS } from "./action-type";
+import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES, POST_REVIEW, ADD_CAR, GET_EVENTS_ADMIN, ADD_TO_CAR, PLUS_LESS, DELETE_EVENT_CAR } from "./action-type";
 import Swal from "sweetalert2";
 
 export const getAllEvent = () => {
@@ -137,10 +137,19 @@ export const modal = (value) => {
 };
 
 export const logOut = () => {
+    localStorage.removeItem('shoppingCar')
     localStorage.removeItem('jwt');
-    return {
-        type: LOG_OUT,
-        payload: {}
+    
+    return(dispatch)=>{
+        axios.post(`/carts/createCart`, {items: []}, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+            .then(({data}) =>{
+                localStorage.setItem('shoppingCar', data.token)
+                
+                return dispatch({
+                    type: LOG_OUT,
+                    payload: data.events
+                })
+            })
     };
 }
 
@@ -218,9 +227,17 @@ export const addToCar = (event)=>{
         })}
 }
 
-export const plussLess = (value, i)=>{
-    return{
-        type: PLUS_LESS,
-        payload: [value, i]
+export const deleteEventCar = (id)=>{
+    return (dispatch)=>{
+        axios.delete('/carts/deleteEventCart', { data: { token: localStorage.getItem('shoppingCar'), eventId: id },headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+        .then(response => {
+            console.log(response)
+            return dispatch({
+                type: DELETE_EVENT_CAR,
+                payload: id
+            })
+        })
+        .catch(error => console.log(error))
     }
 }
+

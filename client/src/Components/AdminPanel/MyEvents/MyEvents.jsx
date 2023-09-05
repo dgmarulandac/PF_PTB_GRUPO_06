@@ -6,6 +6,7 @@ import styles from "./MyEventsStyle";
 import style from "./MyEvents.module.css"
 import { useDispatch } from "react-redux";
 import { eventsAdmin } from "../../../Redux/Action/action";
+import { Pagination } from "./paginationEvent/paginationEvent";
 
 export default function MyEvents() {
     // const [events, setEvents] = useState(false)
@@ -51,12 +52,13 @@ export default function MyEvents() {
                         )}
                         {events.length > 0 && (
                             <div className="m-2">
-                                {events.map((e, i) => {
+                                {/* {events.map((e, i) => {
                                     return (
                                         <CardEvent e={e} key={i} />
                                     )
 
-                                })}
+                                })} */}
+                                <Pagination elementosPorPagina={6} event={events}/>
                             </div>
                         )}
                     </div>
