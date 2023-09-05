@@ -5,8 +5,10 @@ const getCartUser = require("./getCartUser");
 
 const postCart = async (id, items) => {
 
+    let cart = null;
+
     if(id){
-        let cart = await getCartUser(id);
+        cart = await getCartUser(id);
         
         if( cart ) {
             return cart;
