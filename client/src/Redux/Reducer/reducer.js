@@ -31,7 +31,7 @@ const rootReducer = (state = initialState, action)=>{
         case MODAL:
             return {...state, modalOn: payload};
         case LOG_OUT:
-            return {...state, userSesion: payload};
+            return {...state, userSesion: {}, shoppingCar: payload};
         case GET_MY_EVENTS:
             return {...state, myEvents: payload};
         case PUT_EVENT:

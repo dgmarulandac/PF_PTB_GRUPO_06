@@ -2,16 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteEventCar, addToCar } from "../../../Redux/Action/action";
 import { styles } from "./styles";
-import validation from "../../../Utils/ValidationQuantityCar/validation";
 
 
 export default function CardCar({ e }) {
     const dispatch = useDispatch()
-    const [error, setError] = useState()
 
-    useEffect(() => {
-        setError(validation(e?.Cart_Event?.quantity, e?.cantTickets))
-    }, [e])
     return (
         <div className="text-start p-3">
             <div>
@@ -26,19 +21,24 @@ export default function CardCar({ e }) {
             <div className="flex justify-between">
                 <p className="text-sm ">Cantidad de tickets:</p>
                 <div className="flex text-sm ">
-                    <button className={error ? styles.pLError : styles.plusLess} onClick={() => {
-                        dispatch(addToCar({ idEvent: e.id, quantity: -1 }))
-                    }}>-</button>
-                    <p className={error ? styles.error : styles.exito}>{e?.Cart_Event?.quantity}</p>
-                    <button className={error ? styles.pLError : styles.plusLess} onClick={() => {
-                        dispatch(addToCar({ idEvent: e.id, quantity: 1 }))
-                    }}>+</button>
+                    {e?.Cart_Event?.quantity !== 0 &&
+                        <button className={styles.plusLess} onClick={() => {
+                            dispatch(addToCar({ idEvent: e.id, quantity: -1 }))
+                        }}>-</button>
+                    }
+                    <p className={styles.exito}>{e?.Cart_Event?.quantity}</p>
+                    {e?.Cart_Event?.quantity < e?.cantTickets &&
+                        <button className={styles.plusLess} onClick={() => {
+                            dispatch(addToCar({ idEvent: e.id, quantity: 1 }))
+                        }}>+</button>
+                    }
+
                 </div>
                 <p className="text-sm">Precio: {e.ticketPrice}$</p>
             </div>
-            <div>
+            {/* <div>
                 {error && <p className={styles.error2}>la cantidad de tickets excede el maximo disponible</p>}
-            </div>
+            </div> */}
         </div>
     )
 }

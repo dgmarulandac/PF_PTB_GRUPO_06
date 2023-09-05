@@ -137,10 +137,19 @@ export const modal = (value) => {
 };
 
 export const logOut = () => {
+    localStorage.removeItem('shoppingCar')
     localStorage.removeItem('jwt');
-    return {
-        type: LOG_OUT,
-        payload: {}
+    
+    return(dispatch)=>{
+        axios.post(`/carts/createCart`, {items: []}, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+            .then(({data}) =>{
+                localStorage.setItem('shoppingCar', data.token)
+                
+                return dispatch({
+                    type: LOG_OUT,
+                    payload: data.events
+                })
+            })
     };
 }
 
