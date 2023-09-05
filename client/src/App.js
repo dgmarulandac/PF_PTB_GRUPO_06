@@ -22,6 +22,7 @@ import RecoverPassword from './Components/RecoverPassword/RecoverPassword';
 import EventsDashboard from './Components/EventsDashboard/EventsDashboard';
 import AdminPanel from './Components/AdminPanel/AdminPanel';
 import SalesPay from './Components/Sales/SalesPay';
+import UserProfile from './Components/UserPerfil/UserProfile';
 
 //Componentes Autorizacion
 import NotLoggedElement from './Utils/AutorizationComponents/NotLoggedElement';
@@ -64,6 +65,7 @@ function App() {
         <Route path='/editEvent/:id' element={<SellerOrAdminElement><EditEvent /></SellerOrAdminElement>} />
         <Route path='/Admin/Panel' element={<AdminPanel />} />
         <Route path='/Admin/Panel/:id' element={<DetailUser />} />
+        <Route path='/MiPerfil' element={<UserProfile/>} />
       </Routes>
       <Footer />
     </div>

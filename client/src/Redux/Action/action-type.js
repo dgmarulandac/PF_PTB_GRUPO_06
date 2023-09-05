@@ -14,3 +14,4 @@ export const ADD_TO_CAR = 'ADD_TO_CAR'
 export const GET_EVENTS_ADMIN = 'GET_EVENTS_ADMIN'
 export const PLUS_LESS = 'PLUS_LESS'
 export const POST_REVIEW= "POST_REVIEW"
+export const PUT_PROFILE= "PUT_PROFILE"
