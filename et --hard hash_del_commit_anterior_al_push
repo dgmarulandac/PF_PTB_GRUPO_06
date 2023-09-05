@@ -1,0 +1,273 @@
+[33mcommit f79ce5cb57186e33bf91186ecf7ccd346cf8dd84[m[33m ([m[1;36mHEAD -> [m[1;32mReviewfront[m[33m, [m[1;31morigin/Reviewfront[m[33m)[m
+Author: Daniel Lopez <daniel.l1.g@hotmail.com>
+Date:   Sun Sep 3 22:45:26 2023 -0500
+
+    alert y decimales
+
+[33mcommit 07ddd54d33a2c17afc55ddfd13486e2c273a7c08[m
+Merge: 919cf84 1715e6a
+Author: Daniel Lopez <daniel.l1.g@hotmail.com>
+Date:   Sun Sep 3 22:05:55 2023 -0500
+
+    Merge branch 'dev' into Reviewfront
+
+[33mcommit 919cf8459080ca50cb83536fcaff50c25116adc0[m
+Author: Daniel Lopez <daniel.l1.g@hotmail.com>
+Date:   Sun Sep 3 22:04:46 2023 -0500
+
+    arreglos
+
+[33mcommit 1715e6a461f27d0adbda0772bc60dc54eb575af7[m[33m ([m[1;32mdev[m[33m)[m
+Merge: 23798d6 5b7ab6d
+Author: Daniel Marulanda <54507534+dgmarulandac@users.noreply.github.com>
+Date:   Sun Sep 3 21:36:32 2023 -0500
+
+    Merge pull request #128 from dgmarulandac/Reviewfront
+    
+    Reviewfront
+
+[33mcommit 5b7ab6d9526cc56bc134179bc238597208d74450[m
+Merge: bea8f21 23798d6
+Author: Daniel Lopez <daniel.l1.g@hotmail.com>
+Date:   Sun Sep 3 21:24:17 2023 -0500
+
+    Merge branch 'dev' into Reviewfront
+
+[33mcommit bea8f2164c46aa6c74aab1d01ed63d9736799bb4[m
+Author: Daniel Lopez <daniel.l1.g@hotmail.com>
+Date:   Sun Sep 3 21:06:34 2023 -0500
+
+    estrellas en cards y en detalle
+
+[33mcommit 23798d6d9768e5837c48031487bdf73b6395af1f[m
+Merge: c51d007 aef6f4d
+Author: Daniel Marulanda <54507534+dgmarulandac@users.noreply.github.com>
+Date:   Sun Sep 3 21:00:27 2023 -0500
+
+    Merge pull request #127 from dgmarulandac/reviewsBackFix
+    
+    ajustado el post Reviews
+
+[33mcommit aef6f4d1240fc387974c6e4c89dcae22a655897c[m[33m ([m[1;31morigin/reviewsBackFix[m[33m)[m
+Author: gabo963 <gsarmiento101874@gmail.com>
+Date:   Sun Sep 3 20:57:33 2023 -0500
+
+    ajustado el post Reviews
+
+[33mcommit c51d007f922079a43abe6ef59a6382973764fb35[m
+Merge: 77a0b04 57a5e6c
+Author: Daniel Marulanda <54507534+dgmarulandac@users.noreply.github.com>
+Date:   Sun Sep 3 20:38:41 2023 -0500
+
+    Merge pull request #126 from dgmarulandac/reviewsBackFix
+    
+    Ajuste Modelo
+
+[33mcommit 57a5e6c2c16ae7b84cc741e020be96dd0e066ba1[m
+Author: gabo963 <gsarmiento101874@gmail.com>
+Date:   Sun Sep 3 20:35:59 2023 -0500
+
+    ajustado modelo
+
+[33mcommit bfbd7405fe3d2c9eb367b784988be0bafbf8ec14[m
+Author: gabo963 <gsarmiento101874@gmail.com>
+Date:   Sun Sep 3 20:08:19 2023 -0500
+
+    ajustado handlers y  controller
+
+[33mcommit 77a0b04269df0f035c430d8ebc831add557862c7[m
+Merge: 3ef3d08 d264137
+Author: Daniel Marulanda <54507534+dgmarulandac@users.noreply.github.com>
+Date:   Sun Sep 3 19:06:37 2023 -0500
+
+    Merge pull request #98 from dgmarulandac/AdminPanel
+    
+    Admin panel
+
+[33mcommit 419279c7a33c63b2f1130286b6bf62b7ad8e4995[m
+Merge: a81ce11 3ef3d08
+Author: Daniel Lopez <daniel.l1.g@hotmail.com>
+Date:   Sun Sep 3 18:05:43 2023 -0500
+
+    Merge branch 'dev' into Reviewfront
+
+[33mcommit a81ce112e5500ba9dc99786727a38546c071a39e[m
+Author: Daniel Lopez <daniel.l1.g@hotmail.com>
+Date:   Sun Sep 3 18:04:55 2023 -0500
+
+    cambio boton
+
+[33mcommit 52cad6f178132426a113fa6b2d2df4a65de91394[m
+Author: Daniel Lopez <daniel.l1.g@hotmail.com>
+Date:   Sun Sep 3 18:04:08 2023 -0500
+
+    cambio boton
+
+[33mcommit 3ef3d08e6f69796775d8832a267102e0a22f3486[m
+Merge: 9ca2259 1ca9bce
+Author: Daniel Marulanda <54507534+dgmarulandac@users.noreply.github.com>
+Date:   Sun Sep 3 16:53:23 2023 -0500
+
+    Merge pull request #123 from dgmarulandac/car
+    
+    Car
+
+[33mcommit 1ca9bce57e622080871bc63a5f3323bed3b3846e[m
+Merge: 67526f2 9ca2259
+Author: Héctor Luis Rivero <hectorluisrivero14@gmail.com>
+Date:   Sun Sep 3 18:38:06 2023 -0300
+
+    Merge branch 'dev' into car
+
+[33mcommit 67526f26e9f9d00aa6a3e99928ab0448039ccf3a[m
+Author: Héctor Luis Rivero <hectorluisrivero14@gmail.com>
+Date:   Sun Sep 3 18:35:33 2023 -0300
+
+    link de mercado pago
+
+[33mcommit 9ca22597ec5d1db181352e075189ed6f5f15c097[m
+Merge: 034f3ac 1087d14
+Author: Daniel Marulanda <54507534+dgmarulandac@users.noreply.github.com>
+Date:   Sun Sep 3 16:32:52 2023 -0500
+
+    Merge pull request #122 from dgmarulandac/deleteEventCart
+    
+    deleteventfromcart
+
+[33mcommit 1087d1475ddb02bca73f738b73baad8a3525f08b[m
+Author: dgmarulandac <54507534+dgmarulandac@users.noreply.github.com>
+Date:   Sun Sep 3 16:19:48 2023 -0500
+
+    last changes
+
+[33mcommit 44cea10db6bbbf812b5920a8c36496f95038d6a4[m
+Author: dgmarulandac <54507534+dgmarulandac@users.noreply.github.com>
+Date:   Sun Sep 3 15:56:00 2023 -0500
+
+    deleteventfromcart
+
+[33mcommit d264137a74d68e0ee0f8a40312fa662387d25790[m
+Merge: a60508c 034f3ac
+Author: Cristian-Massa <cristianmassa30@gmail.com>
+Date:   Sun Sep 3 17:37:53 2023 -0300
+
+    fixed admin panel
+
+[33mcommit e7661717ad334d229d9ecedfffa576deed07674c[m
+Merge: 04fb8e5 034f3ac
+Author: Daniel Lopez <daniel.l1.g@hotmail.com>
+Date:   Sun Sep 3 14:23:58 2023 -0500
+
+    Merge branch 'dev' into Reviewfront
+
+[33mcommit 034f3ac3198b67b438beefa664f6900a1563d87c[m[33m ([m[1;31morigin/deleteEventCart[m[33m)[m
+Merge: 79c2724 cf2ec03
+Author: Gabriel Sarmiento <104466860+gabo963@users.noreply.github.com>
+Date:   Sun Sep 3 12:29:35 2023 -0500
+
+    Merge pull request #121 from dgmarulandac/salesBackFix
+    
+    Sales back fix
+
+[33mcommit cf2ec0324a3eaee8f6a47181ffc071aa4e671b30[m
+Author: Gabo <gsarmiento101874@gmail.com>
+Date:   Sun Sep 3 12:07:14 2023 -0500
+
+    done por ahora
+
+[33mcommit 6f062097d097a924b96bc3ccc27136da0d9eda43[m
+Author: Gabo <gsarmiento101874@gmail.com>
+Date:   Sun Sep 3 11:27:44 2023 -0500
+
+    cambios
+
+[33mcommit 2072a3cfce56e2aaed32b90129bc07375bb7914c[m
+Author: Gabo <gsarmiento101874@gmail.com>
+Date:   Sun Sep 3 11:23:52 2023 -0500
+
+    cambiada la url de notification
+
+[33mcommit c437766fb38684d04f76591150fbd74e005ba8b5[m
+Author: Gabo <gsarmiento101874@gmail.com>
+Date:   Sun Sep 3 11:09:17 2023 -0500
+
+    ajustada la ruta del dashboard del vendedor
+
+[33mcommit 6e42a4d454ba8288e81c9c0b9bb39cf9f6f84f98[m
+Author: Gabo <gsarmiento101874@gmail.com>
+Date:   Sun Sep 3 11:00:43 2023 -0500
+
+    actualizada el get de sale
+
+[33mcommit 080fd65a8172df452cc1da55b5b97d9191fbb4df[m
+Author: Gabo <gsarmiento101874@gmail.com>
+Date:   Sat Sep 2 23:47:07 2023 -0500
+
+    ajustado el correo
+
+[33mcommit 2a612e32affdb689bf859152f168002a0e3df617[m
+Author: Gabo <gsarmiento101874@gmail.com>
+Date:   Sat Sep 2 23:45:37 2023 -0500
+
+    orderSuccess fix
+
+[33mcommit 79c272471023b81df141da23237cfded79f3c9bf[m
+Merge: 3c2ece3 1b974d1
+Author: Gabriel Sarmiento <104466860+gabo963@users.noreply.github.com>
+Date:   Sat Sep 2 16:53:40 2023 -0500
+
+    Merge pull request #120 from dgmarulandac/ordersback
+    
+    Ajustado ordenar con el nuevo carrito
+
+[33mcommit 04fb8e5e070091d7ce9a658ab8fa485ce7d88e93[m
+Merge: e903ba4 3c2ece3
+Author: Daniel Lopez <daniel.l1.g@hotmail.com>
+Date:   Sat Sep 2 16:19:17 2023 -0500
+
+    Merge branch 'dev' into Reviewfront
+
+[33mcommit e903ba42da54c399a7b525cf93a878f95e20ac22[m
+Author: Daniel Lopez <daniel.l1.g@hotmail.com>
+Date:   Sat Sep 2 16:16:46 2023 -0500
+
+    mensaje de envio
+
+[33mcommit 1b974d1da5be6c451aeb84e6ab87af7c7bcf15af[m[33m ([m[1;31morigin/ordersback[m[33m)[m
+Author: Gabo <gsarmiento101874@gmail.com>
+Date:   Sat Sep 2 16:12:01 2023 -0500
+
+    ajustado db y index
+
+[33mcommit e9fa06c716cfe154f5cec086d16e50ff590d0f15[m
+Author: Gabo <gsarmiento101874@gmail.com>
+Date:   Sat Sep 2 16:09:28 2023 -0500
+
+    ajustado await por foreach
+
+[33mcommit 4f73313438db8d2d3824870970a489f09798e9f9[m
+Author: Gabo <gsarmiento101874@gmail.com>
+Date:   Sat Sep 2 16:07:21 2023 -0500
+
+    completado postOrder
+
+[33mcommit 2e685d11f0746de3d5fa14175a320a9055a1a904[m
+Author: Gabo <gsarmiento101874@gmail.com>
+Date:   Sat Sep 2 15:42:44 2023 -0500
+
+    cambios iniciales
+
+[33mcommit 5fc2b4992a50d1415a539e1a58db5a0fffa064c2[m
+Author: Gabo <gsarmiento101874@gmail.com>
+Date:   Sat Sep 2 15:42:27 2023 -0500
+
+    cambios iniciales
+
+[33mcommit 0f87273e758b4540c643a5fb2fa7e4b8cd83709b[m
+Merge: f94e98e 9f30d19
+Author: dgmarulandac <54507534+dgmarulandac@users.noreply.github.com>
+Date:   Fri Sep 1 19:52:18 2023 -0500
+
+    Merge branch 'dev' into ordersback
+
+[33mcommit f94e98e88be7673c8f
