@@ -1,4 +1,4 @@
-const { User, Role } = require("../../db");
+const { User, Role, User_Role } = require("../../db");
 const { Op } = require("sequelize");
 
 
@@ -24,6 +24,11 @@ const putUser = async ( id, user ) => {
     const updatedUser = await existingUser.update({displayName, name, phone, email, nationality, address, active});
     
     if( Roles && Roles.length > 0 ) {
+
+        await User_Role.destroy( {where: {
+            UserId: id
+        }} );
+
         const roles = Roles.map( role => role.type );
         const newRoles = await Role.findAll({
             where: { type: { [Op.in]: roles } }
