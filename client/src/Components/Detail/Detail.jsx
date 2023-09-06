@@ -186,8 +186,10 @@ const [reviews, setReviews] = useState([]);
                     </span>
                   ))}
                 </div></p>
+                <div className="flex justify-center items-center">
                   <h2 className={styles.name}>{ticketid.name}</h2>
-                  <div className="display: flex justify-center ">
+                  </div>
+                  <div className="display: flex justify-center  ">
                     <div className={styles.centerimg}>
                       <img src={ticketid.image} alt="" className={styles.img} />
                     </div>
