@@ -10,6 +10,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { FiArrowLeft } from "react-icons/fi";
 import React from "react";
+import CarModal from "../Car/CarModal/CarModal";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -209,13 +210,13 @@ const [reviews, setReviews] = useState([]);
 
                   <div>
                     <button onClick={handleClick} className={styles.button}>
-                      <span class="relative z-1">Agregar a carrito</span>
+                      <span class="relative">Agregar a carrito</span>
                     </button>
                   </div>
                 </div>
                 {modalOn && (
                   <div key="1">
-                    <Modal />
+                    <CarModal />
                   </div>
                 )}
               </div>
