@@ -81,7 +81,7 @@ const [reviews, setReviews] = useState([]);
         title: "mensaje enviado",
         text: `tu mensaje sera revisado y posteado`,
         icon: "success",
-      });;
+      });
     } catch (error) {
       Swal.fire({
         title: "Error",
@@ -187,8 +187,10 @@ const [reviews, setReviews] = useState([]);
                     </span>
                   ))}
                 </div></p>
+                <div className="flex justify-center items-center">
                   <h2 className={styles.name}>{ticketid.name}</h2>
-                  <div className="display: flex justify-center ">
+                  </div>
+                  <div className="display: flex justify-center  ">
                     <div className={styles.centerimg}>
                       <img src={ticketid.image} alt="" className={styles.img} />
                     </div>
