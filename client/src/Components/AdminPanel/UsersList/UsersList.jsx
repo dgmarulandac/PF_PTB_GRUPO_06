@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios";
 import { active } from "../../FAQs/Fstyles";
 const UsersList = () => {
     const [users, setUsers] = useState([]);
-    // const [ user, setUser ] = useState({})
+    const [allUsers, setAllUsers] = useState([]);
+    const ref = useRef()
     const [errors, setErrors] = useState(null);
     const [success, setSuccess] = useState(null);
     const navigate = useNavigate()
@@ -13,6 +14,7 @@ const UsersList = () => {
             .then(res => res.data)
             .then(data => {
                 setUsers(data)
+                setAllUsers(data)
             })
             .catch(error => {
                 setErrors(error.response.data.error)
@@ -44,14 +46,25 @@ const UsersList = () => {
                 })
             })
     };
-
+    function handleSearch() {
+        if(ref.current.value.length === 0){
+            setUsers(allUsers)
+        }else{
+            setUsers(users.filter(element => element.email === ref.current.value))
+        }
+    }
     return (
+        <div>
+            <div>
+                <input ref={ref} type="text" className="p-1 rounded-l-md" placeholder="Busca por email" />
+                <button className="bg-black p-1 hover:bg-white rounded-r-md" onClick={handleSearch}>buscar</button>
+            </div>
         <div className="flex flex-col lg:flex-row justify-center">
 
             <div className="flex w-1/2 flex-col justify-center">
                 <h1 className="text-white ">Lista de usuarios activos</h1>
                 {
-
+                    
                     errors ? <p>{`${errors}`}</p> : users?.filter(element => element.active === true).map((element, key) => {
                         return (
                             <div key={key++} className="odd:bg-gray-900 place-self-center p-5 m-2 w-[37rem] grid grid-cols-[1fr_2fr_0.2fr] border border-gray-200 rounded-lg bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white">
@@ -84,6 +97,7 @@ const UsersList = () => {
                     </div> : null
             }
         </div>
+                        </div>
     )
 };
 

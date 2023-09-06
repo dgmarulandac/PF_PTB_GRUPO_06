@@ -11,7 +11,7 @@ animation: girar 2s infinite linear;
 const DetailUser = () => {
     const { id } = useParams();
     const [user, setUser] = useState({});
-    const [roles, setRoles] = useState([])
+    const [roles, setRoles] = useState({})
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
     const [isLoading, setIsLoading] = useState(true)
@@ -51,15 +51,17 @@ const DetailUser = () => {
     };
     const handleCheck = (e) => {
         const { checked, name } = e.currentTarget;
-        if (checked) {
-            setRoles([...roles, name])
-        } else {
-            setRoles(roles.filter((role) => role !== name))
-        }
+        console.log(checked)
         setUser({
             ...user,
-            roles: roles
-        })
+            Roles: checked
+              ? [
+                  ...user.Roles,
+                  { type: name }
+                ]
+              : user.Roles.filter((role) => role.type !== name)
+          });
+          console.log(user)
     }
 
     if (isLoading === true) {
@@ -90,15 +92,15 @@ const DetailUser = () => {
                     <div>
                         <div>
                         <label className="text-white">Admin:</label>
-                        <input type="checkbox" name="admin" checked={user.roles.includes('admin')} onChange={handleCheck} />
+                        <input type="checkbox" name="admin" value="admin" defaultChecked={user.Roles.some(role => role.type === 'admin')} onClick={handleCheck} />
                         </div>
                         <div>
                         <label className="text-white">Comprador:</label>
-                        <input type="checkbox" name="buyer" checked={user.roles.includes('buyer')} onChange={handleCheck} />
+                        <input type="checkbox" name="buyer" value="buyer" defaultChecked={user.Roles.some(role => role.type === 'buyer')} onClick={handleCheck} />
                         </div>
                         <div>
                         <label className="text-white">Vendedor:</label>
-                        <input type="checkbox" name="seller" checked={user.roles.includes('seller')} onChange={handleCheck} />
+                        <input type="checkbox" name="seller" value="seller" defaultChecked={user.Roles.some(role => role.type === 'seller')} onClick={handleCheck} />
                         </div>
                     </div>
                     {/* <input type="radio" id="contactChoice1" name="contact" value="email" /> */}
