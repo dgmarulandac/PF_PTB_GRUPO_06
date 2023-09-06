@@ -5,15 +5,15 @@ const getCartUser = require("./getCartUser");
 
 const postCart = async (id, items) => {
 
-    let cart = await getCartUser(id);
-
-    if( cart ) {
-        return cart;
-    }
-
-    cart = null;
+    let cart = null;
 
     if(id){
+        cart = await getCartUser(id);
+        
+        if( cart ) {
+            return cart;
+        }
+        cart = null;
         cart = await Cart.create({
             idUser: id,
             token: "123"

@@ -41,7 +41,6 @@ export default function Card({ event }) {
     };
 
     getreviews()
-      .then(() => dispatch(getDetail(id)))
       .catch((error) => console.log(error));
 
   }, [dispatch, event, id]);

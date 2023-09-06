@@ -1,6 +1,6 @@
 export const styles = {
     input: "w-auto bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white",
-    container: "overflow-auto relative m-5 w-full max-w-sm p-1 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-3 dark:bg-gray-800 dark:border-gray-700",
+    container: "overflow-auto m-5 w-full max-w-sm p-1 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-3 dark:bg-gray-800 dark:border-gray-700",
     form: "space-y-1 overflow-auto",
     label: "block mb-2 text-xs font-medium text-gray-900 dark:text-white",
     p: "font-medium text-gray-900 dark:text-white border-b-[3px] p-2",

@@ -1,0 +1,34 @@
+/* .container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.buttons {
+    margin: 10px;
+}
+
+.buttons button{
+    border-radius: 50%;
+    width: auto;
+    height: auto;
+    border: 3px solid white;
+    background-color: #9BA4B5;
+    cursor: pointer;
+    transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+    animation: expandir 1s ease forwards;
+}
+
+.buttons button:hover{
+    transform: scale(1.10);
+    
+}
+
+@keyframes expandir {
+    from{
+        margin: 0px
+    }
+    to{
+        margin: 4px
+    }
+} */
