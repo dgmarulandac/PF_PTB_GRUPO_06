@@ -81,7 +81,7 @@ const [reviews, setReviews] = useState([]);
         title: "mensaje enviado",
         text: `tu mensaje sera revisado y posteado`,
         icon: "success",
-      });;
+      });
     } catch (error) {
       Swal.fire({
         title: "Error",
