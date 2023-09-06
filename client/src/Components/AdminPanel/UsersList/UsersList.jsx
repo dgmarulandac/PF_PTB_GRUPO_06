@@ -67,7 +67,7 @@ const UsersList = () => {
                     
                     errors ? <p>{`${errors}`}</p> : users?.filter(element => element.active === true).map((element, key) => {
                         return (
-                            <div key={key++} className="odd:bg-gray-900 place-self-center p-5 m-2 w-[37rem] grid grid-cols-[1fr_2fr_0.2fr] border border-gray-200 rounded-lg bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white">
+                            <div key={key++} className="odd:bg-gray-900 place-self-center p-5 m-2 w-[37rem] grid grid-cols-[80% 20%] border border-gray-200 rounded-lg bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white">
                                 <Link to={`/Admin/Panel/${element.id}`}><p>{element.displayName}</p></Link>
                                 <button className="bg-red rounded-md p-3" value={element.id} onClick={handleBan}>Banear</button>
                             </div>
@@ -81,7 +81,7 @@ const UsersList = () => {
 
                     errors ? <p>{`${errors}`}</p> : users?.filter(element => element.active === false).map((element, key) => {
                         return (
-                            <div key={key++} className="odd:bg-gray-900 place-self-center p-5 m-2 w-[37rem] grid grid-cols-[1fr_2fr_0.2fr] border border-gray-200 rounded-lg bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white">
+                            <div key={key++} className="odd:bg-gray-900 place-self-center p-5 m-2 w-[37rem] grid grid-cols-[80% auto] border border-gray-200 rounded-lg bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white">
                                 <Link to={`/Admin/Panel/${element.id}`}><p>{element.displayName}</p></Link>
                                 <button className="bg-green rounded-md p-3" value={element.id} onClick={handleBan}>Desbanear</button>
                             </div>
