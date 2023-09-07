@@ -88,7 +88,7 @@ export default function Card({ event }) {
             </div>
           </Link>
           <div>
-            <button className={styles.button} onClick={handleClick}>
+            <button className={`${styles.button} ${style.button}`} onClick={handleClick}>
               <span class="relative z-10">🛒</span>
             </button>
           </div>

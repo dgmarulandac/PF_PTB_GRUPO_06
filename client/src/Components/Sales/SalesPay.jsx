@@ -11,12 +11,14 @@ export default function SalesPay() {
     const [result, setResult] = useState(null)
     const [error, setError] = useState({})
     const [v, setv] = useState(null)
+    const [eBuy, setEBuy ] = useState([])
+    const total = eBuy?.map((e) => { return e.price * e.quantity }).reduce(function (a, v) { return a + v }, 0)
 
     useEffect(() => {
         axios.get('/sales/' + id)
             .then(({ data }) => {
                 setResult(data)
-                // setv(data.dataValues)
+                setEBuy(data.eventsToAdd)
                 return data
             }).then(result => setv(result.dataValues.isSuccesful))
             .catch(error => setError(error))
@@ -49,18 +51,41 @@ export default function SalesPay() {
                             </div>)}
                         {v && (
                             <div>
-                                <p className={styles.p}>Nombre del evento: {result.eventName}</p>
-                                {/* <div className="flex justify-center">
-                                    <img src={result.eventImage} alt="evento" /> 
-                                </div> */}
-                                <p className={styles.p}>Cantidad de tickets: {result.quantity}</p>
-                                <p className={styles.p}>Fecha: {result.date}</p>
-                                <p className={styles.p}>Hour: {result.hour}</p>
-                                <p className={styles.p}>Direccion: {result.address}</p>
-                                <div className="flex justify-center">
-                                    <img src={sucess} alt="aprobado" />
+                                <div className={style.label}>
+                                    <header className={style.header}>
+                                        <h1 className={style.bold}>Resumen de compra</h1>
+                                        <div className={style.divider}></div>
+                                        <p>BOHO, Compra seguro con nosotros!!</p>
+                                    </header>
+                                    <div className={`${style.divider} ${style.large}`}></div>
+                                    <div className={style.calories_info}>
+                                        <div className={style.left_container}>
+                                            {/* <h2 className={`${style.bold} ${style.small_text}`}>Amount per serving</h2> */}
+                                            <p>Eventos comprados: {eBuy?.length}</p>
+                                        </div>
+                                    </div>
+                                    <div className={`${style.divider} ${style.medium}`}></div>
+                                    {eBuy?.map(e => {
+                                        return (
+                                            <div>
+                                                <p>{e.eventName}</p>
+                                                <p>Tickets: <span class="bold">{e.quantity}unid.</span></p>
+                                                <p className={style.bold}>precio: <span class="bold">{e.quantity * e.price}$</span></p>
+                                                <div className={style.divider}></div>
+                                            </div>
+                                        )
+                                    })}
+                                    <div className={`${style.divider} ${style.medium}`}></div>
+                                    <div className={style.calories_info}>
+                                        <div className={style.left_container}>
+                                            <p>Total: {total}$</p>
+                                        </div>
+                                    </div>
+                                    <div className={`${style.divider} ${style.medium}`}></div>
+                                    <div className="flex justify-center">
+                                        <p>tu pago fue aceptado con exito!</p>
+                                    </div>
                                 </div>
-                                <p className={styles.exito}>tu pago fue aceptado!</p>
                             </div>)}
 
                         {v === false && (

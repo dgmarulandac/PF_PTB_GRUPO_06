@@ -41,8 +41,8 @@ export default function Car() {
         // setModal(!modal)
     }
     return (
-        <div className="relative text-gray-900 dark:text-white text-xl m-3">
-            <button onClick={()=>{dispatch(modal(true))}}><BsFillCartFill /> <span className="text-xs absolute flex justify-center items-center bottom-3 bg-orange-600 rounded-full w-3.5 h-3.5 left-3">{shoppingCar?.length}</span></button>
+        <div className=" text-gray-900 dark:text-white text-xl m-3">
+            <button onClick={()=>{dispatch(modal(true))}}><BsFillCartFill /> <span className="text-xs relative flex justify-center items-center bottom-3 bg-orange-600 rounded-full w-3.5 h-3.5 left-3">{shoppingCar?.length}</span></button>
             {modalOn && <CarModal handleModal={handleModal}/>}
         </div>
     )

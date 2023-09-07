@@ -5,3 +5,14 @@
   .cardscale:hover {
     transform: scale(1.1); /* Aumenta la escala al hacer hover */
   }
+
+
+  /* @media (max-width: 768px){
+    .button{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      right: 0;
+
+    }
+  } */

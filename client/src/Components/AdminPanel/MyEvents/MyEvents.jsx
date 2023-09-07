@@ -7,33 +7,33 @@ import style from "./MyEvents.module.css"
 import { useDispatch } from "react-redux";
 import { eventsAdmin } from "../../../Redux/Action/action";
 import { Pagination } from "./paginationEvent/paginationEvent";
+import SearchBar from "./SearchBar/SearchBar";
 
 export default function MyEvents() {
-    // const [events, setEvents] = useState(false)
+    const [events, setEvents] = useState(false)
     // const [error, seterror] = useState(false)
     const [loading, setLoading] = useState(true)
     const dispatch = useDispatch()
-    const events = useSelector(state => state.eventsAdmin)
+    const eventsGlobal = useSelector(state => state.eventsAdmin)
 
 
     useEffect(() => {
-        const loader = async()=>{
-            try {
-                await dispatch(eventsAdmin());
-                setLoading(false);
-            } catch (error) {
-                console.log(error)
-            }
+        if(events === false){
+          dispatch(eventsAdmin());  
         }
-        loader()
+        setEvents(eventsGlobal);
+        if(events.length >= 0){
+           setLoading(false); 
+        }
         
-    }, [])
+    }, [eventsGlobal])
 
 
     return (
         <div>
             <div className="grid gap-3 justify-center">
                 <h1 className={styles.p}>Lista de Eventos</h1>
+                <SearchBar />
                 {loading ? (
                     <div class="flex items-center justify-center">
                         <svg viewBox="0 0 240 240" height="240" width="240" class={style.loader}>
@@ -58,7 +58,7 @@ export default function MyEvents() {
                                     )
 
                                 })} */}
-                                <Pagination elementosPorPagina={6} event={events}/>
+                                <Pagination elementosPorPagina={6} event={events} />
                             </div>
                         )}
                     </div>
