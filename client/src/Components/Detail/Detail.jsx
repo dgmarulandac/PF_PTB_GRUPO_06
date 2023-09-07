@@ -225,7 +225,7 @@ const [reviews, setReviews] = useState([]);
         </div>
         <div className={styles.container}>
           <div>
-            {reviews.map((review) => (
+            {reviews && reviews.map((review) => (
               <div
                 key={review.id}
                 className={styles.reviewbox}
@@ -247,7 +247,7 @@ const [reviews, setReviews] = useState([]);
             ))}
           </div>
         </div>
-        {idUser && (
+        { idUser && ticketid.comentable && (
           <div className={styles.container}>
             <form
               onSubmit={handledsummit}
