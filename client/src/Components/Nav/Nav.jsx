@@ -29,6 +29,7 @@ const Nav = () => {
             <Link to="/login" ><button className={navStyles.buttonClasses}><span class="relative z-10">Inicia Sesión</span></button></Link>
             <Link to="/register" ><button className={navStyles.buttonClasses}><span class="relative z-10">Registrate</span></button></Link>
             <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
+            <Link to="/about"><button className={navStyles.buttonClasses}><span className="relative z-10">Sobre Nosotros</span></button></Link>
             <div id='singInDiv' className={navStyles.googleButtonIcon}></div>
           </div>
         </div>
@@ -55,6 +56,7 @@ const Nav = () => {
             <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
             <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y Condiciones</span></button></Link>
             <Link to='/myEvents'><button className={navStyles.buttonClasses}><span class="relative z-10">Mis Eventos</span></button></Link>
+            <Link to="/about"><button className={navStyles.buttonClasses}><span className="relative z-10">Sobre Nosotros</span></button></Link>
             <button className={navStyles.buttonClasses} onClick={() => {dispatch(logOut())}}><span class="relative z-10">Cerrar Sesión</span></button>
           </div>
         </div>
@@ -73,6 +75,7 @@ const Nav = () => {
             <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
             <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y condiciones</span></button></Link>
             <Link to='/myEvents'><button className={navStyles.buttonClasses}><span class="relative z-10">Mis Eventos</span></button></Link>
+            <Link to="/about"><button className={navStyles.buttonClasses}><span className="relative z-10">Sobre Nosotros</span></button></Link>
             <button className={navStyles.buttonClasses} onClick={() => {dispatch(logOut())}}><span class="relative z-10">Cerrar Sesión</span></button>
           </div>
         </div>
@@ -88,6 +91,7 @@ const Nav = () => {
         <div className={navStyles.linkContainerClasses}>
           <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
           <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y condiciones</span></button></Link>
+          <Link to="/about"><button className={navStyles.buttonClasses}><span className="relative z-10">Sobre Nosotros</span></button></Link>
           <button className={navStyles.buttonClasses} onClick={() => {dispatch(logOut())}}><span class="relative z-10">Cerrar Sesión</span></button>
         </div>
       </div>

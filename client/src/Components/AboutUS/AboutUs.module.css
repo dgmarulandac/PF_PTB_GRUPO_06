@@ -1,0 +1,88 @@
+
+/* Estilos generales para el contenedor principal */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilos para la sección de presentación */
+.containerFirst {
+    padding: 2rem;
+    text-align:justify;
+    color: #1c1c1c;
+    border: 1px solid #fff;
+    background: linear-gradient(0deg, #25476e, #1e3a5a, #172a41);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.title {
+    color: #e1ecfc;
+    width: 30vw;
+}
+
+.titleFirst {
+    font-size: 1.8rem; 
+    line-height: 1.5;
+}
+
+.titulito {
+    font-size: 2.5rem;
+    color: #e1ecfc;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.parrafoFirst {
+     font-size: 1.8rem;
+    color: #e1ecfc;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Estilos para la sección "Quiénes somos" */
+.containerSecond {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+}
+
+.containerText {
+    margin-top: 2rem;
+    width: 80%;
+    max-width: 800px;
+}
+
+.titleSecond {
+    font-size: 2.5rem;
+    color: #e1ecfc;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.parrafoSecond {
+    font-size: 1.8rem;
+    color: #e1ecfc;
+    text-align: justify;
+    margin-top: 2rem;
+}
+
+/* Estilos para la sección de valores */
+.valuesSection {
+    font-size: 1.8rem;
+    color: #e1ecfc;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Estilos para la firma */
+.signature {
+    font-size: 1.2rem;
+    color: #e1ecfc;
+    text-align: center;
+    margin: 2rem auto;
+}

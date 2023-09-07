@@ -1,0 +1,83 @@
+/* Estilos para el contenedor principal */
+.containerPadre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+   
+}
+
+/* Estilos para el título principal */
+.firstTitle {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Estilos para el contenedor de tarjetas */
+.container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2rem;
+    justify-items: center; 
+    align-items: center;
+}
+
+
+/* Estilos para cada tarjeta de miembro */
+
+.memberCard {
+    background-color: #c1c6c9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    text-align: center;
+}
+
+.largeCard {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Estilos para la foto del miembro */
+.memberPhoto {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 50%;
+}
+
+/* Estilos para el nombre del miembro */
+.memberName {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+/* Estilos para el rol del miembro */
+.memberRole {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+/* Estilos para los enlaces sociales */
+.socialLinks {
+    margin-top: 1rem;
+}
+
+/* Estilos para el contenedor de iconos sociales */
+.socialIcons {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente los iconos */
+    align-items: center; /* Centra verticalmente los iconos */
+    margin-top: 1rem;
+}
+
+/* Estilos para los iconos sociales */
+.linkIcon {
+    font-size: 2.5rem;
+    margin: 0 0.5rem;
+    color: #0077b5; /* Color de LinkedIn */
+}
+
+.linkIcon:hover {
+    color: #333; /* Cambio de color al pasar el mouse */
+}

@@ -20,6 +20,7 @@ import Error404 from './Components/Error 404/Error404';
 import ResetPassword from './Components/ResetPassword/ResetPassword';
 import RecoverPassword from './Components/RecoverPassword/RecoverPassword';
 import EventsDashboard from './Components/EventsDashboard/EventsDashboard';
+import AboutUs from './Components/AboutUS/AboutUS';
 
 //Componentes Autorizacion
 import NotLoggedElement from './Utils/AutorizationComponents/NotLoggedElement';
@@ -80,6 +81,7 @@ function App() {
         <Route path='/createEvent' element={<SellerOrAdminElement><FormEvent /></SellerOrAdminElement>} />
         <Route path='/myEvents' element={<SellerOrAdminElement><EventsDashboard/></SellerOrAdminElement>}/>
         <Route path='/editEvent/:id' element={<SellerOrAdminElement><EditEvent/></SellerOrAdminElement>}/> 
+        <Route path='/about' element={<AboutUs />} />
       </Routes>
       <Footer/>
     </div>
