@@ -7,8 +7,6 @@ import SalesChart from "../SalesChart/SalesChart";
 import * as styles from "./EventDashboardStiles";
 import Paginado from "../pagination/pagination";
 
-
-
 const EventsDashboard = () => {
     const dispatch = useDispatch();
     const events = useSelector((state) => state.myEvents);
@@ -36,13 +34,11 @@ const EventsDashboard = () => {
         setEventosAMostrar(events.length && events.slice(primerIndex, ultimoIndex));
     }, [events, currentPage]);
 
-
-
     return(
         <div>
             <h1 className={styles.error}>Mis Ventas</h1>
             <div>
-                <SalesChart sales={sales && sales} />
+                <SalesChart sales={sales} />
             </div>
             <h1 className={styles.title}>Mis Eventos</h1>
             
