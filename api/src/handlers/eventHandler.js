@@ -19,9 +19,10 @@ const getEventHandler = async (req, res) => {
 };
 
 const getEventByIdHandler = async (req, res) => {
-    const { id } = req.params;  
+    const { id } = req.params;
+    const userId = req.id;
     try {
-        const eventById = await getEventById(id);
+        const eventById = await getEventById(id, userId);
         res.status(200).json(eventById);
     } catch (error) {
         res.status(404).json({error: error.message});
