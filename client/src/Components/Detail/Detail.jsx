@@ -44,7 +44,7 @@ const Detail = () => {
     idEvent: id,
   });
 
-const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   const handleClick = () => {
     dispatch(addToCar({ idEvent: id, quantity: 1 }));
@@ -64,7 +64,7 @@ const [reviews, setReviews] = useState([]);
   } else {
     averageRating = (totalScore / reviews.length).toFixed(2);
   }
-  
+
   const handledsummit = async (event) => {
     event.preventDefault();
 
@@ -81,7 +81,7 @@ const [reviews, setReviews] = useState([]);
         title: "mensaje enviado",
         text: `tu mensaje sera revisado y posteado`,
         icon: "success",
-      });;
+      });
     } catch (error) {
       Swal.fire({
         title: "Error",
@@ -179,16 +179,18 @@ const [reviews, setReviews] = useState([]);
               <br />
               <div className={styles.cardcon}>
                 <div key="0">
-                <p className={styles.ratingprom}>{averageRating}:
-                  <div>
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <span key={index}>
-                      {index + 1 <= Math.round(averageRating) ? "⭐" : ""}
-                    </span>
-                  ))}
-                </div></p>
-                  <h2 className={styles.name}>{ticketid.name}</h2>
-                  <div className="grid md:flex justify-center ">
+                  <p className={styles.ratingprom}>{averageRating}:
+                    <div>
+                      {Array.from({ length: 5 }).map((_, index) => (
+                        <span key={index}>
+                          {index + 1 <= Math.round(averageRating) ? "⭐" : ""}
+                        </span>
+                      ))}
+                    </div></p>
+                  <div className="flex justify-center items-center">
+                    <h2 className={styles.name}>{ticketid.name}</h2>
+                  </div>
+                  <div className="grid md:flex justify-center  ">
                     <div className={styles.centerimg}>
                       <img src={ticketid.image} alt="" className={styles.img} />
                     </div>
