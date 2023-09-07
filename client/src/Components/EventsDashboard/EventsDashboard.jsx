@@ -7,16 +7,13 @@ import SalesChart from "../SalesChart/SalesChart";
 import * as styles from "./EventDashboardStiles";
 import Paginado from "../pagination/pagination";
 
-
-
 const EventsDashboard = () => {
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.userSesion);
     const events = useSelector((state) => state.myEvents);
     const sales = useSelector((state) => state.mySales);
 
     useEffect(() => {
-        dispatch(getMyEvents(user.id));
+        dispatch(getMyEvents());
         dispatch(getMySales());
     }, []);
 
@@ -37,13 +34,11 @@ const EventsDashboard = () => {
         setEventosAMostrar(events.length && events.slice(primerIndex, ultimoIndex));
     }, [events, currentPage]);
 
-
-
     return(
         <div>
             <h1 className={styles.error}>Mis Ventas</h1>
             <div>
-                <SalesChart sales={sales && sales} />
+                <SalesChart sales={sales} />
             </div>
             <h1 className={styles.title}>Mis Eventos</h1>
             
@@ -56,10 +51,9 @@ const EventsDashboard = () => {
                     ) : (
                     <div className={styles.cardcontainer}> 
                          {eventosAMostrar && eventosAMostrar.map((event) => {
-                            return <div className={styles.container}>
+                            return <div>
                                     <Card event={event} key={event.id} />
-                                    <Link to={`/editEvent/${event.id}`}>
-                                <button className={styles.button}>Editar Evento</button></Link>
+                                    <Link to={`/editEvent/${event.id}`}><button className={styles.button}>Editar Evento</button></Link>
                                 </div>;
                             })
                         }
