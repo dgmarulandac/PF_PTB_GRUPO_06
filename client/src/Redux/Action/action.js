@@ -243,7 +243,7 @@ export const deleteEventCar = (id)=>{
 
 export const searchEventAdmin = (value)=>{
     return function (dispatch) {
-        axios.get(`/events/?name=${value}&eventType=${""}&country=${""}&date=${""}&order=${""}`,{ headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+        axios.get(`/events/admin/?name=${value}`,{ headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
             .then(data => dispatch({ type: SEARCH_EVENT_ADMIN, payload: data.data }))
             .catch(reason => {
                 Swal.fire({
