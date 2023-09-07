@@ -9,7 +9,7 @@ const emailSuccessfulPayment = async ({ name, eventName, email, eventImage, pric
     from: '"¡Bienvenido(a) a Boho!! PAGO EXITOSO 🎈" <bohocompany@gmail.com>', // sender address
     to: email, // list of receivers
     subject: " PAGO EXITOSO ", // Subject line
-
+    attachDataUrls: true,
     html: `
     
     <h1> ${name}, Le informamos que su Pago ha sido exitoso 🎉</h1>
@@ -23,14 +23,11 @@ const emailSuccessfulPayment = async ({ name, eventName, email, eventImage, pric
     <p><strong>Cantidad:</strong> ${quantity}</p>
     
     <img src="${eventImage}" alt="Imagen del evento" width="200">
-
+    <br/>
     <img src="${qrCodeDataURL}" alt="Código QR del evento" width="200"> 
-    
-    <br/>
-
     <br/>
     <br/>
-
+    <br/>
     <span> Si tienes alguna pregunta o necesitas ayuda, no dudes en ponerte en contacto con nuestro equipo de soporte. ¡Disfruta explorando y viviendo momentos memorables con nosotros!</span>
 
     <br/>

@@ -17,6 +17,12 @@ module.exports = (sequelize) => {
         token: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+
+        active:{
+            type:DataTypes.BOOLEAN,
+            defaultValue: true,
+            allowNull:false
         }
 })
 }
