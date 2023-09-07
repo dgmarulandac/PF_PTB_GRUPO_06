@@ -19,5 +19,5 @@ export const styles = {
     container: "overflow-auto h-auto max-h-full w-96 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-90  items-center  rounded-lg border border-black p-4 pt-0 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white",
     plusLess: 'mx-1 w-3.5 grid place-items-center bg-blue-700 hover:bg-blue-800 focus:ring-3 focus:outline-none focus:ring-blue-300 font-medium rounded-full dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800',
     eventNotFount: "m-5 text-xl font-bold tracking-tight bg-gradient-to-r text-transparent bg-clip-text from-blue-400 to-green-500 text-gray-900",
-
+    Mobile: "sm:w-80 md:w-80"
 }

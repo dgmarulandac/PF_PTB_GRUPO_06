@@ -30,9 +30,9 @@ export function Pagination(props) {
         return paginas
     }
 
-    useEffect(()=>{
-        handlePage(1)
-    }, [eventsAdmin])
+    // useEffect(()=>{
+    //     handlePage(1)
+    // }, [eventsAdmin])
 
     return (
         <div>

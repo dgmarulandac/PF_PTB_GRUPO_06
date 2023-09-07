@@ -7,6 +7,7 @@ const getAdminEvents = require('../controllers/Event/getAdminEvents');
 const toggleEvent = require('../controllers/Event/toggleEvent');
 
 
+
 const getEventHandler = async (req, res) => {
     const { name, eventType, country, date, order } = req.query;
     try {
@@ -39,13 +40,15 @@ const getMyEventHandler = async (req, res) => {
 };
 
 const getAdminEventsHandler = async (req, res) => {
-    try {
-        const events = await getAdminEvents();
+    try{
+        const name = req.query.name
+        const events = await getAdminEvents(name);
         res.status(200).json(events);
-    } catch (error) {
-        res.status(404).json({error: error.message});
+    }catch(error){
+        res.status(400).json({error: error.message});  
     }
-};
+    }
+
 
 const toggleEventHandler = async (req, res) => {
     try {

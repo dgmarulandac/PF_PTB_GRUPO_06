@@ -22,7 +22,7 @@ const EventFilter = () => {
   };
 
   useEffect(() => {
-    dispatch(getEventsFilter(name, eventType, country, date, order ));
+    dispatch(getEventsFilter(name, eventType, country, date, order));
   }, [name, eventType, country, date, order, dispatch]);
 
   return (
@@ -44,54 +44,57 @@ const EventFilter = () => {
           />
         </div>
         
-        <select value={eventType} onChange={e => setEventType(e.target.value)} className={FilStyles.select}>
-          <option value="">Selecciona un Evento</option>
-          <option value="Musical">Musical</option>
-          <option value="Deportivo">Deportivo</option>
-          <option value="Artistico">Artístico</option>
-          <option value="Otro">Otro</option>
-        </select>
-  
-        <select value={country} onChange={e => setCountry(e.target.value)}  className={FilStyles.select}>
-          <option value="">Selecciona un país</option>
-          <option value="Uruguay">Uruguay</option>
-          <option value="Venezuela">Venezuela</option>
-          <option value="Colombia">Colombia</option>
-          <option value="Argentina">Argentina</option>
-        </select>
-  
-        <nav className={FilStyles.filterclases}>
-      <div className={FilStyles.containerFilter}>
-        <div className={FilStyles.relativeInput}>
-          <div className={FilStyles.iconContainer}>
-            <svg className={FilStyles.sv} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-            </svg>
-          </div>
-          <input
-            type="date"
-            value={date}
-            onChange={e => setDate(e.target.value)}
-            className={FilStyles.date}
-            placeholder="Select date"
-          />
-        </div>
-      </div>
-    </nav>
-  
-        <select value={order} onChange={e => setOrder(e.target.value)} className={FilStyles.select}>
-          <option value="">Ordenar por</option>
-          <option value="name">Nombre</option>
-          <option value="date">Fecha</option>
-          <option value="eventType">Tipo de Evento</option>
-        </select>
-  
+          <select value={eventType} onChange={e => setEventType(e.target.value)} className={FilStyles.select}>
+            <option value="">Selecciona un Evento</option>
+            <option value="Musical">Musical</option>
+            <option value="Deportivo">Deportivo</option>
+            <option value="Artistico">Artístico</option>
+            <option value="Otro">Otro</option>
+          </select>
+
+          <select value={country} onChange={e => setCountry(e.target.value)} className={FilStyles.select}>
+            <option value="">Selecciona un país</option>
+            <option value="Uruguay">Uruguay</option>
+            <option value="Venezuela">Venezuela</option>
+            <option value="Colombia">Colombia</option>
+            <option value="Argentina">Argentina</option>
+          </select>
+
+          <select value={order} onChange={e => setOrder(e.target.value)} className={FilStyles.select}>
+            <option value="">Ordenar por</option>
+            <option value="name">Nombre</option>
+            <option value="date">Fecha</option>
+            <option value="eventType">Tipo de Evento</option>
+          </select>
+
+          <nav className={FilStyles.filterclases}>
+            <div className={FilStyles.containerFilter}>
+              <div className={FilStyles.relativeInput}>
+                <div className={FilStyles.iconContainer}>
+                  <svg className={FilStyles.sv} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                  </svg>
+                </div>
+                <input
+                  type="date"
+                  value={date}
+                  onChange={e => setDate(e.target.value)}
+                  className={FilStyles.date}
+                  placeholder="Select date"
+                />
+              </div>
+            </div>
+          </nav>
+
+
+
+
         <button onClick={handleResetFilters} className={FilStyles.Button}>
-        <span class="relative z-10">Quitar </span>
+          <span class="relative z-10">Quitar </span>
         </button>
       </div>
     </nav>
-  );  
+  );
 };
 
 export default EventFilter;
