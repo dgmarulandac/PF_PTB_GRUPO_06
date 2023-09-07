@@ -63,9 +63,9 @@ export const getDetail = (id) => {
     };
 };
 
-export const getMyEvents = (id) => {
+export const getMyEvents = () => {
     return function (dispatch) {
-        axios.get(`/events/myEvents/${id}`,{ headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+        axios.get(`/events/myEvents`,{ headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
             .then(data => dispatch({ type: GET_MY_EVENTS, payload: data.data }))
             .catch(reason => {
                 Swal.fire({
