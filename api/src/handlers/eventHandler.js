@@ -5,7 +5,7 @@ const postEvent = require("../controllers/Event/postEvent");
 const putEvent = require('../controllers/Event/putEvent');
 const getAdminEvents = require('../controllers/Event/getAdminEvents');
 const toggleEvent = require('../controllers/Event/toggleEvent');
-const getAdminEventsForName = require('../controllers/Event/getAdminEventForName');
+
 
 
 const getEventHandler = async (req, res) => {
@@ -39,15 +39,14 @@ const getMyEventHandler = async (req, res) => {
 };
 
 const getAdminEventsHandler = async (req, res) => {
-    const {name} = req.query
-    if(name){
-        const events = await getAdminEventsForName(name)
-        res.status(200).json(events)
-    }else{
-      const events = await getAdminEvents();
-    res.status(200).json(events);  
+    try{
+        const events = await getAdminEvents(req, res);
+    }catch(error){
+        
+        res.status(400).json(error);  
     }
-};
+    }
+
 
 const toggleEventHandler = async (req, res) => {
     try {
