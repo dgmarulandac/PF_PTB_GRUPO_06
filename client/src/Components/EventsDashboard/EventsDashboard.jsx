@@ -34,9 +34,10 @@ const EventsDashboard = () => {
                     </div>
                 ) : (
                     events.map((event) => {
-                        return <div>
+                        return <div className={styles.container}>
                                 <Card event={event} key={event.id} />
-                                <Link to={`/editEvent/${event.id}`}><button className={styles.button}>Editar Evento</button></Link>
+                                <Link to={`/editEvent/${event.id}`}>
+                                <button className={styles.button}>Editar Evento</button></Link>
                             </div>;
                     })
                 )}
