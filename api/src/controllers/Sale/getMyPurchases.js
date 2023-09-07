@@ -8,7 +8,7 @@ const getMyPurchases = async (id) => {
             { model: Sale, required: true, attributes: ['isSuccesful'] },
             {
                 model: Event, required: true,
-                attributes: ["name", "date", "hour", "address", "image", "currency"],
+                attributes: ["id","name", "date", "hour", "address", "image", "currency"],
                 through: {
                     attributes: ['quantity','price']
                 }
