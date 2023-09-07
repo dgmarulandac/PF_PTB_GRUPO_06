@@ -41,9 +41,10 @@ const getMyEventHandler = async (req, res) => {
 
 const getAdminEventsHandler = async (req, res) => {
     try{
-        const events = await getAdminEvents(req, res);
+        const name = req.query.name
+        const events = await getAdminEvents(name);
+        res.status(200).json(events);
     }catch(error){
-        
         res.status(400).json({error: error.message});  
     }
     }

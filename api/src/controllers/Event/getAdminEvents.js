@@ -1,20 +1,18 @@
 const { Event } = require("../../db");
+const { Op } = require('sequelize');
 
-const getAdminEvents = async (req, res) => {
-
-    const name = req.query.name
-	
-	const allevents = await Event.findAll();
+const getAdminEvents = async (name) => {
+    
+    let whereClause = {};
 
 	if(name){
-		leteventsname = await allevents.filter(a => a.name.toLowerCase().includes(name.toLowerCase()));
-		leteventsname.length ? 
-		res.status(200).json(leteventsname):
-		res.status(400).json('suerte')
-	}else{
-		res.status(200).send(allevents);
+        whereClause.name = { [Op.iLike]: `%${name}%` };
 	}
-
+	
+    const allevents = await Event.findAll({
+        where: whereClause
+    });
+    return allevents;
 };
 
 module.exports = getAdminEvents;
