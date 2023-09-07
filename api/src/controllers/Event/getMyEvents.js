@@ -1,12 +1,9 @@
 const { Event } = require("../../db");
 
-const getMyEvents = async (idSeller, idAuth) => {
-    if( idSeller !== idAuth ) {
-        throw Error("Esta intentando sacar los eventos que no le pertenecen.");
-    }
+const getMyEvents = async (idAuth) => {
 
     const events = Event.findAll({ where: {
-        idSeller: idSeller
+        idSeller: idAuth
     } });
 
     return events;
