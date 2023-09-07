@@ -7,5 +7,5 @@ export const buttonClasses = "text-white bg-blue-600 px-4 py-2 rounded relative 
 export const googleButtonIcon = "flex items-rigt space-x-4";
 export const movingBottomLine = "h-1 w-full bg-gradient-to-r from-blue-500 to-green-500 animate-line"; // animate-line sería una clase que define la animación CSS
 export const linkContainerClassesMobile = "flex flex-col gap-2";
-export const containerClassesMobile = "grid grid-cols-1 col-auto";
-export const googleButtonIconMobile = "flex justify-center";
+export const containerClassesMobile = "grid grid-cols-1 col-auto h-auto justify-center";
+export const googleButtonIconMobile = "flex justify-self-center";
