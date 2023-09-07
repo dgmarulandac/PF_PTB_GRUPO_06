@@ -2,7 +2,7 @@ const { Event } = require("../../db");
 
 const getMyEvents = async (idAuth) => {
 
-    const events = Event.findAll({ where: {
+    const events = await Event.findAll({ where: {
         idSeller: idAuth
     } });
 

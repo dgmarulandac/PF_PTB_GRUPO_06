@@ -11,12 +11,11 @@ import Paginado from "../pagination/pagination";
 
 const EventsDashboard = () => {
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.userSesion);
     const events = useSelector((state) => state.myEvents);
     const sales = useSelector((state) => state.mySales);
 
     useEffect(() => {
-        dispatch(getMyEvents(user.id));
+        dispatch(getMyEvents());
         dispatch(getMySales());
     }, []);
 
