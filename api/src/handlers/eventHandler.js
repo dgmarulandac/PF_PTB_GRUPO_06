@@ -44,7 +44,7 @@ const getAdminEventsHandler = async (req, res) => {
         const events = await getAdminEvents(req, res);
     }catch(error){
         
-        res.status(400).json(error);  
+        res.status(400).json({error: error.message});  
     }
     }
 
