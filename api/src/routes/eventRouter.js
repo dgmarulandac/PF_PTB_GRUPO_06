@@ -15,9 +15,9 @@ const eventRouter = Router();
 eventRouter.get("/", getEventHandler);
 eventRouter.post("/createEvent", [verifyToken, isSeller], postCreateEventHandler);
 eventRouter.get("/admin", [verifyToken, isAdmin], getAdminEventsHandler);
-eventRouter.get("/:id", [verifyTokenOptional], getEventByIdHandler);
 eventRouter.put("/updateEvent/:id", [verifyToken, isSellerOrAdmin], putEventHandler);
-eventRouter.get("/myEvents/:id", [verifyToken, isSeller], getMyEventHandler);
+eventRouter.get("/myEvents", [verifyToken, isSeller], getMyEventHandler);
 eventRouter.put("/toggleEvent/:id", [verifyToken, isSellerOrAdmin], toggleEventHandler);
+eventRouter.get("/:id", [verifyTokenOptional], getEventByIdHandler);
 
 module.exports = eventRouter;
