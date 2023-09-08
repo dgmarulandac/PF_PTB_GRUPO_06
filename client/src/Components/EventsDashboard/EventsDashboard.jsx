@@ -34,6 +34,10 @@ const EventsDashboard = () => {
         setEventosAMostrar(events.length && events.slice(primerIndex, ultimoIndex));
     }, [events, currentPage]);
 
+    const toggleEvent = (id) => {
+        // axios put al toggle event.
+    }
+
     return(
         <div>
             <h1 className={styles.error}>Mis Ventas</h1>
@@ -54,6 +58,7 @@ const EventsDashboard = () => {
                             return <div>
                                     <Card event={event} key={event.id} />
                                     <Link to={`/editEvent/${event.id}`}><button className={styles.button}>Editar Evento</button></Link>
+                                    <button className={styles.button} onClick={toggleEvent}>{"✅visible 🚫 no visible"}</button>
                                 </div>;
                             })
                         }

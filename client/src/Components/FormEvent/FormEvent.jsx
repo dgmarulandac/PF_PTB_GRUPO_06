@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from 'react-redux'
+import { useNavigate } from "react-router-dom"
 import validation from "../../Utils/ValidationEventForm/validation";
 import { useDispatch } from "react-redux";
 import { createEvent } from "../../Redux/Action/action";
@@ -8,10 +9,8 @@ import { styles } from "./formEventStyle";
 
 export default function FormEvent() {
 
-
-
     const { country, eventTypes, moneyTypes, userSesion } = useSelector(state => state)
-
+    const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const [event, setEvent] = useState({
@@ -61,6 +60,7 @@ export default function FormEvent() {
             eventType: '',
             ticketPrice: '', 
             result: '✅ Evento creado con exito' })
+            navigate('/myEvents');
         }else{
             setEvent({...event, result: '⚠️ Completa los campos'})
         }

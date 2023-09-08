@@ -31,7 +31,7 @@ export default function Home() {
   }, [events]);
 
   useEffect(() => {
-    setEventosAMostrar(events.length && events.slice(primerIndex, ultimoIndex));
+    setEventosAMostrar(events && events.slice(primerIndex, ultimoIndex));
   }, [events, currentPage]);
 
   return (
@@ -50,15 +50,6 @@ export default function Home() {
           </div>)
         }
       </div>
-      {/* <div className={styles.cardcontainer}>
-        {!eventosAMostrar ? (
-          <h2 className={styles.error}>No existe ningún evento con estas caracteristicas.</h2>
-        ) : (
-          eventosAMostrar && eventosAMostrar.map((event) => {
-            return <Card event={event} key={event.id} />;
-          })
-        )}
-      </div> */}
       <div className={styles.paginado}>
         <Paginado
           eventsPerPage={eventsPerPage}

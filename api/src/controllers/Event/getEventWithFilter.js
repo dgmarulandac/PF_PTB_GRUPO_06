@@ -7,7 +7,6 @@ const getEventFilterController = async (
   country,
   date,
   order,
-  ticketPrice,
   sortOrder // Nuevo parámetro para el orden descendente o ascendente
 ) => {
 	const whereClause = {cantTickets: {[Op.gt]: 0}, active: true};
@@ -24,27 +23,25 @@ const getEventFilterController = async (
   if (date) {
     whereClause.date = { [Op.eq]: date };
   }
-  if (ticketPrice) {
-    whereClause.ticketPrice = { [Op.eq]: ticketPrice };
-  }
 
   const orderClause = [];
+  sortOrder = sortOrder ? sortOrder : "ASC";
   if (order) {
     switch (order) {
       case "name":
-        orderClause.push(["name", sortOrder || "ASC"]); // Ordena por nombre en orden ascendente o descendente
+        orderClause.push(["name", sortOrder]); // Ordena por nombre en orden ascendente o descendente
         break;
       case "date":
-        orderClause.push(["date", sortOrder || "ASC"]); // Ordena por fecha 
+        orderClause.push(["date", sortOrder]); // Ordena por fecha 
         break;
       case "eventType":
-        orderClause.push(["eventType", sortOrder || "ASC"]); // Ordena por tipo de evento 
+        orderClause.push(["eventType", sortOrder]); // Ordena por tipo de evento 
         break;
       case "country":
-        orderClause.push(["country", sortOrder || "ASC"]); // Ordena por país 
+        orderClause.push(["country", sortOrder]); // Ordena por país 
         break;
       case "ticketPrice":
-        orderClause.push(["ticketPrice", sortOrder || "ASC"]); // Ordena por precio del ticket 
+        orderClause.push(["ticketPrice", sortOrder]); // Ordena por precio del ticket 
         break;
       default:
         break;
@@ -53,7 +50,7 @@ const getEventFilterController = async (
 
   const events = await Event.findAll({
     where: whereClause,
-    order: orderClause.length > 0 ? orderClause : undefined,
+    order: orderClause
   });
 
   return events;
