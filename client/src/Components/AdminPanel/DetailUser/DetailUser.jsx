@@ -11,7 +11,7 @@ animation: girar 2s infinite linear;
 const DetailUser = () => {
     const { id } = useParams();
     const [user, setUser] = useState({});
-    const [roles, setRoles] = useState([])
+    const [roles, setRoles] = useState({})
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
     const [isLoading, setIsLoading] = useState(true)
@@ -36,7 +36,7 @@ const DetailUser = () => {
     const changeUser = () => {
 
         axios.put(`/users/update/${id}`, user, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
-            // User puede recibir: {displayName, name, phone, email, nationality, address, roles}
+            // User puede recibir: {displayName, active, name, phone, email, nationality, address, roles}
             .then(res => res.data)
             .then(data => {
                 setSuccess('Usuario cambiado')
@@ -51,15 +51,17 @@ const DetailUser = () => {
     };
     const handleCheck = (e) => {
         const { checked, name } = e.currentTarget;
-        if (checked) {
-            setRoles([...roles, name])
-        } else {
-            setRoles(roles.filter((role) => role !== name))
-        }
+        console.log(checked)
         setUser({
             ...user,
-            roles: roles
-        })
+            Roles: checked
+              ? [
+                  ...user.Roles,
+                  { type: name }
+                ]
+              : user.Roles.filter((role) => role.type !== name)
+          });
+          console.log(user)
     }
 
     if (isLoading === true) {
@@ -87,9 +89,20 @@ const DetailUser = () => {
                     <p className="text-white">{user.phone ? user.phone : "No tiene numero agregado todavia"}</p>
                     <input className="rounded-md" placeholder="Cambiar numero de telefono" type="number" onChange={handleChange} name="phone" />
                     {/* checked={user?.roles.includes("admin")} */}
-                    <input type="checkbox" name="admin" checked={user?.roles.includes("admin")} onChange={handleCheck} />
-                    <input type="checkbox" name="buyer" checked={user?.roles.includes("buyer")} onChange={handleCheck} />
-                    <input type="checkbox" name="seller" checked={user?.roles.includes("seller")} onChange={handleCheck} />
+                    <div>
+                        <div>
+                        <label className="text-white">Admin:</label>
+                        <input type="checkbox" name="admin" value="admin" defaultChecked={user.Roles.some(role => role.type === 'admin')} onClick={handleCheck} />
+                        </div>
+                        <div>
+                        <label className="text-white">Comprador:</label>
+                        <input type="checkbox" name="buyer" value="buyer" defaultChecked={user.Roles.some(role => role.type === 'buyer')} onClick={handleCheck} />
+                        </div>
+                        <div>
+                        <label className="text-white">Vendedor:</label>
+                        <input type="checkbox" name="seller" value="seller" defaultChecked={user.Roles.some(role => role.type === 'seller')} onClick={handleCheck} />
+                        </div>
+                    </div>
                     {/* <input type="radio" id="contactChoice1" name="contact" value="email" /> */}
 
                     <button onClick={changeUser} className="text-white bg-black border-solid border-white rounded-md p-2">Cambiar usuario</button>
