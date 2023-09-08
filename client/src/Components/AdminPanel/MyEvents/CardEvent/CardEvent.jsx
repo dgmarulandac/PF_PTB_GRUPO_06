@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import EditEventAdmin from "../EditEvent/EditEventAdmin"
+import { cambiarTicket } from "../../../../Redux/Action/action";
 import EditEventTest from "../EditEvent/EditEventTest";
 import { AiOutlineClose, AiOutlineCheck, AiOutlineEdit } from "react-icons/ai";
 import styles from "./CardEventStyle";
@@ -18,6 +19,7 @@ export default function CardEvent({ e }) {
     const available = async () => {
         axios.put("/events/toggleEvent/" + e.id, {}, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
             .then(({ data }) => {
+                cambiarTicket(data)
                 setActive(data.active)
             })
             .catch(error => console.log(error))
