@@ -26,7 +26,6 @@ const ReviewsBanned = () => {
             .then(res => res.data)
             .then(data => {
                 setReviews(data.filter(element => element.approved === false))
-                console.log('hola', data.filter(element => element.approved !== false))
             })
     }, [])
     const handleClick = (e) => {
@@ -38,18 +37,19 @@ const ReviewsBanned = () => {
                 setReviews(reAdded)
             })
     };
-    useEffect(()=>{
+    useEffect(() => {
         setReviewsAMostrar(reviews.slice(primerIndex, ultimoIndex))
     }, [reviews])
     return (
 
         <div>
-            <h2>Comentarios ocultos:</h2>
+            <h1 className="text-white">Panel de Reviews</h1>
+            <h2 className="text-white">Comentarios ocultos:</h2>
             <div className="grid">
 
                 {
                     reviewsAMostrar?.length > 0 ?
-                    reviewsAMostrar.filter(element => element.approved === false).map((element, key) => {
+                        reviewsAMostrar.filter(element => element.approved === false).map((element, key) => {
                             {
                                 return (
                                     <div key={key++} className="odd:bg-slate-800 flex h-20 items-center gap-x-5 space-between justify-between px-5">
@@ -69,7 +69,7 @@ const ReviewsBanned = () => {
                 }
             </div>
             <div>
-            <Paginado
+                <Paginado
                     eventsPerPage={eventsPerPage}
                     events={reviews}
                     page={currentPage}
