@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import * as styles from "./styles";
 import style from "./card.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { modal, addToCar, getDetail } from "../../Redux/Action/action";
+import { modal, addToCar} from "../../Redux/Action/action";
 import Modal from "../Modal/Modal";
 import axios from "axios";
 
