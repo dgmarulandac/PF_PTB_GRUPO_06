@@ -179,20 +179,34 @@ const Detail = () => {
               <br />
               <div className={styles.cardcon}>
                 <div key="0">
-                  <p className={styles.ratingprom}>{averageRating}:
+                  <p className={styles.ratingprom}>
+                    {averageRating}:
                     <div>
                       {Array.from({ length: 5 }).map((_, index) => (
                         <span key={index}>
                           {index + 1 <= Math.round(averageRating) ? "⭐" : ""}
                         </span>
                       ))}
-                    </div></p>
+                    </div>
+                  </p>
                   <div className="flex justify-center items-center">
                     <h2 className={styles.name}>{ticketid.name}</h2>
                   </div>
                   <div className="grid md:flex justify-center  ">
                     <div className={styles.centerimg}>
-                      <img src={ticketid.image} alt="" className={styles.img} />
+                      {ticketid.cantTickets === 0 ? (
+                        <img
+                          src="https://res.cloudinary.com/boho-pf/image/upload/v1694058730/BOHO/wtfgsh4e1dur33olvbw9.avif"
+                          alt=""
+                          className={styles.img}
+                        />
+                      ) : (
+                        <img
+                          src={ticketid.image}
+                          alt=""
+                          className={styles.img}
+                        />
+                      )}
                     </div>
                     <div className={styles.info}>
                       <p> 🌎 Pais: {ticketid.country}</p>
@@ -209,9 +223,18 @@ const Detail = () => {
                   </div>
 
                   <div>
-                    <button onClick={handleClick} className={styles.button}>
-                      <span class="relative">Agregar a carrito</span>
-                    </button>
+                    {ticketid.cantTickets === 0 ? (
+                      <button className={styles.button}> <span class="relative">
+                        no puedes comprar
+                      </span>
+                      </button>
+                    ) : (
+                      <button onClick={handleClick} className={styles.button}>
+                        <span class="relative">
+                          Agregar a carrito
+                        </span>
+                      </button>
+                    )}
                   </div>
                 </div>
                 {modalOn && (
@@ -225,34 +248,27 @@ const Detail = () => {
         </div>
         <div className={styles.container}>
           <div>
-            {reviews && reviews.map((review) => (
-              <div
-                key={review.id}
-                className={styles.reviewbox}
-              >
-                <p className={styles.username}>
-                  {review.User.name}
-                </p>
-                <div>
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <span key={index}>
-                      {index + 1 <= review.score ? "⭐" : ""}
-                    </span>
-                  ))}
+            {reviews &&
+              reviews.map((review) => (
+                <div key={review.id} className={styles.reviewbox}>
+                  <p className={styles.username}>{review.User.name}</p>
+                  <div>
+                    {Array.from({ length: 5 }).map((_, index) => (
+                      <span key={index}>
+                        {index + 1 <= review.score ? "⭐" : ""}
+                      </span>
+                    ))}
+                  </div>
+                  <div className={styles.coment}>
+                    <p>{review.comment}</p>
+                  </div>
                 </div>
-                <div className={styles.coment}>
-                  <p>{review.comment}</p>
-                </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
-        { idUser && ticketid.comentable && (
+        {idUser && ticketid.comentable && (
           <div className={styles.container}>
-            <form
-              onSubmit={handledsummit}
-              className={styles.reviewerbox}
-            >
+            <form onSubmit={handledsummit} className={styles.reviewerbox}>
               <br />
               <label className="text-white font-bold"> Puntuacion</label>
               <div className={style.rating}>

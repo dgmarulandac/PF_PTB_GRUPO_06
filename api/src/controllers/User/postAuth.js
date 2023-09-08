@@ -31,6 +31,9 @@ const postAuth = async (token) => {
         email: candidateUser.email,
         name: candidateUser.name,
         image: candidateUser.image,
+        address: candidateUser.address,
+        nationality: candidateUser.nationality,
+        phone: candidateUser.phone,
         roles: roles,
         jwt: token
     };

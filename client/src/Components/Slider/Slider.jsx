@@ -33,8 +33,8 @@ export default function Slider() {
           const eventDetailUrl = `/event/${event.id}`; // Construct the event detail URL
           return (
             <SwiperSlide key={i}>
-              <div className="flex items-center justify-center   ">
-                <div className=" box-content h-96 w-96 mb-7 shadow-md rounded-lg">
+              <div className="flex items-center justify-center align-middle">
+                <div className=" box-content h-xl w-96 mb-5 shadow-md rounded-lg">
                 <Link to={eventDetailUrl}> {/* Use Link to navigate to event detail */}
                   <img src={event.image} alt={event.title} className="mb-4 w-full h-full rounded" />
                 </Link>

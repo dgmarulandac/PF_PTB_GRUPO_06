@@ -1,5 +1,5 @@
 export const container = "relative max-w-sm h-full bg-white dark:bg-gray-800 border border-gray-200 rounded-lg shadow dark:border-1 border-green-700 hover:bg-opacity-90 dark:hover:bg-opacity-90 flex flex-col shadow-2xl shadow-lg shadow-cyan-500/50 "; // Mantenemos 'h-full' y 'flex flex-col'
-export const image = "rounded-t-lg w-full h-56 object-cover"; // Aumentamos la altura de la imagen a h-56
+export const image = "rounded-t-lg w-full h-full "; // Aumentamos la altura de la imagen a h-56
 export const name = "mt-2 text-xl font-bold tracking-tight bg-gradient-to-r text-transparent bg-clip-text from-blue-400 to-green-500 text-gray-900";
 export const p = "my-2 font-bold text-gray-700 dark:text-gray-400";
 export const span = "my-2 text-blue-700";

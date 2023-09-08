@@ -103,7 +103,6 @@ const Nav = (props) => {
             <div className={navStyles.linkContainerClassesMobile} id="container">
               <Link to='/createEvent' ><button className={navStyles.buttonClasses}><span >Crear Evento</span></button></Link>
               <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span >Preguntas Frecuentes</span></button></Link>
-              <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y condiciones</span></button></Link>
               <Link to='/myEvents'><button className={navStyles.buttonClasses}><span >Mis Eventos</span></button></Link>
               <Link to='/MiPerfil' ><button className={navStyles.buttonClasses}><span class="relative z-10">Mi Perfil</span></button></Link>
               <button className={navStyles.buttonClasses} onClick={() => { dispatch(logOut()) }}><span >Cerrar Sesión</span></button>
@@ -129,7 +128,6 @@ const Nav = (props) => {
             <div className={navStyles.linkContainerClassesMobile} id="container">
               <Link to='/createEvent' ><button className={navStyles.buttonClasses}><span >Crear Evento</span></button></Link>
               <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span >Preguntas Frecuentes</span></button></Link>
-              <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y condiciones</span></button></Link>
               <Link to='/myEvents'><button className={navStyles.buttonClasses}><span >Mis Eventos</span></button></Link>
               <Link to='/Admin/Panel'><button className={navStyles.buttonClasses}><span >Dashboard</span></button></Link>
               <Link to='/MiPerfil' ><button className={navStyles.buttonClasses}><span class="relative z-10">Mi Perfil</span></button></Link>
@@ -153,7 +151,6 @@ const Nav = (props) => {
           </div>
           <div className={navStyles.linkContainerClassesMobile} id="container">
             <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span >Preguntas Frecuentes</span></button></Link>
-            <Link to='/TaC' ><button className={navStyles.buttonClasses}><span >Terminos y condiciones</span></button></Link>
             <Link to='/MiPerfil' ><button className={navStyles.buttonClasses}><span class="relative z-10">Mi Perfil</span></button></Link>
             <button className={navStyles.buttonClasses} onClick={() => { dispatch(logOut()) }}><span >Cerrar Sesión</span></button>
             <Car/>
@@ -198,7 +195,6 @@ const Nav = (props) => {
             <div className={navStyles.linkContainerClasses}>
               <Link to='/createEvent' ><button className={navStyles.buttonClasses}><span class="relative z-10">Crear Evento</span></button></Link>
               <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
-              <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y Condiciones</span></button></Link>
               <Link to='/myEvents'><button className={navStyles.buttonClasses}><span class="relative z-10">Mis Eventos</span></button></Link>
               <Link to='/MiPerfil' ><button className={navStyles.buttonClasses}><span class="relative z-10">Mi Perfil</span></button></Link>
               <button className={navStyles.buttonClasses} onClick={() => {dispatch(logOut())}}><span class="relative z-10">Cerrar Sesión</span></button>
@@ -216,8 +212,8 @@ const Nav = (props) => {
           <div className={`${navStyles.containerClasses} flex justify-between items-center`}>
             <Link to="/" ><h3 className={navStyles.logoClasses}>BOHO</h3></Link>
             <div className={navStyles.linkContainerClasses}>
+              <Link to='/createEvent' ><button className={navStyles.buttonClasses}><span >Crear Evento</span></button></Link>
               <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
-              <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y condiciones</span></button></Link>
               <Link to='/myEvents'><button className={navStyles.buttonClasses}><span class="relative z-10">Mis Eventos</span></button></Link>
               <Link to='/Admin/Panel'><button className={navStyles.buttonClasses}><span >Dashboard</span></button></Link>
               <Link to='/MiPerfil' ><button className={navStyles.buttonClasses}><span class="relative z-10">Mi Perfil</span></button></Link>
@@ -235,7 +231,6 @@ const Nav = (props) => {
           <Link to="/" ><h3 className={navStyles.logoClasses}>BOHO</h3></Link>
           <div className={navStyles.linkContainerClasses}>
             <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
-            <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y condiciones</span></button></Link>
             <Link to='/MiPerfil' ><button className={navStyles.buttonClasses}><span class="relative z-10">Mi Perfil</span></button></Link>
             <button className={navStyles.buttonClasses} onClick={() => {dispatch(logOut())}}><span class="relative z-10">Cerrar Sesión</span></button>
             <Car />

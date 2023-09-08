@@ -35,6 +35,9 @@ const bohoLogin = async (user) => {
         email: candidateUser.email,
         name: candidateUser.name,
         image: candidateUser.image,
+        address: candidateUser.address,
+        nationality: candidateUser.nationality,
+        phone: candidateUser.phone,
         roles: roles,
         jwt: token
     };
