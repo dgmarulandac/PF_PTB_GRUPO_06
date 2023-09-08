@@ -5,8 +5,8 @@ import axios from "axios";
 // import styles from './register.module.css'
 import { styles } from "./registerStyle";
 import { Link } from "react-router-dom";
-import video from "../../Utils/videos/backgroundLogin.mp4"
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 export default function Register() {
     const navigate = useNavigate()
@@ -15,14 +15,10 @@ export default function Register() {
         name: '',
         password: '',
         email: '',
-        typeOfUser: '',
-        companyRut: '',
         address: '',
         nationality: 'Argentina',
         phone: '',
-        isCompany: false,
     });
-    const [result, setResult] = useState(0)
     const [listErrors, setListErrors] = useState([])
     const { country } = useSelector(state => state)
     function handleChange(e) {
@@ -36,25 +32,36 @@ export default function Register() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        const { displayName, name, password, address, email, typeOfUser, phone, nationality, isCompany } = users
+        const { displayName, name, password, address, email, typeOfUser, phone, nationality } = users
         const errors = registerValidation(displayName, name, password, address, email, typeOfUser, phone, nationality)
         if (errors.length === 0) {
 
             axios.post(`/users/register`, users)
 
-                .then(res => res.data)
-                .then(data => {
-                    document.getElementById('message').textContent = data.message;
-                    document.getElementById('message').classList.remove(styles.showErrorMessage)
-                    document.getElementById('message').classList.add(styles.showSussesMessage)
-                    document.getElementById('textContainer').classList.remove(styles.hide)
-                })
-                .catch((err) => {
-                    document.getElementById('message').textContent = err.response.data.error;
-                    document.getElementById('message').classList.remove(styles.showSussesMessage)
-                    document.getElementById('message').classList.add(styles.showErrorMessage)
-                    document.getElementById('textContainer').classList.remove(styles.hide)
-                })
+            .then(res => {
+                if (res && res.data) {
+                  const data = res.data;
+                  document.getElementById('message').textContent = data.message;
+                  document.getElementById('message').classList.remove(styles.showErrorMessage);
+                  document.getElementById('message').classList.add(styles.showSussesMessage);
+              
+                  Swal.fire({
+                    title: "Mensaje enviado",
+                    text: "Su usuario ha sido creado satisfactoriamente y se ha enviado un correo de confirmación.",
+                    icon: "success",
+                  }).then(() => {
+                    navigate("/");
+                  });
+                } else {
+                  // Manejar el caso en el que la respuesta o res.data no están definidos.
+                }
+              })
+              .catch(err => {
+                document.getElementById('message').textContent = err.response.data.error;
+                document.getElementById('message').classList.remove(styles.showSussesMessage);
+                document.getElementById('message').classList.add(styles.showErrorMessage);
+                document.getElementById('textContainer').classList.remove(styles.hide);
+              });
         }
         else {
             setListErrors(errors)
@@ -103,28 +110,6 @@ export default function Register() {
                         <label className={styles.label} for="email">Email:</label>
                         <input className={styles.input} type="text" name="email" onChange={handleChange} placeholder="ejemplo@ejemplo.com" />
                     </div>
-                    <div>
-                        <label className={styles.label} htmlFor="typeOfUser">Usuario:</label>
-                        <div className={styles.dual}>
-                            <div>
-                                <input type="radio" id="clientRadio" name="typeOfUser" value="Cliente" onChange={handleChange} />
-                                <label className={styles.label} htmlFor="clientRadio">Cliente</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="companyRadio" name="typeOfUser" value="Empresa" onChange={handleChange} />
-                                <label className={styles.label} htmlFor="companyRadio">Empresa</label>
-                            </div>
-                        </div>
-                    </div>
-                    {
-                        users.typeOfUser === 'Empresa' ?
-                            <div className={styles.div_ind}>
-                                <label className={styles.label} htmlFor="companyRut">Rut:</label>
-                                <input className={styles.input} type="number" id="companyRut" name="companyRut" placeholder="Rut de la compania (no es oblicatorio)" onChange={handleChange} />
-                            </div>
-                            :
-                            null
-                    }
                     <div className={styles.div_ind}>
                         <label className={styles.label} for="direccion">Dirección:</label>
                         <input className={styles.input} name="address" placeholder="Debe ser asi: Bv.España 234, Madrid" onChange={handleChange} />
@@ -150,65 +135,6 @@ export default function Register() {
                 <p className={styles.window}>¿Ya tienes cuenta?, <Link style={{ textDecoration: "none", color: "rgb(191, 132, 29)" }} to='/login'>Inicia Sesión</Link></p>
             </div>
 
-            {/* <article className={styles.window}>
-                <form className={styles.Form} onSubmit={handleSubmit}>
-                    <label for="usuario">Usuario:</label>
-                    <input className={styles.RegisterInput} type="text" name="displayName" onChange={handleChange} placeholder="Jorgito14" />
-
-                    <label for="Nombres">Nombre completo:</label>
-                    <input className={styles.RegisterInput} type="text" name="name" onChange={handleChange} placeholder="Juan Alberto Ramirez De Armas" />
-
-                    <label for="contrasena">Contraseña:</label>
-                    <input className={styles.RegisterInput} type="password" name="password" onChange={handleChange} placeholder="*********" />
-
-                    <label for="email">Email:</label>
-                    <input className={styles.RegisterInput} type="text" name="email" onChange={handleChange} placeholder="ejemplo@ejemplo.com" />
-
-                    <div>
-                        <label htmlFor="typeOfUser">Usuario:</label>
-                        <div>
-                            <input type="radio" id="clientRadio" name="typeOfUser" value="Cliente" onChange={handleChange} />
-                            <label htmlFor="clientRadio">Cliente</label>
-
-                            <input type="radio" id="companyRadio" name="typeOfUser" value="Empresa" onChange={handleChange} />
-                            <label htmlFor="companyRadio">Empresa</label>
-                            {
-                                users.typeOfUser === 'Empresa' ?
-                                    <div style={{ display: 'grid' }}>
-                                        <label htmlFor="companyRut">Rut:</label>
-                                        <input className={styles.RegisterInput} type="number" id="companyRut" name="companyRut" placeholder="Rut de la compania (no es oblicatorio)" onChange={handleChange} />
-                                    </div>
-                                    :
-                                    null
-                            }
-                        </div>
-                    </div>
-
-                    <label for="direccion">Dirección:</label>
-                    <input className={styles.RegisterInput} name="address" placeholder="Debe ser asi: Bv.España 234, Madrid" onChange={handleChange} />
-
-                    <label for="telefono">Telefono:</label>
-                    <input className={styles.RegisterInput} name="phone" type="number" placeholder="Numero de telefono" onChange={handleChange} />
-
-
-                    <label for="nationality">Pais:</label>
-                    <div className={styles.select}>
-                        <select name="nationality" onChange={handleChange}>
-                            <option name="nationality" value="Argentina">Argentina</option>
-                            <option name="nationality" value="Venezuela">Venezuela</option>
-                            <option name="nationality" value="Uruguay">Uruguay</option>
-                            <option name="nationality" value="Colombia">Colombia</option>
-                            <option name="nationality" value="Chile">Chile</option>
-                        </select>
-                    </div>
-                    <button className={styles.RegisterButton}>Registrarse</button>
-                    <div className={styles.hide} id="textContainer"><p id="message"></p></div>
-                </form>
-
-            </article>
-            <article className="topGrid">
-                <p className={styles.window}>¿Ya tienes cuenta?, <Link style={{ textDecoration: "none", color: "rgb(191, 132, 29)" }} to='/login'>Inicia Sesión</Link></p>
-            </article> */}
         </div>
     );
 };

@@ -6,10 +6,13 @@ import Paginado from "../pagination/pagination";
 import EventFilter from "../EventFilter/EventFilter";
 import * as styles from "./HomeStiles";
 import Slider from "../Slider/Slider";
+import Modal from "../Modal/Modal";
+import CarModal from '../Car/CarModal/CarModal'
 
 export default function Home() {
   const dispatch = useDispatch();
   const events = useSelector((state) => state.events);
+  const {modalOn} = useSelector(state => state)
 
   useEffect(() => {
     dispatch(getAllEvent());
@@ -28,21 +31,24 @@ export default function Home() {
   }, [events]);
 
   useEffect(() => {
-    setEventosAMostrar(events.length && events.slice(primerIndex, ultimoIndex));
+    setEventosAMostrar(events && events.slice(primerIndex, ultimoIndex));
   }, [events, currentPage]);
 
   return (
-    <div>
+    <div className="bg-white dark:bg-gray-700">
       <Slider />
       <EventFilter />
-      <div className={styles.cardcontainer}>
+      <div className="bg-white dark:bg-gray-700">
         {!eventosAMostrar ? (
-          <h2 className={styles.error}>No existe ningún evento con estas caracteristicas.</h2>
-        ) : (
-          eventosAMostrar && eventosAMostrar.map((event) => {
-            return <Card event={event} key={event.id} />;
-          })
-        )}
+          <div className="flex justify-center m-10">
+            <h2 className={styles.error}>No existe ningún evento para Mostrar.</h2>
+          </div>) : (
+          <div className={styles.cardcontainer}>
+            {eventosAMostrar && eventosAMostrar.map((event) => {
+              return <Card event={event} key={event.id} />
+            })}
+          </div>)
+        }
       </div>
       <div className={styles.paginado}>
         <Paginado
@@ -51,6 +57,7 @@ export default function Home() {
           page={currentPage}
           paginado={setCurrentPage}
         />
+        {modalOn && <CarModal/>}
       </div>
     </div>
   );

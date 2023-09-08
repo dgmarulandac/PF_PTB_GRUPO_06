@@ -5,7 +5,7 @@ import styles from "./Footer.module.css"; // Importa tus estilos CSS aquí
 
 const Footer = () => {
   return (
-    <footer className=" bg-white dark:bg-gray-900 absolute end-0 w-screen">
+    <footer className=" bg-white dark:bg-gray-900 mt-auto">
       <div className={"mx-auto w-full p-4 py-6 lg:py-8"}>
         <div className={"md:flex md:justify-between"}>
           <div className={"mb-6 md:mb-0"}>
@@ -35,7 +35,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/nosotros" className={"hover:underline"}>
+                  <a href="/about" className={"hover:underline"}>
                     Nosotros
                   </a>
                 </li>
