@@ -48,7 +48,7 @@ const ReviewsAccepted = () =>{
             <div className="grid">
 
                 <div>
-                    <h2>Comentarios aceptados:</h2>
+                    <h2 className="text-white">Comentarios aceptados:</h2>
                     <div>
 
                     {
