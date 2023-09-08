@@ -15,11 +15,6 @@ const ReviewsPanel = () => {
         axios.put(`/reviews/putReview/${value}`, value, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
             .then(res => res.data)
             .then(data => {
-                // axios.get('/reviews/admin', { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
-                //     .then(res => res.data)
-                //     .then(data => {
-                //         setReviews(data)
-                //     })
                 const reAdded = [...reviews?.filter(element => element.id !== data.id), data];
                 setReviews(reAdded)
             })
@@ -27,11 +22,11 @@ const ReviewsPanel = () => {
     return (
         <div>
             <h1>Panel de Reviews</h1>
-            <div className="grid" style={{ gridTemplateColumns: '50% 50%' }}>
+            <div className="grid md:grid-cols-2 grid-cols-1">
 
                 <div>
                     <h2>Comentarios aceptados:</h2>
-                    <div className="grid">
+                    <div>
 
                     {
                         reviews?.length > 0 ?
