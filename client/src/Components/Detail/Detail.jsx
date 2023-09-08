@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addCar, addToCar, getDetail, modal } from "../../Redux/Action/action";
+import { addToCar, getDetail, modal } from "../../Redux/Action/action";
 import Modal from "../Modal/Modal";
 import style from "./Detail.module.css";
 import * as styles from "./DetStiles";
