@@ -12,8 +12,7 @@ const initialState = {
     mySales: [],
     preferenceId: false,
     shoppingCar: [],
-    eventsAdmin: [],
-    eventsAdminAll: []
+    eventsAdmin: []
 }
 
 const rootReducer = (state = initialState, action)=>{
@@ -50,7 +49,7 @@ const rootReducer = (state = initialState, action)=>{
         case DELETE_EVENT_CAR:
             return {...state, shoppingCar: [...state.shoppingCar.filter(e => e.id !== payload)]}
         case GET_EVENTS_ADMIN:
-            return {...state, eventsAdmin: payload, eventsAdminAll: payload}
+            return {...state, eventsAdmin: payload}
         case SEARCH_EVENT_ADMIN:
             return {...state, eventsAdmin: payload}
         default: 
