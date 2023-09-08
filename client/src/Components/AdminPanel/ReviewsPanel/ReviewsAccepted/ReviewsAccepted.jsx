@@ -25,7 +25,7 @@ const ReviewsAccepted = () =>{
         axios.get('/reviews/admin', { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
             .then(res => res.data)
             .then(data => {
-                setReviews(data)
+                setReviews(data.filter(element => element.approved === true))
             })
     }, [])
     const handleClick = (e) => {

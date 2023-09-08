@@ -25,7 +25,8 @@ const ReviewsBanned = () => {
         axios.get('/reviews/admin', { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
             .then(res => res.data)
             .then(data => {
-                setReviews(data)
+                setReviews(data.filter(element => element.approved === false))
+                console.log('hola', data.filter(element => element.approved !== false))
             })
     }, [])
     const handleClick = (e) => {
@@ -39,7 +40,6 @@ const ReviewsBanned = () => {
     };
     useEffect(()=>{
         setReviewsAMostrar(reviews.slice(primerIndex, ultimoIndex))
-        console.log(reviews)
     }, [reviews])
     return (
 
