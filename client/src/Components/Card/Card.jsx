@@ -64,8 +64,8 @@ export default function Card({ event }) {
       {id && (
         <div>
           <Link to={`/event/${id}`}>
-            <div>
-              <img className={styles.image} src={image} alt="imagen event" />
+            <div className="h-96">
+              <img className={styles.image} src={image} alt="imagen event"/>
             </div>
             <div className={styles.div}>
               <h5 className={styles.name}>{name}</h5>
@@ -92,7 +92,6 @@ export default function Card({ event }) {
               <span class="relative z-10">🛒</span>
             </button>
           </div>
-          <br />
           <br />
         </div>
       )}

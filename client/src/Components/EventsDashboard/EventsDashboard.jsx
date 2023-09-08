@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getMyEvents, getMySales } from "../../Redux/Action/action";
+import { cambiarTicket, getMyEvents, getMySales } from "../../Redux/Action/action";
 import { Link } from "react-router-dom";
 import Card from "../Card/Card";
 import SalesChart from "../SalesChart/SalesChart";
 import * as styles from "./EventDashboardStiles";
 import Paginado from "../pagination/pagination";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const EventsDashboard = () => {
     const dispatch = useDispatch();
@@ -34,8 +36,25 @@ const EventsDashboard = () => {
         setEventosAMostrar(events.length && events.slice(primerIndex, ultimoIndex));
     }, [events, currentPage]);
 
-    const toggleEvent = (id) => {
-        // axios put al toggle event.
+    const toggleEvent = async (id) => {
+        try {
+            const {data} = await axios.put(`/events/toggleEvent/${id}`, {}, {
+                headers: { "X-Access-Token": localStorage.getItem("jwt") },
+            });
+    
+            if (data) {
+                dispatch(cambiarTicket(data))
+            } else {
+                // La respuesta es inválida o no contiene datos
+                console.error("Respuesta de solicitud PUT no válida:", data);
+            }
+        } catch (error) {
+            Swal.fire({
+                title: "Error",
+                text: `${error.response ? error.response.data.error : "Error desconocido"}`,
+                icon: "error",
+            });
+        }
     }
 
     return(
@@ -55,10 +74,18 @@ const EventsDashboard = () => {
                     ) : (
                     <div className={styles.cardcontainer}> 
                          {eventosAMostrar && eventosAMostrar.map((event) => {
-                            return <div>
+                            return <div className={styles.card}>
                                     <Card event={event} key={event.id} />
+                                    <div className={styles.buttons}>
                                     <Link to={`/editEvent/${event.id}`}><button className={styles.button}>Editar Evento</button></Link>
-                                    <button className={styles.button} onClick={toggleEvent}>{"✅visible 🚫 no visible"}</button>
+                                    
+                                    {event.active ? (
+                                <button className={styles.redbutton} onClick={() => toggleEvent(event.id)}>🚫Desactivar</button>
+                            ) : (
+                                <button className={styles.greenbutton} onClick={() => toggleEvent(event.id)}>✅Activar</button>
+                            )}
+                                    </div>
+                                    
                                 </div>;
                             })
                         }
