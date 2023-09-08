@@ -73,6 +73,7 @@ const Nav = (props) => {
               <div className="place-self-center mb-2">
                 <GoogleLogin onSuccess={handleCallbackResponse} onError={errorMessage} />
               </div>
+              <Car />
             </div>
           </div>
           <div className={styles.rotatingBar}></div>
@@ -102,7 +103,7 @@ const Nav = (props) => {
             <div className={navStyles.linkContainerClassesMobile} id="container">
               <Link to='/createEvent' ><button className={navStyles.buttonClasses}><span >Crear Evento</span></button></Link>
               <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span >Preguntas Frecuentes</span></button></Link>
-              <Link to='/TaC' ><button className={navStyles.buttonClasses}><span >Terminos y Condiciones</span></button></Link>
+              <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y condiciones</span></button></Link>
               <Link to='/myEvents'><button className={navStyles.buttonClasses}><span >Mis Eventos</span></button></Link>
               <button className={navStyles.buttonClasses} onClick={() => { dispatch(logOut()) }}><span >Cerrar Sesión</span></button>
               <Car />
@@ -151,7 +152,6 @@ const Nav = (props) => {
           <div className={navStyles.linkContainerClassesMobile} id="container">
             <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span >Preguntas Frecuentes</span></button></Link>
             <Link to='/TaC' ><button className={navStyles.buttonClasses}><span >Terminos y condiciones</span></button></Link>
-            <Link to='/Admin/Panel'><button className={navStyles.buttonClasses}><span >Dashboard</span></button></Link>
             <button className={navStyles.buttonClasses} onClick={() => { dispatch(logOut()) }}><span >Cerrar Sesión</span></button>
             <Car/>
           </div>
@@ -160,17 +160,44 @@ const Nav = (props) => {
       </Hamburguer>
     );
   }
-  else {
-    if (Object.keys(userSesion).length === 0) {
-      return (
+    else {
+      if (Object.keys(userSesion).length === 0) {
+        return (
+          <nav className={navStyles.navClasses}>
+            <div className={`${navStyles.containerClasses} flex justify-between items-center`}>
+              <Link to="/" ><h3 className={navStyles.logoClasses}>BOHO</h3></Link>
+              <div className={navStyles.linkContainerClasses}>
+                <Link to="/login" ><button className={navStyles.buttonClasses}><span class="relative z-10">Inicia Sesión</span></button></Link>
+                <Link to="/register" ><button className={navStyles.buttonClasses}><span class="relative z-10">Registrate</span></button></Link>
+                <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
+                <GoogleLogin onSuccess={handleCallbackResponse} onError={errorMessage} />
+                <Car />
+              </div>
+            </div>
+            <div className={styles.rotatingBar}></div>
+          </nav>
+        );
+      };
+
+      let isAdmin = false;
+      let isSeller = false;
+
+      userSesion.roles.forEach(role => {
+        isAdmin = isAdmin || role === "admin";
+        isSeller = isSeller || role === "seller";
+      });
+
+    if( isSeller && !isAdmin ) {
+      return(
         <nav className={navStyles.navClasses}>
           <div className={`${navStyles.containerClasses} flex justify-between items-center`}>
             <Link to="/" ><h3 className={navStyles.logoClasses}>BOHO</h3></Link>
             <div className={navStyles.linkContainerClasses}>
-              <Link to="/login" ><button className={navStyles.buttonClasses}><span class="relative z-10">Inicia Sesión</span></button></Link>
-              <Link to="/register" ><button className={navStyles.buttonClasses}><span class="relative z-10">Registrate</span></button></Link>
+              <Link to='/createEvent' ><button className={navStyles.buttonClasses}><span class="relative z-10">Crear Evento</span></button></Link>
               <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
-              <GoogleLogin onSuccess={handleCallbackResponse} onError={errorMessage} />
+              <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y Condiciones</span></button></Link>
+              <Link to='/myEvents'><button className={navStyles.buttonClasses}><span class="relative z-10">Mis Eventos</span></button></Link>
+              <button className={navStyles.buttonClasses} onClick={() => {dispatch(logOut())}}><span class="relative z-10">Cerrar Sesión</span></button>
               <Car />
             </div>
           </div>
@@ -179,61 +206,39 @@ const Nav = (props) => {
       );
     };
 
-    let isAdmin = false;
-    let isSeller = false;
-
-    userSesion.roles.forEach(role => {
-      isAdmin = isAdmin || role === "admin";
-      isSeller = isSeller || role === "seller";
-    });
-
-  if( isSeller ) {
-    return(
-      <nav className={navStyles.navClasses}>
-        <div className={`${navStyles.containerClasses} flex justify-between items-center`}>
-          <Link to="/" ><h3 className={navStyles.logoClasses}>BOHO</h3></Link>
-          <div className={navStyles.linkContainerClasses}>
-            <Link to='/createEvent' ><button className={navStyles.buttonClasses}><span class="relative z-10">Crear Evento</span></button></Link>
-            <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
-            <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y Condiciones</span></button></Link>
-            <Link to='/myEvents'><button className={navStyles.buttonClasses}><span class="relative z-10">Mis Eventos</span></button></Link>
-            <button className={navStyles.buttonClasses} onClick={() => {dispatch(logOut())}}><span class="relative z-10">Cerrar Sesión</span></button>
+    if( isAdmin ) {
+      return (
+        <nav className={navStyles.navClasses}>
+          <div className={`${navStyles.containerClasses} flex justify-between items-center`}>
+            <Link to="/" ><h3 className={navStyles.logoClasses}>BOHO</h3></Link>
+            <div className={navStyles.linkContainerClasses}>
+              <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
+              <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y condiciones</span></button></Link>
+              <Link to='/myEvents'><button className={navStyles.buttonClasses}><span class="relative z-10">Mis Eventos</span></button></Link>
+              <Link to='/Admin/Panel'><button className={navStyles.buttonClasses}><span >Dashboard</span></button></Link>
+              <button className={navStyles.buttonClasses} onClick={() => {dispatch(logOut())}}><span class="relative z-10">Cerrar Sesión</span></button>
+              <Car />
+            </div>
           </div>
-        </div>
-        <div className={styles.rotatingBar}></div>
-      </nav>
-    );
-  };
-
-    return (
+          <div className={styles.rotatingBar}></div>
+        </nav>
+      );
+    }
+    return(
       <nav className={navStyles.navClasses}>
         <div className={`${navStyles.containerClasses} flex justify-between items-center`}>
           <Link to="/" ><h3 className={navStyles.logoClasses}>BOHO</h3></Link>
           <div className={navStyles.linkContainerClasses}>
             <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
             <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y condiciones</span></button></Link>
-            <Link to='/myEvents'><button className={navStyles.buttonClasses}><span class="relative z-10">Mis Eventos</span></button></Link>
             <button className={navStyles.buttonClasses} onClick={() => {dispatch(logOut())}}><span class="relative z-10">Cerrar Sesión</span></button>
+            <Car />
           </div>
         </div>
         <div className={styles.rotatingBar}></div>
       </nav>
     );
   };
-
-  return(
-    <nav className={navStyles.navClasses}>
-      <div className={`${navStyles.containerClasses} flex justify-between items-center`}>
-        <Link to="/" ><h3 className={navStyles.logoClasses}>BOHO</h3></Link>
-        <div className={navStyles.linkContainerClasses}>
-          <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span class="relative z-10">Preguntas Frecuentes</span></button></Link>
-          <Link to='/TaC' ><button className={navStyles.buttonClasses}><span class="relative z-10">Terminos y condiciones</span></button></Link>
-          <button className={navStyles.buttonClasses} onClick={() => {dispatch(logOut())}}><span class="relative z-10">Cerrar Sesión</span></button>
-        </div>
-      </div>
-      <div className={styles.rotatingBar}></div>
-    </nav>
-  );
 }
 
 export default Nav;
