@@ -36,6 +36,10 @@ const Nav = (props) => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+  const handlePress = () => {
+    setIsMenuOpen(false);
+  }
+
   const handleMenu = () => {
     console.log(isMenuOpen)
     setIsMenuOpen(!isMenuOpen)
@@ -67,10 +71,10 @@ const Nav = (props) => {
               </svg></button>
             </div>
             <div className={navStyles.linkContainerClassesMobile} id="container">
-              <Link to="/login" ><button className={navStyles.buttonClasses}><span >Inicia Sesión</span></button></Link>
-              <Link to="/register" ><button className={navStyles.buttonClasses}><span >Registrate</span></button></Link>
-              <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span>Preguntas Frecuentes</span></button></Link>
-              <Link to="/about" ><button className={navStyles.buttonClasses}><span >Nosotros</span></button></Link>
+              <Link to="/login" ><button className={navStyles.buttonClasses} onClick={handlePress}><span >Inicia Sesión</span></button></Link>
+              <Link to="/register" ><button className={navStyles.buttonClasses} onClick={handlePress}><span >Registrate</span></button></Link>
+              <Link to='/FAQ' ><button className={navStyles.buttonClasses} onClick={handlePress}><span>Preguntas Frecuentes</span></button></Link>
+              <Link to="/about" ><button className={navStyles.buttonClasses} onClick={handlePress}><span >Nosotros</span></button></Link>
               <div className="place-self-center mb-2">
                 <GoogleLogin onSuccess={handleCallbackResponse} onError={errorMessage} />
               </div>
@@ -102,11 +106,11 @@ const Nav = (props) => {
               </svg></button>
             </div>
             <div className={navStyles.linkContainerClassesMobile} id="container">
-              <Link to='/createEvent' ><button className={navStyles.buttonClasses}><span >Crear Evento</span></button></Link>
-              <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span >Preguntas Frecuentes</span></button></Link>
-              <Link to="/about" ><button className={navStyles.buttonClasses}><span >Nosotros</span></button></Link>
-              <Link to='/myEvents'><button className={navStyles.buttonClasses}><span >Mis Eventos</span></button></Link>
-              <Link to='/MiPerfil' ><button className={navStyles.buttonClasses}><span class="relative z-10">Mi Perfil</span></button></Link>
+              <Link to='/createEvent' ><button className={navStyles.buttonClasses} onClick={handlePress}><span >Crear Evento</span></button></Link>
+              <Link to='/FAQ' ><button className={navStyles.buttonClasses} onClick={handlePress}><span >Preguntas Frecuentes</span></button></Link>
+              <Link to="/about" ><button className={navStyles.buttonClasses} onClick={handlePress}><span >Nosotros</span></button></Link>
+              <Link to='/myEvents'><button className={navStyles.buttonClasses} onClick={handlePress}><span >Mis Eventos</span></button></Link>
+              <Link to='/MiPerfil' ><button className={navStyles.buttonClasses} onClick={handlePress}><span class="relative z-10">Mi Perfil</span></button></Link>
               <button className={navStyles.buttonClasses} onClick={() => { dispatch(logOut()) }}><span >Cerrar Sesión</span></button>
               <Car />
             </div>
@@ -128,12 +132,12 @@ const Nav = (props) => {
               </svg></button>
             </div>
             <div className={navStyles.linkContainerClassesMobile} id="container">
-              <Link to='/createEvent' ><button className={navStyles.buttonClasses}><span >Crear Evento</span></button></Link>
-              <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span >Preguntas Frecuentes</span></button></Link>
-              <Link to="/about" ><button className={navStyles.buttonClasses}><span >Nosotros</span></button></Link>
-              <Link to='/myEvents'><button className={navStyles.buttonClasses}><span >Mis Eventos</span></button></Link>
-              <Link to='/Admin/Panel'><button className={navStyles.buttonClasses}><span >Dashboard</span></button></Link>
-              <Link to='/MiPerfil' ><button className={navStyles.buttonClasses}><span class="relative z-10">Mi Perfil</span></button></Link>
+              <Link to='/createEvent' ><button className={navStyles.buttonClasses} onClick={handlePress}><span >Crear Evento</span></button></Link>
+              <Link to='/FAQ' ><button className={navStyles.buttonClasses} onClick={handlePress}><span >Preguntas Frecuentes</span></button></Link>
+              <Link to="/about" ><button className={navStyles.buttonClasses} onClick={handlePress}><span >Nosotros</span></button></Link>
+              <Link to='/myEvents'><button className={navStyles.buttonClasses} onClick={handlePress}><span >Mis Eventos</span></button></Link>
+              <Link to='/Admin/Panel'><button className={navStyles.buttonClasses} onClick={handlePress}><span >Dashboard</span></button></Link>
+              <Link to='/MiPerfil' ><button className={navStyles.buttonClasses} onClick={handlePress}><span class="relative z-10">Mi Perfil</span></button></Link>
               <button className={navStyles.buttonClasses} onClick={() => { dispatch(logOut()) }}><span >Cerrar Sesión</span></button>
               <Car />
             </div>
@@ -153,9 +157,9 @@ const Nav = (props) => {
             </svg></button>
           </div>
           <div className={navStyles.linkContainerClassesMobile} id="container">
-            <Link to='/FAQ' ><button className={navStyles.buttonClasses}><span >Preguntas Frecuentes</span></button></Link>
-            <Link to="/about" ><button className={navStyles.buttonClasses}><span >Nosotros</span></button></Link>
-            <Link to='/MiPerfil' ><button className={navStyles.buttonClasses}><span class="relative z-10">Mi Perfil</span></button></Link>
+            <Link to='/FAQ' ><button className={navStyles.buttonClasses} onClick={handlePress}><span >Preguntas Frecuentes</span></button></Link>
+            <Link to="/about" ><button className={navStyles.buttonClasses} onClick={handlePress}><span >Nosotros</span></button></Link>
+            <Link to='/MiPerfil' ><button className={navStyles.buttonClasses} onClick={handlePress}><span class="relative z-10">Mi Perfil</span></button></Link>
             <button className={navStyles.buttonClasses} onClick={() => { dispatch(logOut()) }}><span >Cerrar Sesión</span></button>
             <Car/>
           </div>

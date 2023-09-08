@@ -92,12 +92,12 @@ const EventFilter = () => {
         </select>
         
         <select value={sortOrder} onChange={e => setSortOrder(e.target.value)} className={FilStyles.select}>
-          <option value="ASC">Acendente</option>
-          <option value="DESC">Decendente</option>
+          <option value="ASC">Ascendente</option>
+          <option value="DESC">Descendente</option>
         </select>
   
         <button onClick={handleResetFilters} className={FilStyles.Button}>
-          <span class="relative z-10">Quitar </span>
+          <span class="relative z-10">Limpiar Filtros</span>
         </button>
 
       </div>
