@@ -4,19 +4,23 @@ import sucess from './sucess.png'
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { styles } from "./salesStyles";
+import style from "./Sales.module.css"
 
 export default function SalesPay() {
     const { id } = useParams()
     const [result, setResult] = useState(null)
     const [error, setError] = useState({})
     const [v, setv] = useState(null)
+    const [eBuy, setEBuy ] = useState([])
+    const total = eBuy?.map((e) => { return e.price * e.quantity }).reduce(function (a, v) { return a + v }, 0)
 
     useEffect(() => {
         axios.get('/sales/' + id)
             .then(({ data }) => {
                 setResult(data)
-                setv(data.dataValues)
-            })
+                setEBuy(data.eventsToAdd)
+                return data
+            }).then(result => setv(result.dataValues.isSuccesful))
             .catch(error => setError(error))
 
         return setResult({})
@@ -25,37 +29,66 @@ export default function SalesPay() {
 
     return (
         <div className={styles.body}>
-            {console.log(v?.isSuccesful)}
+            {console.log(v)}
             {result === null ?
                 (<div class="flex items-center justify-center">
-                    <div role="status">
-                        <svg aria-hidden="true" class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" /><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill" /></svg>
-                        <span class="sr-only">Loading...</span>
-                    </div>
+                    <svg viewBox="0 0 240 240" height="240" width="240" class={style.loader}>
+                        <circle stroke-linecap="round" stroke-dashoffset="-330" stroke-dasharray="0 660" stroke-width="20" stroke="#000" fill="none" r="105" cy="120" cx="120" className={`${style.loaderRing} ${style.loaderRingA}`}></circle>
+                        <circle stroke-linecap="round" stroke-dashoffset="-110" stroke-dasharray="0 220" stroke-width="20" stroke="#000" fill="none" r="35" cy="120" cx="120" className={`${style.loaderRing} ${style.loaderRingB}`}></circle>
+                        <circle stroke-linecap="round" stroke-dasharray="0 440" stroke-width="20" stroke="#000" fill="none" r="70" cy="120" cx="85" className={`${style.loaderRing} ${style.loaderRingC}`}></circle>
+                        <circle stroke-linecap="round" stroke-dasharray="0 440" stroke-width="20" stroke="#000" fill="none" r="70" cy="120" cx="155" className={`${style.loaderRing} ${style.loaderRingD}`}></circle>
+                    </svg>
                 </div>) : (
                     <div className="m-10">
-                        {v?.isSuccesful && (
-                            <div>
-                                <p className={styles.p}>Nombre del evento: {result.eventName}</p>
-                                {/* <div className="flex justify-center">
-                                    <img src={result.eventImage} alt="evento" /> 
-                                </div> */}
-                                <p className={styles.p}>Cantidad de tickets: {result.quantity}</p>
-                                <p className={styles.p}>Fecha: {result.date}</p>
-                                <p className={styles.p}>Hour: {result.hour}</p>
-                                <p className={styles.p}>Direccion: {result.address}</p>
-                                <div className="flex justify-center">
-                                    <img src={sucess} alt="aprobado" />
-                                </div>
-                                <p className={styles.exito}>tu pago fue aceptado!</p>
+                        {v == null && (
+                            <div class="flex items-center justify-center">
+                                <svg viewBox="0 0 240 240" height="240" width="240" class={style.loader}>
+                                    <circle stroke-linecap="round" stroke-dashoffset="-330" stroke-dasharray="0 660" stroke-width="20" stroke="#000" fill="none" r="105" cy="120" cx="120" className={`${style.loaderRing} ${style.loaderRingA}`}></circle>
+                                    <circle stroke-linecap="round" stroke-dashoffset="-110" stroke-dasharray="0 220" stroke-width="20" stroke="#000" fill="none" r="35" cy="120" cx="120" className={`${style.loaderRing} ${style.loaderRingB}`}></circle>
+                                    <circle stroke-linecap="round" stroke-dasharray="0 440" stroke-width="20" stroke="#000" fill="none" r="70" cy="120" cx="85" className={`${style.loaderRing} ${style.loaderRingC}`}></circle>
+                                    <circle stroke-linecap="round" stroke-dasharray="0 440" stroke-width="20" stroke="#000" fill="none" r="70" cy="120" cx="155" className={`${style.loaderRing} ${style.loaderRingD}`}></circle>
+                                </svg>
                             </div>)}
-                        {v == null && <div class="flex items-center justify-center">
-                            <div role="status">
-                                <svg aria-hidden="true" class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" /><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill" /></svg>
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                        </div>}
-                        {!v?.isSuccesful && (
+                        {v && (
+                            <div>
+                                <div className={style.label}>
+                                    <header className={style.header}>
+                                        <h1 className={style.bold}>Resumen de compra</h1>
+                                        <div className={style.divider}></div>
+                                        <p>BOHO, Compra seguro con nosotros!!</p>
+                                    </header>
+                                    <div className={`${style.divider} ${style.large}`}></div>
+                                    <div className={style.calories_info}>
+                                        <div className={style.left_container}>
+                                            {/* <h2 className={`${style.bold} ${style.small_text}`}>Amount per serving</h2> */}
+                                            <p>Eventos comprados: {eBuy?.length}</p>
+                                        </div>
+                                    </div>
+                                    <div className={`${style.divider} ${style.medium}`}></div>
+                                    {eBuy?.map(e => {
+                                        return (
+                                            <div>
+                                                <p>{e.eventName}</p>
+                                                <p>Tickets: <span class="bold">{e.quantity}unid.</span></p>
+                                                <p className={style.bold}>precio: <span class="bold">{e.quantity * e.price}$</span></p>
+                                                <div className={style.divider}></div>
+                                            </div>
+                                        )
+                                    })}
+                                    <div className={`${style.divider} ${style.medium}`}></div>
+                                    <div className={style.calories_info}>
+                                        <div className={style.left_container}>
+                                            <p>Total: {total}$</p>
+                                        </div>
+                                    </div>
+                                    <div className={`${style.divider} ${style.medium}`}></div>
+                                    <div className="flex justify-center">
+                                        <p>tu pago fue aceptado con exito!</p>
+                                    </div>
+                                </div>
+                            </div>)}
+
+                        {v === false && (
                             <div className={styles.info}>
                                 <div className="flex justify-center">
                                     <img src={reject} alt="rechazado" />

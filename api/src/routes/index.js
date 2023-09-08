@@ -7,7 +7,7 @@ const mercadoRouter = require("./mercadoRouter");
 const passwordRouter = require("./passwordRouter");
 const saleRouter = require('./saleRouter');
 const reviewsRouter = require('./reviewsRouter')
-const dashboardUserRouter = require('./dashboardUserRouter')
+const cartsRouter = require('./cartsRouter')
 const router = Router();
 
 router.use("/events", eventRouter);
@@ -17,9 +17,6 @@ router.use("/orderMercadoPago", mercadoRouter);
 router.use("/password", passwordRouter);
 router.use("/sales", saleRouter);
 router.use("/reviews", reviewsRouter);
-router.use("/dashboardUser", dashboardUserRouter)
-
-
-
+router.use("/carts", cartsRouter);
 
 module.exports = router;
