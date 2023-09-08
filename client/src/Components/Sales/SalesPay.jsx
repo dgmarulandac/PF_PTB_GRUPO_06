@@ -5,13 +5,14 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { styles } from "./salesStyles";
 import style from "./Sales.module.css"
+import { Link } from "react-router-dom";
 
 export default function SalesPay() {
     const { id } = useParams()
     const [result, setResult] = useState(null)
     const [error, setError] = useState({})
     const [v, setv] = useState(null)
-    const [eBuy, setEBuy ] = useState([])
+    const [eBuy, setEBuy] = useState([])
     const total = eBuy?.map((e) => { return e.price * e.quantity }).reduce(function (a, v) { return a + v }, 0)
 
     useEffect(() => {
@@ -86,6 +87,10 @@ export default function SalesPay() {
                                         <p>tu pago fue aceptado con exito!</p>
                                     </div>
                                 </div>
+                                <Link to='/'>
+                                    <button className={styles.button}>Volver al inicio</button>
+                                </Link>
+
                             </div>)}
 
                         {v === false && (
