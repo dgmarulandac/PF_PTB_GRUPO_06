@@ -1,7 +1,6 @@
 const { Event } = require("../../db");
 const { Op } = require('sequelize');
 
-
 const getEventFilterController = async (
 	name,
 	eventType,
