@@ -64,6 +64,7 @@ function App() {
         <Route path='/createEvent' element={<SellerOrAdminElement><FormEvent /></SellerOrAdminElement>} />
         <Route path='/myEvents' element={<SellerOrAdminElement><EventsDashboard/></SellerOrAdminElement>}/>
         <Route path='/editEvent/:id' element={<SellerOrAdminElement><EditEvent/></SellerOrAdminElement>}/> 
+        <Route path='/misCompras/' element={<MisCompras/>}/> 
       </Routes>
       <Footer />
     </div>
