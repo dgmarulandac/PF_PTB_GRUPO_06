@@ -7,6 +7,7 @@ import EventFilter from "../EventFilter/EventFilter";
 import * as styles from "./HomeStiles";
 import Slider from "../Slider/Slider";
 import Modal from "../Modal/Modal";
+import CarModal from '../Car/CarModal/CarModal'
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -65,7 +66,7 @@ export default function Home() {
           page={currentPage}
           paginado={setCurrentPage}
         />
-        {modalOn && <Modal/>}
+        {modalOn && <CarModal/>}
       </div>
     </div>
   );

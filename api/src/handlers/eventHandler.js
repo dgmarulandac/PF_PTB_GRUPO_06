@@ -31,8 +31,7 @@ const getEventByIdHandler = async (req, res) => {
 
 const getMyEventHandler = async (req, res) => {
     try {
-        const { id } = req.params;
-        const events = await getMyEvents(id,req.id);
+        const events = await getMyEvents(req.id);
         res.status(200).json(events);
     } catch (error) {
         res.status(404).json({error: error.message});

@@ -15,14 +15,10 @@ export default function Register() {
         name: '',
         password: '',
         email: '',
-        typeOfUser: '',
-        companyRut: '',
         address: '',
         nationality: 'Argentina',
         phone: '',
-        isCompany: false,
     });
-    const [result, setResult] = useState(0)
     const [listErrors, setListErrors] = useState([])
     const { country } = useSelector(state => state)
     function handleChange(e) {
@@ -36,7 +32,7 @@ export default function Register() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        const { displayName, name, password, address, email, typeOfUser, phone, nationality, isCompany } = users
+        const { displayName, name, password, address, email, typeOfUser, phone, nationality } = users
         const errors = registerValidation(displayName, name, password, address, email, typeOfUser, phone, nationality)
         if (errors.length === 0) {
 
@@ -114,28 +110,6 @@ export default function Register() {
                         <label className={styles.label} for="email">Email:</label>
                         <input className={styles.input} type="text" name="email" onChange={handleChange} placeholder="ejemplo@ejemplo.com" />
                     </div>
-                    <div>
-                        <label className={styles.label} htmlFor="typeOfUser">Usuario:</label>
-                        <div className={styles.dual}>
-                            <div>
-                                <input type="radio" id="clientRadio" name="typeOfUser" value="Cliente" onChange={handleChange} />
-                                <label className={styles.label} htmlFor="clientRadio">Cliente</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="companyRadio" name="typeOfUser" value="Empresa" onChange={handleChange} />
-                                <label className={styles.label} htmlFor="companyRadio">Empresa</label>
-                            </div>
-                        </div>
-                    </div>
-                    {
-                        users.typeOfUser === 'Empresa' ?
-                            <div className={styles.div_ind}>
-                                <label className={styles.label} htmlFor="companyRut">Rut:</label>
-                                <input className={styles.input} type="number" id="companyRut" name="companyRut" placeholder="Rut de la compania (no es oblicatorio)" onChange={handleChange} />
-                            </div>
-                            :
-                            null
-                    }
                     <div className={styles.div_ind}>
                         <label className={styles.label} for="direccion">Dirección:</label>
                         <input className={styles.input} name="address" placeholder="Debe ser asi: Bv.España 234, Madrid" onChange={handleChange} />

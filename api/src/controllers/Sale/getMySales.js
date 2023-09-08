@@ -7,7 +7,7 @@ const getMySales = async (idSeller) => {
     }});
 
     if( events.length === 0 ) {
-        throw Error("")
+        return [];
     }
 
     let orders = [];
