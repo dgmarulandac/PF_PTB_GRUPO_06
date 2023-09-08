@@ -16,6 +16,11 @@ export default function CardEvent({ e }) {
         // v ? setV(false) : setV(true)
         setV(!v)
     }
+
+    useEffect( () =>{
+        setActive(e.active);
+    }, [e] )
+
     const available = async () => {
         axios.put("/events/toggleEvent/" + e.id, {}, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
             .then(({ data }) => {
