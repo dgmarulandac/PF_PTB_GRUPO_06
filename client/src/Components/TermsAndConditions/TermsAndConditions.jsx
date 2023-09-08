@@ -11,7 +11,7 @@ export default function TermsAndConditions() {
 
   const handleAcceptance = () => {
     if (accepted) {
-      navigate("/");
+      navigate("/register");
     } else {
       Swal.fire({
         title: "Aceptar términos y condiciones",

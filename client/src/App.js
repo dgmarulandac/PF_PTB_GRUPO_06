@@ -62,7 +62,7 @@ function App() {
         <Route path='/passwordReset' element={<NotLoggedElement><ResetPassword /></NotLoggedElement>} />
         <Route path='/passwordRecover/:token' element={<NotLoggedElement><RecoverPassword /></NotLoggedElement>} />
         <Route path='/MiPerfil' element={<LoggedElement><UserProfile/></LoggedElement>} />
-        <Route path='/TaC' element={<LoggedElement><TermsAndConditions /></LoggedElement>} />
+        <Route path='/TaC' element={<NotLoggedElement><TermsAndConditions /></NotLoggedElement>} />
         <Route path='/createEvent' element={<SellerOrAdminElement><FormEvent /></SellerOrAdminElement>} />
         <Route path='/myEvents' element={<SellerOrAdminElement><EventsDashboard/></SellerOrAdminElement>}/>
         <Route path='/editEvent/:id' element={<SellerOrAdminElement><EditEvent/></SellerOrAdminElement>}/> 
