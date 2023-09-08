@@ -22,6 +22,7 @@ import RecoverPassword from './Components/RecoverPassword/RecoverPassword';
 import EventsDashboard from './Components/EventsDashboard/EventsDashboard';
 import AdminPanel from './Components/AdminPanel/AdminPanel';
 import SalesPay from './Components/Sales/SalesPay';
+import UserProfile from './Components/UserPerfil/UserProfile';
 import AboutUs from './Components/AboutUS/AboutUS';
 
 //Componentes Autorizacion
@@ -55,19 +56,20 @@ function App() {
         <Route path='/FAQ' element={<FAQ />} />
         <Route path='/event/:id' element={<Detail />} />
         <Route path='/sales/:id' element={<SalesPay />} />
+        <Route path='/about' element={<AboutUs />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<NotLoggedElement><Register /></NotLoggedElement>} />
         <Route path='/passwordReset' element={<NotLoggedElement><ResetPassword /></NotLoggedElement>} />
         <Route path='/passwordRecover/:token' element={<NotLoggedElement><RecoverPassword /></NotLoggedElement>} />
+        <Route path='/MiPerfil' element={<LoggedElement><UserProfile/></LoggedElement>} />
         <Route path='/TaC' element={<LoggedElement><TermsAndConditions /></LoggedElement>} />
         <Route path='/createEvent' element={<SellerOrAdminElement><FormEvent /></SellerOrAdminElement>} />
         <Route path='/myEvents' element={<SellerOrAdminElement><EventsDashboard/></SellerOrAdminElement>}/>
         <Route path='/editEvent/:id' element={<SellerOrAdminElement><EditEvent/></SellerOrAdminElement>}/> 
-        <Route path='/about' element={<AboutUs />} />
         <Route path='/myEvents' element={<SellerOrAdminElement><EventsDashboard /></SellerOrAdminElement>} />
         <Route path='/editEvent/:id' element={<SellerOrAdminElement><EditEvent /></SellerOrAdminElement>} />
-        <Route path='/Admin/Panel' element={<AdminPanel />} />
-        <Route path='/Admin/Panel/:id' element={<DetailUser />} />
+        <Route path='/Admin/Panel' element={<AdminElement><AdminPanel /></AdminElement>} />
+        <Route path='/Admin/Panel/:id' element={<AdminElement><DetailUser /></AdminElement>} />
       </Routes>
       <Footer />
     </div>
