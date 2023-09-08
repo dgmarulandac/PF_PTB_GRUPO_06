@@ -97,7 +97,7 @@ const EventFilter = () => {
         </select>
   
         <button onClick={handleResetFilters} className={FilStyles.Button}>
-          <span class="relative z-10">Remover Filtros</span>
+          <span class="relative z-10">Limpiar Filtros</span>
         </button>
 
       </div>
