@@ -7,17 +7,15 @@ export default function UserProfile() {
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
 
+  console.log(user);
+
   // Estado inicial con valores vacíos
   const [editedUserData, setEditedUserData] = useState({
-    displayName: "",
-    name: "",
-    password: "",
-    email: "",
-    typeOfUser: "",
-    companyRut: "",
-    address: "",
-    nationality: "",
-    phone: "",
+    displayName: user.displayName,
+    name: user.name,
+    address: user.address,
+    nationality: user.nationality,
+    phone: user.phone
   });
 
   useEffect(() => {
@@ -37,7 +35,7 @@ export default function UserProfile() {
 
   const handleSaveClick = async () => {
     try {
-      await dispatch(putUserProfile(editedUserData));
+      dispatch(putUserProfile(editedUserData));
       setIsEditing(false);
     } catch (error) {
       console.error("Error al actualizar el perfil:", error);
@@ -73,32 +71,6 @@ export default function UserProfile() {
               type="text"
               name="name"
               value={editedUserData.name}
-              onChange={handleChange}
-              readOnly={!isEditing}
-              className="mx-auto shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            />
-          </div>
-          <div >
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Contraseña:
-            </label>
-            <input
-              type="password"
-              name="password"
-              value={editedUserData.password}
-              onChange={handleChange}
-              readOnly={!isEditing}
-              className="mx-auto shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            />
-          </div>
-          <div >
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Email:
-            </label>
-            <input
-              type="text"
-              name="email"
-              value={editedUserData.email}
               onChange={handleChange}
               readOnly={!isEditing}
               className="mx-auto shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"

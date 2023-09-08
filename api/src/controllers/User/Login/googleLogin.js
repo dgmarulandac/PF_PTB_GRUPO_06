@@ -21,6 +21,9 @@ const googleLogin = async (email) => {
         email: candidateUser.email,
         name: candidateUser.name,
         image: candidateUser.image,
+        address: candidateUser.address,
+        nationality: candidateUser.nationality,
+        phone: candidateUser.phone,
         roles: roles,
         jwt: token
     };
