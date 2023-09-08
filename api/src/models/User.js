@@ -26,9 +26,6 @@ module.exports = (sequelize) => {
                 isEmail: true
             }
         },
-        identification:  {
-            type: DataTypes.STRING
-        },
         nationality: {
             type: DataTypes.ENUM('Colombia', 'Venezuela', 'Argentina', 'Uruguay', 'Chile')
         },
