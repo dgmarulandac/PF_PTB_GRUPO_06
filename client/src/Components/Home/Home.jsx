@@ -39,12 +39,12 @@ export default function Home() {
       <Slider />
       <EventFilter />
       <div className="bg-white dark:bg-gray-700">
-        {!eventosAMostrar ? (
+        {eventosAMostrar.length === 0 ? (
           <div className="flex justify-center m-10">
             <h2 className={styles.error}>No existe ningún evento para Mostrar.</h2>
           </div>) : (
           <div className={styles.cardcontainer}>
-            {eventosAMostrar && eventosAMostrar.map((event) => {
+            {eventosAMostrar.map((event) => {
               return <Card event={event} key={event.id} />
             })}
           </div>)
