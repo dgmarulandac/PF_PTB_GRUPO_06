@@ -25,7 +25,7 @@ const MisCompras = () => {
     Object.keys(salesByMonth).length === 0 ? (
       <div className={styles.noPurchasesMessage}>
         No tienes compras realizadas hasta el momento.
-        No seas rata compra..
+        No seas rata, compra pobre..
       </div>
     ) : null;
 
