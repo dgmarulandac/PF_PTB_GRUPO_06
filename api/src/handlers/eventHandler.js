@@ -6,12 +6,10 @@ const putEvent = require('../controllers/Event/putEvent');
 const getAdminEvents = require('../controllers/Event/getAdminEvents');
 const toggleEvent = require('../controllers/Event/toggleEvent');
 
-
-
 const getEventHandler = async (req, res) => {
-    const { name, eventType, country, date, ticketPrice, order, sortOrder } = req.query;
+    const { name, eventType, country, date, order, sortOrder } = req.query;
     try {
-        const events = await getEventFilterController(name, eventType, country, date, ticketPrice, order, sortOrder);
+        const events = await getEventFilterController(name, eventType, country, date, order, sortOrder);
         res.status(200).json(events);
     } catch (error) {
         res.status(404).json({error: error.message});

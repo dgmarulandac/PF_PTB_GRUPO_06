@@ -82,7 +82,7 @@ const EventFilter = () => {
         </div>
       </div>
     </nav>
-  
+
         <select value={order} onChange={e => setOrder(e.target.value)} className={FilStyles.select}>
           <option value="">Ordenar por</option>
           <option value="name">Nombre</option>
@@ -90,10 +90,16 @@ const EventFilter = () => {
           <option value="eventType">Tipo de Evento</option>
           <option value="ticketPrice">Precio de boleto</option>
         </select>
+        
+        <select value={sortOrder} onChange={e => setSortOrder(e.target.value)} className={FilStyles.select}>
+          <option value="ASC">Acendente</option>
+          <option value="DESC">Decendente</option>
+        </select>
   
         <button onClick={handleResetFilters} className={FilStyles.Button}>
           <span class="relative z-10">Quitar </span>
         </button>
+
       </div>
     </nav>
   );
