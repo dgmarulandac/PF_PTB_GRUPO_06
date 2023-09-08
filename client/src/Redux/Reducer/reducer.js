@@ -1,4 +1,4 @@
-import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES, POST_REVIEW, ADD_CAR, GET_EVENTS_ADMIN, ADD_TO_CAR, PLUS_LESS, PUT_PROFILE, DELETE_EVENT_CAR, SEARCH_EVENT_ADMIN } from "../Action/action-type";
+import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES, POST_REVIEW, ADD_CAR, GET_EVENTS_ADMIN, ADD_TO_CAR, PLUS_LESS, PUT_PROFILE, DELETE_EVENT_CAR, SEARCH_EVENT_ADMIN, GET_MY_PURCHASES } from "../Action/action-type";
 
 const initialState = {
     country: ['Colombia', 'Venezuela', 'Argentina', 'Uruguay'],
@@ -12,7 +12,8 @@ const initialState = {
     mySales: [],
     preferenceId: false,
     shoppingCar: [],
-    eventsAdmin: []
+    eventsAdmin: [],
+    myPurchases: []
 }
 
 const rootReducer = (state = initialState, action)=>{
@@ -52,9 +53,6 @@ const rootReducer = (state = initialState, action)=>{
             return {...state, eventsAdmin: payload}
         case SEARCH_EVENT_ADMIN:
             return {...state, eventsAdmin: payload}
-        case PUT_PROFILE:
-            console.log(payload);
-            return{...state , userSesion: {...state.userSesion, ...payload }};
         default: 
             return state;
     }
