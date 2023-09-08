@@ -13,7 +13,7 @@ useEffect(()=>{},[userOrEvent])
 switch (userOrEvent) {
     case "users":
         return (
-            <div className='bg-whithe dark:bg-fondoDark'>
+            <div className='min-h-screen bg-whithe dark:bg-fondoDark'>
                 <select className="m-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" name="" id="" onChange={handleChange}>
                 <option value="events">Lista de Eventos</option>
                         <option value="users">Lista de Usuarios</option>
@@ -25,7 +25,7 @@ switch (userOrEvent) {
         )
         case "events":
             return (
-                <div className='bg-whithe dark:bg-fondoDark'>
+                <div className='min-h-screen bg-whithe dark:bg-fondoDark'>
                     <select className="m-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" name="" id="" onChange={handleChange}>
                     <option value="events">Lista de Eventos</option>
                         <option value="users">Lista de Usuarios</option>
@@ -37,7 +37,7 @@ switch (userOrEvent) {
             )
         case "reviews":
             return (
-                <div className='bg-whithe dark:bg-fondoDark'>
+                <div className='min-h-screen bg-whithe dark:bg-fondoDark'>
                     <select className="m-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" name="" id="" onChange={handleChange}>
                         <option value="events">Lista de Eventos</option>
                         <option value="users">Lista de Usuarios</option>
@@ -49,7 +49,7 @@ switch (userOrEvent) {
             )
     default:
         return (
-            <div className='bg-whithe dark:bg-fondoDark grid gap-5 justify-center mt-10'>
+            <div className='min-h-screen bg-whithe dark:bg-fondoDark grid gap-5 justify-center mt-10'>
                     <button className="p-5 border-2 border-white rounded-md bg-sky-500 font-bold" value="events" onClick={handleChange}>Lista de Eventos</button>
                     <button className="p-5 border-2 border-white rounded-md bg-sky-500 font-bold" value="users" onClick={handleChange}>Lista de Usuarios</button>
                     <button className="p-5 border-2 border-white rounded-md bg-sky-500 font-bold" value="reviews" onClick={handleChange}>Lista de Reviews</button>
