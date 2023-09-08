@@ -80,20 +80,20 @@ const ActiveUsers = () => {
                 </div>
             </div>
             <div className="place-self-center grid">
-                <h1 className="font-semibold text-xl text-gray-900 dark:text-white border-b-[3px] p-2">Lista de activos</h1>
+                <h1 className="font-semibold text-xl text-gray-900 dark:text-white text-white border-b-[3px] p-2">Lista de activos</h1>
                 
                 {
                     errors ? <p>{`${errors}`}</p> : usuariosAMostrar.length > 0 ? usuariosAMostrar.filter(element => element.active === true).map((element, key) => {
                         return (
                             <div key={key++} className="place-self-center p-5 my-2 w-screen md:w-[37rem] grid grid-cols-[80%_20%] border rounded-lg bg-white dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white">
-                                <Link to={`/Admin/Panel/${element.id}`}><p>{element.email}</p></Link>
+                                <Link to={`/Admin/Panel/${element.id}`}><p className="text-white">{element.email}</p></Link>
                                 <button className="bg-red-900 border rounded-md py-2" value={element.id} onClick={handleBan}>Banear</button>
                             </div>
                         )
                     })
                         :
                         <div>
-                            <p>No hay usuarios</p>
+                            <p className="text-white">No hay usuarios</p>
                         </div>
                 }
                 <Paginado

@@ -54,10 +54,10 @@ const ReviewsBanned = () => {
                                 return (
                                     <div key={key++} className="odd:bg-slate-800 flex h-20 items-center gap-x-5 space-between justify-between px-5">
 
-                                        <p>{element.comment}</p>
+                                        <p className="text-white">{element.comment}</p>
                                         <div className="flex flex-col">
                                             <div>
-                                                <button onClick={handleClick} value={element.id} className="py-3 px-8 bg-green-900 hover:bg-green-800 mx-2 rounded-md ">Activar</button>
+                                                <button onClick={handleClick} value={element.id} className="py-3 text-white px-8 bg-green-900 hover:bg-green-800 mx-2 rounded-md ">Activar</button>
                                             </div>
                                         </div>
                                     </div>

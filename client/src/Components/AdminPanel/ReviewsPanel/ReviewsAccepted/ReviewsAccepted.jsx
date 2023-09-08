@@ -44,7 +44,7 @@ const ReviewsAccepted = () =>{
     }, [reviews])
     return(
                 <div>
-            <h1>Panel de Reviews</h1>
+            <h1 className="text-white">Panel de Reviews</h1>
             <div className="grid">
 
                 <div>
@@ -58,10 +58,10 @@ const ReviewsAccepted = () =>{
                                     return (
                                         <div key={key++} className="odd:bg-slate-800 flex h-20 items-center gap-x-5 space-between justify-between px-5">
 
-                                            <p>{element.comment}</p>
+                                            <p className="text-white">{element.comment}</p>
                                             <div className="flex flex-col">
                                                 <div>
-                                                    <button onClick={handleClick} value={element.id} className="px-5 hover:bg-red-800 bg-red-900 mx-2 rounded-md" style={{ height: '50px' }}>Desactivar</button>
+                                                    <button onClick={handleClick} value={element.id} className="px-5 text-white hover:bg-red-800 bg-red-900 mx-2 rounded-md" style={{ height: '50px' }}>Desactivar</button>
                                                 </div>
                                             </div>
                                         </div>
