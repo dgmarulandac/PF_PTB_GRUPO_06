@@ -1,8 +1,10 @@
 import './App.css';
+import 'tailwindcss/tailwind.css';
 //DEPENDENCIES
-import axios from 'axios';
-import { Route, Routes } from 'react-router-dom';
-
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { postLogin, postAuth } from './Redux/Action/action';
+import { useDispatch } from "react-redux";
 //Components
 import Home from './Components/Home/Home';
 import Register from './Components/register/register';
@@ -13,23 +15,63 @@ import Nav from './Components/Nav/Nav';
 import Footer from './Components/Footer/Footer';
 import TermsAndConditions from './Components/TermsAndConditions/TermsAndConditions';
 import FAQ from './Components/FAQs/FAQs';
-axios.defaults.baseURL = 'https://pf-grupo06-back.onrender.com';
+import EditEvent from './Components/EditEvent/EditEvent';
+import Error404 from './Components/Error 404/Error404';
+import ResetPassword from './Components/ResetPassword/ResetPassword';
+import RecoverPassword from './Components/RecoverPassword/RecoverPassword';
+import EventsDashboard from './Components/EventsDashboard/EventsDashboard';
+import AdminPanel from './Components/AdminPanel/AdminPanel';
+import SalesPay from './Components/Sales/SalesPay';
+import UserProfile from './Components/UserPerfil/UserProfile';
+import AboutUs from './Components/AboutUS/AboutUS';
+
+//Componentes Autorizacion
+import NotLoggedElement from './Utils/AutorizationComponents/NotLoggedElement';
+import SellerOrAdminElement from './Utils/AutorizationComponents/SellerOrAdminElement';
+import LoggedElement from './Utils/AutorizationComponents/LoggedElement';
+import AdminElement from './Utils/AutorizationComponents/AdminElement';
+import DetailUser from './Components/AdminPanel/DetailUser/DetailUser';
 
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    //Creacion del localStorage para el carrito en caso de no estar logueado
+    // findOrCreateShoppingCar()
+    // Auth token
+    if (localStorage.getItem("jwt")) {
+      const userToken = localStorage.getItem("jwt")
+      dispatch(postAuth(userToken))
+    }
+  }, [])
+
   return (
-    <div className="App">
+    <div className="App bg-whithe dark:bg-fondoDark flex flex-col">
       <Nav />
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/login' element={<Login />}/> 
-          <Route path='/register' element={<Register />} />
-          <Route path='/event/:id' element={<Detail/>}/>
-          <Route path='/createEvent' element={<FormEvent/>}/>
-          <Route path='/TaC' element={<TermsAndConditions/>}/>
-          <Route path='/FAQ' element={<FAQ/>}/>
-        </Routes>
-      <Footer/>
+      <Routes>
+        <Route path='/*' element={<Error404 />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/FAQ' element={<FAQ />} />
+        <Route path='/event/:id' element={<Detail />} />
+        <Route path='/sales/:id' element={<SalesPay />} />
+        <Route path='/about' element={<AboutUs />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<NotLoggedElement><Register /></NotLoggedElement>} />
+        <Route path='/passwordReset' element={<NotLoggedElement><ResetPassword /></NotLoggedElement>} />
+        <Route path='/passwordRecover/:token' element={<NotLoggedElement><RecoverPassword /></NotLoggedElement>} />
+        <Route path='/MiPerfil' element={<LoggedElement><UserProfile/></LoggedElement>} />
+        <Route path='/TaC' element={<NotLoggedElement><TermsAndConditions /></NotLoggedElement>} />
+        <Route path='/createEvent' element={<SellerOrAdminElement><FormEvent /></SellerOrAdminElement>} />
+        <Route path='/myEvents' element={<SellerOrAdminElement><EventsDashboard/></SellerOrAdminElement>}/>
+        <Route path='/editEvent/:id' element={<SellerOrAdminElement><EditEvent/></SellerOrAdminElement>}/> 
+        <Route path='/myEvents' element={<SellerOrAdminElement><EventsDashboard /></SellerOrAdminElement>} />
+        <Route path='/editEvent/:id' element={<SellerOrAdminElement><EditEvent /></SellerOrAdminElement>} />
+        <Route path='/Admin/Panel' element={<AdminElement><AdminPanel /></AdminElement>} />
+        <Route path='/Admin/Panel/:id' element={<AdminElement><DetailUser /></AdminElement>} />
+      </Routes>
+      <Footer />
     </div>
   );
 }

@@ -3,6 +3,10 @@ const getUserById = require("../controllers/User/getUserById");
 const postUser = require("../controllers/User/postUser");
 const getUserCheck = require("../controllers/User/getUserCheck");
 const postUserLogin = require("../controllers/User/postUserLogin");
+const postAuth = require("../controllers/User/postAuth");
+const toggleUser = require("../controllers/User/toggleUser");
+const putUser = require("../controllers/User/putUser");
+const putUpdateUser = require("../controllers/User/putUpdateUser");
 
 const getUserHandler = async (req, res) => {
     try {
@@ -25,8 +29,8 @@ const getUserByIdHandler = async (req, res) => {
 
 const postUserHandler = async (req, res) => {
     try {
-        const {displayName, name, phone, email, nationality, address, isCompany, password} = req.body;
-        const newUser = await postUser({displayName, name, phone, email, nationality, address, isCompany, password});
+        const {displayName, name, phone, email, nationality, address, password} = req.body;
+        const newUser = await postUser({displayName, name, phone, email, nationality, address, password});
         res.status(201).json(newUser);
     } catch (error) {
         res.status(404).json({error: error.message});
@@ -47,12 +51,64 @@ const getUserCheckHandler = async (req, res) => {
 const postUserLoginHandler = async (req, res) => {
     try {
         // Debe retornar el JWT
-        const { displayName, email, password } = req.body;
-        const response = await postUserLogin( {displayName, email, password} );
+        const { displayName, email, password, jwt, platform } = req.body;
+        const response = await postUserLogin( {displayName, email, password, jwt, platform} );
         res.status(201).json(response);
     } catch (error) {
         res.status(404).json({error: error.message});
     }
 };
 
-module.exports = { getUserHandler, getUserByIdHandler, postUserHandler, getUserCheckHandler, postUserLoginHandler };
+const postAuthHandler = async (req, res) => {
+    try {
+        const { jwt } = req.body;
+        const response = await postAuth( jwt );
+        res.status(201).json(response);
+    } catch (error) {
+        res.status(404).json({error: error.message});
+    }
+};
+
+const toggleUserHandler = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await toggleUser( id );
+        res.status(201).json(user);
+    } catch (error) {
+        res.status(404).json({error: error.message});
+    }
+};
+
+const putUserHandler = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const {displayName, name, phone, email, nationality, address, Roles, active} = req.body;
+        const user = await putUser( id, {displayName, name, phone, email, nationality, address, Roles, active} );
+        res.status(201).json(user);
+    } catch (error) {
+        res.status(404).json({error: error.message});
+    }
+};
+
+const putUpdateUserHandler = async (req, res) => {
+    try {
+        const id = req.id;
+        const { name, phone, nationality, address, image} = req.body;
+        const user = await putUpdateUser( id, { name, phone, nationality, address, image} );
+        res.status(201).json(user);
+    } catch (error) {
+        res.status(404).json({error: error.message});
+    }
+};
+
+module.exports = { 
+    getUserHandler, 
+    getUserByIdHandler, 
+    postUserHandler, 
+    getUserCheckHandler, 
+    postUserLoginHandler, 
+    postAuthHandler, 
+    toggleUserHandler,
+    putUserHandler,
+    putUpdateUserHandler
+};

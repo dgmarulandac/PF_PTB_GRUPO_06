@@ -6,7 +6,7 @@ const mailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;// detectar m
 const dirRegex = /^[a-zA-ZñÑ\s.,]+ \d+, [a-zA-ZñÑ\s.,]+$/ // detectar la direccion que este bien escrita
 function registerValidation(user, name, password, dir, email, typeOfUser, numPhone, country) {
     const errors = [];
-    axios.get(`https://pf-grupo06-back.onrender.com/users/check?displayName=${user}&email=${email}`)
+    axios.get(`/users/check?displayName=${user}&email=${email}`)
 
         .then(res => res.data)
         .then(data => {
@@ -30,10 +30,10 @@ function registerValidation(user, name, password, dir, email, typeOfUser, numPho
     if (!mailRegex.test(email)) {
         errors.push('Has escrito mal el mail');
     }
-    if (!dirRegex.test(dir)) {
-        console.log(dirRegex.test(dir))
-        errors.push('La direccion debe de tener la siguiente forma: Calle numero, ciudad')
-    }
+    // if (!dirRegex.test(dir)) {
+    //     console.log(dirRegex.test(dir))
+    //     errors.push('La direccion debe de tener la siguiente forma: Calle numero, ciudad')
+    // }
     let phoneRegex;
     let isValidPhone = false;
     
@@ -47,8 +47,9 @@ function registerValidation(user, name, password, dir, email, typeOfUser, numPho
             isValidPhone = phoneRegex.test(numPhone);
             break;
         case 'Argentina':
-            phoneRegex = /^([1-5]\d{6,10}|15\d{8})$/;
-            isValidPhone = phoneRegex.test(numPhone);
+            // phoneRegex = /(11|15|911)\d{8}$/;
+            // isValidPhone = phoneRegex.test(numPhone);
+            isValidPhone = true
             break;
         case 'Venezuela':
             phoneRegex = /^(4\d{9}|[2-3]\d{6})$/;

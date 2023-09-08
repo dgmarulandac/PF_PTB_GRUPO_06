@@ -61,6 +61,22 @@ module.exports = (sequelize) => {
         ticketPrice:{
             type: DataTypes.INTEGER,
             allowNull:false
+        },
+
+        currency: {
+            type:DataTypes.ENUM('COP', 'ARS', 'VEF', 'UYU'),
+            allowNull:false
+        },
+
+        idSeller: {
+            type: DataTypes.UUID,
+            allowNull: false
+        },
+        
+        active:{
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: true
         }
     });
 };

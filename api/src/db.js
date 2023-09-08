@@ -37,23 +37,35 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Event, Role, Sale, User, Review } = sequelize.models;
+const { Event, Role, Sale, User, Review, Order_Event, Order, Cart, Cart_Event } = sequelize.models;
 
 // Aca vendrian las relaciones
-//TODO: Agregar las relaciones para cada modelo.
 
 User.belongsToMany(Role, {through: "User_Role"}); 
 Role.belongsToMany(User, {through: "User_Role"});
 
-User.hasMany(Review);
-Review.belongsTo(User);
+User.hasMany(Event, {foreignKey: 'idSeller'});
+Event.belongsTo(User, {foreignKey: 'idSeller'});
 
-Event.hasMany(Review);
-Review.belongsTo(Event);
+User.hasMany(Order, {foreignKey: 'idBuyer'});
+Order.belongsTo(User, {foreignKey: 'idBuyer'});
 
+Order.hasOne(Sale, {foreignKey: 'idOrder'});
+Sale.belongsTo(Order, {foreignKey: 'idOrder'});
+
+User.hasMany(Review, {foreignKey: 'idUser'});
+Review.belongsTo(User, {foreignKey: 'idUser'});
+
+Event.hasMany(Review, {foreignKey: 'idEvent'});
+Review.belongsTo(Event, {foreignKey: 'idEvent'});
+
+Cart.belongsToMany(Event, {through: Cart_Event, foreignKey:"idCart"}); 
+Event.belongsToMany(Cart, {through: Cart_Event, foreignKey:"idEvent"});
+
+Order.belongsToMany(Event, {through: Order_Event, foreignKey:"idOrder"}); 
+Event.belongsToMany(Order, {through: Order_Event, foreignKey:"idEvent"});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
-  Event, Role, Sale, User, Review
 };

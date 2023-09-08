@@ -1,91 +1,68 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import userValidations from "../../functions/Validations/loginValidation/validation";
 import { useSelector, useDispatch } from "react-redux";
-import video from "../../Utils/videos/backgroundLogin.mp4"
-import styles from './login.module.css'
+import { postLogin } from "../../Redux/Action/action";
+import { styles } from "./loginStyle";
 
 export default function Login() {
-    const userSesion = useSelector(state => state.userSesion)
-    const navigate = useNavigate()
-    const [users, setUsers] = useState({
+    const dispatch = useDispatch();
+    const [user, setUsers] = useState({
         displayName: '',
         password: ''
     })
+    const {userSesion} = useSelector(state => state)
     const [errors, setErrors] = useState([])
-    const [result, setResult] = useState(false)
+    const navigate = useNavigate()
     function handleForm(e) {
         const value = e.currentTarget.value
         const name = e.currentTarget.name
         setUsers({
-            ...users,
+            ...user,
             [name]: value
         })
     };
+
     function handleSubmit(e) {
         e.preventDefault();
-        const { displayName, password } = users
+        const { displayName, password } = user
         const errores = userValidations(displayName, password);
         setErrors(errores);
-        if( errores.length === 0 ) {
-            axios.post(`/users/login`, users)
-                .then(data => {
-                    console.log(data.data);
-                    setResult(true);
-                })
-                .catch( reason => {
-                    console.log(reason);
-                    setResult(false);
-                });
+        if (errores.length === 0) {
+            const userToSend = { ...user, platform: "boho", jwt: "" };
+            dispatch(postLogin(userToSend));
+            // navigate("/")
         }
     };
-    useEffect(() => {
-        if (result) {
-            navigate('/')
+
+    useEffect(()=>{
+        if(Object.keys(userSesion).length > 0){
+            navigate("/")
         }
-    }, [result])
+    },[userSesion])
+    
     return (
-        <div className={styles.Background}>
-                            <div className={styles.titleContainer}>
-                    <h1>BOHO</h1>
-                    <p>¡¡Compra tus tickets seguro con nosotros!!</p>
-                </div>
-            <section>
-                <video className={styles.Video} src={video} autoPlay muted loop />
-                {
-                    errors.length > 0 ?
-                        <article className={styles.ErrorPopUp}>
-                            <div>
-                                {
-                                    errors?.map((element, key) => {
-                                        return (
-                                            <div key={key++}>
-                                                <p>{element}</p>
-                                            </div>
-                                        )
-                                    })
-                                }
-                            </div>
-                        </article>
-                        :
-                        null
-                }
-                <div className={styles.center}>
-                    <article>
-                        <form onSubmit={handleSubmit}  className={styles.LoginWindow}>
-                            <label htmlFor="">Usuario:</label>
-                            <input className={styles.LoginInput} onChange={handleForm} type="text" placeholder="Jorgito17" name="displayName" />
-                            <label htmlFor="">Contraseña:</label>
-                            <input className={styles.LoginInput} onChange={handleForm} type="password" placeholder="*********" name="password" />
-                            <button className={styles.LoginButton}>Iniciar Sesión</button>
-                        </form>
-                    </article>
-                    <article>
-                        <p className={styles.window}>¿No tienes cuenta?, <Link style={{ textDecoration: "none", color: "rgb(191, 132, 29)" }} to='/register'> Registrate </Link></p>
-                    </article>
-                </div>
-            </section>
+        <div className={styles.body}>
+            <div className={styles.header}>
+                <h1 className={styles.logo}>BOHO</h1>
+                <p className={styles.p}>¡¡Compra tus tickets seguro con nosotros!!</p>
+            </div>
+            <div className={styles.container}>
+                <form onSubmit={handleSubmit} className={styles.form}>
+                <h5 className={styles.h5}>Inciar Sesion</h5>
+                    <div className={styles.div_ind}>
+                        <label className={styles.label}>Usuario:</label>
+                        <input className={styles.input} onChange={handleForm} type="text" placeholder="Jorgito17" name="displayName" />
+                    </div>
+                    <div className={styles.div_ind}>
+                       <label className={styles.label}>Contraseña:</label>
+                    <input className={styles.input} onChange={handleForm} type="password" placeholder="*********" name="password" /> 
+                    </div>
+                    <button className={styles.button}>Iniciar Sesión</button>
+                </form>
+                <p className={styles.p}>¿No tienes cuenta?, <Link style={{ textDecoration: "none", color: "rgb(191, 132, 29)" }} to='/register'> Registrate </Link></p>
+                <p className={styles.p}>¿Olvidaste tu contraseña?, <Link style={{ textDecoration: "none", color: "rgb(191, 132, 29)" }} to='/passwordReset'> Recupera tu contraseña </Link></p>
+            </div>
         </div>
     )
 };

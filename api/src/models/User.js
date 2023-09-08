@@ -22,23 +22,27 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             unique: true,
             allowNull: false,
-        },
-        identification:  {
-            type: DataTypes.STRING
+            validate: {
+                isEmail: true
+            }
         },
         nationality: {
-            type: DataTypes.ENUM('Colombia', 'Venezuela', 'Argentina', 'Uruguay')
-        },
-        isCompany: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false
+            type: DataTypes.ENUM('Colombia', 'Venezuela', 'Argentina', 'Uruguay', 'Chile')
         },
         address: {
+            type: DataTypes.STRING,
+        },
+        image: {
             type: DataTypes.STRING,
         },
         password: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        active: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: true
         }
     });
 };

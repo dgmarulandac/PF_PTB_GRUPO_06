@@ -99,7 +99,7 @@ label{
     align-items: center;
     grid-template-rows: 160px 580px 50px;
 }
-select {
+.Background select {
     /* Reset Select */
     appearance: none;
     outline: 10px red;
@@ -148,7 +148,7 @@ select {
     margin: 10px;
 }
 
-h1{
+.Background h1{
     color: white;
     font-size: 100px;
     text-align: center;
@@ -156,9 +156,9 @@ h1{
 .titleContainer > p{
     text-align: center;
 }
-label{
+.Background label{
     color: white;
 }
-p{
+.Background p{
     color: white;
 }

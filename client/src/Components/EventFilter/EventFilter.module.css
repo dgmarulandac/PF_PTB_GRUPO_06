@@ -1,20 +1,5 @@
-.filterContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-bottom: 20px;
-}
-
-.filterButton {
-  padding: 10px 15px;
-  background-color: black;
-  color: #f2f2f2;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.filterButton:hover {
-  background-color: rgba(0, 0, 0, 0.575);
-}
+@media (max-width: 768px){
+    .mobile{
+        width: 21rem;
+    }
+  }

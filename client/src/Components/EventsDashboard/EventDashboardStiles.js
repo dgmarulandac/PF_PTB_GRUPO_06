@@ -1,0 +1,10 @@
+export const cardcontainer = "grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 justify-center items-center bg-white dark:bg-gray-700 p-8 mx-auto";
+export const paginado = "bg-white dark:bg-gray-700 py-2";
+export const swiper = "bg-white dark:bg-gray-700 py-2 text-center"; // Agregamos 'text-center' para centrar el contenido
+export const error = "mt-2 text-xl font-bold tracking-tight bg-gradient-to-r text-transparent bg-clip-text from-blue-400 to-green-500 text-gray-900";
+export const button = 'm-2 mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800';
+export const redbutton = "m-2 mt-3 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+export const title = 'dark:bg-gray-700 mt-2 text-xl font-bold tracking-tight bg-gradient-to-r  from-blue-400 to-green-500 text-gray-900'
+export const card = "w-96"
+export const buttons = "display-flex "
+export const greenbutton = 'm-2 mt-3 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800';

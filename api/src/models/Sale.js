@@ -7,20 +7,10 @@ module.exports = (sequelize) => {
             defaultValue: DataTypes.UUIDV4, 
             allowNull: false,
             primaryKey : true
-          },
-
-        idSeller:{
-            type: DataTypes.INTEGER,
-            allowNull:false
         },
 
-        idBuyer:{
-            type: DataTypes.INTEGER,
-            allowNull:false
-        },
-
-        currency:{
-            type: DataTypes.ENUM('COP'),
+        idOrder:{
+            type: DataTypes.UUID,
             allowNull:false
         },
 
@@ -30,21 +20,10 @@ module.exports = (sequelize) => {
 
         },
 
-        quantity: {
-            type:DataTypes.INTEGER,
-            allowNull:false,
-        },
-        price: {
-            type:DataTypes.INTEGER,
-            allowNull:false,
-
-        },
-        idEvent: {
-            type: DataTypes.INTEGER,
-            allowNull:false
+        isSuccesful: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
         }
-
-
 
     });
 };
