@@ -21,12 +21,14 @@ export default function MyEvents() {
         if(events === false){
           dispatch(eventsAdmin());  
         }
+
         setEvents(eventsGlobal);
+
         if(events.length >= 0){
            setLoading(false); 
         }
         
-    }, [eventsGlobal])
+    }, [eventsGlobal, events])
 
 
     return (
