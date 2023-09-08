@@ -22,12 +22,12 @@ const EventFilter = () => {
     setDate("");
     setOrder("");
     setSortOrder("");
-    dispatch(getEventsFilter("", "", "", "", "", ""));
+    dispatch(getEventsFilter("", "", "", "", "", "", ""));
   };
 
   useEffect(() => {
-    dispatch(getEventsFilter(name, eventType, country, date, order));
-  }, [name, eventType, country, date, order, dispatch]);
+    dispatch(getEventsFilter(name, eventType, country, date, order, sortOrder));
+  }, [name, eventType, country, date, order, sortOrder]);
 
   return (
     <nav className={FilStyles.filterclases}>
@@ -82,17 +82,24 @@ const EventFilter = () => {
         </div>
       </div>
     </nav>
-  
+
         <select value={order} onChange={e => setOrder(e.target.value)} className={FilStyles.select}>
           <option value="">Ordenar por</option>
           <option value="name">Nombre</option>
           <option value="date">Fecha</option>
           <option value="eventType">Tipo de Evento</option>
+          <option value="ticketPrice">Precio de boleto</option>
+        </select>
+        
+        <select value={sortOrder} onChange={e => setSortOrder(e.target.value)} className={FilStyles.select}>
+          <option value="ASC">Acendente</option>
+          <option value="DESC">Decendente</option>
         </select>
   
         <button onClick={handleResetFilters} className={FilStyles.Button}>
           <span class="relative z-10">Quitar </span>
         </button>
+
       </div>
     </nav>
   );

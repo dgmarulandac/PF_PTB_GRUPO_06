@@ -8,7 +8,6 @@ const putReviews = require("../controllers/Reviews/putReviews");
 const getReviewByIdHandler = async (req, res) => {
     try {
         let {id} = req.params;
-        console.log(id);
         const review = await getReviewById(id);
         res.status(200).json(review);
     } catch (error) {
@@ -42,7 +41,6 @@ const  putReviewsHandler = async (req, res) => {
         const putreviews = await putReviews(id);
         res.status(200).json(putreviews);
     } catch (error) {
-        console.log(error)
         res.status(404).json({ error: error.message });
     }  
 };
