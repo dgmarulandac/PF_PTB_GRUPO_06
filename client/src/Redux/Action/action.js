@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES, POST_REVIEW, ADD_CAR, GET_EVENTS_ADMIN, ADD_TO_CAR, PLUS_LESS, DELETE_EVENT_CAR, SEARCH_EVENT_ADMIN } from "./action-type";
+import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES, POST_REVIEW, ADD_CAR, GET_EVENTS_ADMIN, ADD_TO_CAR, PLUS_LESS, PUT_PROFILE, DELETE_EVENT_CAR, SEARCH_EVENT_ADMIN } from "./action-type";
 import Swal from "sweetalert2";
 
 export const getAllEvent = () => {
@@ -271,3 +271,19 @@ export const searchEventAdmin = (value)=>{
     };
 }
 
+
+
+export const putUserProfile = (editedProfile) => {
+    return function (dispatch) {
+        axios.put(`/users/updateProfile`, editedProfile, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+            .then(data => dispatch({ type: PUT_PROFILE, payload: data.data }))
+            .catch(reason => {
+                Swal.fire({
+                    title: "Error",
+                    text: `${reason.response.data.error}`,
+                    icon: "error",
+                });
+                dispatch({ type: PUT_PROFILE, payload: {} })
+            });
+    };
+};
