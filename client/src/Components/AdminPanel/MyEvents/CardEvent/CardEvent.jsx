@@ -13,9 +13,13 @@ export default function CardEvent({ e }) {
     const [v, setV] = useState(false)
     const [active, setActive] = useState(e.active)
     const handleEdit = () => {
-        // v ? setV(false) : setV(true)
         setV(!v)
     }
+
+    useEffect( () =>{
+        setActive(e.active);
+    }, [e] )
+
     const available = async () => {
         axios.put("/events/toggleEvent/" + e.id, {}, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
             .then(({ data }) => {
@@ -24,7 +28,6 @@ export default function CardEvent({ e }) {
             })
             .catch(error => console.log(error))
     }
-    // useEffect(() => { }, [active])
 
     return (
         <div className="m-2 w-[20rem] md:w-[37rem] grid grid-cols-[1fr_2fr_0.2fr] border border-gray-200 rounded-lg bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white">
