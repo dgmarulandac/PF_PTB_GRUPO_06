@@ -68,7 +68,7 @@
     display: flex;
     justify-content: center; /* Centra horizontalmente los iconos */
     align-items: center; /* Centra verticalmente los iconos */
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
 /* Estilos para los iconos sociales */
@@ -81,3 +81,11 @@
 .linkIcon:hover {
     color: #333; /* Cambio de color al pasar el mouse */
 }
+
+.cardscale {
+    transition: transform 0.5s; /* Agregamos una transición suave */
+  }
+
+  .cardscale:hover {
+    transform: scale(1.1); /* Aumenta la escala al hacer hover */
+  }

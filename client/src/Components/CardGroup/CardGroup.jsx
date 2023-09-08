@@ -1,5 +1,6 @@
 import style from './CardGroup.module.css';
 import { BsLinkedin, BsGithub } from 'react-icons/bs';
+import * as styles from "./stylescard"
 
 const CardsGroup = () => {
 	const arrayGroup = [
@@ -60,7 +61,6 @@ const CardsGroup = () => {
 		{
 			id: 7,
 			name: "Gian Franco",
-			lastname: "Desumma",
 			github: "https://github.com/Giann92",
 			linkedin: "in/gian-franco-javier-desumma-7b4206153",
 			photo: "https://avatars.githubusercontent.com/u/56614039?v=4",
@@ -71,27 +71,27 @@ const CardsGroup = () => {
 
 	return (
         <div className={style.containerPadre}>
-            <h1 className={style.firstTitle}>
+            <h1 className="text-3xl bg-gradient-to-r text-transparent bg-clip-text from-blue-500 to-green-500 font-bold mb-5" >
                 Conoce nuestro equipo de desarrolladores
             </h1>
             <div className={`${style.container} ${style.containerGrid}`}>
                 {arrayGroup.map((integrante) => {
                     return (
                         <div
-                            className={`${style.memberCard} ${style.largeCard}`}
+                            className={`${styles.container}${style.cardscale}`}
                             key={integrante.id}
                         >
                             <div className={style.memberInfo}>
                                 <img
-                                    className={style.memberPhoto}
+                                    className={styles.image}
                                     src={integrante.photo}
                                     alt={`${integrante.name} ${integrante.lastname}`}
                                 />
                                 <div className={style.memberDetails}>
-                                    <h4 className={style.memberName}>
+                                    <h4 className="text-2xl bg-gradient-to-r text-transparent bg-clip-text from-blue-500 to-green-500 font-bold mb-5" >
                                         {integrante.name} {integrante.lastname}
                                     </h4>
-                                    <p className={style.memberRole}>
+                                    <p className={styles.span}>
                                         {integrante.role}
                                     </p>
                                     <div className={style.socialLinks}>
@@ -116,7 +116,9 @@ const CardsGroup = () => {
                 <BsGithub />
             </a>
         )}
+	
     </div>
+	<br />
 </div>
                                 </div>
                             </div>
