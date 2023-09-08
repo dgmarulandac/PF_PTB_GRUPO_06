@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import * as styles from "./styles";
 import style from "./card.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { modal, addToCar, getDetail } from "../../Redux/Action/action";
+import { modal, addToCar} from "../../Redux/Action/action";
 import Modal from "../Modal/Modal";
 import axios from "axios";
 
@@ -41,7 +41,6 @@ export default function Card({ event }) {
     };
 
     getreviews()
-      .then(() => dispatch(getDetail(id)))
       .catch((error) => console.log(error));
 
   }, [dispatch, event, id]);
@@ -89,7 +88,7 @@ export default function Card({ event }) {
             </div>
           </Link>
           <div>
-            <button className={styles.button} onClick={handleClick}>
+            <button className={`${styles.button} ${style.button}`} onClick={handleClick}>
               <span class="relative z-10">🛒</span>
             </button>
           </div>

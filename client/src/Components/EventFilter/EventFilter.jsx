@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getEventsFilter } from "../../Redux/Action/action";
-import * as FilStyles from "./FilStyles"
+import * as FilStyles from "./FilStyles";
+import asc_Icon from "../../Images/asc_Icon.png";
+import desc_Icon from "../../Images/desc_Icon.png";
 
 const EventFilter = () => {
   const [order, setOrder] = useState("");
@@ -9,6 +11,7 @@ const EventFilter = () => {
   const [eventType, setEventType] = useState("");
   const [country, setCountry] = useState("");
   const [date, setDate] = useState("");
+  const [sortOrder, setSortOrder] = useState("");
 
   const dispatch = useDispatch();
 
@@ -18,11 +21,12 @@ const EventFilter = () => {
     setCountry("");
     setDate("");
     setOrder("");
-    dispatch(getEventsFilter("", "", "", "", ""));
+    setSortOrder("");
+    dispatch(getEventsFilter("", "", "", "", "", ""));
   };
 
   useEffect(() => {
-    dispatch(getEventsFilter(name, eventType, country, date, order ));
+    dispatch(getEventsFilter(name, eventType, country, date, order));
   }, [name, eventType, country, date, order, dispatch]);
 
   return (
@@ -87,11 +91,11 @@ const EventFilter = () => {
         </select>
   
         <button onClick={handleResetFilters} className={FilStyles.Button}>
-        <span class="relative z-10">Quitar </span>
+          <span class="relative z-10">Quitar </span>
         </button>
       </div>
     </nav>
-  );  
+  );
 };
 
 export default EventFilter;

@@ -5,13 +5,14 @@ import { useSelector } from "react-redux";
 import CarModal from "./CarModal/CarModal";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { addCar } from "../../Redux/Action/action";
+import { addCar, modal } from "../../Redux/Action/action";
 
 export default function Car() {
     const {shoppingCar} = useSelector(state => state)
     const {userSesion} = useSelector(state => state)
+    const {modalOn} = useSelector(state => state)
     // const result = localOrBack(shoppingCarLocal, shoppingCar, userSesion)
-    const [modal, setModal] = useState(false)
+   
     const dispatch = useDispatch()
     
     useEffect(()=>{
@@ -37,12 +38,12 @@ export default function Car() {
     
 
     const handleModal = ()=>{
-        setModal(!modal)
+        // setModal(!modal)
     }
     return (
-        <div className="relative text-gray-900 dark:text-white text-xl m-3">
-            <button onClick={handleModal}><BsFillCartFill /> <span className="text-xs absolute flex justify-center items-center bottom-3 bg-orange-600 rounded-full w-3.5 h-3.5 left-3">{shoppingCar?.length}</span></button>
-            {modal && <CarModal handleModal={handleModal}/>}
+        <div className=" text-gray-900 dark:text-white text-xl m-3">
+            <button onClick={()=>{dispatch(modal(true))}}><BsFillCartFill /> <span className="text-xs relative flex justify-center items-center bottom-3 bg-orange-600 rounded-full w-3.5 h-3.5 left-3">{shoppingCar?.length}</span></button>
+            {modalOn && <CarModal handleModal={handleModal}/>}
         </div>
     )
 }

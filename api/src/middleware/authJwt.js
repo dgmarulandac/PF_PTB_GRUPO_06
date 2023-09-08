@@ -15,22 +15,32 @@ const verifyToken = (req, res, next) => {
         return res.status(401).json({error: "No Autorizado."});
       }
       req.id = decoded.id;
-      next();
+
+      User.findByPk(req.id)
+      .then( user => {
+        if( !user.dataValues.active ) {
+          return res.status(401).json({error: "Este usuario esta baneado, por favor contacta a un administrador."});
+        }
+        next();
+      } )
+      .catch( reason => {
+        return res.status(401).json({error: "Usuario No Existe."});
+      } );
     });
 };
 
 const verifyTokenOptional = (req, res, next) => {
-    const token = req.headers["x-access-token"];
-
-    if( token ) {  
-      jwt.verify(token, SECRET, (err, decoded) => {
-        if (err) {
-          return res.status(401).json({error: "No Autorizado."});
-        }
-        req.id = decoded.id;
-      });
-    }
-    next();
+  const token = req.headers["x-access-token"];
+  req.id = null;
+  if( token ) {  
+    jwt.verify(token, SECRET, (err, decoded) => {
+      if (err) {
+        return res.status(401).json({error: "No Autorizado."});
+      }
+      req.id = decoded.id;
+    });
+  }
+  next();
 };
 
 const isAdmin = async (req, res, next) => {

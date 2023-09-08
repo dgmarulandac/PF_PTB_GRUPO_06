@@ -7,11 +7,11 @@ const {
     postUserLoginHandler, 
     postAuthHandler,
     toggleUserHandler,
-    putUserHandler
-    
+    putUserHandler,
+    putUpdateUserHandler
 } = require("../handlers/userHandler");
 
-const { verifyToken, isAdmin } = require("../middleware/authJwt");
+const { verifyToken, isAdmin, isBuyer } = require("../middleware/authJwt");
 const { verifyGoogle } = require("../middleware/googleUser");
 
 const userRouter = Router();
@@ -24,5 +24,6 @@ userRouter.post("/login", [verifyGoogle], postUserLoginHandler);
 userRouter.post("/auth", postAuthHandler);
 userRouter.put("/toggleUser/:id", [verifyToken, isAdmin], toggleUserHandler);
 userRouter.put("/update/:id", [verifyToken, isAdmin], putUserHandler);
+userRouter.put("/updateProfile", [verifyToken, isBuyer], putUpdateUserHandler)
 
 module.exports = userRouter;

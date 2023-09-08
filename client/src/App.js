@@ -23,6 +23,7 @@ import EventsDashboard from './Components/EventsDashboard/EventsDashboard';
 import AdminPanel from './Components/AdminPanel/AdminPanel';
 import SalesPay from './Components/Sales/SalesPay';
 import UserProfile from './Components/UserPerfil/UserProfile';
+import AboutUs from './Components/AboutUS/AboutUS';
 
 //Componentes Autorizacion
 import NotLoggedElement from './Utils/AutorizationComponents/NotLoggedElement';
@@ -61,6 +62,9 @@ function App() {
         <Route path='/passwordRecover/:token' element={<NotLoggedElement><RecoverPassword /></NotLoggedElement>} />
         <Route path='/TaC' element={<LoggedElement><TermsAndConditions /></LoggedElement>} />
         <Route path='/createEvent' element={<SellerOrAdminElement><FormEvent /></SellerOrAdminElement>} />
+        <Route path='/myEvents' element={<SellerOrAdminElement><EventsDashboard/></SellerOrAdminElement>}/>
+        <Route path='/editEvent/:id' element={<SellerOrAdminElement><EditEvent/></SellerOrAdminElement>}/> 
+        <Route path='/about' element={<AboutUs />} />
         <Route path='/myEvents' element={<SellerOrAdminElement><EventsDashboard /></SellerOrAdminElement>} />
         <Route path='/editEvent/:id' element={<SellerOrAdminElement><EditEvent /></SellerOrAdminElement>} />
         <Route path='/Admin/Panel' element={<AdminPanel />} />

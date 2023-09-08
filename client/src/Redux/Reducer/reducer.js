@@ -1,4 +1,4 @@
-import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES, POST_REVIEW, ADD_CAR, GET_EVENTS_ADMIN, ADD_TO_CAR, PLUS_LESS, PUT_PROFILE } from "../Action/action-type";
+import { GET_ALL_EVENT, CREATE_EVENT, GET_DETAIL, FILTER_GET_EVENTS, POST_LOGIN, MODAL, LOG_OUT, ORDER_PAY, GET_MY_EVENTS, PUT_EVENT, GET_MY_SALES, POST_REVIEW, ADD_CAR, GET_EVENTS_ADMIN, ADD_TO_CAR, PLUS_LESS, PUT_PROFILE, DELETE_EVENT_CAR, SEARCH_EVENT_ADMIN } from "../Action/action-type";
 
 const initialState = {
     country: ['Colombia', 'Venezuela', 'Argentina', 'Uruguay'],
@@ -31,13 +31,13 @@ const rootReducer = (state = initialState, action)=>{
         case MODAL:
             return {...state, modalOn: payload};
         case LOG_OUT:
-            return {...state, userSesion: payload};
+            return {...state, userSesion: {}, shoppingCar: payload};
         case GET_MY_EVENTS:
             return {...state, myEvents: payload};
         case PUT_EVENT:
             return {...state, myEvents: [...state.myEvents.filter( event => { return event.id !== payload.id } ), payload], 
             events: [...state.events.filter( event => { return event.id !== payload.id } ), payload], 
-            eventsAdmin: state.eventsAdmin.map(e => e.id === payload.id ? payload : e)};
+            eventsAdmin: [...state.eventsAdmin.filter( event => { return event.id !== payload.id } ), payload]};
         case ORDER_PAY:
             return {...state, preferenceId: payload};
         case GET_MY_SALES:
@@ -46,7 +46,11 @@ const rootReducer = (state = initialState, action)=>{
             return {...state, shoppingCar: payload}
         // case ADD_TO_CAR:
         //     return {...state, shoppingCar: [...state.shoppingCar, payload]}
+        case DELETE_EVENT_CAR:
+            return {...state, shoppingCar: [...state.shoppingCar.filter(e => e.id !== payload)]}
         case GET_EVENTS_ADMIN:
+            return {...state, eventsAdmin: payload}
+        case SEARCH_EVENT_ADMIN:
             return {...state, eventsAdmin: payload}
         case PUT_PROFILE:
             console.log(payload);

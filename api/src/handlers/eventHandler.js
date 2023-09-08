@@ -7,10 +7,11 @@ const getAdminEvents = require('../controllers/Event/getAdminEvents');
 const toggleEvent = require('../controllers/Event/toggleEvent');
 
 
+
 const getEventHandler = async (req, res) => {
-    const { name, eventType, country, date, order } = req.query;
+    const { name, eventType, country, date, ticketPrice, order, sortOrder } = req.query;
     try {
-        const events = await getEventFilterController(name, eventType, country, date, order);
+        const events = await getEventFilterController(name, eventType, country, date, ticketPrice, order, sortOrder);
         res.status(200).json(events);
     } catch (error) {
         res.status(404).json({error: error.message});
@@ -18,9 +19,10 @@ const getEventHandler = async (req, res) => {
 };
 
 const getEventByIdHandler = async (req, res) => {
-    const { id } = req.params;  
+    const { id } = req.params;
+    const userId = req.id;
     try {
-        const eventById = await getEventById(id);
+        const eventById = await getEventById(id, userId);
         res.status(200).json(eventById);
     } catch (error) {
         res.status(404).json({error: error.message});
@@ -29,8 +31,7 @@ const getEventByIdHandler = async (req, res) => {
 
 const getMyEventHandler = async (req, res) => {
     try {
-        const { id } = req.params;
-        const events = await getMyEvents(id,req.id);
+        const events = await getMyEvents(req.id);
         res.status(200).json(events);
     } catch (error) {
         res.status(404).json({error: error.message});
@@ -38,13 +39,15 @@ const getMyEventHandler = async (req, res) => {
 };
 
 const getAdminEventsHandler = async (req, res) => {
-    try {
-        const events = await getAdminEvents();
+    try{
+        const name = req.query.name
+        const events = await getAdminEvents(name);
         res.status(200).json(events);
-    } catch (error) {
-        res.status(404).json({error: error.message});
+    }catch(error){
+        res.status(400).json({error: error.message});  
     }
-};
+    }
+
 
 const toggleEventHandler = async (req, res) => {
     try {

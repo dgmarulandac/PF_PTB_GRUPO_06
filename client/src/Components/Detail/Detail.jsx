@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addCar, addToCar, getDetail, modal } from "../../Redux/Action/action";
+import { addToCar, getDetail, modal } from "../../Redux/Action/action";
 import Modal from "../Modal/Modal";
 import style from "./Detail.module.css";
 import * as styles from "./DetStiles";
@@ -10,6 +10,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { FiArrowLeft } from "react-icons/fi";
 import React from "react";
+import CarModal from "../Car/CarModal/CarModal";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const Detail = () => {
     idEvent: id,
   });
 
-const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   const handleClick = () => {
     dispatch(addToCar({ idEvent: id, quantity: 1 }));
@@ -63,7 +64,7 @@ const [reviews, setReviews] = useState([]);
   } else {
     averageRating = (totalScore / reviews.length).toFixed(2);
   }
-  
+
   const handledsummit = async (event) => {
     event.preventDefault();
 
@@ -80,7 +81,7 @@ const [reviews, setReviews] = useState([]);
         title: "mensaje enviado",
         text: `tu mensaje sera revisado y posteado`,
         icon: "success",
-      });;
+      });
     } catch (error) {
       Swal.fire({
         title: "Error",
@@ -178,16 +179,18 @@ const [reviews, setReviews] = useState([]);
               <br />
               <div className={styles.cardcon}>
                 <div key="0">
-                <p className={styles.ratingprom}>{averageRating}:
-                  <div>
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <span key={index}>
-                      {index + 1 <= Math.round(averageRating) ? "⭐" : ""}
-                    </span>
-                  ))}
-                </div></p>
-                  <h2 className={styles.name}>{ticketid.name}</h2>
-                  <div className="display: flex justify-center ">
+                  <p className={styles.ratingprom}>{averageRating}:
+                    <div>
+                      {Array.from({ length: 5 }).map((_, index) => (
+                        <span key={index}>
+                          {index + 1 <= Math.round(averageRating) ? "⭐" : ""}
+                        </span>
+                      ))}
+                    </div></p>
+                  <div className="flex justify-center items-center">
+                    <h2 className={styles.name}>{ticketid.name}</h2>
+                  </div>
+                  <div className="grid md:flex justify-center  ">
                     <div className={styles.centerimg}>
                       <img src={ticketid.image} alt="" className={styles.img} />
                     </div>
@@ -207,13 +210,13 @@ const [reviews, setReviews] = useState([]);
 
                   <div>
                     <button onClick={handleClick} className={styles.button}>
-                      <span class="relative z-1">Agregar a carrito</span>
+                      <span class="relative">Agregar a carrito</span>
                     </button>
                   </div>
                 </div>
                 {modalOn && (
                   <div key="1">
-                    <Modal />
+                    <CarModal />
                   </div>
                 )}
               </div>
@@ -222,7 +225,7 @@ const [reviews, setReviews] = useState([]);
         </div>
         <div className={styles.container}>
           <div>
-            {reviews.map((review) => (
+            {reviews && reviews.map((review) => (
               <div
                 key={review.id}
                 className={styles.reviewbox}
@@ -244,7 +247,7 @@ const [reviews, setReviews] = useState([]);
             ))}
           </div>
         </div>
-        {idUser && (
+        { idUser && ticketid.comentable && (
           <div className={styles.container}>
             <form
               onSubmit={handledsummit}

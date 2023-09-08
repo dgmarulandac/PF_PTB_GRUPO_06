@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import EditEventAdmin from "../EditEvent/EditEventAdmin"
+import { cambiarTicket } from "../../../../Redux/Action/action";
 import EditEventTest from "../EditEvent/EditEventTest";
 import { AiOutlineClose, AiOutlineCheck, AiOutlineEdit } from "react-icons/ai";
 import styles from "./CardEventStyle";
@@ -18,6 +19,7 @@ export default function CardEvent({ e }) {
     const available = async () => {
         axios.put("/events/toggleEvent/" + e.id, {}, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
             .then(({ data }) => {
+                cambiarTicket(data)
                 setActive(data.active)
             })
             .catch(error => console.log(error))
@@ -25,14 +27,14 @@ export default function CardEvent({ e }) {
     // useEffect(() => { }, [active])
 
     return (
-        <div className="m-2 w-[37rem] grid grid-cols-[1fr_2fr_0.2fr] border border-gray-200 rounded-lg bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white">
+        <div className="m-2 w-[20rem] md:w-[37rem] grid grid-cols-[1fr_2fr_0.2fr] border border-gray-200 rounded-lg bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white">
             <div className="w-40 h-32">
                 <img src={e.image} alt="evento" className="w-full h-32" />
             </div>
             <Link to={`/event/${e.id}`}>
-                <div className="text-start">
-                    <h2 className="text-lg font-medium">{e.name}</h2>
-                    <p>{e.ticketPrice}{e.currency} /<span>{e.country}</span></p>
+                <div className="text-start m-2 md:m-0">
+                    <h2 className="text-base md:text-lg font-medium">{e.name}</h2>
+                    <p className="text-xs md:text-base">{e.ticketPrice}{e.currency} /<span>{e.country}</span></p>
                     {active ? (<p className={styles.exito}>✅visible</p>) : (<p className={styles.error}>🚫 no visible</p>)}
                 </div>
             </Link>
