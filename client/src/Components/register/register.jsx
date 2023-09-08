@@ -132,6 +132,7 @@ export default function Register() {
                     <button className={styles.button}>Registrarse</button>
                     <div className={styles.div_ind} id="textContainer"><p className={styles.exito} id="message"></p></div>
                 </form>
+                <p className={styles.window}>¿Ya tienes cuenta?, <Link style={{ textDecoration: "none", color: "rgb(191, 132, 29)" }} to='/TaC'>Revisa nuestros terminos y condiciones</Link></p>
                 <p className={styles.window}>¿Ya tienes cuenta?, <Link style={{ textDecoration: "none", color: "rgb(191, 132, 29)" }} to='/login'>Inicia Sesión</Link></p>
             </div>
 
