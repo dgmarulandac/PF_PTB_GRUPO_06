@@ -137,6 +137,13 @@ export const modal = (value) => {
     };
 };
 
+export const cambiarTicket = (payload) => {
+    return {
+        type: PUT_EVENT,
+        payload: payload
+    };
+};
+
 export const logOut = () => {
     localStorage.removeItem('shoppingCar')
     localStorage.removeItem('jwt');
