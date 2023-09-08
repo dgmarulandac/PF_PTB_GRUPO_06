@@ -9,7 +9,7 @@ export const getAllEvent = () => {
             .catch(reason => {
                 Swal.fire({
                     title: "Error",
-                    text: `${reason.response}`,
+                    text: `${reason.response.data.error}`,
                     icon: "error",
                 });
                 dispatch({ type: GET_ALL_EVENT, payload: [] })
@@ -39,7 +39,7 @@ export const getEventsFilter = (name, eventType, country, date, order, sortOrder
             .catch(reason => {
                 Swal.fire({
                     title: "Error",
-                    text: `${reason.response}`,
+                    text: `${reason.response.data.error}`,
                     icon: "error",
                 });
                 dispatch({ type: FILTER_GET_EVENTS, payload: {} })
@@ -63,11 +63,12 @@ export const getDetail = (id) => {
     };
 };
 
-export const getMyEvents = (id) => {
+export const getMyEvents = () => {
     return function (dispatch) {
-        axios.get(`/events/myEvents/${id}`,{ headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+        axios.get(`/events/myEvents`,{ headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
             .then(data => dispatch({ type: GET_MY_EVENTS, payload: data.data }))
             .catch(reason => {
+                console.log(reason);
                 Swal.fire({
                     title: "Error",
                     text: `${reason.response.data.error}`,
@@ -237,8 +238,15 @@ export const deleteEventCar = (id)=>{
                 payload: id
             })
         })
-        .catch(error => console.log(error))
-    }
+        .catch(reason => {
+            console.log(reason)
+            Swal.fire({
+                title: "Error",
+                text: `${reason.response.data.error}`,
+                icon: "error",
+            });
+            return dispatch({type: DELETE_EVENT_CAR, payload: ""})
+        })}
 }
 
 export const searchEventAdmin = (value)=>{
@@ -248,7 +256,7 @@ export const searchEventAdmin = (value)=>{
             .catch(reason => {
                 Swal.fire({
                     title: "Error",
-                    text: `${reason.response}`,
+                    text: `${reason.response.data.error}`,
                     icon: "error",
                 });
                 dispatch({ type: SEARCH_EVENT_ADMIN, payload: {} })
