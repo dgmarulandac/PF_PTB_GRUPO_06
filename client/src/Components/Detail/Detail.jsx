@@ -225,7 +225,7 @@ const Detail = () => {
                   <div>
                     {ticketid.cantTickets === 0 ? (
                       <button className={styles.button}> <span class="relative">
-                        Agregar a carrito 
+                        no puedes comprar
                       </span>
                       </button>
                     ) : (
