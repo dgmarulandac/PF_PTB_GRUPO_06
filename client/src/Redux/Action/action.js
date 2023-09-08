@@ -32,9 +32,9 @@ export const createEvent = (event) => {
     };
 }
 
-export const getEventsFilter = (name, eventType, country, date, order) => {
+export const getEventsFilter = (name, eventType, country, date, order, sortOrder) => {
     return function (dispatch) {
-        axios.get(`/events/?name=${name}&eventType=${eventType}&country=${country}&date=${date}&order=${order}`,{ headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+        axios.get(`/events/?name=${name}&eventType=${eventType}&country=${country}&date=${date}&order=${order}&sortOrder={sortOrder}`,{ headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
             .then(data => dispatch({ type: FILTER_GET_EVENTS, payload: data.data }))
             .catch(reason => {
                 Swal.fire({
@@ -134,6 +134,13 @@ export const modal = (value) => {
     return {
         type: MODAL,
         payload: value
+    };
+};
+
+export const cambiarTicket = (payload) => {
+    return {
+        type: PUT_EVENT,
+        payload: payload
     };
 };
 
