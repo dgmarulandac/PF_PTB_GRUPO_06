@@ -77,7 +77,7 @@ const BannedUsers = () => {
             <div >
                 <div>
                     <input className="rounded-l-md p-2" ref={ref} placeholder="Buscar un email" />
-                    <button onClick={handleSearch} className="rounded-r-md p-2 bg-black" >Buscar</button>
+                    <button onClick={handleSearch} className="rounded-r-md p-2 bg-black text-white" >Buscar</button>
                 </div>
             </div>
             <div className="grid place-self-center">
