@@ -1,7 +1,7 @@
 export const styles = {
     body:"grid justify-center bg-whithe dark:bg-fondoDark",
     input: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white",
-    container: "m-5 w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700",
+    container: "md:m-5 w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700",
     form: "space-y-1",
     label: "block mb-2 text-sm font-medium text-gray-900 dark:text-white",
     h5: "text-xl font-medium text-gray-900 dark:text-white",
@@ -15,7 +15,7 @@ export const styles = {
     div_g: "grid grid-rows-divDesImg",
     div_p: "grid grid-rows-divForm m-0",
     p: "font-medium text-gray-900 dark:text-white border-b-[3px] p-2",
-    header: "mt-5 mr-5 ml-5 mb-0 w-full max-w-sm p-4 sm:p-6 md:p-8 dark:text-white",
+    header: "mt-5 md:mx-5 w-full max-w-sm p-4 sm:p-6 md:p-8 dark:text-white",
     logo: 'font-bungee text-5xl',
     checkBox: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500",
     errorPopUp: "fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-90 min-h-[300px] flex items-center z-50 rounded-lg border border-black p-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
