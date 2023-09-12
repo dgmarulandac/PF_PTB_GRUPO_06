@@ -10,7 +10,7 @@ import styled from "styled-components"
 import Car from "../Car/Car";
 
 const Hamburguer = styled.div`
-min-height: ${(props) => (props.isOpen ? '100vh' : '48px')};
+min-height: ${(props) => (props.isOpen ? '100vh' : '60px')};
 transition: min-height 0.3s ease-in-out;
 overflow: hidden;
 `
@@ -70,6 +70,7 @@ const Nav = (props) => {
                 <path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"></path>
               </svg></button>
             </div>
+            <div className={styles.rotatingBar}></div>
             <div className={navStyles.linkContainerClassesMobile} id="container">
               <Link to="/login" ><button className={navStyles.buttonClasses} onClick={handlePress}><span >Inicia Sesión</span></button></Link>
               <Link to="/register" ><button className={navStyles.buttonClasses} onClick={handlePress}><span >Registrate</span></button></Link>
@@ -81,7 +82,6 @@ const Nav = (props) => {
               <Car />
             </div>
           </div>
-          <div className={styles.rotatingBar}></div>
         </Hamburguer>
       );
     };

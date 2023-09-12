@@ -61,7 +61,7 @@ export default function UserProfile() {
 
   return (
     <div className="bg-gray-600 flex justify-center items-center">
-      <form className="justify-center items-center box-content w-96 bg-gray-900 mb-5 mt-5 rounded-lg">
+      <form className="justify-center items-center box-content w-96 bg-gray-900 p-5 m-5 rounded-lg">
         <div className="mb-6 mt-3">
           <h1 className="text-2xl md:text-5xl bg-gradient-to-r text-transparent bg-clip-text from-blue-500 to-green-500 font-bold mb-5">
             Perfil de Usuario
