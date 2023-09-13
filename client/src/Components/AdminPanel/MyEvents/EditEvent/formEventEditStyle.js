@@ -15,7 +15,7 @@ export const styles = {
     div_g: "grid grid-rows-divDesImg",
     div_img: "grid",
     div_p: "grid grid-rows-divForm m-0",
-    body: "overflow-auto fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex justify-center",
+    body: "z-50 overflow-auto fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex justify-center",
     header: "mt-5 mr-5 ml-5 mb-0 w-full max-w-sm p-4 sm:p-6 md:p-8 dark:text-white",
     logo: 'font-bungee text-5xl text-gray-900 dark:text-white m-3',
     input_price: "block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
