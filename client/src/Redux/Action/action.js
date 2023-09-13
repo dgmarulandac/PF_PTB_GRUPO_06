@@ -131,6 +131,7 @@ export const postAuth = (jwt) => {
 };
 
 export const modal = (value) => {
+    console.log('Ejecutando myAction desde aquí:', new Error().stack)
     return {
         type: MODAL,
         payload: value

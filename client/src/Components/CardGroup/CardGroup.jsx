@@ -54,7 +54,7 @@ const CardsGroup = () => {
 			name: "Cecilia",
 			lastname: "Castellano",
 			github: "https://github.com/ceci-cast",
-			linkedin:"https://www.linkedin.com/in/cecilia-margarita-castellano-rodriguez-44b026109/",
+			linkedin: "https://www.linkedin.com/in/cecilia-margarita-castellano-rodriguez-44b026109/",
 			photo: "https://avatars.githubusercontent.com/u/115096053?v=4",
 			role: "Desarrollador Back-end",
 		},
@@ -66,68 +66,68 @@ const CardsGroup = () => {
 			photo: "https://avatars.githubusercontent.com/u/56614039?v=4",
 			role: "Desarrollador Front-end",
 		},
-		
+
 	];
 
 	return (
-        <div className={style.containerPadre}>
-            <h1 className="text-3xl bg-gradient-to-r text-transparent bg-clip-text from-blue-500 to-green-500 font-bold mb-5" >
-                Conoce nuestro equipo de desarrolladores
-            </h1>
-            <div className={`${style.container} ${style.containerGrid}`}>
-                {arrayGroup.map((integrante) => {
-                    return (
-                        <div
-                            className={`${styles.container}${style.cardscale}`}
-                            key={integrante.id}
-                        >
-                            <div className={style.memberInfo}>
-                                <img
-                                    className={styles.image}
-                                    src={integrante.photo}
-                                    alt={`${integrante.name} ${integrante.lastname}`}
-                                />
-                                <div className={style.memberDetails}>
-                                    <h4 className="text-2xl bg-gradient-to-r text-transparent bg-clip-text from-blue-500 to-green-500 font-bold mb-5" >
-                                        {integrante.name} {integrante.lastname}
-                                    </h4>
-                                    <p className={styles.span}>
-                                        {integrante.role}
-                                    </p>
-                                    <div className={style.socialLinks}>
-    <div className={style.socialIcons}>
-        {integrante.linkedin && (
-            <a
-                href={integrante.linkedin}
-                target='_blank'
-                rel='noopener noreferrer'
-                className={style.linkIcon}
-            >
-                <BsLinkedin />
-            </a>
-        )}
-        {integrante.github && (
-            <a
-                href={integrante.github}
-                target='_blank'
-                rel='noopener noreferrer'
-                className={style.linkIcon}
-            >
-                <BsGithub />
-            </a>
-        )}
-	
-    </div>
-	<br />
-</div>
-                                </div>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
-        </div>
-    );
+		<div className={style.containerPadre}>
+			<h1 className="text-3xl bg-gradient-to-r text-transparent bg-clip-text from-blue-500 to-green-500 font-bold mb-5" >
+				Conoce nuestro equipo de desarrolladores
+			</h1>
+			<div className={`${style.container} `}>
+				{arrayGroup.map((integrante) => {
+					return (
+						<div
+							className={`${styles.container}${style.cardscale}`}
+							key={integrante.id}
+						>
+							<div className={style.memberInfo}>
+								<img
+									className={styles.image}
+									src={integrante.photo}
+									alt={`${integrante.name} ${integrante.lastname}`}
+								/>
+								<div className={style.memberDetails}>
+									<h4 className="text-xl md:text-2xl bg-gradient-to-r text-transparent bg-clip-text from-blue-500 to-green-500 font-bold mb-5" >
+										{integrante.name} {integrante.lastname}
+									</h4>
+									<p className={styles.span}>
+										{integrante.role}
+									</p>
+									<div className={`${style.socialLinks} self-end`}>
+										<div className={style.socialIcons}>
+											{integrante.linkedin && (
+												<a
+													href={integrante.linkedin}
+													target='_blank'
+													rel='noopener noreferrer'
+													className={style.linkIcon}
+												>
+													<BsLinkedin />
+												</a>
+											)}
+											{integrante.github && (
+												<a
+													href={integrante.github}
+													target='_blank'
+													rel='noopener noreferrer'
+													className={style.linkIcon}
+												>
+													<BsGithub />
+												</a>
+											)}
+
+										</div>
+										<br />
+									</div>
+								</div>
+							</div>
+						</div>
+					);
+				})}
+			</div>
+		</div>
+	);
 }
 
 export default CardsGroup;
