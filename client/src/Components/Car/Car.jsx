@@ -8,42 +8,50 @@ import { useDispatch } from "react-redux";
 import { addCar, modal } from "../../Redux/Action/action";
 
 export default function Car() {
-    const {shoppingCar} = useSelector(state => state)
-    const {userSesion} = useSelector(state => state)
-    const {modalOn} = useSelector(state => state)
+    const { shoppingCar } = useSelector(state => state)
+    const { userSesion } = useSelector(state => state)
+    const { modalOn } = useSelector(state => state)
     // const result = localOrBack(shoppingCarLocal, shoppingCar, userSesion)
-   
+
     const dispatch = useDispatch()
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         findOrCreateCar()
     }, [])
-    
-    const findOrCreateCar = ()=>{
+
+    const findOrCreateCar = () => {
         const shoppingCarLocal = localStorage.getItem('shoppingCar')
-        if(shoppingCarLocal){
+        if (shoppingCarLocal) {
             axios.get(`/carts/${shoppingCarLocal}`, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
-            .then(response => {
-                localStorage.setItem('shoppingCar', response.data.token)
-                dispatch(addCar(response.data.Events))})
-            .catch(error => console.log(error))
-        }else{
-            axios.post(`/carts/createCart`, {items: shoppingCar}, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
-            .then(({data}) =>{
-                localStorage.setItem('shoppingCar', data.token)
-                dispatch(addCar(data.events))
-            })
+                .then(response => {
+                    localStorage.setItem('shoppingCar', response.data.token)
+                    dispatch(addCar(response.data.Events))
+                })
+                .catch(error => console.log(error))
+        } else {
+            axios.post(`/carts/createCart`, { items: shoppingCar }, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
+                .then(({ data }) => {
+                    localStorage.setItem('shoppingCar', data.token)
+                    dispatch(addCar(data.events))
+                })
         }
     }
-    
 
-    const handleModal = ()=>{
+
+    const handleModal = () => {
         // setModal(!modal)
     }
     return (
-        <div className=" text-gray-900 dark:text-white text-xl m-3">
-            <button onClick={()=>{dispatch(modal(true))}}><BsFillCartFill /> <span className="text-xs relative flex justify-center items-center bottom-3 bg-orange-600 rounded-full w-3.5 h-3.5 left-3">{shoppingCar?.length}</span></button>
-            {modalOn && <CarModal handleModal={handleModal}/>}
+        <div className=" text-gray-900 dark:text-white text-xl grid place-content-center">
+            <button onClick={() => { dispatch(modal(true)) }} className="inline-flex">
+                    <BsFillCartFill />
+                    <span className="text-xs relative bottom-1 right-1.5 bg-orange-600 w-3.5 h-3.5 rounded-full flex justify-center items-center">{shoppingCar?.length}</span>
+            </button>
+            {/* <button className="grid place-content-center" onClick={() => { dispatch(modal(true)) }}>
+                <BsFillCartFill />
+                <span className="text-xs relative flex justify-center items-center bottom-3 bg-orange-600 rounded-full w-3.5 h-3.5 left-3">{shoppingCar?.length}</span>
+            </button> */}
+            {modalOn && <CarModal handleModal={handleModal} />}
         </div>
     )
 }

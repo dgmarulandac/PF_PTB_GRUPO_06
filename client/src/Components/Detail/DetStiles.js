@@ -13,5 +13,5 @@ export const ratingprom = " text-2xl text-gray-300 font-bold display: flex justi
 export const reviewbox= "box conten h-32 max-h-max px-4 pb-2 m-3 border bg-gray-100 dark:bg-gray-900 rounded-lg dark:border-blue-800"
 export const username= "text-white font-bold text-justify"
 export const coment = "box conten h-16 max-h-max p-2 rounded-lg dark:text-gray-300 border border-gay-200 dark:border-gray-400 dark:bg-gray-700 text-justify"
-export const reviewerbox = "box conten h-62 w-5/12 px-4 pb-2 border bg-gray-100 dark:bg-gray-900 rounded-lg dark:border-blue-800 "
+export const reviewerbox = "box conten h-62 max-w-7xl px-4 pb-2 border bg-gray-100 dark:bg-gray-900 rounded-lg dark:border-blue-800 "
 export const reviewertext = "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
