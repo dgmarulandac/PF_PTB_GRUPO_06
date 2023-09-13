@@ -4,7 +4,7 @@ import * as styles from "./styles";
 import style from "./card.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { modal, addToCar} from "../../Redux/Action/action";
-import Modal from "../Modal/Modal";
+
 import axios from "axios";
 
 export default function Card({ event }) {
