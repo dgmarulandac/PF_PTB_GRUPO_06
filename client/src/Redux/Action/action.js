@@ -4,19 +4,24 @@ import Swal from "sweetalert2";
 
 export const getAllEvent = () => {
     return function (dispatch) {
+      return new Promise((resolve, reject) => {
         axios.get('/events', { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
-            .then(data => dispatch({ type: GET_ALL_EVENT, payload: data.data }))
-            .catch(reason => {
-                Swal.fire({
-                    title: "Error",
-                    text: `${reason.response.data.error}`,
-                    icon: "error",
-                });
-                dispatch({ type: GET_ALL_EVENT, payload: [] })
+          .then(data => {
+            dispatch({ type: GET_ALL_EVENT, payload: data.data });
+            resolve(); // Resuelve la promesa cuando los datos se han cargado con éxito
+          })
+          .catch(reason => {
+            Swal.fire({
+              title: "Error",
+              text: `${reason.response.data.error}`,
+              icon: "error",
             });
+            dispatch({ type: GET_ALL_EVENT, payload: { message: "No se ha encontrado ningún evento" } });
+            reject(); // Rechaza la promesa en caso de error
+          });
+      });
     };
-}
-
+  }
 export const createEvent = (event) => {
     return function (dispatch) {
         axios.post(`/events/createEvent`, event, { headers: { 'X-Access-Token': localStorage.getItem('jwt') } })
