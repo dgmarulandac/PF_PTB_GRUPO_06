@@ -6,6 +6,12 @@
   animation: rotateColors 10s linear infinite;
 }
 
+@media (max-width: 768px) {
+  .rotatingBar{
+    margin-top: 8px;
+  }
+}
+
 @keyframes rotateColors {
   0% {
     background-position: 0 0;
@@ -14,4 +20,6 @@
     background-position: 100% 0;
   }
 }
+
+
 

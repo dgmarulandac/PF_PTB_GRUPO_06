@@ -49,7 +49,7 @@ switch (userOrEvent) {
             )
     default:
         return (
-            <div className='min-h-[65%] md:min-h bg-whithe dark:bg-fondoDark grid gap-5 justify-center mt-10'>
+            <div className='h-[32rem] p-10 bg-whithe dark:bg-fondoDark grid gap-2 justify-center'>
                     <button className="p-5 h-20 text-white border-2 border-white rounded-md bg-sky-500 font-bold" value="events" onClick={handleChange}>Lista de Eventos</button>
                     <button className="p-5 h-20 text-white border-2 border-white rounded-md bg-sky-500 font-bold" value="users" onClick={handleChange}>Lista de Usuarios</button>
                     <button className="p-5 h-20 text-white border-2 border-white rounded-md bg-sky-500 font-bold" value="reviews" onClick={handleChange}>Lista de Reviews</button>

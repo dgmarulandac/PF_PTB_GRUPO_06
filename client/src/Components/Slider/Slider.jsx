@@ -5,7 +5,7 @@ import { Pagination, Autoplay, Navigation, Keyboard } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { swiper } from './styles';
+import { swiper,container, dimencion, img } from './styles';
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 export default function Slider() {
@@ -33,10 +33,10 @@ export default function Slider() {
           const eventDetailUrl = `/event/${event.id}`; // Construct the event detail URL
           return (
             <SwiperSlide key={i}>
-              <div className="flex items-center justify-center align-middle">
-                <div className=" box-content h-xl w-96 mb-5 shadow-md rounded-lg">
+              <div className={container}>
+                <div className={dimencion}>
                 <Link to={eventDetailUrl}> {/* Use Link to navigate to event detail */}
-                  <img src={event.image} alt={event.title} className="mb-4 w-full h-full rounded" />
+                  <img src={event.image} alt={event.title} className={img} />
                 </Link>
                 </div>
               </div>

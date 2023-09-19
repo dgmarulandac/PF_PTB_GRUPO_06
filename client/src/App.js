@@ -24,6 +24,7 @@ import AdminPanel from './Components/AdminPanel/AdminPanel';
 import SalesPay from './Components/Sales/SalesPay';
 import UserProfile from './Components/UserPerfil/UserProfile';
 import AboutUs from './Components/AboutUS/AboutUS';
+import WhatsApp from './Components/WhatsApp/WhatsApp';
 
 //Componentes Autorizacion
 import NotLoggedElement from './Utils/AutorizationComponents/NotLoggedElement';
@@ -71,6 +72,7 @@ function App() {
         <Route path='/Admin/Panel' element={<AdminElement><AdminPanel /></AdminElement>} />
         <Route path='/Admin/Panel/:id' element={<AdminElement><DetailUser /></AdminElement>} />
       </Routes>
+      <WhatsApp/>
       <Footer />
     </div>
   );
