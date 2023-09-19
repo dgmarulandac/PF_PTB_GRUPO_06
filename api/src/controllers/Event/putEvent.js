@@ -8,7 +8,7 @@ const putEvent = async (userInfo, id, data) => {
     }
 
     if( userInfo.isSeller && !userInfo.isAdmin ) {
-        if( event.idSeller !== userInfo.id ) {
+        if( event.idSeller !== userInfo.userId ) {
             throw Error("Este evento no le pertenenece.");
         }
     }
